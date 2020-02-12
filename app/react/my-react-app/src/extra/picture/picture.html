@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>I'sOnTheWorld</title>
+
+        <link rel="stylesheet" type="text/css" href="../../styles.css" />
+    </head>
+    <body>
+        <header></header>
+        <main class="gridContainer">
+            <section id="mapSide">
+                <div id="map"></div>
+            </section>
+            <section id="pictureSide">
+                <div id="fileBox" class="flexContainer">
+                    <form name="picsubmit" onsubmit="runSubmit">
+                        <input id="insertedImg" type="file" />
+                        <!-- <input id='insertSubmit' type="submit"> -->
+                    </form>
+                    <button id="findData">FIND DATA</button>
+                </div>
+                <div id="imgBox">
+                    <img id="img1" />
+                </div>
+            </section>
+            <section id="infoSide">
+                <form id="infoForm">
+                    <form-group>
+                        <label for="latitude">Latitude: </label>
+                        <input
+                            id="latitude"
+                            name="latitude"
+                            type="float"
+                            placeholder="??"
+                            value=""
+                        />
+                    </form-group>
+                    <!-- <p>Latitude: <span id="latitude">???</span></p> -->
+                    <form-group>
+                        <label for="longitude">Longitude: </label>
+                        <input
+                            id="longitude"
+                            name="longitude"
+                            type="float"
+                            placeholder="??"
+                            value=""
+                        />
+                    </form-group>
+
+                    <!-- <p>Longitude: <span id="longitude">???</span></p> -->
+
+                    <form-group>
+                        <label for="model">Camera:</label>
+                        <input
+                            id="model"
+                            name="model"
+                            type="text"
+                            placeholder="??"
+                            value=""
+                        />
+                    </form-group>
+                    <!-- <p>Camera: <span id="model">???</span></p> -->
+                    <form-group>
+                        <label for="date">Date Taken: </label>
+                        <input
+                            id="date"
+                            name="date"
+                            type="text"
+                            placeholder="??"
+                            value=""
+                        />
+                    </form-group>
+
+                    <!-- <p>Date Taken: <span id="date">???</span></p>-->
+                    <form-group>
+                        <label for="dimensions">Dimension: </label>
+                        <input
+                            id="width"
+                            name="width"
+                            type="number"
+                            placeholder="??"
+                            value=""
+                        />
+                        x
+                        <input
+                            id="height"
+                            name="height"
+                            type="number"
+                            placeholder="???"
+                            vale=""
+                        />
+                    </form-group>
+                    <form-group>
+                        <label for="aperture">Aperture: </label>
+                        <input
+                            id="aperture"
+                            name="aperture"
+                            type="float"
+                            placeholder="??"
+                            value=""
+                        />
+                    </form-group>
+                    <form-group>
+                        <label for="shutter">Shutter Speed: </label>
+                        <input
+                            id="shutter"
+                            name="shutter"
+                            type="float"
+                            placeholder="??"
+                            value=""
+                        />
+                    </form-group>
+                    <form-group>
+                        <label for="iso">ISO Sensitivity: </label>
+                        <input
+                            id="iso"
+                            name="iso"
+                            type="number"
+                            placeholder="??"
+                            value=""
+                        />
+                    </form-group>
+                    <form-group>
+                        <label for="exposure">Exposure: </label>
+                        <input
+                            id="exposure"
+                            name="exposure"
+                            type="float"
+                            placeholder="??"
+                            value=""
+                        />
+                    </form-group>
+                    <form-group>
+                        <label for="light">Light Source: </label>
+                        <input
+                            id="light"
+                            name="light"
+                            type="text"
+                            placeholder="??"
+                            value=""
+                        />
+                    </form-group>
+                    <form-group>
+                        <label for="flash">Flash: </label>
+                        <input
+                            id="flash"
+                            name="flash"
+                            type="text"
+                            placeholder="??"
+                            value=""
+                        />
+                    </form-group>
+                    <form-group>
+                        <label for="energy">Flash Strength: </label>
+                        <input
+                            id="energy"
+                            name="energy"
+                            type="text"
+                            placeholder="??"
+                            value=""
+                        />
+                    </form-group>
+                    <form-group>
+                        <label for="contrast">Contrast: </label>
+                        <input
+                            id="contrast"
+                            name="contrast"
+                            type="text"
+                            placeholder="??"
+                            value=""
+                        />
+                    </form-group>
+                    <form-group>
+                        <label for="saturation">Saturation: </label>
+                        <input
+                            id="saturation"
+                            name="saturation"
+                            type="text"
+                            placeholder="??"
+                            value=""
+                        />
+                    </form-group>
+                    <form-group>
+                        <label for="sharpness">Sharpness: </label>
+                        <input
+                            id="sharpness"
+                            name="sharpness"
+                            type="text"
+                            placeholder="??"
+                            value=""
+                        />
+                    </form-group>
+                    <form-group>
+                        <label for="brightness">Brightness: </label>
+                        <input
+                            id="brightness"
+                            name="brightness"
+                            type="float"
+                            placeholder="??"
+                            value=""
+                        />
+                    </form-group>
+                    <form-group>
+                        <label for="whiteBalance">WhiteBalance: </label>
+                        <input
+                            id="whiteBalance"
+                            name="whiteBalance"
+                            type="text"
+                            placeholder="??"
+                            value=""
+                        />
+                    </form-group>
+                    <form-group>
+                        <label for="zoom">Digital Zoom: </label>
+                        <input
+                            id="zoom"
+                            name="zoom"
+                            type="float"
+                            placeholder="??"
+                            value=""
+                        />
+                    </form-group>
+                    <form-group>
+                        <label for="artist">Artist: </label>
+                        <input
+                            id="artist"
+                            name="artist"
+                            type="text"
+                            placeholder="??"
+                            value=""
+                        />
+                    </form-group>
+                    <form-group>
+                        <label for="software">Software: </label>
+                        <input
+                            id="software"
+                            name="software"
+                            type="text"
+                            placeholder="??"
+                            value=""
+                        />
+                    </form-group>
+                    <form-group>
+                        <label for="copyright">Copyright: </label>
+                        <input
+                            id="copyright"
+                            name="copyright"
+                            type="text"
+                            placeholder="??"
+                            value=""
+                        />
+                    </form-group>
+                </form>
+            </section>
+
+            <!-- <button id="pictureTest">Picture Test</button> -->
+            <!-- <div id="drop-area">
+                <form class="my-form">
+                  <p>Upload multiple files with the file dialog or by dragging and dropping images onto the dashed region</p>
+                  <input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">
+                  <label class="button" for="fileElem">Select some files</label>
+                </form>
+              </div> -->
+        </main>
+        <script src="../../dist/build.js"></script>
+        <script>
+            var map;
+            function initMap() {
+                map = new google.maps.Map(document.getElementById('map'), {
+                    center: { lat: 31.7917, lng: -7.0926 },
+                    zoom: 2
+                });
+            }
+        </script>
+
+        <script
+            async
+            defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCaYt6vNImTXX7y-aiGbxjMouHEXRCXssA&callback=initMap"
+        ></script>
+    </body>
+</html>
