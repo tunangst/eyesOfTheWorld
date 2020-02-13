@@ -154,13 +154,11 @@ const AddPage = props => {
 
     return (
         <main className='add'>
-            <div></div>
-            {
-                //    <MapSection
-                //     coordinates={state.googleMapsLocation}
-                //     marker={state.marker}
-                // />
-            }
+            <MapSection
+                coordinates={state.googleMapsLocation}
+                marker={state.marker}
+            />
+
             <ImageSection
                 imgId={state.imgId}
                 imgSrc={state.imgSrc}
