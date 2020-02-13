@@ -12,11 +12,13 @@ const ImageSection = props => {
     } = props;
     const handleFileDragOver = event => {
         event.preventDefault();
-        event.target.classList.add('dragOver');
+        const label = document.querySelector('#imgLabel');
+        label.classList.add('dragOver');
     };
     const handleFileDragLeave = event => {
         event.preventDefault();
-        event.target.classList.remove('dragOver');
+        const label = document.querySelector('#imgLabel');
+        label.classList.remove('dragOver');
     };
 
     let img = null;
@@ -36,27 +38,24 @@ const ImageSection = props => {
         }
     }, [imgSrc]);
     return (
-        <section className='imageSection'>
-            <div
-                className='inputContainer'
-                onDragOver={event => {
-                    event.preventDefault();
-                    event.stopPropagation();
-                }}
-                onChange={event => handleFileChange(event.target.files[0])}
-                onDrop={handleFileDrop}
-            >
+        <section
+            className='imageSection'
+            onDragOver={event => {
+                event.preventDefault();
+                event.stopPropagation();
+            }}
+            onDragOver={handleFileDragOver}
+            onDragLeave={handleFileDragLeave}
+            onChange={event => handleFileChange(event.target.files[0])}
+            onDrop={handleFileDrop}
+        >
+            <div className='inputContainer'>
                 <form
                     name='picsubmit'
                     onSubmit={() => console.log(`submitted`)}
                 >
                     <input id='insertedImg' type='file' />
-                    <label
-                        for='insertedImg'
-                        id='imgLabel'
-                        onDragOver={handleFileDragOver}
-                        onDragLeave={handleFileDragLeave}
-                    >
+                    <label for='insertedImg' id='imgLabel' a>
                         Click to add image or drag and drop :^]
                     </label>
                 </form>

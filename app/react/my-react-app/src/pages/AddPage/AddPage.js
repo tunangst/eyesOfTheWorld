@@ -146,7 +146,6 @@ const AddPage = props => {
     };
     const handleFileDrop = event => {
         const fileInput = document.querySelector('#insertedImg');
-        console.log(fileInput);
         fileInput.files = event.dataTransfer.files;
         event.preventDefault();
 
