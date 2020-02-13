@@ -2,13 +2,22 @@ import React, { useEffect } from 'react';
 
 const ImageSection = props => {
     const {
-        handleFileDragOver,
+        // handleFileDragOver,
+        // handleFileDragLeave,
         handleFileDrop,
         handleFindData,
         handleFileChange,
         imgSrc,
         imgId
     } = props;
+    const handleFileDragOver = event => {
+        event.preventDefault();
+        event.target.classList.add('dragOver');
+    };
+    const handleFileDragLeave = event => {
+        event.preventDefault();
+        event.target.classList.remove('dragOver');
+    };
 
     let img = null;
     if (imgSrc) {
@@ -28,21 +37,26 @@ const ImageSection = props => {
     }, [imgSrc]);
     return (
         <section className='imageSection'>
-            <div className='inputContainer'>
+            <div
+                className='inputContainer'
+                onDragOver={event => {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }}
+                onChange={event => handleFileChange(event.target.files[0])}
+                onDrop={handleFileDrop}
+            >
                 <form
                     name='picsubmit'
                     onSubmit={() => console.log(`submitted`)}
-                    onDragOver={handleFileDragOver}
-                    onDragLeave={() => console.log('ondragleave')}
-                    onDrop={handleFileDrop}
                 >
-                    <input
-                        id='insertedImg'
-                        type='file'
-                        onChange={handleFileChange}
-                        onDrop={handleFileDrop}
-                    />
-                    <label for='insertedImg' id='imgLabel'>
+                    <input id='insertedImg' type='file' />
+                    <label
+                        for='insertedImg'
+                        id='imgLabel'
+                        onDragOver={handleFileDragOver}
+                        onDragLeave={handleFileDragLeave}
+                    >
                         Click to add image or drag and drop :^]
                     </label>
                 </form>

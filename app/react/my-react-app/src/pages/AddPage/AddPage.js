@@ -47,7 +47,7 @@ const initialState = {
 const AddPage = props => {
     const [state, setState] = useState(initialState);
 
-    const handleFileChange = event => {
+    const handleFileChange = targetFileLocation => {
         const newId = getId();
         const reader = new FileReader();
         reader.onload = function() {
@@ -57,7 +57,7 @@ const AddPage = props => {
                 imgId: newId
             });
         };
-        reader.readAsDataURL(event.target.files[0]);
+        reader.readAsDataURL(targetFileLocation);
     };
 
     const handleFindData = event => {
@@ -145,22 +145,12 @@ const AddPage = props => {
         clearImgExifdataTag(img1);
     };
     const handleFileDrop = event => {
-        debugger;
+        const fileInput = document.querySelector('#insertedImg');
+        console.log(fileInput);
+        fileInput.files = event.dataTransfer.files;
         event.preventDefault();
-        console.log(event.target);
 
-        handleFileChange(event);
-    };
-    const handleFileDragOver = event => {
-        event.preventDefault();
-        const data = event.dataTransfer;
-        // const blah = event.dataTransfer.items.DataTransferItemList[0].getAsFile();
-        console.log(data);
-        // console.log(blah);
-        // handleFileChange(event);
-    };
-    const handleFileDragLeave = event => {
-        event.preventDefault();
+        handleFileChange(fileInput.files[0]);
     };
 
     return (
@@ -176,7 +166,8 @@ const AddPage = props => {
                 imgId={state.imgId}
                 imgSrc={state.imgSrc}
                 handleFileChange={handleFileChange}
-                handleFileDragOver={handleFileDragOver}
+                // handleFileDragOver={handleFileDragOver}
+                // handleFileDragLeave={handleFileDragLeave}
                 handleFindData={handleFindData}
                 handleFileDrop={handleFileDrop}
             />

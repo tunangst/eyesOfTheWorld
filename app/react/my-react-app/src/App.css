@@ -102,6 +102,10 @@ body,
     background: rgba(5, 5, 5, 0.25);
 }
 
+.dragOver {
+    background: rgba(5, 5, 5, 0.25);
+}
+
 .imgBox {
     background-color: rgba(5, 5, 5, 0.25);
     flex: 1;
