@@ -15,7 +15,18 @@ const MapWithAMarker = withScriptjs(
         marker ? (zoom = 12) : (zoom = 2);
 
         return (
-            <GoogleMap defaultZoom={zoom} defaultCenter={location}>
+            <GoogleMap
+                defaultZoom={zoom}
+                defaultCenter={location}
+                defaultOptions={{
+                    disableDefaultUI: true, // disable default map UI
+                    draggable: true, // make map draggable
+                    keyboardShortcuts: false, // disable keyboard shortcuts
+                    scaleControl: true, // allow scale controle
+                    scrollwheel: true, // allow scroll wheel
+                    styles: mapStyle // change default map styles
+                }}
+            >
                 {marker && <Marker position={location} />}
             </GoogleMap>
         );
