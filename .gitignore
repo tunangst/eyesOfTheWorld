@@ -24,4 +24,9 @@ yarn-error.log*
 hiddenFolder/
 v0/
 
+<<<<<<< HEAD
 app/react/config/default.json
+=======
+./react/config/default.json
+config/default.json
+>>>>>>> b0207bc8585e4310da8c959b061471da2c811696
