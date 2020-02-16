@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import {
     withScriptjs,
     withGoogleMap,
@@ -10,10 +10,7 @@ import mapStyle from './mapStyle';
 
 const MapWithAMarker = withScriptjs(
     withGoogleMap(({ info: { location, marker } }) => {
-        console.log(location);
-        console.log(marker);
         let zoom;
-        // console.log(marker ? (zoom = 8) : (zoom = 12));
         marker ? (zoom = 12) : (zoom = 2);
 
         return (

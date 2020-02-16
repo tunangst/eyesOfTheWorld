@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import MapSection from './MapSection';
 import ImageSection from './ImageSection';
@@ -14,7 +14,7 @@ import {
 import EXIF from '../../../node_modules/exif-js/exif';
 
 const initialState = {
-    googleMapsLocation: [23.4325, 30.597],
+    googleMapsLocation: [0, 0],
     marker: false,
     imgSrc: '',
     imgId: '',
@@ -60,7 +60,7 @@ const AddPage = props => {
         reader.readAsDataURL(targetFileLocation);
     };
 
-    const handleFindData = event => {
+    const handleFindData = () => {
         const img1 = document.getElementById(state.imgId);
         EXIF.getData(img1, () => {
             console.log(`running exif`);

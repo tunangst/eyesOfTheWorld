@@ -65,19 +65,22 @@ body,
     flex-direction: column;
 }
 .inputContainer {
-    height: 60px;
+    height: 150px;
     padding: 10px;
 }
 .inputContainer form {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 10px;
     height: 100%;
     width: 100%;
-    /* margin: 10px; */
-    /* border: 2px dashed rgba(5, 5, 5, 0.25); */
-
-    /* display: grid; */
-    /* justify-content: center;
-    align-items: center; */
 }
+.submitImage {
+    border: 5px groove #fff;
+    background: #aaa;
+}
+
 #insertedImg {
     position: absolute;
     filter: alpha(opacity=0);

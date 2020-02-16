@@ -20,8 +20,9 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
         case 'latitude':
             inputField = (
                 <fieldset className='infoFieldset'>
-                    <label for='latitude'>Latitude: </label>
+                    <label htmlFor='latitude'>Latitude: </label>
                     <input
+                        readOnly
                         id='latitude'
                         name='latitude'
                         type='float'
@@ -34,8 +35,9 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
         case 'longitude':
             inputField = (
                 <fieldset className='infoFieldset'>
-                    <label for='longitude'>Longitude: </label>
+                    <label htmlFor='longitude'>Longitude: </label>
                     <input
+                        readOnly
                         id='longitude'
                         name='longitude'
                         type='float'
@@ -48,8 +50,9 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
         case 'camera':
             inputField = (
                 <fieldset className='infoFieldset'>
-                    <label for='model'>Camera:</label>
+                    <label htmlFor='model'>Camera:</label>
                     <input
+                        readOnly
                         id='model'
                         name='model'
                         type='text'
@@ -62,8 +65,9 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
         case 'date':
             inputField = (
                 <fieldset className='infoFieldset'>
-                    <label for='date'>Date Taken: </label>
+                    <label htmlFor='date'>Date Taken: </label>
                     <input
+                        readOnly
                         id='date'
                         name='date'
                         type='text'
@@ -76,8 +80,9 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
         case 'width':
             inputField = (
                 <fieldset className='infoFieldset'>
-                    <label for='width'>Dimension: </label>
+                    <label htmlFor='width'>Dimension: </label>
                     <input
+                        readOnly
                         id='width'
                         name='width'
                         type='number'
@@ -86,6 +91,7 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
                     />
                     <span> x </span>
                     <input
+                        readOnly
                         id='height'
                         name='height'
                         type='number'
@@ -98,8 +104,9 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
         case 'aperture':
             inputField = (
                 <fieldset className='infoFieldset'>
-                    <label for='aperture'>Aperture: </label>
+                    <label htmlFor='aperture'>Aperture: </label>
                     <input
+                        readOnly
                         id='aperture'
                         name='aperture'
                         type='float'
@@ -112,8 +119,9 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
         case 'shutter':
             inputField = (
                 <fieldset className='infoFieldset'>
-                    <label for='shutter'>Shutter Speed: </label>
+                    <label htmlFor='shutter'>Shutter Speed: </label>
                     <input
+                        readOnly
                         id='shutter'
                         name='shutter'
                         type='float'
@@ -126,8 +134,9 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
         case 'iso':
             inputField = (
                 <fieldset className='infoFieldset'>
-                    <label for='iso'>ISO Sensitivity: </label>
+                    <label htmlFor='iso'>ISO Sensitivity: </label>
                     <input
+                        readOnly
                         id='iso'
                         name='iso'
                         type='-'
@@ -140,8 +149,9 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
         case 'exposure':
             inputField = (
                 <fieldset className='infoFieldset'>
-                    <label for='exposure'>Exposure: </label>
+                    <label htmlFor='exposure'>Exposure: </label>
                     <input
+                        readOnly
                         id='exposure'
                         name='exposure'
                         type='float'
@@ -154,8 +164,9 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
         case 'light':
             inputField = (
                 <fieldset className='infoFieldset'>
-                    <label for='light'>Light Source: </label>
+                    <label htmlFor='light'>Light Source: </label>
                     <input
+                        readOnly
                         id='light'
                         name='light'
                         type='text'
@@ -168,8 +179,9 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
         case 'flash':
             inputField = (
                 <fieldset className='infoFieldset'>
-                    <label for='flash'>Flash: </label>
+                    <label htmlFor='flash'>Flash: </label>
                     <input
+                        readOnly
                         id='flash'
                         name='flash'
                         type='text'
@@ -182,8 +194,9 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
         case 'flashStrength':
             inputField = (
                 <fieldset className='infoFieldset'>
-                    <label for='energy'>Flash Strength: </label>
+                    <label htmlFor='energy'>Flash Strength: </label>
                     <input
+                        readOnly
                         id='energy'
                         name='energy'
                         type='text'
@@ -196,8 +209,9 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
         case 'contrast':
             inputField = (
                 <fieldset className='infoFieldset'>
-                    <label for='contrast'>Contrast: </label>
+                    <label htmlFor='contrast'>Contrast: </label>
                     <input
+                        readOnly
                         id='contrast'
                         name='contrast'
                         type='text'
@@ -210,8 +224,9 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
         case 'saturation':
             inputField = (
                 <fieldset className='infoFieldset'>
-                    <label for='saturation'>Saturation: </label>
+                    <label htmlFor='saturation'>Saturation: </label>
                     <input
+                        readOnly
                         id='saturation'
                         name='saturation'
                         type='text'
@@ -224,8 +239,9 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
         case 'sharpness':
             inputField = (
                 <fieldset className='infoFieldset'>
-                    <label for='sharpness'>Sharpness: </label>
+                    <label htmlFor='sharpness'>Sharpness: </label>
                     <input
+                        readOnly
                         id='sharpness'
                         name='sharpness'
                         type='text'
@@ -238,8 +254,9 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
         case 'brightness':
             inputField = (
                 <fieldset className='infoFieldset'>
-                    <label for='brightness'>Brightness: </label>
+                    <label htmlFor='brightness'>Brightness: </label>
                     <input
+                        readOnly
                         id='brightness'
                         name='brightness'
                         type='float'
@@ -252,8 +269,9 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
         case 'whiteBalance':
             inputField = (
                 <fieldset className='infoFieldset'>
-                    <label for='whiteBalance'>WhiteBalance: </label>
+                    <label htmlFor='whiteBalance'>WhiteBalance: </label>
                     <input
+                        readOnly
                         id='whiteBalance'
                         name='whiteBalance'
                         type='text'
@@ -266,8 +284,9 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
         case 'zoom':
             inputField = (
                 <fieldset className='infoFieldset'>
-                    <label for='zoom'>Digital Zoom: </label>
+                    <label htmlFor='zoom'>Digital Zoom: </label>
                     <input
+                        readOnly
                         id='zoom'
                         name='zoom'
                         type='float'
@@ -280,8 +299,9 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
         case 'artist':
             inputField = (
                 <fieldset className='infoFieldset'>
-                    <label for='artist'>Artist: </label>
+                    <label htmlFor='artist'>Artist: </label>
                     <input
+                        readOnly
                         id='artist'
                         name='artist'
                         type='text'
@@ -294,8 +314,9 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
         case 'software':
             inputField = (
                 <fieldset className='infoFieldset'>
-                    <label for='software'>Software: </label>
+                    <label htmlFor='software'>Software: </label>
                     <input
+                        readOnly
                         id='software'
                         name='software'
                         type='text'
@@ -308,8 +329,9 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
         case 'copyright':
             inputField = (
                 <fieldset className='infoFieldset'>
-                    <label for='copyright'>Copyright: </label>
+                    <label htmlFor='copyright'>Copyright: </label>
                     <input
+                        readOnly
                         id='copyright'
                         name='copyright'
                         type='text'

@@ -5,7 +5,8 @@ const InfoSection = props => {
     const { info } = props;
 
     let inputs = [];
-    if (info.latitude !== '???') {
+
+    const getInputs = () => {
         for (let key in info) {
             let field;
 
@@ -31,14 +32,15 @@ const InfoSection = props => {
                 );
             }
             if (field) {
-                // console.log(field);
-                // console.log(inputs);
                 inputs.push(field);
             }
             field = null;
         }
-    }
+    };
 
+    if (info.latitude !== '???') {
+        getInputs();
+    }
     return (
         <section className='infoSection'>
             <form id='infoForm'>{inputs}</form>
