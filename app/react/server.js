@@ -3,7 +3,7 @@ const connectDB = require('./config/db');
 // import connectDB from './config/db';
 const path = require('path');
 // import path from 'path';
-const route = require('./apiRoutes/route');
+// const route = require('./apiRoutes/route');
 // import route from './apiRoutes/route';
 
 const app = express();
@@ -13,9 +13,10 @@ const PORT = process.env.PORT || 5000;
 connectDB();
 
 //middleware?
-
+//need this middleware to parse body info from request
+app.use(express.json({ extended: false }));
 //routes
-app.use('/', route);
+app.use('/', require('./apiRoutes/route'));
 
 //serve static assets in production
 if (process.env.NODE_ENV === 'production') {

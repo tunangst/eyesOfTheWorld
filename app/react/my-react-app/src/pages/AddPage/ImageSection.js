@@ -58,7 +58,7 @@ const ImageSection = props => {
                     </label>
                     <input
                         type='submit'
-                        class='submitImage'
+                        className='submitImage'
                         value='Submit to Server'
                     />
                 </form>

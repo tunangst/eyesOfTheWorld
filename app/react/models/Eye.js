@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const InfoSchema = new Schema({
+const EyeSchema = new Schema({
     latitude: { type: Number, required: true },
     longitude: { type: Number, required: true },
     camera: { type: String },
@@ -26,4 +26,4 @@ const InfoSchema = new Schema({
     copyright: { type: String }
 });
 
-module.exports = Info = mongoose.model('Info', InfoSchema);
+module.exports = Eye = mongoose.model('Eye', EyeSchema);
