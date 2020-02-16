@@ -139,7 +139,7 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
                         readOnly
                         id='iso'
                         name='iso'
-                        type='-'
+                        type='float'
                         value={value}
                         style={calculateLength(size)}
                     />

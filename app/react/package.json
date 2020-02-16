@@ -1,0 +1,25 @@
+{
+    "name": "eyes-on-the-world",
+    "version": "1.0.0",
+    "description": "TBA",
+    "main": "server.js",
+    "dependencies": {
+        "config": "^3.2.5",
+        "express": "^4.17.1",
+        "mongoose": "^5.9.1"
+    },
+    "devDependencies": {
+        "concurrently": "^5.1.0",
+        "nodemon": "^2.0.2"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node server.js",
+        "server": "nodemon server",
+        "clientSide": "npm start --prefix my-react-app",
+        "dev": "concurrently \"npm run server\" \"npm run clientSide \"",
+        "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    },
+    "author": "TRU",
+    "license": "ISC"
+}
