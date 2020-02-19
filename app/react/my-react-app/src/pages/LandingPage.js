@@ -1,38 +1,31 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+// import axios from 'axios';
 
-// let initialState = {
-//     points: []
-// }
-// const fetchPoints = () => {
-//     try {
-//         const res = await axios.get('/allPoints');
-//         return {
+import getAllEyes from '../extra/apiCalls/getAllEyes';
 
-//         }
-//     }
-//     catch(err) {
-//         console.log(err)
-//     }
-// }
-
+const initialState = {
+    collection: []
+};
 // import axios from 'axios'
 const LandingPage = props => {
-    // export const getEyes = () => async dispatch => {
-    //     try {
-    //         const res = await axios.get('/');
-
-    //         dispatch({
-    //             type: GET_POSTS,
-    //             payload: res.data
-    //         });
-    useEffect({
-        // getEyes();
-    });
+    const [state, setState] = useState(initialState);
+    // useEffect(() => {
+    //     const eyes = getAllEyes();
+    //     console.log(eyes);
+    //     setState({
+    //         ...state,
+    //         collection: eyes
+    //     });
+    // }, []);
+    // getAllEyes();
     return (
         <section className='landing'>
-            <div className='recentImgs'></div>
+            <div className='recentImgs'>
+                <button onClick={() => getAllEyes()}>get all eyes</button>
+            </div>
             <div className='worldMap'>
                 {
+                    // state.collection
                     // load the map with points here
                 }
             </div>

@@ -7,9 +7,7 @@
         "@testing-library/react": "^9.4.0",
         "@testing-library/user-event": "^7.2.1",
         "exif-js": "^2.3.0",
-        "express": "^4.17.1",
         "google-maps-react": "^2.0.2",
-        "npm": "^6.13.7",
         "react": "^16.12.0",
         "react-dom": "^16.12.0",
         "react-google-maps": "^9.4.5",
@@ -40,9 +38,5 @@
             "last 1 safari version"
         ]
     },
-    "devDependencies": {
-        "concurrently": "^5.1.0",
-        "webpack": "^4.41.5",
-        "webpack-cli": "^3.3.10"
-    }
+    "proxy": "http://localhost:5000"
 }
