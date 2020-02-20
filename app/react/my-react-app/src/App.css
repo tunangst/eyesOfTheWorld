@@ -5,6 +5,8 @@ body,
     width: 100vh; */
     box-sizing: border-box;
     background-color: magenta;
+    height: 100%;
+    width: 100%;
 }
 
 #myArea {
@@ -79,6 +81,13 @@ body,
 .submitImage {
     border: 5px groove #fff;
     background: #aaa;
+    cursor: pointer;
+}
+.submitImage:disabled {
+    background: rgba(2, 2, 2, 0.3);
+    border: 5px groove rgb(107, 107, 107);
+    color: #fff;
+    cursor: not-allowed;
 }
 
 #insertedImg {

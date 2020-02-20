@@ -16,6 +16,8 @@ import EXIF from '../../../node_modules/exif-js/exif';
 const initialState = {
     imgSrc: '',
     imgId: '',
+    ready: false,
+    submitReady: false,
     info: {
         latitude: '???',
         longitude: '???',
@@ -59,10 +61,12 @@ const AddPage = props => {
     };
 
     const handleFindData = () => {
+        setState({
+            ...state,
+            ready: false
+        });
         const img1 = document.getElementById(state.imgId);
         EXIF.getData(img1, () => {
-            console.log(`running exif`);
-
             let latitude;
             let longitude;
             const tags = EXIF.getAllTags(img1);
@@ -134,7 +138,9 @@ const AddPage = props => {
                 ...state,
                 info: {
                     ...enterInfo
-                }
+                },
+                ready: true,
+                dataLoaded: true
             });
         });
         //clear exifdata obj attacked to img so new image data can be updated
@@ -147,10 +153,25 @@ const AddPage = props => {
 
         handleFileChange(fileInput.files[0]);
     };
+    const handleReadyState = () => {
+        setState({
+            ...state,
+            ready: true
+        });
+    };
+    const handleSubmitReady = () => {
+        console.log(`calling handleSubmitReady`);
+        if (state.submitReady === false) {
+            setState({
+                ...state,
+                submitReady: true
+            });
+        }
+    };
 
     useEffect(() => {
-        state.imgSrc && handleFindData();
-    }, [state.imgSrc]);
+        state.ready && handleFindData();
+    }, [state.ready]);
 
     let initMarker;
     if (state.info.latitude === '???' || state.info.longitude === '?') {
@@ -169,11 +190,17 @@ const AddPage = props => {
             <ImageSection
                 imgId={state.imgId}
                 imgSrc={state.imgSrc}
+                submitReady={state.submitReady}
                 handleFileChange={handleFileChange}
                 handleFindData={handleFindData}
                 handleFileDrop={handleFileDrop}
+                handleReadyState={handleReadyState}
             />
-            <InfoSection info={state.info} />
+            <InfoSection
+                info={state.info.latitude === '???' ? null : state.info}
+                dataLoaded={state.dataLoaded}
+                handleSubmitReady={!state.submitReady && handleSubmitReady}
+            />
         </main>
     );
 };

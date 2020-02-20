@@ -2,16 +2,13 @@ import React from 'react';
 import BuildInputField from '../../extra/utilityFunctions/BuildInputField';
 
 const InfoSection = props => {
-    const { info } = props;
-
+    const { info, handleSubmitReady } = props;
+    console.log(info);
     let inputs = [];
-
-    const getInputs = () => {
-        for (let key in info) {
-            let field;
-
-            if (key === 'width' && info[key] !== '???') {
-                field = (
+    if (info !== null) {
+        inputs = Object.entries(info).map(([key, value]) => {
+            if (key === 'width' && value !== '???') {
+                return (
                     <BuildInputField
                         key={key}
                         field={key}
@@ -22,25 +19,21 @@ const InfoSection = props => {
                 );
             } else if (
                 key === 'height' ||
-                info[key] === '???' ||
-                info[key] === undefined
+                value === '???' ||
+                value === undefined
             ) {
-                field = null;
+                return null;
             } else {
-                field = (
+                return (
                     <BuildInputField key={key} field={key} value={info[key]} />
                 );
             }
-            if (field) {
-                inputs.push(field);
-            }
-            field = null;
-        }
-    };
-
-    if (info.latitude !== '???') {
-        getInputs();
+        });
     }
+    console.log(inputs);
+    console.log(props);
+    inputs.length > 0 && handleSubmitReady && handleSubmitReady();
+
     return (
         <section className='infoSection'>
             <form id='infoForm'>{inputs}</form>

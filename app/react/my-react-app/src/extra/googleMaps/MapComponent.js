@@ -13,12 +13,11 @@ import mapStyle from './mapStyle';
 const MapComponent = withScriptjs(
     withGoogleMap(({ markers }) => {
         const buildMarker = markObj => {
-            const key = markObj._id || Math.random();
+            const key = markObj._id || 'init';
             const position = {
                 lat: markObj.latitude,
                 lng: markObj.longitude
             };
-            console.log(markObj);
 
             return (
                 <Marker
@@ -33,9 +32,6 @@ const MapComponent = withScriptjs(
 
         let zoom = 2;
         markers && markers.length === 1 ? (zoom = 12) : (zoom = 2);
-        // console.log(markers.length);
-        // console.log(markers);
-        // debugger;
 
         return (
             <GoogleMap

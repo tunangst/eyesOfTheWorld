@@ -1,12 +1,13 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 const ImageSection = props => {
     const {
         handleFileDrop,
-        handleFindData,
         handleFileChange,
+        handleReadyState,
         imgSrc,
-        imgId
+        imgId,
+        submitReady
     } = props;
     const handleFileDragOver = event => {
         event.preventDefault();
@@ -29,14 +30,29 @@ const ImageSection = props => {
                 className='img1'
                 alt='this is what you are wanting to upload'
                 src={imgSrc}
+                onLoad={handleReadyState}
             />
         );
     }
-    // useEffect(() => {
-    //     if (img) {
-    //         handleFindData();
-    //     }
-    // }, [imgSrc]);
+
+    let submitBtn = (
+        <input
+            type='submit'
+            className='submitImage'
+            value='Submit to Server'
+            disabled
+        />
+    );
+    if (submitReady) {
+        submitBtn = (
+            <input
+                type='submit'
+                className='submitImage'
+                value='Submit to Server'
+            />
+        );
+    }
+
     return (
         <section
             className='imageSection'
@@ -54,11 +70,7 @@ const ImageSection = props => {
                     <label htmlFor='insertedImg' id='imgLabel'>
                         Click to add image or drag and drop :^]
                     </label>
-                    <input
-                        type='submit'
-                        className='submitImage'
-                        value='Submit to Server'
-                    />
+                    {submitBtn}
                 </form>
             </div>
             <div className='imgBox'>{img}</div>

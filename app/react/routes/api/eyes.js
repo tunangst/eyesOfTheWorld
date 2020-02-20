@@ -30,7 +30,7 @@ router.post('/upload', async (request, response) => {
         console.log(body);
         const newInfo = new Info({ ...body });
         const info = await newInfo.save();
-        response.send(`new Eye has been saved! :^]`);
+        response.send(`new Eye has been saved! :^]`).send(info);
     } catch (error) {
         console.error(error.message);
         response
