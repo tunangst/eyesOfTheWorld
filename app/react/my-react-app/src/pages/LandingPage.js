@@ -5,26 +5,17 @@ import key from '../extra/hiddenFolder/hiddenFile';
 
 import getAllEyes from '../extra/apiCalls/getAllEyes';
 
-const initialState = {
-    location: {
-        lat: 0,
-        lng: 0
-    },
-    markers: []
-};
+const initialState = [];
 // import axios from 'axios'
 const LandingPage = props => {
-    const [state, setState] = useState(initialState);
+    const [markers, setMarkers] = useState(initialState);
 
     useAsyncEffect(async () => {
         const eyes = await getAllEyes();
         console.log(eyes);
-        setState({
-            ...state,
-            markers: eyes
-        });
+        setMarkers([...markers, ...eyes]);
     }, []);
-    console.log(state);
+    console.log(markers);
 
     return (
         <section className='landing'>
@@ -32,13 +23,15 @@ const LandingPage = props => {
                 <button onClick={() => getAllEyes()}>get all eyes</button>
             </div>
             <div className='worldMap'>
-                <MapComponent
-                    info={state}
-                    googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${key()}`}
-                    loadingElement={<div style={{ height: `100%` }} />}
-                    containerElement={<div style={{ height: `100%` }} />}
-                    mapElement={<div style={{ height: `100%` }} />}
-                />
+                {markers && (
+                    <MapComponent
+                        markers={markers}
+                        googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${key()}`}
+                        loadingElement={<div style={{ height: `100%` }} />}
+                        containerElement={<div style={{ height: `100%` }} />}
+                        mapElement={<div style={{ height: `100%` }} />}
+                    />
+                )}
             </div>
         </section>
     );

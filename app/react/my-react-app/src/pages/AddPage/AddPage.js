@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import MapSection from './MapSection';
 import ImageSection from './ImageSection';
@@ -14,8 +14,6 @@ import {
 import EXIF from '../../../node_modules/exif-js/exif';
 
 const initialState = {
-    googleMapsLocation: [0, 0],
-    marker: false,
     imgSrc: '',
     imgId: '',
     info: {
@@ -134,8 +132,6 @@ const AddPage = props => {
 
             setState({
                 ...state,
-                googleMapsLocation: [latitude, longitude],
-                marker: true,
                 info: {
                     ...enterInfo
                 }
@@ -152,19 +148,28 @@ const AddPage = props => {
         handleFileChange(fileInput.files[0]);
     };
 
+    useEffect(() => {
+        state.imgSrc && handleFindData();
+    }, [state.imgSrc]);
+
+    let initMarker;
+    if (state.info.latitude === '???' || state.info.longitude === '?') {
+        initMarker = {
+            latitude: 0,
+            longitude: 0
+        };
+    } else {
+        initMarker = null;
+    }
+
     return (
         <main className='add'>
-            <MapSection
-                coordinates={state.googleMapsLocation}
-                marker={state.marker}
-            />
+            <MapSection markers={!initMarker && [state.info]} />
 
             <ImageSection
                 imgId={state.imgId}
                 imgSrc={state.imgSrc}
                 handleFileChange={handleFileChange}
-                // handleFileDragOver={handleFileDragOver}
-                // handleFileDragLeave={handleFileDragLeave}
                 handleFindData={handleFindData}
                 handleFileDrop={handleFileDrop}
             />

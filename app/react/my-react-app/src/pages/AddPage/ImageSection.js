@@ -2,8 +2,6 @@ import React, { useEffect } from 'react';
 
 const ImageSection = props => {
     const {
-        // handleFileDragOver,
-        // handleFileDragLeave,
         handleFileDrop,
         handleFindData,
         handleFileChange,
@@ -34,11 +32,11 @@ const ImageSection = props => {
             />
         );
     }
-    useEffect(() => {
-        if (img) {
-            handleFindData();
-        }
-    }, [imgSrc]);
+    // useEffect(() => {
+    //     if (img) {
+    //         handleFindData();
+    //     }
+    // }, [imgSrc]);
     return (
         <section
             className='imageSection'

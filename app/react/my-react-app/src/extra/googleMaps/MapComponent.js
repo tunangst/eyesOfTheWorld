@@ -5,32 +5,21 @@ import {
     GoogleMap,
     Marker
 } from 'react-google-maps';
-// const {
-//     MarkerClusterer
-// } = require('react-google-maps/lib/components/addons/MarkerClusterer');
+
 import MarkerClusterer from 'react-google-maps/lib/components/addons/MarkerClusterer';
 import { goToMapId } from '../../extra/utilityFunctions/utilities';
 import mapStyle from './mapStyle';
 
 const MapComponent = withScriptjs(
-    withGoogleMap(props => {
-        const { info } = props;
-        const { location, markers } = info;
-        const value = markers.value;
-        console.log(markers);
-        console.log(value);
-        console.log(info);
-
+    withGoogleMap(({ markers }) => {
         const buildMarker = markObj => {
-            const key = markObj._id;
+            const key = markObj._id || Math.random();
             const position = {
                 lat: markObj.latitude,
                 lng: markObj.longitude
             };
             console.log(markObj);
 
-            // for marker
-            // icon={'no icon yet'}
             return (
                 <Marker
                     key={key}
@@ -43,35 +32,42 @@ const MapComponent = withScriptjs(
         };
 
         let zoom = 2;
-        // markers.length < 2 ? (zoom = 2) : (zoom = 12);
-        console.log(markers.length);
+        markers && markers.length === 1 ? (zoom = 12) : (zoom = 2);
+        // console.log(markers.length);
+        // console.log(markers);
+        // debugger;
 
         return (
             <GoogleMap
-                defaultCenter={location}
+                center={{
+                    lat: (markers.length > 0 && markers[0].latitude) || 0,
+                    lng: (markers.length > 0 && markers[0].longitude) || 0
+                }}
                 zoom={zoom}
                 defaultOptions={{
                     disableDefaultUI: true, // disable default map UI
                     draggable: true, // make map draggable
                     keyboardShortcuts: false, // disable keyboard shortcuts
-                    scaleControl: true, // allow scale controle
+                    scaleControl: true, // allow scale control
                     scrollwheel: true, // allow scroll wheel
                     styles: mapStyle // change default map styles
                 }}
             >
-                <MarkerClusterer
-                    onClick={
-                        () => {}
+                {markers && (
+                    <MarkerClusterer
+                        onClick={
+                            () => {}
 
-                        // props.onMarkerClustererClick
-                    }
-                    averageCenter
-                    defaultAverageCenter
-                    enableRetinaIcons
-                    gridSize={60}
-                >
-                    {markers && markers.map(mark => buildMarker(mark))}
-                </MarkerClusterer>
+                            // props.onMarkerClustererClick
+                        }
+                        averageCenter
+                        defaultAverageCenter
+                        enableRetinaIcons
+                        gridSize={60}
+                    >
+                        {markers.map(mark => buildMarker(mark))}
+                    </MarkerClusterer>
+                )}
             </GoogleMap>
         );
     })
