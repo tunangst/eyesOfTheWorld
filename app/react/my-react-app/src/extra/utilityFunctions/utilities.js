@@ -27,3 +27,8 @@ export const clearImgExifdataTag = file => {
     // file.value = '';
     return;
 };
+
+export const goToMapId = id => {
+    console.log(`clicked on this marker with id: ${id}`);
+    // <Redirect to=`/eyes/:id=${id}`;
+};

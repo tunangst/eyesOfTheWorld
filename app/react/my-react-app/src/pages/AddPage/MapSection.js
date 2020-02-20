@@ -1,20 +1,20 @@
 import React from 'react';
 
-import MapWithAMarker from '../../extra/googleMaps/MapComponent';
+import MapComponent from '../../extra/googleMaps/MapComponent';
 import key from '../../extra/hiddenFolder/hiddenFile';
 
-const mapSection = ({ coordinates, marker }) => {
+const mapSection = ({ coordinates, markers }) => {
     // console.log(key());
     const info = {
         location: {
             lat: coordinates[0],
             lng: coordinates[1]
         },
-        marker: marker
+        markers: []
     };
     return (
         <section className='mapSection'>
-            <MapWithAMarker
+            <MapComponent
                 info={info}
                 googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${key()}`}
                 loadingElement={<div style={{ height: `100%` }} />}

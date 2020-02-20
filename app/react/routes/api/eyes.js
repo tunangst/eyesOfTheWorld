@@ -22,21 +22,21 @@ router.get('/', async (request, response) => {
     }
 });
 
-// router.post('/upload', async (request, response) => {
-//     console.log(`post request received at: /upload`);
-//     console.log(`~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`);
-//     try {
-//         const { body } = request;
-//         console.log(body);
-//         const newInfo = new Info({ ...body });
-//         const info = await newInfo.save();
-//         response.json(info);
-//     } catch (error) {
-//         console.error(error.message);
-//         response
-//             .status(500)
-//             .send(`Server Error: body sent resulted in: ${body}`);
-//     }
-// });
+router.post('/upload', async (request, response) => {
+    console.log(`post request received at: /upload`);
+    console.log(`~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`);
+    try {
+        const { body } = request;
+        console.log(body);
+        const newInfo = new Info({ ...body });
+        const info = await newInfo.save();
+        response.send(`new Eye has been saved! :^]`);
+    } catch (error) {
+        console.error(error.message);
+        response
+            .status(500)
+            .send(`Server Error: body sent resulted in: ${body}`);
+    }
+});
 
 module.exports = router;

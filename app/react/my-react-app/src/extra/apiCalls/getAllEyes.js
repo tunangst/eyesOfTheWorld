@@ -5,9 +5,9 @@ const getAllEyes = async () => {
         // debugger;
         const eyes = await axios.get('/api/eyes');
         const eyeData = eyes.data;
-        eyeData.forEach(eye => console.log(eye));
-        console.log('from getAllEyes: ');
-        return eyes;
+        console.log(eyeData);
+        console.log('from getAllEyes: ^^^^^^^^^');
+        return eyeData;
     } catch (error) {
         console.error(error);
     }
