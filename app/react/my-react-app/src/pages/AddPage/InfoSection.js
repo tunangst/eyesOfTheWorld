@@ -3,7 +3,7 @@ import BuildInputField from '../../extra/utilityFunctions/BuildInputField';
 
 const InfoSection = props => {
     const { info, handleSubmitReady } = props;
-    console.log(info);
+    // console.log(info);
     let inputs = [];
     if (info !== null) {
         inputs = Object.entries(info).map(([key, value]) => {
@@ -30,8 +30,6 @@ const InfoSection = props => {
             }
         });
     }
-    console.log(inputs);
-    console.log(props);
     inputs.length > 0 && handleSubmitReady && handleSubmitReady();
 
     return (

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import submitImage from '../../extra/apiCalls/submitImage';
+
 const ImageSection = props => {
     const {
         handleFileDrop,
@@ -62,11 +64,8 @@ const ImageSection = props => {
             onDrop={handleFileDrop}
         >
             <div className='inputContainer'>
-                <form
-                    name='picsubmit'
-                    onSubmit={() => console.log(`submitted`)}
-                >
-                    <input id='insertedImg' type='file' />
+                <form id='picForm' name='picsubmit' onSubmit={submitImage}>
+                    <input id='insertedImg' name='insertedImg' type='file' />
                     <label htmlFor='insertedImg' id='imgLabel'>
                         Click to add image or drag and drop :^]
                     </label>

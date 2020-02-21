@@ -48,6 +48,11 @@ const AddPage = props => {
     const [state, setState] = useState(initialState);
 
     const handleFileChange = targetFileLocation => {
+        setState({
+            ...state,
+            ready: false,
+            submitReady: false
+        });
         const newId = getId();
         const reader = new FileReader();
         reader.onload = function() {
