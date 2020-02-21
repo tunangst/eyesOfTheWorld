@@ -25,6 +25,14 @@ router.get('/', async (request, response) => {
 router.post('/upload', async (request, response) => {
     console.log(`post request received at: /upload`);
     console.log(`~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`);
+    // request body looks like
+    // {
+    //      pic: 'baseuri:/ablkasdjfalsdfioajsfklasdf...,
+    //      info: {
+    //          latitude: 28.24898,
+    //          longitude: -82.24898,...
+    //      }
+    // }
     try {
         const { body } = request;
         console.log(body);

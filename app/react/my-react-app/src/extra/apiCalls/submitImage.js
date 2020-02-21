@@ -1,43 +1,56 @@
 import axios from 'axios';
 
-const submitImage = event => {
+const submitImage = async event => {
     event.preventDefault();
-    const picForm = document.querySelector(`#picForm`);
+    const picSrc = document.querySelector(`.img1`).src;
     const infoForm = document.querySelector(`#infoForm`);
 
-    let picFormData = new FormData(picForm);
+    // let picFormData = new FormData(picForm);
+    // let picFormData = new FormData(picForm);
     let infoFormData = new FormData(infoForm);
-    let picCollection = [...picFormData];
+    // let picCollection = [...picFormData];
     let infoCollection = [...infoFormData];
 
-    console.log(picCollection);
+    // console.log(picCollection);
     console.log(infoCollection);
 
     let submitData = {};
-    let picObj = picCollection[0][1];
+    // let picObj = picCollection[0][1];
     let infoSubmit = {};
     infoCollection.forEach(arr => {
         infoSubmit[arr[0]] = arr[1];
     });
-    submitData.pic = picObj;
+    submitData.pic = picSrc;
+    // submitData.pic = picObj;
     submitData.info = infoSubmit;
 
     console.log(submitData);
 
-    debugger;
+    //testing reading file
+    // var file = picObj;
 
-    const image = event.target[0].files[0];
+    // var success = function(content) {
+    //     console.log(JSON.stringify(content));
+    // };
 
-    // const { name, email, password } = infoObj;
+    // var fileReader = new FileReader();
+    // fileReader.onload = function(evt) {
+    //     success(evt.target.result);
+    // };
+    // fileReader.readAsText(file);
+
     const config = {
         headers: {
             'Content-Type': 'application/json'
         }
     };
-    // const body = JSON.stringify({ name, email, password });
+    const body = JSON.stringify(submitData);
+    console.log(body);
     try {
         // console.log(body);
-        // const res = await axios.post('/upload', body, config);
+        const res = await axios.post('/upload', body, config);
+        console.log(res);
+        debugger;
         //         dispatch({
         //             type: REGISTER_SUCCESS,
         //             payload: res.data
