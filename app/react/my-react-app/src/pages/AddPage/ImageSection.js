@@ -64,7 +64,14 @@ const ImageSection = props => {
             onDrop={handleFileDrop}
         >
             <div className='inputContainer'>
-                <form id='picForm' name='picsubmit' onSubmit={submitImage}>
+                <form
+                    action='/api/eyes/upload'
+                    method='POST'
+                    id='picForm'
+                    name='picSubmit'
+                    onSubmit={submitImage}
+                    encType='multipart/form-data'
+                >
                     <input id='insertedImg' name='insertedImg' type='file' />
                     <label htmlFor='insertedImg' id='imgLabel'>
                         Click to add image or drag and drop :^]

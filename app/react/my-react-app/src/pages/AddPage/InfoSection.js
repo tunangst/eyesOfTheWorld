@@ -34,7 +34,9 @@ const InfoSection = props => {
 
     return (
         <section className='infoSection'>
-            <form id='infoForm'>{inputs}</form>
+            <form id='infoForm' name='infoSubmit' encType='multipart/form-data'>
+                {inputs}
+            </form>
         </section>
     );
 };
