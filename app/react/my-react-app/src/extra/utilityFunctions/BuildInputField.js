@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 
 import { calculateLength } from './utilities';
 
@@ -63,6 +64,8 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
             );
             break;
         case 'date':
+            const timeStamp = moment(value, 'YYYY:MM:DD HH:mm:ss');
+            const valueDate = timeStamp.toDate();
             inputField = (
                 <fieldset className='infoFieldset'>
                     <label htmlFor='date'>Date Taken: </label>
@@ -71,7 +74,7 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
                         id='date'
                         name='date'
                         type='text'
-                        value={value}
+                        value={valueDate}
                         style={calculateLength(size)}
                     />
                 </fieldset>

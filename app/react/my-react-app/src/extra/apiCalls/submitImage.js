@@ -76,7 +76,7 @@ const submitImage = async event => {
         // console.log(body);
         const res = await axios.post('/api/eyes/upload', body, config);
         console.log(res);
-        debugger;
+        // debugger;
     } catch (err) {
         console.error(err);
     }
