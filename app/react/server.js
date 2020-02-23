@@ -1,11 +1,13 @@
 const express = require('express');
-const connectDB = require('./config/db');
+const app = express();
+
+const db = require('./config/db');
+const connectDB = db.connectDB;
+// const connectDB = require('./config/db');
 const path = require('path');
 
-const app = express();
 const PORT = process.env.PORT || 5000;
 
-//connect to database
 connectDB();
 
 //middleware?

@@ -3,12 +3,17 @@ const Schema = mongoose.Schema;
 
 const EyeSchema = new Schema({
     pic: {
-        _id: mongoose.Types.ObjectId,
-        length: { type: Number },
-        chunkSize: { type: Number },
-        uploadDate: { type: Date, required: true },
+        fieldname: { type: String },
+        originalname: { type: String, required: true },
+        encoding: { type: String },
+        mimetype: { type: String },
+        id: { type: String },
         filename: { type: String, required: true },
+        bucketName: { type: String },
+        chunkSize: { type: Number },
+        size: { type: Number },
         md5: { type: String },
+        uploadDate: { type: Date, required: true },
         contentType: { type: String }
     },
     info: {
@@ -37,5 +42,4 @@ const EyeSchema = new Schema({
     }
 });
 
-module.exports = Eye = mongoose.model('Eye', EyeSchema);
-// module.exports = EyeSchema;
+module.exports = Eye = mongoose.model('eye', EyeSchema);

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const InfoSchema = new Schema({
+const PicSchema = new Schema({
     latitude: { type: Number, required: true },
     longitude: { type: Number, required: true },
     camera: { type: String },
@@ -26,4 +26,4 @@ const InfoSchema = new Schema({
     copyright: { type: String }
 });
 
-module.exports = Info = mongoose.model('info', InfoSchema);
+module.exports = Pic = mongoose.model('pic', PicSchema);

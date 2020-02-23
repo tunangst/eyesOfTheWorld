@@ -1,12 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const moment = require('moment');
+const mongoose = require('mongoose');
+
+const dbMethods = require('../../config/db');
+const gfs = dbMethods.gfs;
 
 const Eye = require('../../models/Eye');
 
 const multer = require('multer');
 const GridFsStorage = require('multer-gridfs-storage');
-const Grid = require('gridfs-stream');
 
 const config = require('config');
 const db = config.get('mongoURI');
@@ -43,7 +46,7 @@ const storage = new GridFsStorage({
             // console.log(filename);
             const fileInfo = {
                 filename: filename,
-                bucketName: 'uploads'
+                bucketName: 'picUploads'
             };
             resolve(fileInfo);
         });
@@ -57,7 +60,7 @@ const upload = multer({ storage });
 // const upload = multer({ storage: storage, fileFilter: fileFilter });
 // in upload can add limits: {fileSize: 1024 * 1024 * 5 to accept limit of 5 megabites}
 
-const Info = require('../../models/Info');
+// const Info = require('../../models/Info');
 
 //should be request from /api/eyes
 router.get('/', async (request, response) => {
@@ -78,57 +81,109 @@ router.get('/', async (request, response) => {
     }
 });
 
-router.post('/upload', upload.single('pic'), (request, response) => {
+router.post('/upload', upload.single('pic'), async (request, response) => {
     console.log(`post request received at: /upload`);
     try {
-        const pic = request.file;
-        console.log(`~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`);
-        const picture = () => {
-            console.log(pic.fieldname);
-            console.log(pic.originalname);
-            console.log(pic.encoding);
-            console.log(pic.mimetype);
-            console.log(pic.id);
-            console.log(pic.filename);
-            console.log(pic.metadata);
-            console.log(pic.bucketName);
-            console.log(pic.chunkSize);
-            console.log(pic.size);
-            console.log(pic.md5);
-            console.log(pic.uploadDate);
-            // console.log(pic.uploadDate.toDate());
-            console.log(pic.contentType);
-        };
-        picture();
-        const timeStamp = moment(pic.uploadDate);
-        pic.uploadDate = timeStamp.toDate();
-        console.log(pic.uploadDate);
+        const {
+            fieldname,
+            originalname,
+            encoding,
+            mimetype,
+            id,
+            filename,
+            bucketName,
+            chunkSize,
+            size,
+            md5,
+            uploadDate,
+            contentType
+        } = request.file;
 
-        console.log(pic + '  this is the pic right here uploading');
-        console.log(`~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`);
-        const { body } = request;
-        for (let key in body) {
-            console.log(`~~${key}:::${body[key]}~~`);
-        }
-        console.log(`~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`);
+        const timeStamp = moment(uploadDate);
+        const newUploadDate = timeStamp.toDate();
 
-        let buildEye = {
-            pic: pic,
-            info: body
+        const buildPic = {
+            fieldname: fieldname,
+            originalname: originalname,
+            encoding: encoding,
+            mimetype: mimetype,
+            id: id,
+            filename: filename,
+            bucketName: bucketName,
+            chunkSize: chunkSize,
+            size: size,
+            md5: md5,
+            uploadDate: newUploadDate,
+            contentType: contentType
         };
-        console.log(buildEye);
+
+        const {
+            latitude,
+            longitude,
+            camera,
+            date,
+            width,
+            height,
+            aperture,
+            shutter,
+            iso,
+            exposure,
+            light,
+            flash,
+            flashStrength,
+            contrast,
+            saturation,
+            sharpness,
+            brightness,
+            whiteBalance,
+            zoom,
+            artist,
+            software,
+            copyright
+        } = request.body;
+
+        const buildInfo = {};
+        latitude && (buildInfo.latitude = latitude);
+        longitude && (buildInfo.longitude = longitude);
+        camera && (buildInfo.camera = camera);
+        date && (buildInfo.date = date);
+        width && (buildInfo.width = width);
+        height && (buildInfo.height = height);
+        aperture && (buildInfo.aperture = aperture);
+        shutter && (buildInfo.shutter = shutter);
+        iso && (buildInfo.iso = iso);
+        exposure && (buildInfo.exposure = exposure);
+        light && (buildInfo.light = light);
+        flash && (buildInfo.flash = flash);
+        flashStrength && (buildInfo.flashStrength = flashStrength);
+        contrast && (buildInfo.contrast = contrast);
+        saturation && (buildInfo.saturation = saturation);
+        sharpness && (buildInfo.sharpness = sharpness);
+        brightness && (buildInfo.brightness = brightness);
+        whiteBalance && (buildInfo.whiteBalance = whiteBalance);
+        zoom && (buildInfo.zoom = zoom);
+        artist && (buildInfo.artist = artist);
+        software && (buildInfo.software = software);
+        copyright && (buildInfo.copyright = copyright);
+
+        const buildEye = {
+            pic: buildPic,
+            info: buildInfo
+        };
+
         const newEye = new Eye(buildEye);
+        console.log(newEye);
 
-        const eye = newEye.save();
-        response
-            .status(200)
-            .send({ message: `new Eye has been saved! :^]`, eye: buildEye });
-        // response.send(`new Eye has been saved! :^]`).send(info);
+        console.log(`\\\\\\\\\\\\\\\\\\\\\\\\\\\\\//////////////////////////`);
+        await newEye.save(err => {
+            err && console.log(err);
+        });
+        response.status(200).send({ message: `new Eye has been saved! :^]` });
     } catch (error) {
         console.error(error.message);
         response
             .status(500)
-            .send(`Server Error: body sent resulted in: ${body}`);
+            .send(`Server Error: tried to send and resulted in: ${buildEye}`);
     }
 });
 
