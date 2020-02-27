@@ -11,12 +11,12 @@ import { goToMapId } from '../../extra/utilityFunctions/utilities';
 import mapStyle from './mapStyle';
 
 const MapComponent = withScriptjs(
-    withGoogleMap(({ markers }) => {
-        const buildMarker = markObj => {
-            const key = markObj._id || 'init';
+    withGoogleMap(({ eyeDataArr }) => {
+        const buildMarker = eyeDataObj => {
+            const key = eyeDataObj._id || 'init';
             const position = {
-                lat: markObj.latitude,
-                lng: markObj.longitude
+                lat: eyeDataObj.info.latitude,
+                lng: eyeDataObj.info.longitude
             };
 
             return (
@@ -25,19 +25,21 @@ const MapComponent = withScriptjs(
                     defaultOpacity={0.75}
                     position={position}
                     clickable={true}
-                    onClick={() => goToMapId(markObj._id)}
+                    onClick={() => goToMapId(eyeDataObj._id)}
                 />
             );
         };
 
         let zoom = 2;
-        markers && markers.length === 1 ? (zoom = 12) : (zoom = 2);
+        eyeDataArr.length > 0 && eyeDataArr.length === 1
+            ? (zoom = 12)
+            : (zoom = 2);
 
         return (
             <GoogleMap
                 center={{
-                    lat: (markers.length > 0 && markers[0].latitude) || 0,
-                    lng: (markers.length > 0 && markers[0].longitude) || 0
+                    lat: (eyeDataArr.length > 0 && eyeDataArr[0].latitude) || 0,
+                    lng: (eyeDataArr.length > 0 && eyeDataArr[0].longitude) || 0
                 }}
                 zoom={zoom}
                 defaultOptions={{
@@ -49,7 +51,7 @@ const MapComponent = withScriptjs(
                     styles: mapStyle // change default map styles
                 }}
             >
-                {markers && (
+                {eyeDataArr.length > 0 && (
                     <MarkerClusterer
                         onClick={
                             () => {}
@@ -61,7 +63,7 @@ const MapComponent = withScriptjs(
                         enableRetinaIcons
                         gridSize={60}
                     >
-                        {markers.map(mark => buildMarker(mark))}
+                        {eyeDataArr.map(eyeData => buildMarker(eyeData))}
                     </MarkerClusterer>
                 )}
             </GoogleMap>

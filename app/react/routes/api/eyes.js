@@ -68,7 +68,7 @@ router.get('/', async (request, response) => {
     // debugger;
     try {
         //find all eyes stored
-        const infoData = await Eyes.find();
+        const infoData = await Eye.find();
         console.log(`☻ info data down`);
         console.log(infoData);
         //load google maps location request for everything
