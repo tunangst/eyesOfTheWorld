@@ -34,7 +34,15 @@ const InfoSection = props => {
 
     return (
         <section className='infoSection'>
-            <form id='infoForm' name='infoSubmit' encType='multipart/form-data'>
+            <form
+                id='infoForm'
+                name='infoSubmit'
+                encType='multipart/form-data'
+                action='/api/eyes/upload'
+                method='POST'
+
+                // onSubmit={submitImage}
+            >
                 {inputs}
             </form>
         </section>

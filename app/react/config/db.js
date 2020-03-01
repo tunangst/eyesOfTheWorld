@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
 const config = require('config');
-const multer = require('multer');
-const Grid = require('gridfs-stream');
 
 const dbURI = config.get('mongoURI');
 
@@ -26,21 +24,19 @@ const options = {
     useUnifiedTopology: true
 };
 
-let gfs;
+// let gfs;
 const connectDB = async () => {
-    await mongoose.connect(dbURI, options);
-    let conn = await mongoose.createConnection(dbURI);
-    conn.once('open', function() {
-        gfs = Grid(conn.db, mongoose.mongo);
+    try {
+        // let conn = mongoose.connection;
+        // let conn = await mongoose.createConnection(dbURI, options);
+        await mongoose.connect(dbURI, options);
+        // await mongoose.createConnection(dbURIPic, options);
 
-        console.log('MongoDB & Grid gfs connected');
-        console.log(conn.db);
-        console.log(mongoose.mongo);
-    });
+        console.log('MongoDB connected');
+    } catch (error) {
+        console.log(error);
+    }
 };
 
-module.exports = {
-    connectDB: connectDB,
-    gfs: gfs
-};
+module.exports = connectDB;
 // module.exports = connectDB;

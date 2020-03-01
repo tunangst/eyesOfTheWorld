@@ -2,8 +2,19 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const EyeSchema = new Schema({
-    url: { type: String, required: true },
     pic: {
+        // fieldname: { type: String },
+        // originalname: { type: String, required: true },
+        // encoding: { type: String },
+        // mimetype: { type: String },
+        // id: { type: String },
+        // filename: { type: String, required: true },
+        // bucketName: { type: String },
+        // chunkSize: { type: Number },
+        // size: { type: Number },
+        // md5: { type: String },
+        // uploadDate: { type: Date, required: true },
+        // contentType: { type: String }
         name: { type: String },
         size: { type: Number },
         type: { type: String }

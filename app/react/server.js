@@ -1,13 +1,21 @@
 const express = require('express');
 const app = express();
+const mongoose = require('mongoose');
+const Grid = require('gridfs-stream');
 
-const db = require('./config/db');
-const connectDB = db.connectDB;
-// const connectDB = require('./config/db');
+const config = require('./config/db');
+// const dbURI = config.get('mongoURI');
+const connectDB = require('./config/db');
 const path = require('path');
+
+const eyeRoutes = require('./routes/api/eyes');
+const imageRoutes = require('./routes/api/image');
 
 const PORT = process.env.PORT || 5000;
 
+// connect DB
+// let gfs;
+// mongoose.createConnection(dbURI);
 connectDB();
 
 //middleware?
@@ -15,7 +23,8 @@ connectDB();
 app.use(express.json({ extended: false }));
 
 //routes
-app.use('/api/eyes', require('./routes/api/eyes'));
+app.use('/api/eyes', eyeRoutes);
+app.use('/api/image', imageRoutes);
 
 //serve static assets in production
 // if (process.env.NODE_ENV === 'production') {

@@ -7,6 +7,7 @@ import './App.css';
 import Nav from './layout/Nav';
 import LandingPage from './pages/LandingPage';
 import AddPage from './pages/AddPage/AddPage';
+import EyePage from './pages/EyePage';
 
 function App() {
     return (
@@ -16,6 +17,7 @@ function App() {
                 <Switch>
                     <Route exact path='/' component={LandingPage} />
                     <Route path='/upload' component={AddPage} />
+                    <Route path='/eyes/:id' component={EyePage} />
                 </Switch>
             </div>
         </Router>

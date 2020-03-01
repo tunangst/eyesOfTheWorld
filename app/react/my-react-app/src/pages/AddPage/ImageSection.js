@@ -65,7 +65,7 @@ const ImageSection = props => {
         >
             <div className='inputContainer'>
                 <form
-                    action='/api/eyes/upload'
+                    action='/api/image'
                     method='POST'
                     id='picForm'
                     name='picSubmit'

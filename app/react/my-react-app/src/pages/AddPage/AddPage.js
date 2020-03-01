@@ -178,19 +178,18 @@ const AddPage = props => {
         state.ready && handleFindData();
     }, [state.ready]);
 
-    let initMarker;
-    if (state.info.latitude === '???' || state.info.longitude === '?') {
-        initMarker = {
-            latitude: 0,
-            longitude: 0
-        };
+    let submitPage = false;
+    if (state.info.latitude === '???' || state.info.longitude === '???') {
+        submitPage = true;
     } else {
-        initMarker = null;
+        submitPage = false;
     }
 
     return (
         <main className='add'>
-            <MapSection markers={!initMarker && [state.info]} />
+            <MapSection
+                eyeDataArr={submitPage ? null : [{ info: state.info }]}
+            />
 
             <ImageSection
                 imgId={state.imgId}

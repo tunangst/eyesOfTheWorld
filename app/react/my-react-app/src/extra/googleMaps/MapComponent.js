@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import {
     withScriptjs,
     withGoogleMap,
@@ -10,8 +11,18 @@ import MarkerClusterer from 'react-google-maps/lib/components/addons/MarkerClust
 import { goToMapId } from '../../extra/utilityFunctions/utilities';
 import mapStyle from './mapStyle';
 
+//eyeDataArr = [{},{},{}]
+//eyeDataArr[0]= {
+// info: {},
+// pic: {}
+// }
+
 const MapComponent = withScriptjs(
     withGoogleMap(({ eyeDataArr }) => {
+        const history = useHistory();
+        const handleRedirect = eyeId => {
+            history.push(`/api/eyes/${eyeId}`);
+        };
         const buildMarker = eyeDataObj => {
             const key = eyeDataObj._id || 'init';
             const position = {
@@ -25,22 +36,44 @@ const MapComponent = withScriptjs(
                     defaultOpacity={0.75}
                     position={position}
                     clickable={true}
-                    onClick={() => goToMapId(eyeDataObj._id)}
+                    onClick={() => handleRedirect(eyeDataObj._id)}
                 />
             );
         };
 
-        let zoom = 2;
-        eyeDataArr.length > 0 && eyeDataArr.length === 1
-            ? (zoom = 12)
-            : (zoom = 2);
+        let zoom;
+        let markers = [];
+        let initCenter = null;
 
+        if (eyeDataArr && eyeDataArr.length > 0) {
+            if (eyeDataArr.length === 1) {
+                zoom = 12;
+                const eyeMarker = buildMarker(eyeDataArr[0]);
+                markers.push(eyeMarker);
+            } else {
+                zoom = 2;
+                eyeDataArr.map(eyeData => {
+                    const eyeMarker = buildMarker(eyeData);
+                    markers.push(eyeMarker);
+                });
+            }
+        } else {
+            zoom = 2;
+            initCenter = {
+                latitude: 0,
+                longitude: 0
+            };
+        }
+
+        let center = {
+            lat: initCenter ? initCenter.latitude : eyeDataArr[0].info.latitude,
+            lng: initCenter
+                ? initCenter.longitude
+                : eyeDataArr[0].info.longitude
+        };
         return (
             <GoogleMap
-                center={{
-                    lat: (eyeDataArr.length > 0 && eyeDataArr[0].latitude) || 0,
-                    lng: (eyeDataArr.length > 0 && eyeDataArr[0].longitude) || 0
-                }}
+                center={center}
                 zoom={zoom}
                 defaultOptions={{
                     disableDefaultUI: true, // disable default map UI
@@ -51,21 +84,7 @@ const MapComponent = withScriptjs(
                     styles: mapStyle // change default map styles
                 }}
             >
-                {eyeDataArr.length > 0 && (
-                    <MarkerClusterer
-                        onClick={
-                            () => {}
-
-                            // props.onMarkerClustererClick
-                        }
-                        averageCenter
-                        defaultAverageCenter
-                        enableRetinaIcons
-                        gridSize={60}
-                    >
-                        {eyeDataArr.map(eyeData => buildMarker(eyeData))}
-                    </MarkerClusterer>
-                )}
+                <MarkerClusterer>{markers}</MarkerClusterer>
             </GoogleMap>
         );
     })

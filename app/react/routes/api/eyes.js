@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const moment = require('moment');
 const mongoose = require('mongoose');
+// const axios = require('axios');
 
 const dbMethods = require('../../config/db');
 const gfs = dbMethods.gfs;
@@ -9,21 +10,12 @@ const gfs = dbMethods.gfs;
 const Eye = require('../../models/Eye');
 
 const multer = require('multer');
+const upload = multer();
+
 const GridFsStorage = require('multer-gridfs-storage');
 
 const config = require('config');
 const db = config.get('mongoURI');
-
-// const storage = multer.diskStorage({
-//     destination: function(request, file, callback) {
-//         callback(null, 'uploads/');
-//     },
-//     filename: function(request, file, callback) {
-//         const now = new Date().toISOString();
-//         const date = now.replace(/:/g, '-');
-//         callback(null, date + file.originalname);
-//     }
-// });
 
 // const fileFilter = (req, file, callback) => {
 //     if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
@@ -35,25 +27,24 @@ const db = config.get('mongoURI');
 // };
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-const storage = new GridFsStorage({
-    url: db,
-    file: (request, file) => {
-        return new Promise((resolve, reject) => {
-            const now = new Date().toISOString();
-            const date = now.replace(/:/g, '-');
-            // console.log(request);
-            const filename = date + '|||' + file.originalname;
-            // console.log(filename);
-            const fileInfo = {
-                filename: filename,
-                bucketName: 'picUploads'
-            };
-            resolve(fileInfo);
-        });
-    }
-});
+// const storage = new GridFsStorage({
+//     url: db,
+//     options: { useUnifiedTopology: true },
+//     file: (request, file) => {
+//         return new Promise((resolve, reject) => {
+//             const now = new Date().toISOString();
+//             const date = now.replace(/:/g, '-');
+//             const filename = date + '|||' + file.originalname;
+//             const fileInfo = {
+//                 filename: filename,
+//                 bucketName: 'picUploads'
+//             };
+//             resolve(fileInfo);
+//         });
+//     }
+// });
 
-const upload = multer({ storage });
+// const upload = multer({ storage });
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -81,41 +72,29 @@ router.get('/', async (request, response) => {
     }
 });
 
-router.post('/upload', upload.single('pic'), async (request, response) => {
-    console.log(`post request received at: /upload`);
+router.get('/:id', async (request, response) => {
+    console.log(`(((((((((((((( /api/eyes/:id area))))))))))))))`);
+    const id = request.params.id;
+    console.log(id);
+    console.log(`get /api/eyes/${id} targeted and running`);
     try {
-        const {
-            fieldname,
-            originalname,
-            encoding,
-            mimetype,
-            id,
-            filename,
-            bucketName,
-            chunkSize,
-            size,
-            md5,
-            uploadDate,
-            contentType
-        } = request.file;
+        const eye = await Eye.findById(id);
+        console.log(eye);
+        response.json(eye);
+    } catch (error) {
+        console.error(error.message);
+    }
+});
 
-        const timeStamp = moment(uploadDate);
-        const newUploadDate = timeStamp.toDate();
-
-        const buildPic = {
-            fieldname: fieldname,
-            originalname: originalname,
-            encoding: encoding,
-            mimetype: mimetype,
-            id: id,
-            filename: filename,
-            bucketName: bucketName,
-            chunkSize: chunkSize,
-            size: size,
-            md5: md5,
-            uploadDate: newUploadDate,
-            contentType: contentType
-        };
+router.post('/upload', upload.none(), async (request, response) => {
+    console.log(`post request received at: /upload`);
+    console.log(`.`);
+    console.log(`.`);
+    console.log(`.`);
+    console.log(`.`);
+    try {
+        // const timeStamp = moment(uploadDate);
+        // const newUploadDate = timeStamp.toDate();
 
         const {
             latitude,
@@ -139,8 +118,16 @@ router.post('/upload', upload.single('pic'), async (request, response) => {
             zoom,
             artist,
             software,
-            copyright
+            copyright,
+            picName,
+            picSize,
+            picType,
+            url
         } = request.body;
+
+        // const buildUrl = {
+        //     link: imgUrl
+        // };
 
         const buildInfo = {};
         latitude && (buildInfo.latitude = latitude);
@@ -166,24 +153,37 @@ router.post('/upload', upload.single('pic'), async (request, response) => {
         software && (buildInfo.software = software);
         copyright && (buildInfo.copyright = copyright);
 
+        const buildPic = {};
+        picName && (buildPic.name = picName);
+        picSize && (buildPic.size = picSize);
+        picType && (buildPic.type = picType);
+
+        // console.log(typeof imgUrl);
+
         const buildEye = {
+            url: url,
             pic: buildPic,
             info: buildInfo
         };
+        console.log(`~~~~~~~`);
+        console.log(buildEye);
+        console.log(`~~~~~~~`);
+        // debugger;
 
         const newEye = new Eye(buildEye);
+        // const newEye = new Eye(buildEye);
         console.log(newEye);
+        console.log(newEye.url);
 
         console.log(`\\\\\\\\\\\\\\\\\\\\\\\\\\\\\//////////////////////////`);
         await newEye.save(err => {
-            err && console.log(err);
+            err && console.log(err.message);
         });
+        // debugger;
         response.status(200).send({ message: `new Eye has been saved! :^]` });
     } catch (error) {
         console.error(error.message);
-        response
-            .status(500)
-            .send(`Server Error: tried to send and resulted in: ${buildEye}`);
+        response.status(500).send(`Server Error: tried to send and resulted`);
     }
 });
 
