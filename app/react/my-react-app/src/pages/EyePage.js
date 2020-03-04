@@ -3,6 +3,7 @@ import useAsyncEffect from 'use-async-effect';
 
 import findEye from '../extra/apiCalls/findEye';
 import findImage from '../extra/apiCalls/findImage';
+import BuildInputField from '../extra/utilityFunctions/BuildInputField'
 
 const initialState = {
     pic: {},
@@ -16,16 +17,44 @@ const EyePage = props => {
 
     useAsyncEffect(async () => {
         const foundEye = await findEye(id);
-        const foundImage = await findImage(foundEye.pic.filename);
         console.log(foundEye);
-        console.log(foundImage);
         setEyeData({
             ...eyeData,
             pic: foundEye.pic,
             info: foundEye.info,
-            image: foundImage
+            image: foundEye.url
         });
     }, []);
+
+
+
+    let inputs = [];
+    if (eyeData.info) {
+        inputs = Object.entries(eyeData.info).map(([key, value]) => {
+            if (key === 'width' && value !== '???') {
+                return (
+                    <BuildInputField
+                        key={key}
+                        field={key}
+                        value={eyeData.info[key]}
+                        fieldHeight={'height'}
+                        valueHeight={eyeData.info.height}
+                    />
+                );
+            } else if (
+                key === 'height' ||
+                value === '???' ||
+                value === undefined
+            ) {
+                return null;
+            } else {
+                return (
+                    <BuildInputField key={key} field={key} value={eyeData.info[key]} />
+                );
+            }
+        });
+    }
+
 
     console.log(`in the eye's page`);
     return (
@@ -36,8 +65,14 @@ const EyePage = props => {
                 }
             </aside>
             <main className='eye'>
-                <h1 className='title'>{eyeData.pic.originalname}</h1>
-                <div className='picBox'>{}</div>
+                
+                <div className='picBox'>
+                    <img src={eyeData.image}></img>
+                </div>
+                <div className='infoBox'>
+                    <h1 className='title'>{eyeData.pic.name}</h1>
+                    {inputs}
+                </div>
             </main>
         </section>
     );

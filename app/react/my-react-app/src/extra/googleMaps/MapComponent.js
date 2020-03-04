@@ -7,6 +7,7 @@ import {
     Marker
 } from 'react-google-maps';
 
+import { MarkerWithLabel } from "react-google-maps/lib/components/addons/MarkerWithLabel";
 import MarkerClusterer from 'react-google-maps/lib/components/addons/MarkerClusterer';
 import { goToMapId } from '../../extra/utilityFunctions/utilities';
 import mapStyle from './mapStyle';
@@ -21,7 +22,7 @@ const MapComponent = withScriptjs(
     withGoogleMap(({ eyeDataArr }) => {
         const history = useHistory();
         const handleRedirect = eyeId => {
-            history.push(`/api/eyes/${eyeId}`);
+            history.push(`/eyes/${eyeId}`);
         };
         const buildMarker = eyeDataObj => {
             const key = eyeDataObj._id || 'init';
@@ -36,6 +37,8 @@ const MapComponent = withScriptjs(
                     defaultOpacity={0.75}
                     position={position}
                     clickable={true}
+                    // labelAnchor={new google.maps.Point(0, 0)}
+                    // labelStyle={{backgroundColor: "yellow", fontSize: "32px", padding: "16px"}}
                     onClick={() => handleRedirect(eyeDataObj._id)}
                 />
             );
@@ -84,7 +87,9 @@ const MapComponent = withScriptjs(
                     styles: mapStyle // change default map styles
                 }}
             >
-                <MarkerClusterer>{markers}</MarkerClusterer>
+                <MarkerClusterer
+                    averageCenter
+                >{markers}</MarkerClusterer>
             </GoogleMap>
         );
     })
