@@ -1,3 +1,7 @@
+/* font-family: 'Alice', serif;
+
+    font-family: 'Raleway', sans-serif; */
+
 html,
 body,
 #root {
@@ -7,6 +11,7 @@ body,
     background-color: magenta;
     height: 100%;
     width: 100%;
+    font-family: 'Raleway', sans-serif;
 }
 
 #myArea {
@@ -17,9 +22,40 @@ body,
 }
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~nav~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .nav {
-    height: 50px;
+    height: 100px;
+    z-index: 50;
     width: 100%;
-    background-color: chocolate;
+    background-color: peachpuff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* color: #049dbf; */
+    color: #a62f03;
+    font-family: 'Alice', serif;
+    box-shadow: 0px 5px 20px rgba(5, 5, 5, 0.5);
+}
+.title {
+    font-size: 35px;
+}
+.nav .upload {
+    margin: 15px;
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 15px;
+    color: #a62f03;
+}
+.nav .upload:hover {
+    cursor: pointer;
+}
+.logoContainer {
+    padding: 15px;
+    height: 100%;
+}
+.logo {
+    height: 100%;
+}
+.logo:hover {
+    cursor: pointer;
 }
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~nav~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~landing~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -34,7 +70,7 @@ body,
 .recentImgs {
     width: 100%;
     height: 150px;
-    background-color: peachpuff;
+    background-color: lightgrey;
 }
 .worldMap {
     width: 100%;
@@ -82,11 +118,16 @@ body,
     border: 5px groove #fff;
     background: #aaa;
     cursor: pointer;
+    font-size: 16px;
+    font-family: 'Raleway', sans-serif;
+    box-shadow: 1px 1px 10px rgba(5, 5, 5, 0.5);
+
+    transition: 0.4s ease-in-out;
 }
 .submitImage:disabled {
     background: rgba(2, 2, 2, 0.3);
     border: 5px groove rgb(107, 107, 107);
-    color: #fff;
+    color: #aaa;
     cursor: not-allowed;
 }
 

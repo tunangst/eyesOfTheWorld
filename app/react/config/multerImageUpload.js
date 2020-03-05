@@ -33,7 +33,15 @@ const multerS3Storage = multerS3({
         cb(null, { fieldName: file.fieldname });
     },
     key: function(req, file, cb) {
-        cb(null, Date.now().toString());
+        cb(
+            null,
+            new Date()
+                .toISOString()
+                .slice(0, 10)
+                .replace(/-/g, '~') +
+                '~~~~' +
+                file.originalname
+        );
     }
 });
 

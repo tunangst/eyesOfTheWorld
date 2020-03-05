@@ -13,11 +13,6 @@ const mapSection = ({ eyeDataArr }) => {
                 containerElement={<div style={{ height: `100%` }} />}
                 mapElement={<div style={{ height: `100%` }} />}
             />
-
-            <p>
-                have getData run after file image loads, something like
-                picture.load(function){' '}
-            </p>
         </section>
     );
 };

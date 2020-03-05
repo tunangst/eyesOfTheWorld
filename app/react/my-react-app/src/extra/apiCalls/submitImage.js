@@ -33,7 +33,6 @@ const submitImage = async event => {
         //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~image thing
         const picForm = document.querySelector(`#picForm`);
         let imageBody = new FormData(picForm);
-
         const img = await axios.post('/api/image', imageBody, config);
         // console.log(
         //     `888888888888888888888img  ${img} gmi888888888888888888888`
