@@ -7,7 +7,7 @@ import {
     Marker
 } from 'react-google-maps';
 
-import { MarkerWithLabel } from "react-google-maps/lib/components/addons/MarkerWithLabel";
+import { MarkerWithLabel } from 'react-google-maps/lib/components/addons/MarkerWithLabel';
 import MarkerClusterer from 'react-google-maps/lib/components/addons/MarkerClusterer';
 import { goToMapId } from '../../extra/utilityFunctions/utilities';
 import mapStyle from './mapStyle';
@@ -19,7 +19,7 @@ import mapStyle from './mapStyle';
 // }
 
 const MapComponent = withScriptjs(
-    withGoogleMap(({ eyeDataArr }) => {
+    withGoogleMap(({ eyesArr }) => {
         const history = useHistory();
         const handleRedirect = eyeId => {
             history.push(`/eyes/${eyeId}`);
@@ -48,14 +48,14 @@ const MapComponent = withScriptjs(
         let markers = [];
         let initCenter = null;
 
-        if (eyeDataArr && eyeDataArr.length > 0) {
-            if (eyeDataArr.length === 1) {
+        if (eyesArr && eyesArr.length > 0) {
+            if (eyesArr.length === 1) {
                 zoom = 12;
-                const eyeMarker = buildMarker(eyeDataArr[0]);
+                const eyeMarker = buildMarker(eyesArr[0]);
                 markers.push(eyeMarker);
             } else {
                 zoom = 2;
-                eyeDataArr.map(eyeData => {
+                eyesArr.map(eyeData => {
                     const eyeMarker = buildMarker(eyeData);
                     markers.push(eyeMarker);
                 });
@@ -69,10 +69,8 @@ const MapComponent = withScriptjs(
         }
 
         let center = {
-            lat: initCenter ? initCenter.latitude : eyeDataArr[0].info.latitude,
-            lng: initCenter
-                ? initCenter.longitude
-                : eyeDataArr[0].info.longitude
+            lat: initCenter ? initCenter.latitude : eyesArr[0].info.latitude,
+            lng: initCenter ? initCenter.longitude : eyesArr[0].info.longitude
         };
         return (
             <GoogleMap
@@ -87,9 +85,7 @@ const MapComponent = withScriptjs(
                     styles: mapStyle // change default map styles
                 }}
             >
-                <MarkerClusterer
-                    averageCenter
-                >{markers}</MarkerClusterer>
+                <MarkerClusterer averageCenter>{markers}</MarkerClusterer>
             </GoogleMap>
         );
     })

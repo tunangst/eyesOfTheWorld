@@ -11,7 +11,7 @@ router.post('/', async (request, response) => {
         // console.log(request.file);
         // console.log(request.file + `   request.file ~~~~~~~~~~~~~`);
         // console.log(request.file);
-        error && console.log(error.message);
+        error && response.json({ msg: error.message });
         return response.json({ imageUrl: request.file.location });
     });
 });

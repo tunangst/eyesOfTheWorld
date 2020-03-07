@@ -1,19 +1,64 @@
 import axios from 'axios';
 
-// const createTextImg = imgObj => {
-//     let textImg = {
-//         lastModified: imgObj.lastModified,
-//         name: imgObj.name,
-//         size: imgObj.size,
-//         type: imgObj.type,
-//         webkitRelativePath: imgObj.webkitRelativePath
-//     };
-//     return textImg;
-// };
+import {
+    GET_ALL_EYES,
+    GET_EYE,
+    SET_LOADING,
+    BUILD_EYE,
+    CLEAR_EYE
+} from '../actions/types';
 
-const submitImage = async event => {
+export const getAllEyes = () => async dispatch => {
+    try {
+        const eyes = await axios.get('/api/eyes');
+        const eyesData = eyes.data;
+
+        dispatch({
+            type: GET_ALL_EYES,
+            payload: eyesData
+        });
+        // return eyeData;
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+export const findEye = eyeId => async dispatch => {
+    console.log(`******** findEye function ***********`);
+    try {
+        const eye = await axios.get(`/api/eyes/${eyeId}`);
+        // const image = await axios.get(`/api/images/${eyeId}`);
+        const eyeData = eye.data;
+        // console.log(eye);
+        // console.log(eyeData);
+        dispatch({
+            type: GET_EYE,
+            payload: eyeData
+        });
+        // return eyeData;
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+export const buildEye = eye => async dispatch => {
+    dispatch({
+        type: BUILD_EYE
+    });
+};
+export const clearEye = () => async dispatch => {
+    dispatch({
+        type: CLEAR_EYE
+    });
+};
+
+export const submitEye = event => async dispatch => {
     console.log(event);
     event.preventDefault();
+    dispatch({
+        type: SET_LOADING,
+        payload: true
+    });
 
     // console.log(file);
     console.log(`~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`);
@@ -33,6 +78,7 @@ const submitImage = async event => {
     // };
     // const body = JSON.stringify(bodyFile);
     // console.log(body);
+    // debugger;
     try {
         //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~image thing
         const picForm = document.querySelector(`#picForm`);
@@ -64,8 +110,12 @@ const submitImage = async event => {
         infoBody.append('url', imgUrl);
 
         const eye = await axios.post('/api/eyes/upload', infoBody, config);
+        console.log(eye);
     } catch (err) {
-        console.log(err.message);
+        console.log(err);
     }
+    dispatch({
+        type: SET_LOADING,
+        payload: false
+    });
 };
-export default submitImage;

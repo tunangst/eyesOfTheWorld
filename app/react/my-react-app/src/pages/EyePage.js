@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import useAsyncEffect from 'use-async-effect';
 
-import findEye from '../extra/apiCalls/findEye';
+import { findEye } from '../actions/eyeAction';
+// import findEye from '../extra/apiCalls/findEye';
 import findImage from '../extra/apiCalls/findImage';
-import BuildInputField from '../extra/utilityFunctions/BuildInputField'
+import BuildInputField from '../extra/utilityFunctions/BuildInputField';
 
 const initialState = {
     pic: {},
@@ -11,34 +13,35 @@ const initialState = {
     image: {}
 };
 const EyePage = props => {
-    const [eyeData, setEyeData] = useState(initialState);
+    // const [eyeData, setEyeData] = useState(initialState);
+    const { eye, findEye } = props;
+
     const id = props.match.params.id;
     console.log(id);
 
-    useAsyncEffect(async () => {
-        const foundEye = await findEye(id);
+    useEffect(() => {
+        const foundEye = findEye(id);
         console.log(foundEye);
-        setEyeData({
-            ...eyeData,
-            pic: foundEye.pic,
-            info: foundEye.info,
-            image: foundEye.url
-        });
+        // setEyeData({
+        //     ...eyeData,
+        //     pic: foundEye.pic,
+        //     info: foundEye.info,
+        //     image: foundEye.url
+        // });
     }, []);
 
-
-
     let inputs = [];
-    if (eyeData.info) {
-        inputs = Object.entries(eyeData.info).map(([key, value]) => {
+    console.log(eye);
+    if (eye.info) {
+        inputs = Object.entries(eye.info).map(([key, value]) => {
             if (key === 'width' && value !== '???') {
                 return (
                     <BuildInputField
                         key={key}
                         field={key}
-                        value={eyeData.info[key]}
+                        value={eye.info[key]}
                         fieldHeight={'height'}
-                        valueHeight={eyeData.info.height}
+                        valueHeight={eye.info.height}
                     />
                 );
             } else if (
@@ -49,12 +52,15 @@ const EyePage = props => {
                 return null;
             } else {
                 return (
-                    <BuildInputField key={key} field={key} value={eyeData.info[key]} />
+                    <BuildInputField
+                        key={key}
+                        field={key}
+                        value={eye.info[key]}
+                    />
                 );
             }
         });
     }
-
 
     console.log(`in the eye's page`);
     return (
@@ -65,12 +71,11 @@ const EyePage = props => {
                 }
             </aside>
             <main className='eye'>
-                
                 <div className='picBox'>
-                    <img src={eyeData.image}></img>
+                    <img src={eye.url}></img>
                 </div>
                 <div className='infoBox'>
-                    <h1 className='title'>{eyeData.pic.name}</h1>
+                    <h1 className='title'>{eye.pic.name}</h1>
                     {inputs}
                 </div>
             </main>
@@ -78,4 +83,8 @@ const EyePage = props => {
     );
 };
 
-export default EyePage;
+const mapStateToProps = state => ({
+    eye: state.eye
+});
+
+export default connect(mapStateToProps, { findEye })(EyePage);

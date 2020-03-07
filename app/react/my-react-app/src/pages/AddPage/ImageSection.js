@@ -1,16 +1,17 @@
 import React from 'react';
 
-import submitImage from '../../extra/apiCalls/submitImage';
+// import submitImage from '../../extra/apiCalls/submitImage';
 
 const ImageSection = props => {
     const {
         handleFileDrop,
+        submitEye,
         handleFileChange,
-        handleReadyState,
-        imgSrc,
-        imgId,
+        handleImageReady,
+        states: { imgSrc, imgId },
         submitReady
     } = props;
+
     const handleFileDragOver = event => {
         event.preventDefault();
         event.stopPropagation();
@@ -32,7 +33,7 @@ const ImageSection = props => {
                 className='img1'
                 alt='this is what you are wanting to upload'
                 src={imgSrc}
-                onLoad={handleReadyState}
+                onLoad={handleImageReady}
             />
         );
     }
@@ -69,7 +70,7 @@ const ImageSection = props => {
                     method='POST'
                     id='picForm'
                     name='picSubmit'
-                    onSubmit={submitImage}
+                    onSubmit={submitEye}
                     encType='multipart/form-data'
                 >
                     <input id='insertedImg' name='insertedImg' type='file' />

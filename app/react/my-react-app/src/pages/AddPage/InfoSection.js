@@ -1,11 +1,12 @@
 import React from 'react';
 import BuildInputField from '../../extra/utilityFunctions/BuildInputField';
+import { useEffect } from 'react';
 
 const InfoSection = props => {
-    const { info, handleSubmitReady } = props;
-    // console.log(info);
+    const { info } = props;
+    console.log(info);
     let inputs = [];
-    if (info !== null) {
+    if (info) {
         inputs = Object.entries(info).map(([key, value]) => {
             if (key === 'width' && value !== '???') {
                 return (
@@ -30,7 +31,6 @@ const InfoSection = props => {
             }
         });
     }
-    inputs.length > 0 && handleSubmitReady && handleSubmitReady();
 
     return (
         <section className='infoSection'>

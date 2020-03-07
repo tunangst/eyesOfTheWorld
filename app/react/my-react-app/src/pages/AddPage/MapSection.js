@@ -3,11 +3,11 @@ import React from 'react';
 import MapComponent from '../../extra/googleMaps/MapComponent';
 import key from '../../extra/hiddenFolder/hiddenFile';
 
-const mapSection = ({ eyeDataArr }) => {
+const mapSection = ({ eyesArr }) => {
     return (
         <section className='mapSection'>
             <MapComponent
-                eyeDataArr={eyeDataArr}
+                eyesArr={eyesArr}
                 googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${key()}`}
                 loadingElement={<div style={{ height: `100%` }} />}
                 containerElement={<div style={{ height: `100%` }} />}

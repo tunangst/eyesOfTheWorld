@@ -86,9 +86,10 @@ router.post('/upload', upload.none(), async (request, response) => {
             'info.latitude': latitude,
             'info.longitude': longitude
         });
-        console.log(alreadyPosted);
+        console.log('alreadyPosted');
         if (alreadyPosted.length > 0) {
-            response.status(500).send(`Server Error: Eye already exists`);
+            throw new Error('Eye already exists');
+            // response.status(500).send('Server Error: Eye already exists');
         } else {
             const buildInfo = {};
             latitude && (buildInfo.latitude = latitude);
@@ -143,13 +144,11 @@ router.post('/upload', upload.none(), async (request, response) => {
                 err && console.log(err.message);
             });
             // debugger;
-            response
-                .status(200)
-                .send({ message: `new Eye has been saved! :^]` });
+            response.json(newEye);
         }
     } catch (error) {
-        console.error(error.message);
-        response.status(500).send(`Server Error: tried to send and resulted`);
+        console.error(error);
+        response.status(500).send(error);
     }
 });
 
