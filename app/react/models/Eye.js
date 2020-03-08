@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const EyeSchema = new Schema({
     url: { type: String, required: true },
+    uploadDate: { type: Date, required: true },
     pic: {
         name: { type: String },
         size: { type: Number },

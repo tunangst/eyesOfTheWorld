@@ -36,7 +36,7 @@ const initialEye = {
 
 const eye = (state = initialEye, action) => {
     const { type, payload } = action;
-    console.log(payload);
+    // console.log(payload);
     switch (type) {
         case GET_EYE:
             return {

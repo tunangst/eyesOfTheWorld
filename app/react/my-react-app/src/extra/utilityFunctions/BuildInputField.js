@@ -66,6 +66,9 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
         case 'date':
             const timeStamp = moment(value, 'YYYY:MM:DD HH:mm:ss');
             const valueDate = timeStamp.toDate();
+            const formattedDate = moment(valueDate).format('LLLL');
+
+            console.log(typeof formattedDate);
             inputField = (
                 <fieldset className='infoFieldset'>
                     <label htmlFor='date'>Date Taken: </label>
@@ -74,7 +77,7 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
                         id='date'
                         name='date'
                         type='text'
-                        value={valueDate}
+                        value={formattedDate}
                         style={calculateLength(size)}
                     />
                 </fieldset>

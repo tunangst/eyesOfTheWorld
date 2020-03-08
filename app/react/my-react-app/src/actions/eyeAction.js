@@ -11,6 +11,7 @@ import {
 export const getAllEyes = () => async dispatch => {
     try {
         const eyes = await axios.get('/api/eyes');
+        //maybe put a sort method by uploadDate
         const eyesData = eyes.data;
 
         dispatch({
@@ -71,14 +72,7 @@ export const submitEye = event => async dispatch => {
             console.log(event.loaded, event.total);
         }
     };
-    // const configInfo = {
-    //     headers: {
-    //         'Content-Type': 'application/json'
-    //     }
-    // };
-    // const body = JSON.stringify(bodyFile);
-    // console.log(body);
-    // debugger;
+
     try {
         //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~image thing
         const picForm = document.querySelector(`#picForm`);

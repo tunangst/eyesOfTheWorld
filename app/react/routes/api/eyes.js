@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const moment = require('moment');
 
 const dbMethods = require('../../config/db');
 const gfs = dbMethods.gfs;
@@ -79,9 +80,6 @@ router.post('/upload', upload.none(), async (request, response) => {
             url
         } = request.body;
 
-        // const buildUrl = {
-        //     link: imgUrl
-        // };
         const alreadyPosted = await Eye.find({
             'info.latitude': latitude,
             'info.longitude': longitude
@@ -124,13 +122,10 @@ router.post('/upload', upload.none(), async (request, response) => {
 
             const buildEye = {
                 url: url,
+                uploadDate: moment().format('LLLL'),
                 pic: buildPic,
                 info: buildInfo
             };
-            // console.log(`~~~~~~~`);
-            // console.log(buildEye);
-            // console.log(`~~~~~~~`);
-            // debugger;
 
             const newEye = new Eye(buildEye);
             // const newEye = new Eye(buildEye);

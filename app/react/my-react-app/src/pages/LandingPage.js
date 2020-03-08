@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 // import useAsyncEffect from 'use-async-effect';
 import MapComponent from '../extra/googleMaps/MapComponent';
+import SuggestedEye from '../extra/utilityFunctions/SuggestedEye';
 import key from '../extra/hiddenFolder/hiddenFile';
 
 import { getAllEyes } from '../actions/eyeAction';
@@ -10,28 +11,39 @@ import { getAllEyes } from '../actions/eyeAction';
 const initialState = [];
 // import axios from 'axios'
 const LandingPage = props => {
+    let suggestions = [];
     const { eyes, getAllEyes } = props;
     // const [eyeData, setEyeData] = useState(initialState);
 
     useEffect(() => {
-        getAllEyes();
+        eyes.length < 1 && getAllEyes();
     }, []);
+
+    if (eyes.length > 0) {
+        if (eyes.length < 10) {
+            for (let i = 0; i < eyes.length; i++) {
+                suggestions.push(<SuggestedEye eye={eyes[i]} />);
+            }
+        } else {
+            for (let i = 0; i < 10; i++) {
+                suggestions.push(<SuggestedEye eye={eyes[i]} />);
+            }
+        }
+        console.log(suggestions);
+    }
+    console.log(suggestions);
 
     return (
         <section className='landing'>
-            <div className='recentImgs'>
-                <button onClick={() => getAllEyes()}>get all eyes</button>
-            </div>
+            <div className='suggestionContainer'>{suggestions}</div>
             <div className='worldMap'>
-                {eyes.length > 0 && (
-                    <MapComponent
-                        eyesArr={eyes}
-                        googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${key()}`}
-                        loadingElement={<div style={{ height: `100%` }} />}
-                        containerElement={<div style={{ height: `100%` }} />}
-                        mapElement={<div style={{ height: `100%` }} />}
-                    />
-                )}
+                <MapComponent
+                    eyesArr={eyes || [{}]}
+                    googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${key()}`}
+                    loadingElement={<div style={{ height: `100%` }} />}
+                    containerElement={<div style={{ height: `100%` }} />}
+                    mapElement={<div style={{ height: `100%` }} />}
+                />
             </div>
         </section>
     );

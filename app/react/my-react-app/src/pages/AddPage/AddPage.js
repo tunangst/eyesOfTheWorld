@@ -21,27 +21,13 @@ const AddPage = props => {
     const {
         info,
         states,
-        eye,
-        eyes,
         handleFindInfo,
         handleFileDrop,
         handleFileChange,
         handleImageReady,
-        handleSubmitReady,
         submitEye
     } = props;
 
-    // useEffect(() => {
-    //     state.ready && handleFindInfo();
-    // }, [state.ready]);
-
-    // let submitPage = false;
-    // if (state.info.latitude === '???' || state.info.longitude === '???') {
-    //     submitPage = true;
-    // } else {
-    //     submitPage = false;
-    // }
-    // states.imageReady && handleFindInfo();
     useEffect(() => {
         // const eye = {};
         states.imageReady && handleFindInfo();

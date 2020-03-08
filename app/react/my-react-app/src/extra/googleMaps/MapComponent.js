@@ -9,7 +9,6 @@ import {
 
 import { MarkerWithLabel } from 'react-google-maps/lib/components/addons/MarkerWithLabel';
 import MarkerClusterer from 'react-google-maps/lib/components/addons/MarkerClusterer';
-import { goToMapId } from '../../extra/utilityFunctions/utilities';
 import mapStyle from './mapStyle';
 
 //eyeDataArr = [{},{},{}]
@@ -54,14 +53,14 @@ const MapComponent = withScriptjs(
                 const eyeMarker = buildMarker(eyesArr[0]);
                 markers.push(eyeMarker);
             } else {
-                zoom = 2;
+                zoom = 3;
                 eyesArr.map(eyeData => {
                     const eyeMarker = buildMarker(eyeData);
                     markers.push(eyeMarker);
                 });
             }
         } else {
-            zoom = 2;
+            zoom = 3;
             initCenter = {
                 latitude: 0,
                 longitude: 0
@@ -76,13 +75,15 @@ const MapComponent = withScriptjs(
             <GoogleMap
                 center={center}
                 zoom={zoom}
+                streetViewControl
                 defaultOptions={{
                     disableDefaultUI: true, // disable default map UI
                     draggable: true, // make map draggable
                     keyboardShortcuts: false, // disable keyboard shortcuts
                     scaleControl: true, // allow scale control
                     scrollwheel: true, // allow scroll wheel
-                    styles: mapStyle // change default map styles
+                    styles: mapStyle, // change default map styles
+                    streetViewControl: true
                 }}
             >
                 <MarkerClusterer averageCenter>{markers}</MarkerClusterer>
