@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import useAsyncEffect from 'use-async-effect';
+// import useAsyncEffect from 'use-async-effect';
 
 import { findEye } from '../actions/eyeAction';
 // import findEye from '../extra/apiCalls/findEye';
-import findImage from '../extra/apiCalls/findImage';
+// import findImage from '../extra/apiCalls/findImage';
 import BuildInputField from '../extra/utilityFunctions/BuildInputField';
 
-const initialState = {
-    pic: {},
-    info: {},
-    image: {}
-};
+// const initialState = {
+//     pic: {},
+//     info: {},
+//     image: {}
+// };
 const EyePage = props => {
     // const [eyeData, setEyeData] = useState(initialState);
     const { eye, findEye } = props;

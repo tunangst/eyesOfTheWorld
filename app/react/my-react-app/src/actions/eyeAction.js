@@ -53,7 +53,7 @@ export const clearEye = () => async dispatch => {
     });
 };
 
-export const submitEye = event => async dispatch => {
+export const submitEye = (event, userId) => async dispatch => {
     console.log(event);
     event.preventDefault();
     dispatch({
@@ -102,6 +102,7 @@ export const submitEye = event => async dispatch => {
         infoBody.append('picType', fileInfo.type);
 
         infoBody.append('url', imgUrl);
+        infoBody.append('user', userId);
 
         const eye = await axios.post('/api/eyes/upload', infoBody, config);
         console.log(eye);

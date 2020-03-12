@@ -77,7 +77,8 @@ router.post('/upload', upload.none(), async (request, response) => {
             picName,
             picSize,
             picType,
-            url
+            url,
+            user
         } = request.body;
 
         const alreadyPosted = await Eye.find({
@@ -121,6 +122,7 @@ router.post('/upload', upload.none(), async (request, response) => {
             // console.log(typeof imgUrl);
 
             const buildEye = {
+                user: user,
                 url: url,
                 uploadDate: moment().format('LLLL'),
                 pic: buildPic,

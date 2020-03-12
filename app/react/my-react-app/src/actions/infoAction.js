@@ -1,6 +1,6 @@
 // import { connect } from 'react-redux';
 import store from '../store';
-import axios from 'axios';
+// import axios from 'axios';
 import EXIF from '../../node_modules/exif-js/exif';
 
 import {
@@ -10,14 +10,14 @@ import {
 } from '../extra/utilityFunctions/utilities';
 
 import {
-    BUILD_EYE,
-    GET_ALL_EYES,
-    GET_EYE,
+    // BUILD_EYE,
+    // GET_ALL_EYES,
+    // GET_EYE,
     SET_LOADING,
     CLEAR_INFO,
     SET_INFO,
     IMAGE_READY_NO,
-    IMAGE_READY_YES,
+    // IMAGE_READY_YES,
     GET_IMG_SRC,
     GET_IMG_ID,
     SUBMIT_READY_YES,

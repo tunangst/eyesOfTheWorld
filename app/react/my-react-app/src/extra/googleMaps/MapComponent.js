@@ -7,7 +7,7 @@ import {
     Marker
 } from 'react-google-maps';
 
-import { MarkerWithLabel } from 'react-google-maps/lib/components/addons/MarkerWithLabel';
+// import { MarkerWithLabel } from 'react-google-maps/lib/components/addons/MarkerWithLabel';
 import MarkerClusterer from 'react-google-maps/lib/components/addons/MarkerClusterer';
 import mapStyle from './mapStyle';
 

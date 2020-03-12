@@ -2,6 +2,11 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const EyeSchema = new Schema({
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'users',
+        required: true
+    },
     url: { type: String, required: true },
     uploadDate: { type: Date, required: true },
     pic: {

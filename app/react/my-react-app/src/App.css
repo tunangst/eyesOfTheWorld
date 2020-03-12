@@ -34,7 +34,7 @@ body,
     /* color: #049dbf; */
     color: #a62f03;
     font-family: 'Alice', serif;
-    box-shadow: 0px 5px 20px rgba(5, 5, 5, 1);
+    box-shadow: 0px 5px 20px rgba(5, 5, 5, 0.5);
     position: relative;
 }
 /* .nav::after {
@@ -45,6 +45,16 @@ body,
     background-color: #ffffffaa;
     box-shadow: 0px 5px 20px rgba(5, 5, 5, 1);
 } */
+.submitBtn {
+    z-index: 10;
+    margin: 15px;
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: 800;
+    color: white;
+    background-color: #46bcec;
+}
 .progressBar {
     z-index: 1;
     position: absolute;
@@ -95,6 +105,24 @@ body,
     z-index: 10;
     padding: 15px;
     height: 100%;
+}
+.navLinks {
+    z-index: 10;
+    display: flex;
+    list-style: none;
+}
+.navBtns {
+    z-index: 10;
+    margin: 15px;
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: 800;
+    color: white;
+    background-color: #46bcec;
+}
+.navBtns:hover {
+    cursor: pointer;
 }
 .logo {
     height: 100%;

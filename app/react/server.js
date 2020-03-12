@@ -10,6 +10,8 @@ const path = require('path');
 
 const eyeRoutes = require('./routes/api/eyes');
 const imageRoutes = require('./routes/api/image');
+const userRoutes = require('./routes/api/user');
+const authRoutes = require('./routes/api/auth');
 
 const PORT = process.env.PORT || 5000;
 
@@ -23,6 +25,8 @@ connectDB();
 app.use(express.json({ extended: false }));
 
 //routes
+app.use('/api/user', userRoutes);
+app.use('/api/auth', authRoutes);
 app.use('/api/eyes', eyeRoutes);
 app.use('/api/image', imageRoutes);
 

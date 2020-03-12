@@ -8,7 +8,7 @@ import key from '../extra/hiddenFolder/hiddenFile';
 import { getAllEyes } from '../actions/eyeAction';
 // import getAllEyes from '../extra/apiCalls/getAllEyes';
 
-const initialState = [];
+// const initialState = [];
 // import axios from 'axios'
 const LandingPage = props => {
     let suggestions = [];
@@ -22,11 +22,11 @@ const LandingPage = props => {
     if (eyes.length > 0) {
         if (eyes.length < 10) {
             for (let i = 0; i < eyes.length; i++) {
-                suggestions.push(<SuggestedEye eye={eyes[i]} />);
+                suggestions.push(<SuggestedEye key={i} eye={eyes[i]} />);
             }
         } else {
             for (let i = 0; i < 10; i++) {
-                suggestions.push(<SuggestedEye eye={eyes[i]} />);
+                suggestions.push(<SuggestedEye key={i} eye={eyes[i]} />);
             }
         }
         console.log(suggestions);

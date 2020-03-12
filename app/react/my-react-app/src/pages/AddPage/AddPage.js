@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import MapSection from './MapSection';
@@ -20,6 +20,7 @@ import {
 const AddPage = props => {
     const {
         info,
+        user,
         states,
         handleFindInfo,
         handleFileDrop,
@@ -44,6 +45,7 @@ const AddPage = props => {
                 states={states}
                 info={info}
                 submitEye={submitEye}
+                user={user}
                 /* imgId={states.imgId} */
                 /* imgSrc={states.imgSrc} */
                 submitReady={states.submitReady}
@@ -61,7 +63,8 @@ const mapStateToProps = state => ({
     states: state.states,
     info: state.info,
     eye: state.eye,
-    eyes: state.eyes
+    eyes: state.eyes,
+    user: state.user
 });
 
 export default connect(mapStateToProps, {

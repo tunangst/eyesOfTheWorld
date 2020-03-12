@@ -20,3 +20,17 @@ export const SUBMIT_READY_NO = 'SUBMIT_READY_NO';
 export const SET_INFO = 'SET_INFO';
 export const CLEAR_INFO = 'CLEAR_INFO';
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ info
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ user
+export const LOGIN_USER = 'LOGIN_USER';
+export const LOGIN_FAIL = 'LOGIN_FAIL';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGOUT = 'LOGOUT';
+export const REGISTER_FAIL = 'REGISTER_FAIL';
+export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
+export const CLEAR_PROFILE = 'CLEAR_PROFILE';
+export const USER_LOADED = 'USER_LOADED';
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ user
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ auth
+export const AUTH_ERROR = 'AUTH_ERROR';
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ auth
