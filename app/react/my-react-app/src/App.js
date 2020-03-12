@@ -12,7 +12,8 @@ import LandingPage from './pages/LandingPage';
 import AddPage from './pages/AddPage/AddPage';
 import EyePage from './pages/EyePage';
 import Register from './layout/RegisterModal';
-import MyEyes from './pages/MyEyes';
+import Login from './layout/LoginModal';
+import UserEyes from './pages/UserEyes';
 
 import store from './store';
 
@@ -28,8 +29,9 @@ const App = () => {
                     <Switch>
                         <Route exact path='/' component={LandingPage} />
                         <Route exact path='/register' component={Register} />
+                        <Route exact path='/login' component={Login} />
                         <Route path='/upload' component={AddPage} />
-                        <Route path='/myEyes' component={MyEyes} />
+                        <Route path='/eyes/user/:user' component={UserEyes} />
                         <Route path='/eyes/:id' component={EyePage} />
                     </Switch>
                 </div>

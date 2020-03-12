@@ -11,8 +11,14 @@ const Nav = props => {
     const {
         states: { loading },
         setLoading,
-        user: { isAuthenticated }
+        isAuthenticated,
+        userId
+        // user: { isAuthenticated, user }
     } = props;
+    // console.log(user);
+    // const { isAuthenticated, user } = user;
+    // const { _id } = user;
+    console.log(userId);
     const history = useHistory();
 
     const handleRedirectHome = () => {
@@ -23,9 +29,10 @@ const Nav = props => {
         setLoading(false);
         history.push('/upload');
     };
-    const handleRedirectMyEyes = () => {
+    const handleRedirectUserEyes = userId => {
         setLoading(false);
-        history.push('/myEyes');
+        console.log();
+        history.push(`/eyes/user/${userId}`);
     };
     // const responseGoogle = response => {
     //     console.log(response);
@@ -66,7 +73,7 @@ const Nav = props => {
             <li>
                 <button
                     className='navBtns'
-                    onClick={() => handleRedirectMyEyes()}
+                    onClick={() => handleRedirectUserEyes(userId)}
                 >
                     My Eyes
                 </button>
@@ -107,7 +114,8 @@ const Nav = props => {
 
 const mapStateToProps = state => ({
     states: state.states,
-    user: state.user
+    isAuthenticated: state.user.isAuthenticated,
+    userId: state.user.userObj._id
 });
 
 export default connect(mapStateToProps, { setLoading })(Nav);

@@ -9,9 +9,19 @@ const Eye = require('../../models/Eye');
 
 const upload = require('../../config/multerImageUpload');
 const awsDelete = require('../../config/awsDelete');
+// /api/eyes/user/${userId}
+// /api/eyes/user/:userId
+router.get('/user/:userId', async (request, response) => {
+    console.log(`get /api/eyes/user/:user targeted and running`);
+    const userId = request.params.userId;
+    // console.log('userId', userId);
+    const userEyes = await Eye.find({ user: userId });
+    // console.log(userEyes);
+    response.json(userEyes);
+});
 
 router.get('/', async (request, response) => {
-    console.log(`get /api targeted and running`);
+    console.log(`get /api/eyes targeted and running`);
     // debugger;
     try {
         //find all eyes stored

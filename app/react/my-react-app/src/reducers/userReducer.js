@@ -6,13 +6,17 @@ import {
     LOGIN_SUCCESS,
     LOGIN_FAIL,
     LOGOUT,
+    FIND_USER,
+    FIND_USER_EYES,
     ACCOUNT_DELETED
 } from '../actions/types';
 
 const initialUser = {
     userToken: localStorage.getItem('userToken'),
     isAuthenticated: false,
-    user: null
+    userObj: {},
+    selectedUserEyes: [],
+    selectedUserObj: {}
 };
 
 const user = (state = initialUser, action) => {
@@ -22,7 +26,7 @@ const user = (state = initialUser, action) => {
             return {
                 ...state,
                 isAuthenticated: true,
-                user: payload
+                userObj: payload
             };
         case REGISTER_SUCCESS:
         case LOGIN_SUCCESS:
@@ -42,7 +46,17 @@ const user = (state = initialUser, action) => {
                 ...state,
                 token: null,
                 isAuthenticated: false,
-                user: null
+                userObj: initialUser.userObj
+            };
+        case FIND_USER:
+            return {
+                ...state,
+                selectedUserObj: payload
+            };
+        case FIND_USER_EYES:
+            return {
+                ...state,
+                selectedUserEyes: payload
             };
         default:
             return state;

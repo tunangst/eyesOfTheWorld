@@ -29,6 +29,8 @@ export const REGISTER_FAIL = 'REGISTER_FAIL';
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const CLEAR_PROFILE = 'CLEAR_PROFILE';
 export const USER_LOADED = 'USER_LOADED';
+export const FIND_USER = 'FIND_USER';
+export const FIND_USER_EYES = 'FIND_USER_EYES';
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ user
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ auth

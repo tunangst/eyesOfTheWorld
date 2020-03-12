@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const mongoose = require('mongoose');
 const moment = require('moment');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
@@ -64,6 +65,20 @@ router.post('/', async (request, response) => {
     } catch (error) {
         console.log('error in user after token');
         console.error(error.message);
+    }
+});
+
+router.get('/:userId', async (request, response) => {
+    const userId = request.params.userId;
+    // console.log(request.params);
+    console.log(userId);
+    try {
+        const user = await User.findOne({ _id: userId });
+        // console.log(user);
+        // console.log('^^^^^user^^^^^');
+        response.json(user);
+    } catch (error) {
+        console.log(error);
     }
 });
 
