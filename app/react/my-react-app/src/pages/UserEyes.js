@@ -9,6 +9,8 @@ import BuildInputField from '../extra/utilityFunctions/BuildInputField';
 // import findUserEyes from '../extra/apiCalls/findUserEyes';
 // import findUser from '../extra/apiCalls/findUser';
 import { getUserAndEyes } from '../actions/userAction';
+import BuildEyeCards from '../extra/utilityFunctions/BuildEyeCards';
+import moment from 'moment';
 
 // const initialState = {
 //     user: null,
@@ -71,34 +73,13 @@ const UserEyes = props => {
     //         }
     //     });
     // }
-    let eyesBuild = [];
+    let cardList = [];
     if (selectedUserEyes.length > 0) {
-        selectedUserEyes.forEach(eye => {
-            eyesBuild.push(<p>{eye.pic.name}</p>);
-        });
-        console.log(eyesBuild);
+        selectedUserEyes.forEach(eye =>
+            cardList.push(<BuildEyeCards key={eye._id} eye={eye} />)
+        );
     }
-
-    // console.log(`in the eye's page`);
-    return (
-        <section className='userEyes'>{eyesBuild}</section>
-        //     <section className='eyeContainer'>
-        //         <aside className='closeTo'>
-        //             {
-        //                 // <button onClick={() => getAllEyes()}>get all eyes</button>
-        //             }
-        //         </aside>
-        //         <main className='eye'>
-        //             <div className='picBox'>
-        //                 <img src={eye.url}></img>
-        //             </div>
-        //             <div className='infoBox'>
-        //                 <h1 className='title'>{eye.pic.name}</h1>
-        //                 {inputs}
-        //             </div>
-        //         </main>
-        //     </section>
-    );
+    return <section className='userEyes'>{cardList}</section>;
 };
 
 const mapStateToProps = state => ({

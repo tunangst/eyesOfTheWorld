@@ -313,3 +313,52 @@ input[type='float'] {
     padding: 0 20px;
 }
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~eye page~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~userEyes cards~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* * {
+    border: 1px solid mediumseagreen;
+} */
+.userEyes {
+    background-color: #46bcec;
+}
+.card {
+    /* height: 500px; */
+    width: 300px;
+    border: 1px solid #a62f03;
+    text-align: center;
+    display: inline-block;
+    margin: 10px;
+    background-color: #f0e2c9;
+    padding: 10px;
+}
+.card .window {
+    padding-bottom: 10px;
+}
+.card .window img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+.card .info {
+    height: 100%;
+    width: 100%;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500;
+}
+.card .info h2:nth-child(1) {
+    margin: 0;
+}
+.card .info h2 {
+    margin-bottom: 0;
+    color: #a62f03;
+    font-family: 'Alice', serif;
+    font-weight: 900;
+}
+.card .info p {
+    margin: 5px 0;
+}
+.card .info p:last-child {
+    margin-bottom: 15px;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~userEyes cards~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
