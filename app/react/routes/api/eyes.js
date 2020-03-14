@@ -97,8 +97,9 @@ router.post('/upload', upload.none(), async (request, response) => {
         });
         console.log('alreadyPosted');
         if (alreadyPosted.length > 0) {
-            throw new Error('Eye already exists');
-            // response.status(500).send('Server Error: Eye already exists');
+            response
+                .status(500)
+                .send({ msg: 'Server Error: Eye already exists' });
         } else {
             const buildInfo = {};
             latitude && (buildInfo.latitude = latitude);

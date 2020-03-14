@@ -14,6 +14,7 @@ import EyePage from './pages/EyePage';
 import Register from './layout/RegisterModal';
 import Login from './layout/LoginModal';
 import UserEyes from './pages/UserEyes';
+import Alert from './layout/Alert';
 
 import store from './store';
 
@@ -26,6 +27,7 @@ const App = () => {
             <Router>
                 <div id='myArea'>
                     <Nav />
+                    <Alert />
                     <Switch>
                         <Route exact path='/' component={LandingPage} />
                         <Route exact path='/register' component={Register} />

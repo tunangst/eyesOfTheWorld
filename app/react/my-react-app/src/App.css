@@ -362,3 +362,23 @@ input[type='float'] {
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~userEyes cards~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~alerts~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.alerts {
+    z-index: 10;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 50px;
+    width: 100%;
+    background-color: #a62f03cc;
+    color: #f0e2c9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.alert {
+    /* height: 500px;
+    width: 100%;
+    background-color: greenyellow; */
+}
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~alerts~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */

@@ -28,6 +28,11 @@ export const clearImgExifdataTag = file => {
     return;
 };
 
+export const removeImg = () => {
+    const img = document.querySelector('.img1');
+    img.parentNode.removeChild(img);
+};
+
 // export const goToMapId = eyeDataObj => {
 //     console.log(`clicked on this marker with id: ${id}`);
 //     // <Redirect to=`/eyes/:id=${id}`;

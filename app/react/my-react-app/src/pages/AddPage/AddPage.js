@@ -46,11 +46,8 @@ const AddPage = props => {
                 info={info}
                 submitEye={submitEye}
                 user={user}
-                /* imgId={states.imgId} */
-                /* imgSrc={states.imgSrc} */
                 submitReady={states.submitReady}
                 handleFileChange={handleFileChange}
-                /* handleFindInfo={handleFindInfo} */
                 handleFileDrop={handleFileDrop}
                 handleImageReady={handleImageReady}
             />

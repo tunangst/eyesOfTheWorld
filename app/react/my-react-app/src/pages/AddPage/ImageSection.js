@@ -9,10 +9,10 @@ const ImageSection = props => {
         handleFileChange,
         handleImageReady,
         states: { imgSrc, imgId },
-        user: { user },
+        user: { userObj },
         submitReady
     } = props;
-    const userId = user._id;
+    const userId = userObj._id;
     console.log(userId);
 
     const handleFileDragOver = event => {

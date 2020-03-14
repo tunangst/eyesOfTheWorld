@@ -5,8 +5,15 @@ import {
     GET_EYE,
     SET_LOADING,
     BUILD_EYE,
-    CLEAR_EYE
+    CLEAR_EYE,
+    CLEAR_INFO,
+    SUBMIT_READY_NO,
+    IMAGE_READY_NO,
+    SET_ALERT
 } from '../actions/types';
+
+import { removeImg } from '../extra/utilityFunctions/utilities';
+import { setAlert } from './statesAction';
 
 export const getAllEyes = () => async dispatch => {
     try {
@@ -54,7 +61,6 @@ export const clearEye = () => async dispatch => {
 };
 
 export const submitEye = (event, userId) => async dispatch => {
-    console.log(event);
     event.preventDefault();
     dispatch({
         type: SET_LOADING,
@@ -106,8 +112,23 @@ export const submitEye = (event, userId) => async dispatch => {
 
         const eye = await axios.post('/api/eyes/upload', infoBody, config);
         console.log(eye);
-    } catch (err) {
-        console.log(err);
+        // clear info
+        dispatch({
+            type: CLEAR_INFO
+        });
+        //remove img
+        removeImg();
+        //submit not ready
+        dispatch({
+            type: IMAGE_READY_NO,
+            payload: false
+        });
+        dispatch({
+            type: SUBMIT_READY_NO,
+            payload: false
+        });
+    } catch (error) {
+        dispatch(setAlert(error.response.data.msg, 'error'));
     }
     dispatch({
         type: SET_LOADING,

@@ -5,7 +5,9 @@ import {
     SUBMIT_READY_YES,
     SUBMIT_READY_NO,
     GET_IMG_SRC,
-    GET_IMG_ID
+    GET_IMG_ID,
+    SET_ALERT,
+    REMOVE_ALERT
 } from '../actions/types';
 
 const initialStates = {
@@ -13,7 +15,8 @@ const initialStates = {
     imgId: '',
     imageReady: false,
     submitReady: false,
-    loading: false
+    loading: false,
+    alerts: []
 };
 
 const states = (state = initialStates, action) => {
@@ -45,6 +48,16 @@ const states = (state = initialStates, action) => {
             return {
                 ...state,
                 imgId: payload
+            };
+        case SET_ALERT:
+            return {
+                ...state,
+                alerts: [...state.alerts, payload]
+            };
+        case REMOVE_ALERT:
+            return {
+                ...state,
+                alerts: state.alerts.filter(alert => alert.id !== payload)
             };
         default:
             return state;
