@@ -2,9 +2,6 @@ const express = require('express');
 const router = express.Router();
 const moment = require('moment');
 
-const dbMethods = require('../../config/db');
-const gfs = dbMethods.gfs;
-
 const Eye = require('../../models/Eye');
 
 const upload = require('../../config/multerImageUpload');
@@ -26,11 +23,6 @@ router.get('/', async (request, response) => {
     try {
         //find all eyes stored
         const infoData = await Eye.find();
-        console.log(`☻ info data down`);
-        console.log(infoData);
-        //load google maps location request for everything
-
-        //send the res back
         response.json(infoData);
     } catch (error) {
         console.error(error.message);
@@ -41,11 +33,8 @@ router.get('/', async (request, response) => {
 router.get('/:id', async (request, response) => {
     console.log(`(((((((((((((( /api/eyes/:id area))))))))))))))`);
     const id = request.params.id;
-    console.log(id);
-    console.log(`get /api/eyes/${id} targeted and running`);
     try {
         const eye = await Eye.findById(id);
-        console.log(eye);
         response.json(eye);
     } catch (error) {
         console.error(error.message);
@@ -53,14 +42,7 @@ router.get('/:id', async (request, response) => {
 });
 
 router.post('/upload', upload.none(), async (request, response) => {
-    console.log(`post request received at: /upload`);
-    console.log(`.`);
-    console.log(`.`);
-    console.log(`.`);
-    console.log(`.`);
     try {
-        // const timeStamp = moment(uploadDate);
-        // const newUploadDate = timeStamp.toDate();
         const {
             latitude,
             longitude,
@@ -130,8 +112,6 @@ router.post('/upload', upload.none(), async (request, response) => {
             picSize && (buildPic.size = picSize);
             picType && (buildPic.type = picType);
 
-            // console.log(typeof imgUrl);
-
             const buildEye = {
                 user: user,
                 url: url,
@@ -141,17 +121,10 @@ router.post('/upload', upload.none(), async (request, response) => {
             };
 
             const newEye = new Eye(buildEye);
-            // const newEye = new Eye(buildEye);
-            // console.log(newEye);
-            // console.log(newEye.url);
 
-            console.log(
-                `\\\\\\\\\\\\\\\\\\\\\\\\\\\\\//////////////////////////`
-            );
             await newEye.save(err => {
                 err && console.log(err.message);
             });
-            // debugger;
             response.json(newEye);
         }
     } catch (error) {

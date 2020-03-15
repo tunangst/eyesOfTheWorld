@@ -21,7 +21,8 @@ const dbURI = config.get('mongoURI');
 
 const options = {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useCreateIndex: true
 };
 
 // let gfs;

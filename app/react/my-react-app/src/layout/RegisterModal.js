@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 
 import { register } from '../actions/userAction';
+import { setAlert } from '../actions/statesAction';
 
 // import { userPostFetch } from '../actions/';
 
@@ -14,7 +15,7 @@ const initialState = {
     avatar: ''
 };
 const Register = props => {
-    const { register, isAuthenticated } = props;
+    const { register, setAlert, isAuthenticated } = props;
     const [formData, setFormData] = useState(initialState);
     const { username, avatar, email, password, password2 } = formData;
 
@@ -27,6 +28,7 @@ const Register = props => {
     const onSubmit = async element => {
         element.preventDefault();
         if (password !== password2) {
+            setAlert('Passwords do not match', 'error');
             console.log('Passwords do not match');
         } else {
             console.log('register success');
@@ -92,71 +94,7 @@ const Register = props => {
     );
 };
 
-// const Register = props => {
-//     const { state, setState } = useState(initState);
-//     const { userPostFetch } = props;
-
-//     const handleChange = event => {
-//         setState({
-//             [event.target.name]: event.target.value
-//         });
-//     };
-
-//     const handleSubmit = event => {
-//         event.preventDefault();
-//         userPostFetch(state);
-//     };
-
-//     return (
-//         <form onSubmit={handleSubmit}>
-//             <h1>Sign Up For An Account</h1>
-
-//             <label>Username</label>
-//             <input
-//                 name='username'
-//                 placeholder='Username'
-//                 value={state.username}
-//                 onChange={handleChange}
-//             />
-//             <br />
-
-//             <label>Password</label>
-//             <input
-//                 type='password'
-//                 name='password'
-//                 placeholder='Password'
-//                 value={state.password}
-//                 onChange={handleChange}
-//             />
-//             <br />
-
-//             <label>Avatar</label>
-//             <input
-//                 name='avatar'
-//                 placeholder='Avatar (URL)'
-//                 value={state.avatar}
-//                 onChange={handleChange}
-//             />
-//             <br />
-
-//             <label>Bio</label>
-//             <textarea
-//                 name='bio'
-//                 placeholder='Bio'
-//                 value={state.bio}
-//                 onChange={handleChange}
-//             />
-//             <br />
-
-//             <input type='submit' />
-//         </form>
-//     );
-// };
-
-// const mapDispatchToProps = dispatch => ({
-//     userPostFetch: userInfo => dispatch(userPostFetch(userInfo))
-// });
 const mapStateToProps = state => ({
     isAuthenticated: state.user.isAuthenticated
 });
-export default connect(mapStateToProps, { register })(Register);
+export default connect(mapStateToProps, { register, setAlert })(Register);

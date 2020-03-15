@@ -1,22 +1,22 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 
 const Alert = ({ states: { alerts } }) => {
-    let listAlerts = [];
+    let alertList = [];
     if (alerts !== null && alerts.length > 0) {
-        alerts.forEach(alert => {
-            const one = (
-                <div key={alert.id} className='alert'>
-                    {alert.msg}
+        alerts.forEach(alert =>
+            alertList.push(
+                <div
+                    key={alert.id}
+                    id={alert.id}
+                    className={`alert ${alert.alertType}`}
+                >
+                    <h3>{alert.msg}</h3>
                 </div>
-            );
-            // return one;
-            listAlerts.push(one);
-        });
-        return <section className='alerts'>{listAlerts}</section>;
-    } else {
-        return null;
+            )
+        );
     }
+    return <section className='alerts'>{alertList || null}</section>;
 };
 
 const mapStateToProps = state => ({

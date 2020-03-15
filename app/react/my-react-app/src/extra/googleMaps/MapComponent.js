@@ -54,7 +54,7 @@ const MapComponent = withScriptjs(
                 markers.push(eyeMarker);
             } else {
                 zoom = 3;
-                eyesArr.map(eyeData => {
+                eyesArr.forEach(eyeData => {
                     const eyeMarker = buildMarker(eyeData);
                     markers.push(eyeMarker);
                 });

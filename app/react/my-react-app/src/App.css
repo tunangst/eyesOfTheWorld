@@ -1,5 +1,9 @@
 /* #46bcec */
 /* \#f0e2c9 */
+/* #a62f03 */
+/* #333333 */
+
+/* #a3bfd0 */
 /* font-family: 'Alice', serif;
 
     font-family: 'Raleway', sans-serif; */
@@ -121,6 +125,17 @@ body,
     color: white;
     background-color: #46bcec;
 }
+.navBtns a,
+.navBtns button {
+    text-decoration: none;
+    color: #fff;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500;
+    letter-spacing: 2px;
+    border: none;
+    background-color: transparent;
+    font-size: 15px;
+}
 .navBtns:hover {
     cursor: pointer;
 }
@@ -181,7 +196,7 @@ body,
 }
 /*  */
 .mapSection {
-    background-color: steelblue;
+    /* background-color: steelblue; */
 }
 .mapSection > div {
     width: 100%;
@@ -190,9 +205,10 @@ body,
 }
 /*  */
 .imageSection {
-    background-color: dodgerblue;
-    z-index: 5;
-
+    background-color: #333;
+    border-left: 2px solid #f0e2c9;
+    border-right: 2px solid #f0e2c9;
+    /* z-index: 5; */
     display: flex;
     flex-direction: column;
 }
@@ -209,22 +225,31 @@ body,
     width: 100%;
 }
 .submitImage {
-    border: 5px groove #fff;
-    background: #aaa;
+    border: 5px outset #46bcec;
+    background-color: #46bcecaa;
+    color: #fff;
     cursor: pointer;
+    font-weight: 500;
+
     font-size: 16px;
     font-family: 'Raleway', sans-serif;
-    box-shadow: 1px 1px 10px rgba(5, 5, 5, 0.5);
-
-    transition: 0.4s ease-in-out;
+    box-shadow: 3px 3px 5px rgba(5, 5, 5, 0.6);
+    /* /* transition: 0.4s ease-in-out; */
+    transition: 0.025s ease-in;
 }
-.submitImage:disabled {
-    background: rgba(2, 2, 2, 0.3);
-    border: 5px groove rgb(107, 107, 107);
+.submitImage:active {
+    background-color: #46bcec;
+    box-shadow: 1px 1px 1px rgba(5, 5, 5, 1);
+}
+.submitImage:disabled,
+.submitImage:disabled:hover {
+    background-color: #a62f0322;
+    border: 5px inset #a62f0399;
     color: #aaa;
     cursor: not-allowed;
 }
 
+/* hide the actual input field */
 #insertedImg {
     position: absolute;
     filter: alpha(opacity=0);
@@ -237,40 +262,34 @@ body,
     display: grid;
     justify-content: center;
     align-content: center;
-
-    border: 1.5px dashed #fff;
+    border: 2px dashed #fff;
 }
 #insertedImg + #imgLabel {
     width: 100%;
     height: 100%;
     color: #fff;
     cursor: pointer;
-}
-#insertedImg + #imgLabel:hover {
-    background: rgba(5, 5, 5, 0.25);
-}
 
+    transition: 0.25s ease-in;
+}
+#insertedImg + #imgLabel:hover,
 .dragOver {
-    background: rgba(5, 5, 5, 0.25);
+    background: #46bcec33;
 }
 
 .imgBox {
-    background-color: rgba(5, 5, 5, 0.25);
     flex: 1;
-
     padding: 10px;
 }
 .imgBox .img1 {
     background-color: rgba(5, 5, 5, 0.25);
-
     object-fit: cover;
     max-width: 100%;
     height: auto;
 }
 /*  */
 .infoSection {
-    background-color: seagreen;
-
+    background-color: #333;
     padding: 10px;
 }
 
@@ -278,14 +297,25 @@ body,
     display: grid;
 }
 #infoForm .infoFieldset {
-    border-radius: 5px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 8px;
+    background-color: #f0e2c9;
+    color: #a62f03;
+    margin: 0;
+    padding: 10px;
+    border: 3px outset #f0e2c9;
 }
 .infoFieldset label {
-    font-weight: bold;
+    font-weight: 800;
+    margin-right: 10px;
 }
 .infoFieldset input {
     border: none;
     background: transparent;
+    color: #a62f03;
+    font-weight: 500;
 }
 
 /* remove scroll bars */
@@ -364,21 +394,53 @@ input[type='float'] {
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~userEyes cards~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~alerts~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .alerts {
-    z-index: 10;
+    width: 100%;
     position: fixed;
+    z-index: 10;
     bottom: 0;
     left: 0;
-    height: 50px;
-    width: 100%;
-    background-color: #a62f03cc;
-    color: #f0e2c9;
+    /* border: 2px solid slateblue; */
+
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 .alert {
-    /* height: 500px;
+    height: 50px;
     width: 100%;
-    background-color: greenyellow; */
+    background-color: #f0e2c9;
+    color: #a62f03;
+    font-weight: 600;
+    text-align: center;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.error {
+    border: 4px outset #a62f03;
+    background-color: #a62f03cc;
+    color: #f0e2c9;
+    border-radius: 10px;
+}
+.success {
+    border: 4px outset #ddd;
+    background-color: #46bceccc;
+    color: white;
+    border-radius: 10px;
+    font-weight: 500;
+}
+.error > h3,
+.success > h3 {
+    font-weight: 400;
 }
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~alerts~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* <ul className='navLinks'>
+            <li className='submitBtn'>
+                <Link to='/register'>Register</Link> */
+/* .navLinks .navBtns a {
+    text-decoration: none;
+    color: inherit;
+    font-family: inherit;
+} */

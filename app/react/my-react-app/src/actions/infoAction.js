@@ -144,10 +144,10 @@ export const handleFindInfo = props => async dispatch => {
     clearImgExifdataTag(img1);
 };
 
-export const handleFileDrop = event => {
+export const handleFileDrop = event => async dispatch => {
     const fileInput = document.querySelector('#insertedImg');
     fileInput.files = event.dataTransfer.files;
     event.preventDefault();
 
-    handleFileChange(fileInput.files[0]);
+    dispatch(handleFileChange(fileInput.files[0]));
 };

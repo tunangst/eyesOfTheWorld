@@ -30,8 +30,6 @@ const user = (state = initialUser, action) => {
             };
         case REGISTER_SUCCESS:
         case LOGIN_SUCCESS:
-            console.log(type);
-            console.log(payload);
             localStorage.setItem('userToken', payload.token);
             return {
                 ...state,

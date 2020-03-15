@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory, Link, Redirect } from 'react-router-dom';
 import logo from '../extra/images/planet-earth.svg';
 import { setLoading } from '../actions/statesAction';
+import { logout } from '../actions/userAction';
 // import client_id from '../extra/hiddenFolder/client_id';
 
 // import GoogleLogin from 'react-google-login';
@@ -10,15 +11,12 @@ import { setLoading } from '../actions/statesAction';
 const Nav = props => {
     const {
         states: { loading },
-        setLoading,
         isAuthenticated,
-        userId
+        userId,
+        setLoading,
+        logout
         // user: { isAuthenticated, user }
     } = props;
-    // console.log(user);
-    // const { isAuthenticated, user } = user;
-    // const { _id } = user;
-    console.log(userId);
     const history = useHistory();
 
     const handleRedirectHome = () => {
@@ -37,6 +35,11 @@ const Nav = props => {
     // const responseGoogle = response => {
     //     console.log(response);
     // };
+    const handleLogout = () => {
+        console.log('handleLogout');
+        logout();
+        return <Redirect to='/' />;
+    };
     let progressBar;
     loading
         ? (progressBar = <div className='progressBar loading'></div>)
@@ -62,33 +65,27 @@ const Nav = props => {
     }, []);
     const authLinks = (
         <ul className='navLinks'>
-            <li>
-                <button
-                    className='navBtns'
-                    onClick={() => handleRedirectUpload()}
-                >
+            <li className='navBtns'>
+                <button onClick={() => handleRedirectUpload()}>
                     Set your Eye
                 </button>
             </li>
-            <li>
-                <button
-                    className='navBtns'
-                    onClick={() => handleRedirectUserEyes(userId)}
-                >
+            <li className='navBtns'>
+                <button onClick={() => handleRedirectUserEyes(userId)}>
                     My Eyes
                 </button>
             </li>
-            <li>
-                <button className='navBtns'>logout</button>
+            <li className='navBtns'>
+                <button onClick={() => handleLogout()}>logout</button>
             </li>
         </ul>
     );
     const guestLinks = (
         <ul className='navLinks'>
-            <li className='submitBtn'>
+            <li className='navBtns'>
                 <Link to='/register'>Register</Link>
             </li>
-            <li className='submitBtn'>
+            <li className='navBtns'>
                 <Link to='/login'>Login</Link>
             </li>
         </ul>
@@ -118,4 +115,4 @@ const mapStateToProps = state => ({
     userId: state.user.userObj._id
 });
 
-export default connect(mapStateToProps, { setLoading })(Nav);
+export default connect(mapStateToProps, { setLoading, logout })(Nav);

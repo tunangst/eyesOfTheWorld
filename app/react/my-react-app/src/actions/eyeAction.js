@@ -128,7 +128,9 @@ export const submitEye = (event, userId) => async dispatch => {
             payload: false
         });
     } catch (error) {
-        dispatch(setAlert(error.response.data.msg, 'error'));
+        // alert(error);
+        error.response.data.msg &&
+            dispatch(setAlert(error.response.data.msg, 'error'));
     }
     dispatch({
         type: SET_LOADING,

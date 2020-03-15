@@ -10,11 +10,8 @@ const User = require('../../models/User');
 // api/auth
 router.get('/', authMiddleware, async (request, response) => {
     try {
-        console.log('inside api/auth');
         const user = await User.findById(request.user.id).select('-password');
-        // console.log(user);
         response.json(user);
-        // const user = await User;
     } catch (error) {
         console.log(error);
     }
