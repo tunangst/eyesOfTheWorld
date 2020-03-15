@@ -28,7 +28,8 @@ const multerS3Storage = multerS3({
     acl: 'public-read',
     contentType: multerS3.AUTO_CONTENT_TYPE,
     metadata: function(req, file, cb) {
-        // console.log(file);
+        // console.log(req);
+        console.log(file);
         // cb(null, { fieldName: 'testing_meta_data' });
         cb(null, { fieldName: file.fieldname });
     },

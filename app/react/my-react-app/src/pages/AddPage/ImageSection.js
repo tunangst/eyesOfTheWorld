@@ -10,10 +10,11 @@ const ImageSection = props => {
         handleImageReady,
         states: { imgSrc, imgId },
         user: { userObj },
-        submitReady
+        submitReady,
+        latitude,
+        longitude
     } = props;
     const userId = userObj._id;
-    console.log(userId);
 
     const handleFileDragOver = event => {
         event.preventDefault();
@@ -73,7 +74,9 @@ const ImageSection = props => {
                     method='POST'
                     id='picForm'
                     name='picSubmit'
-                    onSubmit={event => submitEye(event, userId)}
+                    onSubmit={event =>
+                        submitEye(event, userId, latitude, longitude)
+                    }
                     encType='multipart/form-data'
                 >
                     <input id='insertedImg' name='insertedImg' type='file' />

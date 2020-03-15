@@ -16,6 +16,8 @@ export const SUBMIT_READY_YES = 'SUBMIT_READY_YES';
 export const SUBMIT_READY_NO = 'SUBMIT_READY_NO';
 export const SET_ALERT = 'SET_ALERT';
 export const REMOVE_ALERT = 'REMOVE_ALERT';
+export const RESET_IMG = 'RESET_IMG';
+
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ states
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ info
 export const SET_INFO = 'SET_INFO';

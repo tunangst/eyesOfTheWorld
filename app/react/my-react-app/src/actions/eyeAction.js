@@ -7,12 +7,12 @@ import {
     BUILD_EYE,
     CLEAR_EYE,
     CLEAR_INFO,
-    SUBMIT_READY_NO,
-    IMAGE_READY_NO,
-    SET_ALERT
+    // SUBMIT_READY_NO,
+    // IMAGE_READY_NO,
+    SET_ALERT,
+    RESET_IMG
 } from '../actions/types';
 
-import { removeImg } from '../extra/utilityFunctions/utilities';
 import { setAlert } from './statesAction';
 
 export const getAllEyes = () => async dispatch => {
@@ -37,8 +37,7 @@ export const findEye = eyeId => async dispatch => {
         const eye = await axios.get(`/api/eyes/${eyeId}`);
         // const image = await axios.get(`/api/images/${eyeId}`);
         const eyeData = eye.data;
-        // console.log(eye);
-        // console.log(eyeData);
+
         dispatch({
             type: GET_EYE,
             payload: eyeData
@@ -60,15 +59,16 @@ export const clearEye = () => async dispatch => {
     });
 };
 
-export const submitEye = (event, userId) => async dispatch => {
+export const submitEye = (event, userId, lat, lon) => async dispatch => {
     event.preventDefault();
+    if (!userId) {
+        dispatch(setAlert('Not logged in', 'error'));
+        return;
+    }
     dispatch({
         type: SET_LOADING,
         payload: true
     });
-
-    // console.log(file);
-    console.log(`~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`);
 
     const config = {
         headers: {
@@ -78,18 +78,28 @@ export const submitEye = (event, userId) => async dispatch => {
             console.log(event.loaded, event.total);
         }
     };
+    const findConfig = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
 
     try {
-        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~image thing
+        const infoForm = document.querySelector(`#infoForm`);
+        let infoBody = new FormData(infoForm);
+
+        const findBody = JSON.stringify({ lat: lat, lon: lon });
+        console.log(findBody);
+
+        //|||||||||||||||||||||||||||| if already posted error will throw ||||||||
+        await axios.post('/api/eyes/upload/check', findBody, findConfig);
+        //|||||||||||||||||||||||||||| if already posted error will throw ||||||||
         const picForm = document.querySelector(`#picForm`);
         let imageBody = new FormData(picForm);
+
+        //||||||||||||||||||||||||||| send image post ||||||||||||||||||
         const img = await axios.post('/api/image', imageBody, config);
-        // console.log(
-        //     `888888888888888888888img  ${img} gmi888888888888888888888`
-        // );
         const imgUrl = img.data.imageUrl;
-        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~image thing
-        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~eye thing
 
         let picCollection = [...imageBody];
         const file = picCollection[0][1];
@@ -99,36 +109,28 @@ export const submitEye = (event, userId) => async dispatch => {
             type: file.type
         };
 
-        // console.log(fileInfo);
-
-        const infoForm = document.querySelector(`#infoForm`);
-        let infoBody = new FormData(infoForm);
         infoBody.append('picName', fileInfo.name);
         infoBody.append('picSize', fileInfo.size);
         infoBody.append('picType', fileInfo.type);
-
         infoBody.append('url', imgUrl);
         infoBody.append('user', userId);
-
+        //|||||||||||||||||||||||||||||||| send eye post ||||||||||||||||
         const eye = await axios.post('/api/eyes/upload', infoBody, config);
-        console.log(eye);
+
+        console.log(eye.data);
         // clear info
+
         dispatch({
             type: CLEAR_INFO
         });
-        //remove img
-        removeImg();
+
         //submit not ready
         dispatch({
-            type: IMAGE_READY_NO,
-            payload: false
-        });
-        dispatch({
-            type: SUBMIT_READY_NO,
-            payload: false
+            type: RESET_IMG
         });
     } catch (error) {
-        // alert(error);
+        alert(error);
+        console.log(error.response.data.msg);
         error.response.data.msg &&
             dispatch(setAlert(error.response.data.msg, 'error'));
     }

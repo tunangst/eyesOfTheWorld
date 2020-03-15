@@ -44,6 +44,24 @@ const Nav = props => {
     loading
         ? (progressBar = <div className='progressBar loading'></div>)
         : (progressBar = <div className='progressBar'></div>);
+    let logoToggle;
+    loading
+        ? (logoToggle = (
+              <img
+                  className='logo spinning'
+                  src={logo}
+                  alt='logo'
+                  onClick={() => handleRedirectHome()}
+              />
+          ))
+        : (logoToggle = (
+              <img
+                  className='logo'
+                  src={logo}
+                  alt='logo'
+                  onClick={() => handleRedirectHome()}
+              />
+          ));
 
     useEffect(() => {
         // console.log(client_id());
@@ -94,14 +112,7 @@ const Nav = props => {
     return (
         <section className='nav'>
             {progressBar}
-            <div className='logoContainer'>
-                <img
-                    className='logo'
-                    src={logo}
-                    alt='logo'
-                    onClick={() => handleRedirectHome()}
-                />
-            </div>
+            <div className='logoContainer'>{logoToggle}</div>
             <h1 className='title'>Eyes of the World</h1>
 
             {isAuthenticated ? authLinks : guestLinks}

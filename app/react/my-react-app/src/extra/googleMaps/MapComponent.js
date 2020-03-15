@@ -26,8 +26,8 @@ const MapComponent = withScriptjs(
         const buildMarker = eyeDataObj => {
             const key = eyeDataObj._id || 'init';
             const position = {
-                lat: eyeDataObj.info.latitude,
-                lng: eyeDataObj.info.longitude
+                lat: Number(eyeDataObj.info.latitude),
+                lng: Number(eyeDataObj.info.longitude)
             };
 
             return (

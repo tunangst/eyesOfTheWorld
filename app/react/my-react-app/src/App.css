@@ -18,6 +18,7 @@ body,
     height: 100%;
     width: 100%;
     font-family: 'Raleway', sans-serif;
+    overflow-x: hidden;
 }
 
 #myArea {
@@ -87,6 +88,14 @@ body,
         rgba(179, 250, 255, 0) 100%
     );
 }
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+.spinning {
+    animation: spin 1s linear infinite;
+}
 
 .title {
     z-index: 4;
@@ -135,6 +144,7 @@ body,
     border: none;
     background-color: transparent;
     font-size: 15px;
+    cursor: pointer;
 }
 .navBtns:hover {
     cursor: pointer;
@@ -192,6 +202,7 @@ body,
 
     display: grid;
     grid: 1fr/ 1fr 1fr 1fr;
+    background-color: #333;
     /* grid-template-columns: 1fr 1fr 1fr; */
 }
 /*  */
@@ -205,7 +216,7 @@ body,
 }
 /*  */
 .imageSection {
-    background-color: #333;
+    /* background-color: #333; */
     border-left: 2px solid #f0e2c9;
     border-right: 2px solid #f0e2c9;
     /* z-index: 5; */
@@ -226,6 +237,7 @@ body,
 }
 .submitImage {
     border: 5px outset #46bcec;
+    border-radius: 5px;
     background-color: #46bcecaa;
     color: #fff;
     cursor: pointer;
@@ -244,6 +256,7 @@ body,
 .submitImage:disabled,
 .submitImage:disabled:hover {
     background-color: #a62f0322;
+    box-shadow: none;
     border: 5px inset #a62f0399;
     color: #aaa;
     cursor: not-allowed;
@@ -263,6 +276,7 @@ body,
     justify-content: center;
     align-content: center;
     border: 2px dashed #fff;
+    border-radius: 10px;
 }
 #insertedImg + #imgLabel {
     width: 100%;
@@ -283,13 +297,14 @@ body,
 }
 .imgBox .img1 {
     background-color: rgba(5, 5, 5, 0.25);
+    border-radius: 5px;
     object-fit: cover;
     max-width: 100%;
     height: auto;
 }
 /*  */
 .infoSection {
-    background-color: #333;
+    /* background-color: #333; */
     padding: 10px;
 }
 
@@ -316,6 +331,11 @@ body,
     background: transparent;
     color: #a62f03;
     font-weight: 500;
+
+    flex: 1;
+}
+.infoFieldset div {
+    flex: 1;
 }
 
 /* remove scroll bars */
@@ -348,7 +368,7 @@ input[type='float'] {
     border: 1px solid mediumseagreen;
 } */
 .userEyes {
-    background-color: #46bcec;
+    background-color: #333;
 }
 .card {
     /* height: 500px; */

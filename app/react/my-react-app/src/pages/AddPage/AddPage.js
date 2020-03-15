@@ -46,6 +46,8 @@ const AddPage = props => {
                 info={info}
                 submitEye={submitEye}
                 user={user}
+                latitude={info.latitude}
+                longitude={info.longitude}
                 submitReady={states.submitReady}
                 handleFileChange={handleFileChange}
                 handleFileDrop={handleFileDrop}

@@ -7,7 +7,8 @@ import {
     GET_IMG_SRC,
     GET_IMG_ID,
     SET_ALERT,
-    REMOVE_ALERT
+    REMOVE_ALERT,
+    RESET_IMG
 } from '../actions/types';
 
 const initialStates = {
@@ -26,6 +27,14 @@ const states = (state = initialStates, action) => {
             return {
                 ...state,
                 loading: payload
+            };
+        case RESET_IMG:
+            return {
+                ...state,
+                imgSrc: initialStates.imgSrc,
+                imgId: initialStates.imgId,
+                imageReady: initialStates.imageReady,
+                submitReady: initialStates.submitReady
             };
         case IMAGE_READY_NO:
         case IMAGE_READY_YES:

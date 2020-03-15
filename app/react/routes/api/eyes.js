@@ -73,63 +73,89 @@ router.post('/upload', upload.none(), async (request, response) => {
             user
         } = request.body;
 
-        const alreadyPosted = await Eye.find({
-            'info.latitude': latitude,
-            'info.longitude': longitude
+        // const alreadyPosted = await Eye.find({
+        //     'info.latitude': latitude,
+        //     'info.longitude': longitude
+        // });
+        // console.log('alreadyPosted');
+        // if (alreadyPosted.length > 0) {
+        //     response
+        //         .status(500)
+        //         .send({ msg: 'Server Error: Eye already exists' });
+        // } else {
+        const buildInfo = {};
+        latitude && (buildInfo.latitude = latitude);
+        longitude && (buildInfo.longitude = longitude);
+        camera && (buildInfo.camera = camera);
+        date && (buildInfo.date = date);
+        width && (buildInfo.width = width);
+        height && (buildInfo.height = height);
+        aperture && (buildInfo.aperture = aperture);
+        shutter && (buildInfo.shutter = shutter);
+        iso && (buildInfo.iso = iso);
+        exposure && (buildInfo.exposure = exposure);
+        light && (buildInfo.light = light);
+        flash && (buildInfo.flash = flash);
+        flashStrength && (buildInfo.flashStrength = flashStrength);
+        contrast && (buildInfo.contrast = contrast);
+        saturation && (buildInfo.saturation = saturation);
+        sharpness && (buildInfo.sharpness = sharpness);
+        brightness && (buildInfo.brightness = brightness);
+        whiteBalance && (buildInfo.whiteBalance = whiteBalance);
+        zoom && (buildInfo.zoom = zoom);
+        artist && (buildInfo.artist = artist);
+        software && (buildInfo.software = software);
+        copyright && (buildInfo.copyright = copyright);
+
+        const buildPic = {};
+        picName && (buildPic.name = picName);
+        picSize && (buildPic.size = picSize);
+        picType && (buildPic.type = picType);
+
+        const buildEye = {
+            user: user,
+            url: url,
+            uploadDate: moment().format('LLLL'),
+            pic: buildPic,
+            info: buildInfo
+        };
+
+        const newEye = new Eye(buildEye);
+
+        await newEye.save(err => {
+            err && console.log(err.message);
         });
-        console.log('alreadyPosted');
-        if (alreadyPosted.length > 0) {
-            response
-                .status(500)
-                .send({ msg: 'Server Error: Eye already exists' });
-        } else {
-            const buildInfo = {};
-            latitude && (buildInfo.latitude = latitude);
-            longitude && (buildInfo.longitude = longitude);
-            camera && (buildInfo.camera = camera);
-            date && (buildInfo.date = date);
-            width && (buildInfo.width = width);
-            height && (buildInfo.height = height);
-            aperture && (buildInfo.aperture = aperture);
-            shutter && (buildInfo.shutter = shutter);
-            iso && (buildInfo.iso = iso);
-            exposure && (buildInfo.exposure = exposure);
-            light && (buildInfo.light = light);
-            flash && (buildInfo.flash = flash);
-            flashStrength && (buildInfo.flashStrength = flashStrength);
-            contrast && (buildInfo.contrast = contrast);
-            saturation && (buildInfo.saturation = saturation);
-            sharpness && (buildInfo.sharpness = sharpness);
-            brightness && (buildInfo.brightness = brightness);
-            whiteBalance && (buildInfo.whiteBalance = whiteBalance);
-            zoom && (buildInfo.zoom = zoom);
-            artist && (buildInfo.artist = artist);
-            software && (buildInfo.software = software);
-            copyright && (buildInfo.copyright = copyright);
-
-            const buildPic = {};
-            picName && (buildPic.name = picName);
-            picSize && (buildPic.size = picSize);
-            picType && (buildPic.type = picType);
-
-            const buildEye = {
-                user: user,
-                url: url,
-                uploadDate: moment().format('LLLL'),
-                pic: buildPic,
-                info: buildInfo
-            };
-
-            const newEye = new Eye(buildEye);
-
-            await newEye.save(err => {
-                err && console.log(err.message);
-            });
-            response.json(newEye);
-        }
+        response.send(true);
+        // }
     } catch (error) {
         console.error(error);
         response.status(500).send(error);
+    }
+});
+
+router.post('/upload/check', async (request, response) => {
+    try {
+        // console.log(request);
+        // console.log(request.body);
+        const { lat, lon } = request.body;
+        console.log(lat, lon, 'lat, lon');
+        const alreadyPosted = await Eye.find({
+            'info.latitude': Number(lat),
+            'info.longitude': Number(lon)
+        });
+        // console.log('alreadyPosted');
+        // console.log(alreadyPosted);
+        if (alreadyPosted.length > 0) {
+            console.log('found post');
+            response.status(500).send({
+                answer: true,
+                msg: 'Server Error: Eye already exists'
+            });
+        } else {
+            response.status(200).send({ answer: false });
+        }
+    } catch (error) {
+        response.status(500).send({ msg: 'Server Error' });
     }
 });
 

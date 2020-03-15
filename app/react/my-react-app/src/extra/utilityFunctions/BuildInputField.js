@@ -68,7 +68,6 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
             const valueDate = timeStamp.toDate();
             const formattedDate = moment(valueDate).format('LLLL');
 
-            console.log(typeof formattedDate);
             inputField = (
                 <fieldset className='infoFieldset'>
                     <label htmlFor='date'>Date Taken: </label>
@@ -86,24 +85,30 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
         case 'width':
             inputField = (
                 <fieldset className='infoFieldset'>
-                    <label htmlFor='width'>Dimension: </label>
-                    <input
-                        readOnly
-                        id='width'
-                        name='width'
-                        type='number'
-                        value={value}
-                        style={calculateLength(size)}
-                    />
-                    <span> x </span>
-                    <input
-                        readOnly
-                        id='height'
-                        name='height'
-                        type='number'
-                        value={valueHeight}
-                        style={calculateLength(valueHeight.toString().length)}
-                    />
+                    <label htmlFor='width' id='width'>
+                        Dimension:{' '}
+                    </label>
+                    <div>
+                        <input
+                            readOnly
+                            id='width'
+                            name='width'
+                            type='number'
+                            value={value}
+                            style={calculateLength(size)}
+                        />
+                        <span> x </span>
+                        <input
+                            readOnly
+                            id='height'
+                            name='height'
+                            type='number'
+                            value={valueHeight}
+                            style={calculateLength(
+                                valueHeight.toString().length
+                            )}
+                        />
+                    </div>
                 </fieldset>
             );
             break;

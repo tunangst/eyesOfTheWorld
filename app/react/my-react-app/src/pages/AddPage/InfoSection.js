@@ -4,7 +4,6 @@ import { useEffect } from 'react';
 
 const InfoSection = props => {
     const { info } = props;
-    console.log(info);
     let inputs = [];
     if (info) {
         inputs = Object.entries(info).map(([key, value]) => {
