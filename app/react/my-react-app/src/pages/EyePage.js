@@ -1,37 +1,21 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-// import useAsyncEffect from 'use-async-effect';
 
 import { findEye } from '../actions/eyeAction';
-// import findEye from '../extra/apiCalls/findEye';
-// import findImage from '../extra/apiCalls/findImage';
 import BuildInputField from '../extra/utilityFunctions/BuildInputField';
 
-// const initialState = {
-//     pic: {},
-//     info: {},
-//     image: {}
-// };
 const EyePage = props => {
-    // const [eyeData, setEyeData] = useState(initialState);
     const { eye, findEye } = props;
 
     const id = props.match.params.id;
     console.log(id);
 
     useEffect(() => {
-        const foundEye = findEye(id);
-        console.log(foundEye);
-        // setEyeData({
-        //     ...eyeData,
-        //     pic: foundEye.pic,
-        //     info: foundEye.info,
-        //     image: foundEye.url
-        // });
-    }, []);
+        console.log('running useEffect in eyepage');
+        findEye(id);
+    }, [findEye, id]);
 
     let inputs = [];
-    console.log(eye);
     if (eye.info) {
         inputs = Object.entries(eye.info).map(([key, value]) => {
             if (key === 'width' && value !== '???') {
@@ -62,17 +46,12 @@ const EyePage = props => {
         });
     }
 
-    console.log(`in the eye's page`);
     return (
         <section className='eyeContainer'>
-            <aside className='closeTo'>
-                {
-                    // <button onClick={() => getAllEyes()}>get all eyes</button>
-                }
-            </aside>
+            <aside className='closeTo'></aside>
             <main className='eye'>
                 <div className='picBox'>
-                    <img src={eye.url}></img>
+                    <img src={eye.url} alt={eye.pic.name}></img>
                 </div>
                 <div className='infoBox'>
                     <h1 className='title'>{eye.pic.name}</h1>

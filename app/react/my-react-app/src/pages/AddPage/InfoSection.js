@@ -1,6 +1,5 @@
 import React from 'react';
 import BuildInputField from '../../extra/utilityFunctions/BuildInputField';
-import { useEffect } from 'react';
 
 const InfoSection = props => {
     const { info } = props;

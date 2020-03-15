@@ -122,29 +122,30 @@ body,
 .navLinks {
     z-index: 10;
     display: flex;
+    justify-content: flex-end;
     list-style: none;
+    padding-right: 15px;
 }
 .navBtns {
-    z-index: 10;
-    margin: 15px;
-    padding: 15px;
-    border-radius: 5px;
-    font-size: 15px;
-    font-weight: 800;
-    color: white;
-    background-color: #46bcec;
 }
 .navBtns a,
 .navBtns button {
+    padding: 15px;
+    margin: 5px;
+
+    font-size: 15px;
+    font-weight: 800;
     text-decoration: none;
     color: #fff;
     font-family: 'Raleway', sans-serif;
     font-weight: 500;
     letter-spacing: 2px;
     border: none;
+    border-radius: 6px;
     background-color: transparent;
     font-size: 15px;
     cursor: pointer;
+    background-color: #46bcec;
 }
 .navBtns:hover {
     cursor: pointer;

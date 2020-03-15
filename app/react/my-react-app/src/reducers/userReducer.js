@@ -7,8 +7,7 @@ import {
     LOGIN_FAIL,
     LOGOUT,
     FIND_USER,
-    FIND_USER_EYES,
-    ACCOUNT_DELETED
+    FIND_USER_EYES
 } from '../actions/types';
 
 const initialUser = {

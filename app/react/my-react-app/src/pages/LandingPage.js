@@ -6,18 +6,15 @@ import SuggestedEye from '../extra/utilityFunctions/SuggestedEye';
 import key from '../extra/hiddenFolder/hiddenFile';
 
 import { getAllEyes } from '../actions/eyeAction';
-// import getAllEyes from '../extra/apiCalls/getAllEyes';
 
-// const initialState = [];
-// import axios from 'axios'
 const LandingPage = props => {
     let suggestions = [];
     const { eyes, getAllEyes } = props;
-    // const [eyeData, setEyeData] = useState(initialState);
 
     useEffect(() => {
+        console.log('running useEffect in landingpage');
         eyes.length < 1 && getAllEyes();
-    }, []);
+    }, [eyes.length, getAllEyes]);
 
     if (eyes.length > 0) {
         if (eyes.length < 10) {
@@ -29,9 +26,7 @@ const LandingPage = props => {
                 suggestions.push(<SuggestedEye key={i} eye={eyes[i]} />);
             }
         }
-        console.log(suggestions);
     }
-    console.log(suggestions);
 
     return (
         <section className='landing'>

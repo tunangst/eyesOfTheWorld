@@ -30,9 +30,10 @@ const AddPage = props => {
     } = props;
 
     useEffect(() => {
+        console.log('running useEffect in AddPage');
         // const eye = {};
         states.imageReady && handleFindInfo();
-    }, [states.imageReady]);
+    }, [states.imageReady, handleFindInfo]);
 
     let inputArr = [];
     states.submitReady && inputArr.push({ info: info });

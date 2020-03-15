@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { useHistory, Link, Redirect } from 'react-router-dom';
 import logo from '../extra/images/planet-earth.svg';
@@ -32,9 +32,7 @@ const Nav = props => {
         console.log();
         history.push(`/eyes/user/${userId}`);
     };
-    // const responseGoogle = response => {
-    //     console.log(response);
-    // };
+
     const handleLogout = () => {
         console.log('handleLogout');
         logout();
@@ -63,24 +61,6 @@ const Nav = props => {
               />
           ));
 
-    useEffect(() => {
-        // console.log(client_id());
-        // window.gapi.load('auth2', () => {
-        //     this.auth2 = gapi.auth2.init({
-        //         client_id: client_id
-        //     });
-        //     window.gapi.load('signin2', function() {
-        //         // render a sign in button
-        //         // using this method will show Signed In if the user is already signed in
-        //         var opts = {
-        //             width: 200,
-        //             height: 50,
-        //             onSuccess: this.onSuccess.bind(this)
-        //         };
-        //         gapi.signin2.render('loginButton', opts);
-        //     });
-        // });
-    }, []);
     const authLinks = (
         <ul className='navLinks'>
             <li className='navBtns'>

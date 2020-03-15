@@ -7,9 +7,6 @@ import {
     BUILD_EYE,
     CLEAR_EYE,
     CLEAR_INFO,
-    // SUBMIT_READY_NO,
-    // IMAGE_READY_NO,
-    SET_ALERT,
     RESET_IMG
 } from '../actions/types';
 
@@ -129,7 +126,6 @@ export const submitEye = (event, userId, lat, lon) => async dispatch => {
             type: RESET_IMG
         });
     } catch (error) {
-        alert(error);
         console.log(error.response.data.msg);
         error.response.data.msg &&
             dispatch(setAlert(error.response.data.msg, 'error'));

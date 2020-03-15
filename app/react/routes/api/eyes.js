@@ -6,20 +6,16 @@ const Eye = require('../../models/Eye');
 
 const upload = require('../../config/multerImageUpload');
 const awsDelete = require('../../config/awsDelete');
-// /api/eyes/user/${userId}
-// /api/eyes/user/:userId
+
 router.get('/user/:userId', async (request, response) => {
     console.log(`get /api/eyes/user/:user targeted and running`);
     const userId = request.params.userId;
-    // console.log('userId', userId);
     const userEyes = await Eye.find({ user: userId });
-    // console.log(userEyes);
     response.json(userEyes);
 });
 
 router.get('/', async (request, response) => {
     console.log(`get /api/eyes targeted and running`);
-    // debugger;
     try {
         //find all eyes stored
         const infoData = await Eye.find();
@@ -31,7 +27,6 @@ router.get('/', async (request, response) => {
 });
 
 router.get('/:id', async (request, response) => {
-    console.log(`(((((((((((((( /api/eyes/:id area))))))))))))))`);
     const id = request.params.id;
     try {
         const eye = await Eye.findById(id);
@@ -73,16 +68,6 @@ router.post('/upload', upload.none(), async (request, response) => {
             user
         } = request.body;
 
-        // const alreadyPosted = await Eye.find({
-        //     'info.latitude': latitude,
-        //     'info.longitude': longitude
-        // });
-        // console.log('alreadyPosted');
-        // if (alreadyPosted.length > 0) {
-        //     response
-        //         .status(500)
-        //         .send({ msg: 'Server Error: Eye already exists' });
-        // } else {
         const buildInfo = {};
         latitude && (buildInfo.latitude = latitude);
         longitude && (buildInfo.longitude = longitude);
@@ -126,7 +111,6 @@ router.post('/upload', upload.none(), async (request, response) => {
             err && console.log(err.message);
         });
         response.send(true);
-        // }
     } catch (error) {
         console.error(error);
         response.status(500).send(error);
@@ -135,16 +119,13 @@ router.post('/upload', upload.none(), async (request, response) => {
 
 router.post('/upload/check', async (request, response) => {
     try {
-        // console.log(request);
-        // console.log(request.body);
         const { lat, lon } = request.body;
         console.log(lat, lon, 'lat, lon');
         const alreadyPosted = await Eye.find({
-            'info.latitude': Number(lat),
-            'info.longitude': Number(lon)
+            'info.latitude': lat,
+            'info.longitude': lon
         });
-        // console.log('alreadyPosted');
-        // console.log(alreadyPosted);
+
         if (alreadyPosted.length > 0) {
             console.log('found post');
             response.status(500).send({
