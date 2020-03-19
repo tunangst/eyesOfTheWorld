@@ -54,7 +54,7 @@ const EyePage = props => {
                     <img src={eye.url} alt={eye.pic.name}></img>
                 </div>
                 <div className='infoBox'>
-                    <h1 className='title'>{eye.pic.name}</h1>
+                    <h2 className='title'>{eye.pic.name}</h2>
                     {inputs}
                 </div>
             </main>

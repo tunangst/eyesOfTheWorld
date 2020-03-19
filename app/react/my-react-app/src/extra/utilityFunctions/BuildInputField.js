@@ -7,7 +7,7 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
     let inputField;
     let size;
 
-    if (value && value !== '???' && value !== undefined) {
+    if (value && value !== '' && value !== undefined) {
         if (typeof value === 'number') {
             size = value.toString().length;
         } else {
@@ -28,7 +28,7 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
                         name='latitude'
                         type='float'
                         value={value}
-                        style={calculateLength(size)}
+                        // style={calculateLength(size)}
                     />
                 </fieldset>
             );
@@ -43,7 +43,7 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
                         name='longitude'
                         type='float'
                         value={value}
-                        style={calculateLength(size)}
+                        // style={calculateLength(size)}
                     />
                 </fieldset>
             );
@@ -58,15 +58,19 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
                         name='model'
                         type='text'
                         value={value}
-                        style={calculateLength(size)}
+                        // style={calculateLength(size)}
                     />
                 </fieldset>
             );
             break;
         case 'date':
+            console.log(value);
             const timeStamp = moment(value, 'YYYY:MM:DD HH:mm:ss');
             const valueDate = timeStamp.toDate();
-            const formattedDate = moment(valueDate).format('LLLL');
+            let formattedDate = moment(valueDate).format('LLLL');
+            if (formattedDate === 'Invalid date') {
+                formattedDate = moment(value).format('LLLL');
+            }
 
             inputField = (
                 <fieldset className='infoFieldset'>
@@ -85,29 +89,31 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
         case 'width':
             inputField = (
                 <fieldset className='infoFieldset'>
-                    <label htmlFor='width' id='width'>
+                    <label htmlFor='dimension' id='dimension'>
                         Dimension:{' '}
                     </label>
                     <div>
                         <input
                             readOnly
-                            id='width'
-                            name='width'
-                            type='number'
-                            value={value}
-                            style={calculateLength(size)}
+                            id='dimension'
+                            name='dimension'
+                            type='string'
+                            value={`${value} x ${valueHeight}`}
+                            // style={calculateLength(size)}
                         />
-                        <span> x </span>
-                        <input
-                            readOnly
-                            id='height'
-                            name='height'
-                            type='number'
-                            value={valueHeight}
-                            style={calculateLength(
-                                valueHeight.toString().length
-                            )}
-                        />
+                        {
+                            // <span> x </span>
+                            // <input
+                            //     readOnly
+                            //     id='height'
+                            //     name='height'
+                            //     type='number'
+                            //     value={valueHeight}
+                            //     style={calculateLength(
+                            //         valueHeight.toString().length
+                            //     )}
+                            // />
+                        }
                     </div>
                 </fieldset>
             );
@@ -122,7 +128,7 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
                         name='aperture'
                         type='float'
                         value={value}
-                        style={calculateLength(size)}
+                        // style={calculateLength(size)}
                     />
                 </fieldset>
             );
@@ -137,7 +143,7 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
                         name='shutter'
                         type='float'
                         value={value}
-                        style={calculateLength(size)}
+                        // style={calculateLength(size)}
                     />
                 </fieldset>
             );
@@ -152,7 +158,7 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
                         name='iso'
                         type='float'
                         value={value}
-                        style={calculateLength(size)}
+                        // style={calculateLength(size)}
                     />
                 </fieldset>
             );
@@ -167,7 +173,7 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
                         name='exposure'
                         type='float'
                         value={value}
-                        style={calculateLength(size)}
+                        // style={calculateLength(size)}
                     />
                 </fieldset>
             );
@@ -182,7 +188,7 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
                         name='light'
                         type='text'
                         value={value}
-                        style={calculateLength(size)}
+                        // style={calculateLength(size)}
                     />
                 </fieldset>
             );
@@ -197,7 +203,7 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
                         name='flash'
                         type='text'
                         value={value}
-                        style={calculateLength(size)}
+                        // style={calculateLength(size)}
                     />
                 </fieldset>
             );
@@ -212,7 +218,7 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
                         name='energy'
                         type='text'
                         value={value}
-                        style={calculateLength(size)}
+                        // style={calculateLength(size)}
                     />
                 </fieldset>
             );
@@ -227,7 +233,7 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
                         name='contrast'
                         type='text'
                         value={value}
-                        style={calculateLength(size)}
+                        // style={calculateLength(size)}
                     />
                 </fieldset>
             );
@@ -242,7 +248,7 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
                         name='saturation'
                         type='text'
                         value={value}
-                        style={calculateLength(size)}
+                        // style={calculateLength(size)}
                     />
                 </fieldset>
             );
@@ -257,7 +263,7 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
                         name='sharpness'
                         type='text'
                         value={value}
-                        style={calculateLength(size)}
+                        // style={calculateLength(size)}
                     />
                 </fieldset>
             );
@@ -272,7 +278,7 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
                         name='brightness'
                         type='float'
                         value={value}
-                        style={calculateLength(size)}
+                        // style={calculateLength(size)}
                     />
                 </fieldset>
             );
@@ -287,7 +293,7 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
                         name='whiteBalance'
                         type='text'
                         value={value}
-                        style={calculateLength(size)}
+                        // style={calculateLength(size)}
                     />
                 </fieldset>
             );
@@ -302,7 +308,7 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
                         name='zoom'
                         type='float'
                         value={value}
-                        style={calculateLength(size)}
+                        // style={calculateLength(size)}
                     />
                 </fieldset>
             );
@@ -317,7 +323,7 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
                         name='artist'
                         type='text'
                         value={value}
-                        style={calculateLength(size)}
+                        // style={calculateLength(size)}
                     />
                 </fieldset>
             );
@@ -332,7 +338,7 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
                         name='software'
                         type='text'
                         value={value}
-                        style={calculateLength(size)}
+                        // style={calculateLength(size)}
                     />
                 </fieldset>
             );
@@ -347,7 +353,7 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
                         name='copyright'
                         type='text'
                         value={value}
-                        style={calculateLength(size)}
+                        // style={calculateLength(size)}
                     />
                 </fieldset>
             );

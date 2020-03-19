@@ -45,7 +45,7 @@ const ImageSection = props => {
     let submitBtn = (
         <input
             type='submit'
-            className='submitImage'
+            className='submitImage submitBtn'
             value='Submit to Server'
             disabled
         />
@@ -54,7 +54,7 @@ const ImageSection = props => {
         submitBtn = (
             <input
                 type='submit'
-                className='submitImage'
+                className='submitImage submitBtn'
                 value='Submit to Server'
             />
         );

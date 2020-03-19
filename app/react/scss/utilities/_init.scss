@@ -1,0 +1,29 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+html {
+    font-size: 62.5%; //1rem = 10px, 10/16 = 62.5%
+}
+body {
+    box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+    height: 100%;
+    width: 100%;
+    font-family: 'Raleway', sans-serif;
+    overflow-x: hidden;
+}
+
+#myArea {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}

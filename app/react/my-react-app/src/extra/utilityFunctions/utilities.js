@@ -13,6 +13,7 @@ export const calculateLength = size => {
     } else {
         result = size * 7.5;
     }
+    console.log({ width: `${result}px` });
     return { width: `${result}px` };
 };
 

@@ -39,57 +39,63 @@ const Register = props => {
         return <Redirect to='/' />;
     }
     return (
-        <section className='register'>
-            <h2>Sign Up</h2>
-            <form
-                action=''
-                className='form'
-                onSubmit={element => onSubmit(element)}
-            >
-                <input
-                    type='text'
-                    placeholder='Name'
-                    name='username'
-                    value={username}
-                    onChange={element => onChange(element)}
-                    required
-                />
-                <input
-                    type='text'
-                    name='avatar'
-                    placeholder='Avatar (URL)'
-                    value={avatar}
-                    onChange={element => onChange(element)}
-                />
-                <input
-                    type='email'
-                    placeholder='Email Address'
-                    name='email'
-                    value={email}
-                    onChange={element => onChange(element)}
-                    required
-                />
-                <input
-                    type='password'
-                    placeholder='Password'
-                    name='password'
-                    value={password}
-                    onChange={element => onChange(element)}
-                    minLength='6'
-                />
-                <input
-                    type='password'
-                    placeholder='Confirm Password'
-                    name='password2'
-                    value={password2}
-                    onChange={element => onChange(element)}
-                    minLength='6'
-                />
-                <input type='submit' className='submitBtn' value='Register' />
-            </form>
-            <p>
-                Already have an account? <Link to='/login'>Sign In</Link>
-            </p>
+        <section className='login-register'>
+            <div className='form-container'>
+                <h2>Sign Up</h2>
+                <form
+                    action=''
+                    className='form'
+                    onSubmit={element => onSubmit(element)}
+                >
+                    <input
+                        type='text'
+                        placeholder='Name'
+                        name='username'
+                        value={username}
+                        onChange={element => onChange(element)}
+                        required
+                    />
+                    <input
+                        type='text'
+                        name='avatar'
+                        placeholder='Avatar (URL)'
+                        value={avatar}
+                        onChange={element => onChange(element)}
+                    />
+                    <input
+                        type='email'
+                        placeholder='Email Address'
+                        name='email'
+                        value={email}
+                        onChange={element => onChange(element)}
+                        required
+                    />
+                    <input
+                        type='password'
+                        placeholder='Password'
+                        name='password'
+                        value={password}
+                        onChange={element => onChange(element)}
+                        minLength='6'
+                    />
+                    <input
+                        type='password'
+                        placeholder='Confirm Password'
+                        name='password2'
+                        value={password2}
+                        onChange={element => onChange(element)}
+                        minLength='6'
+                    />
+                    <input
+                        type='submit'
+                        className='submitBtn'
+                        value='Register'
+                    />
+                </form>
+                <p>
+                    Already have an account? <Link to='/login'>Sign In</Link>
+                </p>
+            </div>
         </section>
     );
 };

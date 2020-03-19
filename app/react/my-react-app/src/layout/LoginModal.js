@@ -29,34 +29,36 @@ const Login = props => {
         return <Redirect to='/' />;
     }
     return (
-        <section className='login'>
-            <h2>Sign In</h2>
-            <form
-                action=''
-                className='form'
-                onSubmit={element => onSubmit(element)}
-            >
-                <input
-                    type='email'
-                    placeholder='Email Address'
-                    name='email'
-                    value={email}
-                    onChange={element => onChange(element)}
-                    required
-                />
-                <input
-                    type='password'
-                    placeholder='Password'
-                    name='password'
-                    value={password}
-                    onChange={element => onChange(element)}
-                    minLength='6'
-                />
-                <input type='submit' className='submitBtn' value='Login' />
-            </form>
-            <p>
-                Already have an account? <Link to='/register'>Sign Up</Link>
-            </p>
+        <section className='login-register'>
+            <div className='form-container'>
+                <h2>Sign In</h2>
+                <form
+                    action=''
+                    className='form'
+                    onSubmit={element => onSubmit(element)}
+                >
+                    <input
+                        type='email'
+                        placeholder='Email Address'
+                        name='email'
+                        value={email}
+                        onChange={element => onChange(element)}
+                        required
+                    />
+                    <input
+                        type='password'
+                        placeholder='Password'
+                        name='password'
+                        value={password}
+                        onChange={element => onChange(element)}
+                        minLength='6'
+                    />
+                    <input type='submit' className='submitBtn' value='Login' />
+                </form>
+                <p>
+                    Already have an account? <Link to='/register'>Sign Up</Link>
+                </p>
+            </div>
         </section>
     );
 };

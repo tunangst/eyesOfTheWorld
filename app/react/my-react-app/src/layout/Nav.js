@@ -91,7 +91,6 @@ const Nav = props => {
 
     return (
         <section className='nav'>
-            {progressBar}
             <div className='logoContainer'>{logoToggle}</div>
             <h1 className='title'>Eyes of the World</h1>
 

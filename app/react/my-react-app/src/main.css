@@ -1,0 +1,307 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; }
+
+html {
+  font-size: 62.5%; }
+
+body {
+  box-sizing: border-box; }
+
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+  font-family: 'Raleway', sans-serif;
+  overflow-x: hidden; }
+
+#myArea {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column; }
+
+/*
+COLORS
+
+Primary: #eb2f64
+Primary light: #FF3366
+Primary dark: #BA265D
+
+Grey light 1: #faf9f9
+Grey light 2: #f4f2f2
+Grey light 3: #f0eeee
+Grey light 4: #ccc
+
+Grey dark 1: #333
+Grey dark 2: #777
+Grey dark 3: #999
+
+*/
+@keyframes spin {
+  100% {
+    transform: rotate(360deg); } }
+
+.spinning {
+  animation: spin 1s linear infinite; }
+
+.submitBtn {
+  height: 6rem;
+  z-index: 10;
+  margin: 1.5rem;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  font-size: 17px;
+  font-weight: 800;
+  color: white;
+  background-color: #46bcec; }
+
+.nav {
+  height: 10rem;
+  z-index: 5;
+  background-color: #f0e2c9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #a62f03;
+  font-family: 'Alice', serif;
+  box-shadow: 0px 5px 20px rgba(5, 5, 5, 0.5);
+  position: relative; }
+  .nav .title {
+    z-index: 4;
+    font-size: 4rem; }
+  .nav .logoContainer {
+    z-index: 10;
+    padding: 15px;
+    height: 100%; }
+    .nav .logoContainer .logo {
+      height: 100%; }
+      .nav .logoContainer .logo:hover {
+        cursor: pointer; }
+  .nav .navLinks {
+    z-index: 10;
+    display: flex;
+    justify-content: flex-end;
+    list-style: none;
+    padding-right: 15px;
+    padding-left: 0; }
+    .nav .navLinks .navBtns a,
+    .nav .navLinks .navBtns button {
+      padding: 15px;
+      margin: 5px;
+      font-size: 15px;
+      font-weight: 800;
+      text-decoration: none;
+      color: #fff;
+      font-family: 'Raleway', sans-serif;
+      font-weight: 500;
+      letter-spacing: 2px;
+      border: none;
+      border-radius: 6px;
+      background-color: transparent;
+      font-size: 15px;
+      cursor: pointer;
+      background-color: #46bcec; }
+
+.landing {
+  height: 100%;
+  width: 100%; }
+  .landing .suggestionContainer {
+    z-index: 10;
+    position: fixed;
+    top: 100px;
+    left: 0;
+    height: 150px;
+    background-color: #f0e2c9cc;
+    display: flex;
+    align-items: center; }
+    .landing .suggestionContainer .suggestedEye {
+      height: 130px;
+      width: 130px;
+      margin-left: 10px; }
+      .landing .suggestionContainer .suggestedEye img {
+        height: 130px;
+        width: 130px;
+        object-fit: fill; }
+  .landing .worldMap {
+    width: 100%;
+    height: 100%; }
+
+.add {
+  flex: 1;
+  display: grid;
+  grid: 1fr/ 1fr 1fr 1fr;
+  background-color: #333; }
+
+.mapSection {
+  height: 100%; }
+  .mapSection > div {
+    width: 100%;
+    height: 100%;
+    position: relative; }
+
+.imageSection {
+  border-left: 2px solid #f0e2c9;
+  border-right: 2px solid #f0e2c9;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.6rem; }
+  .imageSection .inputContainer {
+    padding: 1rem 1rem 0 1rem;
+    box-shadow: 3px 3px 5px rgba(5, 5, 5, 0.6); }
+    .imageSection .inputContainer form {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 1fr;
+      height: 100%;
+      width: 100%; }
+      .imageSection .inputContainer form .submitImage {
+        border: 5px outset #46bcec;
+        border-radius: 5px;
+        background-color: #46bcecaa;
+        color: #fff;
+        cursor: pointer;
+        font-weight: 500;
+        font-family: 'Raleway', sans-serif;
+        box-shadow: 3px 3px 5px rgba(5, 5, 5, 0.6);
+        transition: 0.025s ease-in; }
+        .imageSection .inputContainer form .submitImage:active {
+          background-color: #46bcec;
+          box-shadow: 1px 1px 1px #050505; }
+        .imageSection .inputContainer form .submitImage:disabled, .imageSection .inputContainer form .submitImage:disabled:hover {
+          background-color: #a62f0322;
+          box-shadow: none;
+          border: 5px inset #a62f0399;
+          color: #aaa;
+          cursor: not-allowed; }
+      .imageSection .inputContainer form #insertedImg {
+        position: absolute;
+        filter: alpha(opacity=0);
+        opacity: 0;
+        height: 0.1px;
+        width: 0.1px;
+        z-index: -2; }
+      .imageSection .inputContainer form #imgLabel {
+        font-size: 1.6rem;
+        display: grid;
+        justify-content: center;
+        align-content: center;
+        border: 2px dashed #fff;
+        border-radius: 1rem;
+        color: #fff;
+        cursor: pointer;
+        transition: all 0.25s ease-in; }
+      .imageSection .inputContainer form #insertedImg + .imageSection .inputContainer form #imgLabel {
+        width: 100%;
+        height: 100%;
+        cursor: pointer; }
+      .imageSection .inputContainer form #insertedImg + #imgLabel:hover {
+        background: #46bcec33; }
+  .imageSection .imgBox {
+    flex: 1;
+    padding: 1rem; }
+    .imageSection .imgBox .img1 {
+      background-color: rgba(5, 5, 5, 0.25);
+      border-radius: 5px;
+      object-fit: cover;
+      max-width: 100%;
+      height: auto; }
+
+.dragOver {
+  background: #46bcec33; }
+
+.infoSection {
+  padding: 10px; }
+  .infoSection #infoForm {
+    display: grid; }
+    .infoSection #infoForm .infoFieldset {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      border-radius: 8px;
+      background-color: #f0e2c9;
+      color: #a62f03;
+      margin: 0;
+      padding: 10px;
+      border: 3px outset #f0e2c9; }
+      .infoSection #infoForm .infoFieldset label {
+        font-weight: 800;
+        margin-right: 10px; }
+      .infoSection #infoForm .infoFieldset input {
+        border: none;
+        background: transparent;
+        color: #a62f03;
+        font-weight: 500;
+        flex: 1; }
+      .infoSection #infoForm .infoFieldset div {
+        flex: 1; }
+      .infoSection #infoForm .infoFieldset input[type='number']::-webkit-inner-spin-button,
+      .infoSection #infoForm .infoFieldset input[type='number']::-webkit-outer-spin-button,
+      .infoSection #infoForm .infoFieldset input[type='float']::-webkit-inner-spin-button,
+      .infoSection #infoForm .infoFieldset input[type='float']::-webkit-outer-spin-button,
+      .infoSection #infoForm .infoFieldset input[type='number'], .infoSection #infoForm .infoFieldsetinput[type='float'] {
+        -webkit-appearance: textfield;
+        margin: 0; }
+
+.eyeContainer {
+  width: 100%;
+  background-color: #f0e2c9; }
+  .eyeContainer .closeTo {
+    height: 10rem;
+    background-color: greenyellow;
+    box-shadow: 0px 5px 5px rgba(5, 5, 5, 0.25);
+    position: relative; }
+  .eyeContainer .eye {
+    flex: 1;
+    display: flex;
+    width: 100%;
+    background-color: #333333; }
+    .eyeContainer .eye .picBox img {
+      box-shadow: 3px 3px 5px rgba(5, 5, 5, 0.5);
+      width: 100%;
+      height: auto; }
+    .eyeContainer .eye .infoBox {
+      padding: 0 2rem;
+      background-color: #f0e2c9;
+      display: flex;
+      flex-direction: column; }
+      .eyeContainer .eye .infoBox h2 {
+        font-size: 3rem;
+        text-align: center;
+        font-family: 'Alice', Serif;
+        color: #a62f03;
+        padding-top: 2rem;
+        padding-bottom: 1.5rem; }
+      .eyeContainer .eye .infoBox .infoFieldset {
+        display: flex;
+        flex-direction: column;
+        border-radius: 8px;
+        background-color: #f0e2c9;
+        color: #a62f03;
+        margin: 0;
+        padding: 10px;
+        border: none; }
+        .eyeContainer .eye .infoBox .infoFieldset label {
+          font-size: 1.6rem;
+          font-weight: 800;
+          margin-right: 10px; }
+        .eyeContainer .eye .infoBox .infoFieldset input {
+          font-size: 1.4rem;
+          border: none;
+          background: transparent;
+          color: #a62f03;
+          font-weight: 500;
+          flex: 1; }
+        .eyeContainer .eye .infoBox .infoFieldset div {
+          flex: 1; }
+        .eyeContainer .eye .infoBox .infoFieldset input[type='number']::-webkit-inner-spin-button,
+        .eyeContainer .eye .infoBox .infoFieldset input[type='number']::-webkit-outer-spin-button,
+        .eyeContainer .eye .infoBox .infoFieldset input[type='float']::-webkit-inner-spin-button,
+        .eyeContainer .eye .infoBox .infoFieldset input[type='float']::-webkit-outer-spin-button,
+        .eyeContainer .eye .infoBox .infoFieldset input[type='number'], .eyeContainer .eye .infoBox .infoFieldsetinput[type='float'] {
+          -webkit-appearance: textfield;
+          margin: 0; }
