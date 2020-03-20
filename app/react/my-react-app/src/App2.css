@@ -378,11 +378,10 @@ input[type='float'] {
 /* * {
     border: 1px solid mediumseagreen;
 } */
-.userEyes {
+/* .userEyes {
     background-color: #333;
-}
-.card {
-    /* height: 500px; */
+} */
+/* .card {
     width: 300px;
     border: 1px solid #a62f03;
     text-align: center;
@@ -390,54 +389,53 @@ input[type='float'] {
     margin: 10px;
     background-color: #f0e2c9;
     padding: 10px;
-}
-.card .window {
+} */
+/* .card .window {
     padding-bottom: 10px;
-}
-.card .window img {
+} */
+/* .card .window img {
     width: 100%;
     height: 100%;
     object-fit: contain;
     object-position: center;
-}
-.card .info {
+} */
+/* .card .info {
     height: 100%;
     width: 100%;
     font-family: 'Raleway', sans-serif;
     font-weight: 500;
-}
-.card .info h2:nth-child(1) {
+} */
+/* .card .info h2:nth-child(1) {
     margin: 0;
-}
-.card .info h2 {
+} */
+/* .card .info h2 {
     margin-bottom: 0;
     color: #a62f03;
     font-family: 'Alice', serif;
     font-weight: 900;
-}
-.card .info p {
+} */
+/* .card .info p {
     margin: 5px 0;
-}
-.card .info p:last-child {
+} */
+/* .card .info p:last-child {
     margin-bottom: 15px;
-}
+} */
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~userEyes cards~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~alerts~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-.alerts {
+/* .alerts {
     width: 100%;
     position: fixed;
     z-index: 10;
     bottom: 0;
     left: 0;
-    /* border: 2px solid slateblue; */
 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-.alert {
+} */
+/* .alert {
     height: 50px;
     width: 100%;
     background-color: #f0e2c9;
@@ -448,27 +446,27 @@ input[type='float'] {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-.error {
+} */
+/* .error {
     border: 4px outset #a62f03;
     background-color: #a62f03cc;
     color: #f0e2c9;
     border-radius: 10px;
-}
-.success {
+} */
+/* .success {
     border: 4px outset #ddd;
     background-color: #46bceccc;
     color: white;
     border-radius: 10px;
     font-weight: 500;
-}
-.error > h3,
+} */
+/* .error > h3,
 .success > h3 {
     font-weight: 400;
-}
+} */
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~alerts~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~register module~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-.login-register {
+/* .login-register {
     height: 100%;
     width: 100%;
     background-color: #46bcec;
@@ -476,38 +474,38 @@ input[type='float'] {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-.login-register .form-container {
+} */
+/* .login-register .form-container {
     padding: 50px;
     border-radius: 10px;
     background-color: #f0e2c9;
     box-shadow: 3px 5px 10px rgba(5, 5, 5, 0.5);
-}
-.login-register .form-container h2 {
+} */
+/* .login-register .form-container h2 {
     margin-top: 0;
     font-family: 'Alice', Serif;
     color: #a62f03;
     font-size: 30px;
     text-align: center;
-}
-.login-register .form-container form {
+} */
+/* .login-register .form-container form {
     display: flex;
     flex-direction: column;
-}
-.form-container form input {
+} */
+/* .form-container form input {
     font-family: 'Raleway', sans-serif;
     font-size: 16px;
     padding: 5px;
-}
-.form-container form input[type='submit'] {
+} */
+/* .form-container form input[type='submit'] {
     margin: 20px 0;
-}
-.form-container p {
+} */
+/* .form-container p {
     margin: 0;
-}
-.form-container p a {
+} */
+/* .form-container p a {
     color: #a62f03;
     font-weight: 600;
-}
+} */
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~register module~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */

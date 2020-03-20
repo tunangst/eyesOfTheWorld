@@ -4,6 +4,10 @@
 
 @import 'ui/buttons';
 
+@import 'layout/components/alerts';
+@import 'layout/components/suggestions';
+@import 'layout/components/register-login';
+
 @import 'layout/nav';
 @import 'layout/landing';
 
@@ -13,3 +17,4 @@
 @import 'layout/addPage/sections/infoSection';
 
 @import 'layout/eyePage';
+@import 'layout/userEyes';

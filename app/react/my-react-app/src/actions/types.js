@@ -17,6 +17,7 @@ export const SUBMIT_READY_NO = 'SUBMIT_READY_NO';
 export const SET_ALERT = 'SET_ALERT';
 export const REMOVE_ALERT = 'REMOVE_ALERT';
 export const RESET_IMG = 'RESET_IMG';
+export const CLOSE_THANKS = 'CLOSE_THANKS';
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ states
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ info
@@ -39,3 +40,6 @@ export const FIND_USER_EYES = 'FIND_USER_EYES';
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ auth
 export const AUTH_ERROR = 'AUTH_ERROR';
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ auth
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ tabs
+export const TOGGLE_SUGGESTION = 'TOGGLE_SUGGESTION';
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ tabs

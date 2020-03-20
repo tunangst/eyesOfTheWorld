@@ -5,13 +5,15 @@ import userReducer from './userReducer';
 import infoReducer from './infoReducer';
 import eyeReducer from './eyeReducer';
 import eyesReducer from './eyesReducer';
+import tabsReducer from './tabsReducer';
 
 export default combineReducers({
     user: userReducer,
     states: statesReducer,
     info: infoReducer,
     eye: eyeReducer,
-    eyes: eyesReducer
+    eyes: eyesReducer,
+    tabs: tabsReducer
 });
 
 // {
@@ -21,9 +23,11 @@ export default combineReducers({
 //     states: {
 //         imgSrc: '',
 //         imgId: '',
-//         // dataReady: true,
+//         dataReady: true,
 //         submitReady: false,
-//         loading: false
+//         loading: false,
+//         alerts: [],
+//         thanks: false
 //     },
 //     info: {
 //         latitude: '',
@@ -58,5 +62,8 @@ export default combineReducers({
 //         },
 //         image: this.info
 //     },
-//     eyes: []
+//     eyes: [],
+//     tabs: {
+//          suggestions: false,
+//     }
 // }

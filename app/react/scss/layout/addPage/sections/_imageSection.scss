@@ -1,14 +1,13 @@
 .imageSection {
     border-left: 2px solid $color-white;
-    border-right: 2px solid #f0e2c9;
+    border-right: 2px solid $color-white;
     display: flex;
     flex-direction: column;
     font-size: $base-font-size;
 
     & .inputContainer {
         padding: 1rem 1rem 0 1rem;
-        // display: flex;
-        box-shadow: 3px 3px 5px rgba(5, 5, 5, 0.6);
+        box-shadow: 0px 3px 5px rgba(5, 5, 5, 0.6);
 
         & form {
             display: grid;
@@ -20,7 +19,7 @@
             & .submitImage {
                 border: 5px outset $color-blue;
                 border-radius: 5px;
-                background-color: #46bcecaa;
+                background-color: rgba($color-blue, 0.8);
                 color: $white;
                 cursor: pointer;
                 font-weight: 500;
@@ -31,15 +30,15 @@
                 transition: 0.025s ease-in;
 
                 &:active {
-                    background-color: #46bcec;
+                    background-color: $color-blue;
                     box-shadow: 1px 1px 1px rgba(5, 5, 5, 1);
                 }
 
                 &:disabled,
                 &:disabled:hover {
-                    background-color: #a62f0322;
+                    background-color: rgba($color-red, 0.4);
                     box-shadow: none;
-                    border: 5px inset #a62f0399;
+                    border: 5px inset rgba($color-red, 0.4);
                     color: #aaa;
                     cursor: not-allowed;
                 }
@@ -55,14 +54,13 @@
             }
 
             & #imgLabel {
-                // height: 7rem;
                 font-size: $base-font-size;
                 display: grid;
                 justify-content: center;
                 align-content: center;
-                border: 2px dashed #fff;
+                border: 2px dashed $white;
                 border-radius: 1rem;
-                color: #fff;
+                color: $white;
                 cursor: pointer;
 
                 transition: all 0.25s ease-in;
@@ -75,7 +73,7 @@
             }
 
             & #insertedImg + #imgLabel:hover {
-                background: #46bcec33;
+                background: rgba($color-blue, 0.2);
             }
         }
     }
@@ -85,7 +83,7 @@
         padding: 1rem;
 
         .img1 {
-            background-color: rgba(5, 5, 5, 0.25);
+            box-shadow: 3px 3px 5px rgba(5, 5, 5, 0.4);
             border-radius: 5px;
             object-fit: cover;
             max-width: 100%;
@@ -95,5 +93,5 @@
 }
 
 .dragOver {
-    background: #46bcec33;
+    background: rgba($color-blue, 0.2);
 }

@@ -8,7 +8,8 @@ import {
     GET_IMG_ID,
     SET_ALERT,
     REMOVE_ALERT,
-    RESET_IMG
+    RESET_IMG,
+    CLOSE_THANKS
 } from '../actions/types';
 
 const initialStates = {
@@ -17,7 +18,8 @@ const initialStates = {
     imageReady: false,
     submitReady: false,
     loading: false,
-    alerts: []
+    alerts: [],
+    needThanks: true
 };
 
 const states = (state = initialStates, action) => {
@@ -67,6 +69,11 @@ const states = (state = initialStates, action) => {
             return {
                 ...state,
                 alerts: state.alerts.filter(alert => alert.id !== payload)
+            };
+        case CLOSE_THANKS:
+            return {
+                ...state,
+                needThanks: false
             };
         default:
             return state;

@@ -34,6 +34,12 @@ export const removeImg = () => {
     img.parentNode.removeChild(img);
 };
 
+export const setName = filename => {
+    const capName = filename.toUpperCase();
+    const name = capName.substr(0, capName.lastIndexOf('.')) || capName;
+    return name;
+};
+
 // export const goToMapId = eyeDataObj => {
 //     console.log(`clicked on this marker with id: ${id}`);
 //     // <Redirect to=`/eyes/:id=${id}`;

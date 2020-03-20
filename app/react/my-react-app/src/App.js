@@ -11,9 +11,10 @@ import Nav from './layout/Nav';
 import LandingPage from './pages/LandingPage';
 import AddPage from './pages/AddPage/AddPage';
 import EyePage from './pages/EyePage';
+import UserEyes from './pages/UserEyes';
 import Register from './layout/RegisterModal';
 import Login from './layout/LoginModal';
-import UserEyes from './pages/UserEyes';
+import SuggestionBar from './layout/SuggestionBar';
 import Alert from './layout/Alert';
 
 import store from './store';
@@ -28,6 +29,7 @@ const App = () => {
                 <div id='myArea'>
                     <Nav />
                     <Alert />
+                    <SuggestionBar />
                     <Switch>
                         <Route exact path='/' component={LandingPage} />
                         <Route exact path='/register' component={Register} />

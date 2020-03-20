@@ -2,35 +2,31 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 // import useAsyncEffect from 'use-async-effect';
 import MapComponent from '../extra/googleMaps/MapComponent';
-import SuggestedEye from '../extra/utilityFunctions/SuggestedEye';
+// import SuggestedEye from '../extra/utilityFunctions/SuggestedEye';
+// import SuggestionBar from './SuggestionBar';
 import key from '../extra/hiddenFolder/hiddenFile';
 
+import { setThanks } from '../actions/statesAction';
 import { getAllEyes } from '../actions/eyeAction';
 
 const LandingPage = props => {
-    let suggestions = [];
-    const { eyes, getAllEyes } = props;
+    const {
+        eyes,
+        getAllEyes,
+        setThanks,
+        states: { needThanks }
+    } = props;
+    const thankYouMessage =
+        'Thank you author_id=216 @ flaticon.com for the icons useage  :^]';
 
     useEffect(() => {
         console.log('running useEffect in landingpage');
+        needThanks === true && setThanks(thankYouMessage, 'success');
         eyes.length < 1 && getAllEyes();
     }, [eyes.length, getAllEyes]);
 
-    if (eyes.length > 0) {
-        if (eyes.length < 10) {
-            for (let i = 0; i < eyes.length; i++) {
-                suggestions.push(<SuggestedEye key={i} eye={eyes[i]} />);
-            }
-        } else {
-            for (let i = 0; i < 10; i++) {
-                suggestions.push(<SuggestedEye key={i} eye={eyes[i]} />);
-            }
-        }
-    }
-
     return (
         <section className='landing'>
-            <div className='suggestionContainer'>{suggestions}</div>
             <div className='worldMap'>
                 <MapComponent
                     eyesArr={eyes || [{}]}
@@ -45,7 +41,8 @@ const LandingPage = props => {
 };
 
 const mapStateToProps = state => ({
-    eyes: state.eyes
+    eyes: state.eyes,
+    states: state.states
 });
 
-export default connect(mapStateToProps, { getAllEyes })(LandingPage);
+export default connect(mapStateToProps, { getAllEyes, setThanks })(LandingPage);

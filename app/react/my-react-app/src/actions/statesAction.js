@@ -8,7 +8,8 @@ import {
     IMAGE_READY_YES,
     IMAGE_READY_NO,
     SET_ALERT,
-    REMOVE_ALERT
+    REMOVE_ALERT,
+    CLOSE_THANKS
 } from './types';
 
 export const setLoading = toggle => async dispatch => {
@@ -62,4 +63,18 @@ export const setAlert = (msg, alertType, timeout = 5000) => async dispatch => {
             }),
         timeout
     );
+};
+
+export const removeAlert = id => async dispatch => {
+    dispatch({
+        type: REMOVE_ALERT,
+        payload: id
+    });
+};
+
+export const setThanks = (msg, alertType) => async dispatch => {
+    dispatch(setAlert(msg, alertType));
+    dispatch({
+        type: CLOSE_THANKS
+    });
 };

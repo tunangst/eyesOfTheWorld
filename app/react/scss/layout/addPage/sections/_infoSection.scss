@@ -1,5 +1,5 @@
 .infoSection {
-    padding: 10px;
+    padding: 1rem;
 
     & #infoForm {
         display: grid;
@@ -9,21 +9,23 @@
             justify-content: flex-start;
             align-items: center;
             border-radius: 8px;
-            background-color: #f0e2c9;
-            color: #a62f03;
-            margin: 0;
+            background-color: $color-white;
+            color: $color-red;
+            margin: 0 0 2px 0;
             padding: 10px;
-            border: 3px outset #f0e2c9;
+            border: 3px outset $color-white;
 
             & label {
+                font-size: $base-font-size;
                 font-weight: 800;
-                margin-right: 10px;
+                margin-right: 1rem;
             }
 
             & input {
+                font-size: $small-font-size;
                 border: none;
                 background: transparent;
-                color: #a62f03;
+                color: $color-red;
                 font-weight: 500;
 
                 flex: 1;

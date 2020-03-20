@@ -1,9 +1,12 @@
 import React from 'react';
 import moment from 'moment';
 
+import { setName } from './utilities';
+
 const BuildEyeCards = ({ eye }) => {
     const filename = eye.pic.name;
-    const name = filename.substr(0, filename.lastIndexOf('.')) || filename;
+    const name = setName(filename);
+
     const date = eye.info.date;
     const formatDate = moment(date).format('LLLL');
 
