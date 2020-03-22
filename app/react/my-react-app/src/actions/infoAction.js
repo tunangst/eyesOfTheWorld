@@ -3,6 +3,8 @@ import store from '../store';
 // import axios from 'axios';
 import EXIF from '../../node_modules/exif-js/exif';
 
+import { setAlert } from './statesAction';
+
 import {
     calculateLatLong,
     getId,
@@ -69,6 +71,26 @@ export const handleFindInfo = props => async dispatch => {
         let latitude;
         let longitude;
         const tags = EXIF.getAllTags(img1);
+        console.log(tags);
+        if (!tags.GPSLatitude || !tags.GPSLatitude) {
+            dispatch(
+                setAlert('Eyes require a GPS location to submit', 'error')
+            );
+            dispatch({
+                type: SET_LOADING,
+                payload: false
+            });
+            dispatch({
+                type: SUBMIT_READY_NO,
+                payload: false
+            });
+            dispatch({
+                type: IMAGE_READY_NO,
+                payload: false
+            });
+            return;
+        }
+        // debugger;
         //~~~~~~~~~~~~~~lat-lon start~~~~~~~~~~~~~~~~~~~~~~
         const lat = tags.GPSLatitude;
         const latDegree = lat[0].numerator / lat[0].denominator;
@@ -96,45 +118,49 @@ export const handleFindInfo = props => async dispatch => {
             GPSLongitude[2],
             GPSLongitude[3]
         );
-        const zoom = tags.DigitalZoomRation;
-        const zoomCalc = zoom.numerator / zoom.denominator;
-        const aperture = tags.ApertureValue;
-        const apertureCalc = aperture.numerator / aperture.denominator;
-        const exposure = tags.ExposureTime;
-        const exposureCalc = exposure.numerator / exposure.denominator;
+        const zoom = tags.DigitalZoomRation || null;
+        const zoomCalc = zoom ? zoom.numerator / zoom.denominator : null;
+        const aperture = tags.ApertureValue || null;
+        const apertureCalc = aperture
+            ? aperture.numerator / aperture.denominator
+            : null;
+        const exposure = tags.ExposureTime || null;
+        const exposureCalc = exposure
+            ? exposure.numerator / exposure.denominator
+            : null;
 
         enterInfo = {
             latitude: latitude,
             longitude: longitude,
-            camera: tags.Model,
-            date: tags.DateTimeOriginal,
-            width: tags.PixelXDimension,
-            height: tags.PixelYDimension,
-            aperture: apertureCalc,
-            shutter: tags.ShutterSpeed,
-            iso: tags.ISOSpeedRatings,
-            exposure: exposureCalc,
-            light: tags.LightSource,
-            flash: tags.Flash,
-            flashStrength: tags.FlashEnergy,
-            contrast: tags.Contrast,
-            saturation: tags.Saturation,
-            sharpness: tags.Sharpness,
-            brightness: tags.BrightnessValue,
-            whiteBalance: tags.WhiteBalance,
-            zoom: zoomCalc,
-            artist: tags.Artist,
-            software: tags.Software,
-            copyright: tags.Copyright
+            camera: tags.Model && tags.Model,
+            date: tags.DateTimeOriginal && tags.DateTimeOriginal,
+            width: tags.PixelXDimension && tags.PixelXDimension,
+            height: tags.PixelYDimension && tags.PixelYDimension,
+            aperture: apertureCalc && apertureCalc,
+            shutter: tags.ShutterSpeed && tags.ShutterSpeed,
+            iso: tags.ISOSpeedRatings && tags.ISOSpeedRatings,
+            exposure: exposureCalc && exposureCalc,
+            light: tags.LightSource && tags.LightSource,
+            flash: tags.Flash && tags.Flash,
+            flashStrength: tags.FlashEnergy && tags.FlashEnergy,
+            contrast: tags.Contrast && tags.Contrast,
+            saturation: tags.Saturation && tags.Saturation,
+            sharpness: tags.Sharpness && tags.Sharpness,
+            brightness: tags.BrightnessValue && tags.BrightnessValue,
+            whiteBalance: tags.WhiteBalance && tags.WhiteBalance,
+            zoom: zoomCalc && zoomCalc,
+            artist: tags.Artist && tags.Artist,
+            software: tags.Software && tags.Software,
+            copyright: tags.Copyright && tags.Copyright
         };
-    });
-    dispatch({
-        type: SET_INFO,
-        payload: enterInfo
-    });
-    dispatch({
-        type: SUBMIT_READY_YES,
-        payload: true
+        dispatch({
+            type: SET_INFO,
+            payload: enterInfo
+        });
+        dispatch({
+            type: SUBMIT_READY_YES,
+            payload: true
+        });
     });
     dispatch({
         type: SET_LOADING,
