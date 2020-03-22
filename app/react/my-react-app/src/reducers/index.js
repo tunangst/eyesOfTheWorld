@@ -18,8 +18,13 @@ export default combineReducers({
 
 // {
 //     user: {
-//         username: '';
-//     },
+//          userId: '',
+//          userToken: localStorage.getItem('userToken'),
+//          isAuthenticated: false,
+//          userObj: {},
+//          selectedUserEyes: [],
+//          selectedUserObj: {}
+//      },
 //     states: {
 //         imgSrc: '',
 //         imgId: '',

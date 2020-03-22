@@ -11,6 +11,7 @@ import {
 } from '../actions/types';
 
 import { setAlert } from './statesAction';
+import { getUserAndEyes } from './userAction';
 
 export const getAllEyes = () => async dispatch => {
     try {
@@ -125,6 +126,7 @@ export const submitEye = (event, userId, lat, lon) => async dispatch => {
         dispatch({
             type: RESET_IMG
         });
+        dispatch(setAlert('Thank you. Eye has been placed', 'success'));
     } catch (error) {
         console.log(error.response.data.msg);
         error.response.data.msg &&
@@ -134,4 +136,26 @@ export const submitEye = (event, userId, lat, lon) => async dispatch => {
         type: SET_LOADING,
         payload: false
     });
+};
+export const removeEye = (id, url, userId) => async dispatch => {
+    if (window.confirm('Are you sure? This removal can NOT be undone!')) {
+        try {
+            const eyeResponse = await axios.delete(`/api/eyes/${id}`);
+            eyeResponse && dispatch(setAlert(eyeResponse.data.msg, 'success'));
+
+            const split = url.split('.com/');
+            const split2 = split[split.length - 1];
+            const keyName = split2.split('.jpg')[0];
+
+            const imgResponse = await axios.delete(`/api/image/${keyName}`);
+
+            imgResponse &&
+                dispatch(setAlert(imgResponse.data.msg, imgResponse.data.type));
+            dispatch(getUserAndEyes(userId));
+        } catch (error) {
+            console.log(error);
+            console.log(error.message);
+            dispatch(setAlert(error.message, 'error'));
+        }
+    }
 };

@@ -15,7 +15,7 @@ const Alert = ({ states: { alerts }, removeAlert }) => {
                     onClick={() => removeAlert(alert.id)}
                 >
                     <h3>{alert.msg}</h3>
-                    <p>X</p>
+                    <p className='remove'>X</p>
                 </div>
             )
         );

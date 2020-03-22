@@ -39,11 +39,14 @@ const SuggestionBar = props => {
             <svg className='icon' onClick={() => toggleSuggestion()}>
                 <use href={`${icons}#up`}></use>
             </svg>
-            {suggestedEyes}
+            <div className='suggestionContainer'>{suggestedEyes}</div>
         </aside>
     ) : (
         <aside className='suggestionClosed'>
-            <svg className='icon' onClick={() => toggleSuggestion()}>
+            <svg
+                className='icon'
+                onClick={eyes.length > 0 ? () => toggleSuggestion() : null}
+            >
                 <use href={`${icons}#down`}></use>
             </svg>
         </aside>

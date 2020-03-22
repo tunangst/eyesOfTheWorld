@@ -26,6 +26,8 @@ const initialInfo = {
 };
 const initialEye = {
     url: '',
+    user: '',
+    uploadDate: '',
     pic: {
         name: '',
         size: '',
@@ -42,6 +44,8 @@ const eye = (state = initialEye, action) => {
             return {
                 ...state,
                 url: payload.url,
+                user: payload.user,
+                uploadDate: payload.uploadDate,
                 pic: payload.pic,
                 info: payload.info
             };

@@ -11,6 +11,7 @@ import {
 } from '../actions/types';
 
 const initialUser = {
+    userId: '',
     userToken: localStorage.getItem('userToken'),
     isAuthenticated: false,
     userObj: {},

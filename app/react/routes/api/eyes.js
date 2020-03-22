@@ -35,6 +35,25 @@ router.get('/:id', async (request, response) => {
         console.error(error.message);
     }
 });
+// api/eyes/id
+router.delete('/:id', async (request, response) => {
+    const id = request.params.id;
+
+    try {
+        //find eye
+        const eye = await Eye.findById(id);
+        //remove eye
+        if (!eye) {
+            return response.status(404).json({ msg: 'Error Eye not found' });
+        }
+        // add authentication here backend
+        await eye.remove({ _id: id });
+        response.json({ msg: 'Eye removed :^[' });
+    } catch (error) {
+        console.log(error.message);
+        response.status(500).send('Server Error, Eye failed to remove');
+    }
+});
 
 router.post('/upload', upload.none(), async (request, response) => {
     try {
