@@ -81,6 +81,11 @@
     & .imgBox {
         flex: 1;
         padding: 1rem;
+        overflow: hidden;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 
         .img1 {
             box-shadow: 3px 3px 5px rgba(5, 5, 5, 0.4);
@@ -88,6 +93,7 @@
             object-fit: cover;
             max-width: 100%;
             height: auto;
+            image-orientation: from-image;
         }
     }
 }

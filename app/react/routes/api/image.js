@@ -18,7 +18,8 @@ const s3 = new aws.S3();
 const upload = require('../../config/multerImageUpload');
 const singleUpload = upload.single('insertedImg');
 
-router.post('/', async (request, response) => {
+router.post('/:bucketId', async (request, response) => {
+    console.log('image post where singleUpload is called');
     singleUpload(request, response, error => {
         error &&
             console.log(error.message) &&
@@ -28,28 +29,27 @@ router.post('/', async (request, response) => {
 });
 
 // api/image/:keyName
-router.delete('/:key', async (request, response) => {
-    const key = request.params.key;
-    const keyName = `${key}.jpg`;
-    console.log(keyName);
+router.delete('/:userEmail/:keyName', async (request, response) => {
+    const userEmail = request.params.userEmail;
+    console.log(userEmail);
+    const key = `${request.params.keyName}.jpg`;
+    console.log(`^^^^^^^^^^^^^^^^^^^delete params^^^^^^^^^^^^^^`);
 
     try {
         const params = {
             Bucket: bucket,
             Delete: {
-                Objects: [{ Key: keyName }]
+                Objects: [{ Key: `${userEmail}/${key}` }]
             }
         };
 
         s3.deleteObjects(params, function(err, data) {
             if (err) {
                 // an error occurred
-                response
-                    .status(500)
-                    .json({
-                        msg: 'Server Error, Eye failed to remove',
-                        type: 'error'
-                    });
+                response.status(500).json({
+                    msg: 'Server Error, Eye failed to remove',
+                    type: 'error'
+                });
             }
             response
                 .status(200)

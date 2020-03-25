@@ -1,4 +1,16 @@
 export const calculateLatLong = (degrees, minutes, seconds, direction) => {
+    if (Number.isNaN(degrees)) {
+        console.log('isNaN');
+        degrees = 0;
+    }
+    if (Number.isNaN(minutes)) {
+        console.log('isNaN');
+        minutes = 0;
+    }
+    if (Number.isNaN(seconds)) {
+        console.log('isNaN');
+        seconds = 0;
+    }
     let conversion = degrees + minutes / 60 + seconds / 3600;
     if (direction === 'S' || direction === 'W') {
         conversion *= -1;

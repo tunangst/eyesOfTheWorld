@@ -56,6 +56,7 @@ router.delete('/:id', async (request, response) => {
 });
 
 router.post('/upload', upload.none(), async (request, response) => {
+    console.log('in upload');
     try {
         const {
             latitude,

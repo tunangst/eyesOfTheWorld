@@ -1,13 +1,15 @@
 import React from 'react';
 import moment from 'moment';
 
-import { calculateLength } from './utilities';
+// import { calculateLength } from './utilities';
 
 const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
     let inputField;
     let size;
 
-    if (value && value !== '' && value !== undefined) {
+    if (!value) return null;
+
+    if (value && value !== '' && value !== undefined && value !== null) {
         if (typeof value === 'number') {
             size = value.toString().length;
         } else {
@@ -81,7 +83,7 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
                         name='date'
                         type='text'
                         value={formattedDate}
-                        style={calculateLength(size)}
+                        // style={calculateLength(size)}
                     />
                 </fieldset>
             );

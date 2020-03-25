@@ -60,6 +60,21 @@ export const handleFileChange = targetFileLocation => async dispatch => {
 
 export const handleFindInfo = props => async dispatch => {
     const imgId = store.getState().states.imgId;
+    const failed = msg => dispatch => {
+        dispatch(setAlert(msg, 'error'));
+        dispatch({
+            type: SET_LOADING,
+            payload: false
+        });
+        dispatch({
+            type: SUBMIT_READY_NO,
+            payload: false
+        });
+        dispatch({
+            type: IMAGE_READY_NO,
+            payload: false
+        });
+    };
 
     dispatch({
         type: SET_LOADING,
@@ -72,22 +87,14 @@ export const handleFindInfo = props => async dispatch => {
         let longitude;
         const tags = EXIF.getAllTags(img1);
         console.log(tags);
-        if (!tags.GPSLatitude || !tags.GPSLatitude) {
+        if (tags.PixelXDimension < 200 || tags.PixelYDimension < 200) {
             dispatch(
-                setAlert('Eyes require a GPS location to submit', 'error')
+                failed('Eye X or Y dimensions are too small, minimum of 200px')
             );
-            dispatch({
-                type: SET_LOADING,
-                payload: false
-            });
-            dispatch({
-                type: SUBMIT_READY_NO,
-                payload: false
-            });
-            dispatch({
-                type: IMAGE_READY_NO,
-                payload: false
-            });
+            return;
+        }
+        if (!tags.GPSLatitude || !tags.GPSLatitude) {
+            dispatch(failed('Eyes require a GPS location to submit'));
             return;
         }
         // debugger;
@@ -96,6 +103,7 @@ export const handleFindInfo = props => async dispatch => {
         const latDegree = lat[0].numerator / lat[0].denominator;
         const latMinute = lat[1].numerator / lat[1].denominator;
         const latSecond = lat[2].numerator / lat[2].denominator;
+        // const latSecond = lat[2].numerator / lat[2].denominator;
         const latDirection = tags.GPSLatitudeRef;
         const GPSLatitude = [latDegree, latMinute, latSecond, latDirection];
 
@@ -103,6 +111,7 @@ export const handleFindInfo = props => async dispatch => {
         const lonDegree = lon[0].numerator / lon[0].denominator;
         const lonMinute = lon[1].numerator / lon[1].denominator;
         const lonSecond = lon[2].numerator / lon[2].denominator;
+        // const lonSecond = lon[2].numerator / lon[2].denominator;
         const lonDirection = tags.GPSLongitudeRef;
         const GPSLongitude = [lonDegree, lonMinute, lonSecond, lonDirection];
 
@@ -120,18 +129,23 @@ export const handleFindInfo = props => async dispatch => {
         );
         const zoom = tags.DigitalZoomRation || null;
         const zoomCalc = zoom ? zoom.numerator / zoom.denominator : null;
-        const aperture = tags.ApertureValue || null;
-        const apertureCalc = aperture
-            ? aperture.numerator / aperture.denominator
+        const fNumber = tags.FNumber || null;
+        const apertureCalc = fNumber
+            ? `f/${fNumber.numerator / fNumber.denominator}`
             : null;
         const exposure = tags.ExposureTime || null;
         const exposureCalc = exposure
             ? exposure.numerator / exposure.denominator
             : null;
+        const altitude = tags.GPSAltitude || null;
+        const altitudeCalc = altitude
+            ? altitude.numerator / altitude.denominator
+            : null;
 
         enterInfo = {
             latitude: latitude,
             longitude: longitude,
+            altitude: altitudeCalc,
             camera: tags.Model && tags.Model,
             date: tags.DateTimeOriginal && tags.DateTimeOriginal,
             width: tags.PixelXDimension && tags.PixelXDimension,
@@ -153,6 +167,9 @@ export const handleFindInfo = props => async dispatch => {
             software: tags.Software && tags.Software,
             copyright: tags.Copyright && tags.Copyright
         };
+        // console.log(zoom, 'zoom');
+        // console.log(zoomCalc, 'zoomCalc');
+        console.log(enterInfo);
         dispatch({
             type: SET_INFO,
             payload: enterInfo

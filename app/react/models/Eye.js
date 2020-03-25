@@ -21,7 +21,7 @@ const EyeSchema = new Schema({
         date: { type: Date, required: true },
         width: { type: Number },
         height: { type: Number },
-        aperture: { type: Number },
+        aperture: { type: String },
         shutter: { type: Number },
         iso: { type: Number },
         exposure: { type: Number },

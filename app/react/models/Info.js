@@ -4,11 +4,12 @@ const Schema = mongoose.Schema;
 const InfoSchema = new Schema({
     latitude: { type: Number, required: true },
     longitude: { type: Number, required: true },
+    altitude: { type: Number },
     camera: { type: String },
     date: { type: Date },
     width: { type: Number },
     height: { type: Number },
-    aperture: { type: Number },
+    aperture: { type: String },
     shutter: { type: Number },
     iso: { type: Number },
     exposure: { type: Number },

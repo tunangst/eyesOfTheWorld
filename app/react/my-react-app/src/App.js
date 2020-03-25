@@ -17,6 +17,9 @@ import Login from './layout/LoginModal';
 import SuggestionBar from './layout/SuggestionBar';
 import Alert from './layout/Alert';
 
+import PrivateRoute from './extra/utilityFunctions/PrivateRoute';
+import ScreenBlock from './layout/ScreenBlock';
+
 import store from './store';
 
 const App = () => {
@@ -27,6 +30,7 @@ const App = () => {
         <Provider store={store}>
             <Router>
                 <div id='myArea'>
+                    <ScreenBlock />
                     <Nav />
                     <Alert />
                     <SuggestionBar />
@@ -34,7 +38,7 @@ const App = () => {
                         <Route exact path='/' component={LandingPage} />
                         <Route exact path='/register' component={Register} />
                         <Route exact path='/login' component={Login} />
-                        <Route path='/upload' component={AddPage} />
+                        <PrivateRoute path='/upload' component={AddPage} />
                         <Route path='/eyes/user/:user' component={UserEyes} />
                         <Route path='/eyes/:id' component={EyePage} />
                     </Switch>

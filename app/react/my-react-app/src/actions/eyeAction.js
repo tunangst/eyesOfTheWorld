@@ -7,11 +7,12 @@ import {
     BUILD_EYE,
     CLEAR_EYE,
     CLEAR_INFO,
-    RESET_IMG
+    RESET_IMG,
+    SUBMIT_READY_NO
 } from '../actions/types';
 
 import { setAlert } from './statesAction';
-import { getUserAndEyes } from './userAction';
+import { getUserAndEyes, getUser } from './userAction';
 
 export const getAllEyes = () => async dispatch => {
     try {
@@ -57,9 +58,17 @@ export const clearEye = () => async dispatch => {
     });
 };
 
-export const submitEye = (event, userId, lat, lon) => async dispatch => {
+export const submitEye = (event, userObj, lat, lon) => async dispatch => {
+    console.log('userId ', userObj._id);
+    console.log('userEmail ', userObj.email);
     event.preventDefault();
-    if (!userId) {
+    dispatch({
+        type: SUBMIT_READY_NO,
+        payload: false
+    });
+    console.log(`--90--99-`);
+    // console.log(userEmail);
+    if (!userObj.email) {
         dispatch(setAlert('Not logged in', 'error'));
         return;
     }
@@ -94,9 +103,15 @@ export const submitEye = (event, userId, lat, lon) => async dispatch => {
         //|||||||||||||||||||||||||||| if already posted error will throw ||||||||
         const picForm = document.querySelector(`#picForm`);
         let imageBody = new FormData(picForm);
+        const bucketId = userObj.email;
+        imageBody.append('bucketName', bucketId);
 
         //||||||||||||||||||||||||||| send image post ||||||||||||||||||
-        const img = await axios.post('/api/image', imageBody, config);
+        const img = await axios.post(
+            `/api/image/${bucketId}`,
+            imageBody,
+            config
+        );
         const imgUrl = img.data.imageUrl;
 
         let picCollection = [...imageBody];
@@ -111,7 +126,7 @@ export const submitEye = (event, userId, lat, lon) => async dispatch => {
         infoBody.append('picSize', fileInfo.size);
         infoBody.append('picType', fileInfo.type);
         infoBody.append('url', imgUrl);
-        infoBody.append('user', userId);
+        infoBody.append('user', userObj._id);
         //|||||||||||||||||||||||||||||||| send eye post ||||||||||||||||
         const eye = await axios.post('/api/eyes/upload', infoBody, config);
 
@@ -130,7 +145,7 @@ export const submitEye = (event, userId, lat, lon) => async dispatch => {
     } catch (error) {
         console.log(error.response.data.msg);
         error.response.data.msg &&
-            dispatch(setAlert(error.response.data.msg, 'error'));
+            dispatch(setAlert(error.response.data.msg || 'Error', 'error'));
     }
     dispatch({
         type: SET_LOADING,
@@ -138,6 +153,10 @@ export const submitEye = (event, userId, lat, lon) => async dispatch => {
     });
 };
 export const removeEye = (id, url, userId) => async dispatch => {
+    dispatch({
+        type: SET_LOADING,
+        payload: true
+    });
     if (window.confirm('Are you sure? This removal can NOT be undone!')) {
         try {
             const eyeResponse = await axios.delete(`/api/eyes/${id}`);
@@ -146,8 +165,17 @@ export const removeEye = (id, url, userId) => async dispatch => {
             const split = url.split('.com/');
             const split2 = split[split.length - 1];
             const keyName = split2.split('.jpg')[0];
+            //find user
+            const userData = await dispatch(getUser(userId));
+            console.log(userData);
+            console.log('^^^^^^^^^^^^^^^^userData^^^^^^^^^^^^^^');
 
-            const imgResponse = await axios.delete(`/api/image/${keyName}`);
+            // const bucketAndKey = `${userData.email}/${keyName}`;
+            // console.log(bucketAndKey);
+
+            const imgResponse = await axios.delete(
+                `/api/image/${userData.email}/${keyName}`
+            );
 
             imgResponse &&
                 dispatch(setAlert(imgResponse.data.msg, imgResponse.data.type));
@@ -157,5 +185,9 @@ export const removeEye = (id, url, userId) => async dispatch => {
             console.log(error.message);
             dispatch(setAlert(error.message, 'error'));
         }
+        dispatch({
+            type: SET_LOADING,
+            payload: false
+        });
     }
 };

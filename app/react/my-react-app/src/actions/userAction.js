@@ -103,6 +103,14 @@ export const getUserAndEyes = userId => async dispatch => {
         payload: foundUserEyes.data
     });
 };
+export const getUser = userId => async dispatch => {
+    const foundUser = await axios.get(`/api/user/${userId}`);
+    dispatch({
+        type: FIND_USER,
+        payload: foundUser.data
+    });
+    return foundUser.data;
+};
 
 export const logout = () => dispatch => {
     dispatch({ type: CLEAR_PROFILE });

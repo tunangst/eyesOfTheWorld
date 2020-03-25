@@ -5,7 +5,7 @@ const config = require('config');
 const secretKey = config.get('secretAccessKey');
 const accessKey = config.get('accessKeyId');
 const region = config.get('region');
-const bucket = config.get('AWSBucketName');
+const s3Bucket = config.get('AWSBucketName');
 
 aws.config.update({
     secretAccessKey: secretKey,
@@ -15,6 +15,7 @@ aws.config.update({
 const s3 = new aws.S3();
 
 const fileFilter = (req, file, cb) => {
+    console.log(file);
     if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
         cb(null, true);
     } else {
@@ -24,12 +25,23 @@ const fileFilter = (req, file, cb) => {
 
 const multerS3Storage = multerS3({
     s3: s3,
-    bucket: bucket,
+    bucket: function(req, file, cb) {
+        console.log('inside bucketname !!!!!!!!!!!!!!!!!!!!!!!!!!');
+        const bucketName = `${s3Bucket}/${req.params.bucketId}` || s3Bucket;
+        console.log(bucketName);
+        console.log(file);
+        // let bucketName = s3Bucket;
+
+        console.log(`multer storage file`);
+
+        cb(null, bucketName);
+    },
     acl: 'public-read',
     contentType: multerS3.AUTO_CONTENT_TYPE,
     metadata: function(req, file, cb) {
+        console.log(file.fieldname);
         // console.log(req);
-        console.log(file);
+        // console.log(file);
         // cb(null, { fieldName: 'testing_meta_data' });
         cb(null, { fieldName: file.fieldname });
     },
@@ -45,6 +57,29 @@ const multerS3Storage = multerS3({
         );
     }
 });
+// const multerS3Storage = multerS3({
+//     s3: s3,
+//     bucket: bucket,
+//     acl: 'public-read',
+//     contentType: multerS3.AUTO_CONTENT_TYPE,
+//     metadata: function(req, file, cb) {
+//         // console.log(req);
+//         console.log(file);
+//         // cb(null, { fieldName: 'testing_meta_data' });
+//         cb(null, { fieldName: file.fieldname });
+//     },
+//     key: function(req, file, cb) {
+//         cb(
+//             null,
+//             new Date()
+//                 .toISOString()
+//                 .slice(0, 10)
+//                 .replace(/-/g, '~') +
+//                 '~~~~' +
+//                 file.originalname
+//         );
+//     }
+// });
 
 const upload = multer({
     storage: multerS3Storage,
