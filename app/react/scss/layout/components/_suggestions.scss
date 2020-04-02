@@ -8,8 +8,8 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    position: absolute;
-    top: 10rem;
+    position: relative;
+    // top: 10rem;
 
     // transform: translate3d(0, 0, 0)
 
@@ -57,7 +57,7 @@
 
 .suggestionClosed {
     z-index: 3;
-    height: 10rem;
+    min-height: 10rem;
     // width: 10rem;
     background-color: transparent;
     position: relative;

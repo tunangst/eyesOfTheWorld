@@ -120,8 +120,7 @@ Grey dark 3: #999
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  position: absolute;
-  top: 10rem; }
+  position: relative; }
   .suggestionOpen .icon {
     align-self: flex-start;
     cursor: pointer;
@@ -153,7 +152,7 @@ Grey dark 3: #999
 
 .suggestionClosed {
   z-index: 3;
-  height: 10rem;
+  min-height: 10rem;
   background-color: transparent;
   position: relative;
   top: 10rem;
