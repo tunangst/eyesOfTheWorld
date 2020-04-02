@@ -9,7 +9,9 @@ import {
     SET_ALERT,
     REMOVE_ALERT,
     RESET_IMG,
-    CLOSE_THANKS
+    CLOSE_THANKS,
+    SUGGEST_LOCAL_TRUE,
+    SUGGEST_LOCAL_FALSE
 } from '../actions/types';
 
 const initialStates = {
@@ -19,6 +21,7 @@ const initialStates = {
     submitReady: false,
     loading: false,
     alerts: [],
+    suggestLocal: false,
     needThanks: true
 };
 
@@ -74,6 +77,16 @@ const states = (state = initialStates, action) => {
             return {
                 ...state,
                 needThanks: false
+            };
+        case SUGGEST_LOCAL_TRUE:
+            return {
+                ...state,
+                suggestLocal: true
+            };
+        case SUGGEST_LOCAL_FALSE:
+            return {
+                ...state,
+                suggestLocal: false
             };
         default:
             return state;

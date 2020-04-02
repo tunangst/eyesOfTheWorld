@@ -8,6 +8,13 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    position: absolute;
+    top: 10rem;
+
+    // transform: translate3d(0, 0, 0)
+
+    // animation: suggestionEnter 2s ease-out;
+    // animation: suggestionBarClose 2s ease-out;
 
     & .icon {
         align-self: flex-start;
@@ -39,6 +46,7 @@
             overflow: hidden;
 
             & img {
+                color: $color-white;
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
@@ -52,8 +60,9 @@
     height: 10rem;
     // width: 10rem;
     background-color: transparent;
-    position: absolute;
+    position: relative;
     top: 10rem;
+    margin-top: -10rem;
 
     display: flex;
     // justify-content: center;

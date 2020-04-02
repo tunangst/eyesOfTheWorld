@@ -17,6 +17,7 @@ const EyeSchema = new Schema({
     info: {
         latitude: { type: Number, required: true },
         longitude: { type: Number, required: true },
+        altitude: { type: Number },
         camera: { type: String },
         date: { type: Date, required: true },
         width: { type: Number },

@@ -18,8 +18,10 @@
         }
 
         & .infoBox {
+            flex: 1;
             padding: 0 2rem;
             background-color: $color-white;
+            overflow-wrap: anywhere;
 
             display: flex;
             flex-direction: column;

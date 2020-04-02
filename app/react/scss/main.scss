@@ -12,6 +12,8 @@
 @import 'layout/landing';
 @import 'layout/screenBlock';
 
+@import 'myArea';
+
 @import 'layout/addPage/addPage';
 @import 'layout/addPage/sections/mapSection';
 @import 'layout/addPage/sections/imageSection';
@@ -19,3 +21,12 @@
 
 @import 'layout/eyePage';
 @import 'layout/userEyes';
+
+// main {
+//     top: 10rem;
+//     position: relative;
+// }
+
+// .plusSize {
+//     top: 20rem;
+// }

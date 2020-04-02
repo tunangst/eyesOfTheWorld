@@ -18,6 +18,8 @@ export const SET_ALERT = 'SET_ALERT';
 export const REMOVE_ALERT = 'REMOVE_ALERT';
 export const RESET_IMG = 'RESET_IMG';
 export const CLOSE_THANKS = 'CLOSE_THANKS';
+export const SUGGEST_LOCAL_FALSE = 'SUGGEST_LOCAL_FALSE';
+export const SUGGEST_LOCAL_TRUE = 'SUGGEST_LOCAL_TRUE';
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ states
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ info

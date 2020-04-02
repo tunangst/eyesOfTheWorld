@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
+import { setLocal } from '../actions/statesAction';
 import { findEye } from '../actions/eyeAction';
 import BuildInputField from '../extra/utilityFunctions/BuildInputField';
-import SuggestionBar from '../layout/SuggestionBar';
+// import SuggestionBar from '../layout/SuggestionBar';
 import { setName } from '../extra/utilityFunctions/utilities';
 
 const EyePage = props => {
-    const { eye, eyes, findEye } = props;
+    const { eye, eyes, findEye, setLocal } = props;
 
     const id = props.match.params.id;
     console.log(id);
@@ -20,6 +21,7 @@ const EyePage = props => {
 
     useEffect(() => {
         console.log('running useEffect in eyepage');
+        setLocal(true);
         findEye(id);
     }, [findEye, id]);
 
@@ -77,4 +79,4 @@ const mapStateToProps = state => ({
     eyes: state.eyes
 });
 
-export default connect(mapStateToProps, { findEye })(EyePage);
+export default connect(mapStateToProps, { findEye, setLocal })(EyePage);

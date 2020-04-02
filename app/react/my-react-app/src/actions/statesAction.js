@@ -9,7 +9,9 @@ import {
     IMAGE_READY_NO,
     SET_ALERT,
     REMOVE_ALERT,
-    CLOSE_THANKS
+    CLOSE_THANKS,
+    SUGGEST_LOCAL_TRUE,
+    SUGGEST_LOCAL_FALSE
 } from './types';
 
 export const setLoading = toggle => async dispatch => {
@@ -22,7 +24,7 @@ export const setLoading = toggle => async dispatch => {
 export const handleSubmitReady = toggle => async dispatch => {
     console.log(`calling handleSubmitReady`);
     if (toggle) {
-        setLoading(false);
+        dispatch(setLoading(false));
         dispatch({
             type: SUBMIT_READY_YES,
             payload: true
@@ -77,4 +79,14 @@ export const setThanks = (msg, alertType) => async dispatch => {
     dispatch({
         type: CLOSE_THANKS
     });
+};
+
+export const setLocal = trueOrFalse => async dispatch => {
+    trueOrFalse
+        ? dispatch({
+              type: SUGGEST_LOCAL_TRUE
+          })
+        : dispatch({
+              type: SUGGEST_LOCAL_FALSE
+          });
 };

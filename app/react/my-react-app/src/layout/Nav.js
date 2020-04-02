@@ -38,10 +38,10 @@ const Nav = props => {
         logout();
         return <Redirect to='/' />;
     };
-    let progressBar;
-    loading
-        ? (progressBar = <div className='progressBar loading'></div>)
-        : (progressBar = <div className='progressBar'></div>);
+    // let progressBar;
+    // loading
+    //     ? (progressBar = <div className='progressBar loading'></div>)
+    //     : (progressBar = <div className='progressBar'></div>);
     let logoToggle;
     loading
         ? (logoToggle = (

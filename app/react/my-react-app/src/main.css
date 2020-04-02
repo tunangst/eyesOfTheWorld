@@ -49,6 +49,19 @@ Grey dark 3: #999
 .spinning {
   animation: spin 1s linear infinite; }
 
+@keyframes suggestionEnter {
+  from {
+    transform: translate3d(0, -100%, 0); }
+  to {
+    transform: translate3d(0, 0, 0); } }
+
+.CSSTransitionSuggestions-enter {
+  opacity: 0.01; }
+
+.CSSTransitionSuggestions-enter .suggestionsCSS-enter-active {
+  opacity: 1;
+  transition: all 5s ease-out; }
+
 .submitBtn {
   height: 6rem;
   z-index: 2;
@@ -106,7 +119,9 @@ Grey dark 3: #999
   box-shadow: 5px 0 5px rgba(5, 5, 5, 0.5);
   display: flex;
   align-items: center;
-  justify-content: flex-start; }
+  justify-content: flex-start;
+  position: absolute;
+  top: 10rem; }
   .suggestionOpen .icon {
     align-self: flex-start;
     cursor: pointer;
@@ -131,6 +146,7 @@ Grey dark 3: #999
       box-shadow: 3px 3px 5px rgba(5, 5, 5, 0.25);
       overflow: hidden; }
       .suggestionOpen .suggestionContainer .suggestedEye img {
+        color: #f0e2c9;
         width: 100%;
         height: 100%;
         object-fit: cover; }
@@ -139,8 +155,9 @@ Grey dark 3: #999
   z-index: 3;
   height: 10rem;
   background-color: transparent;
-  position: absolute;
+  position: relative;
   top: 10rem;
+  margin-top: -10rem;
   display: flex; }
   .suggestionClosed .icon {
     cursor: pointer;
@@ -197,7 +214,8 @@ Grey dark 3: #999
   color: #a62f03;
   font-family: 'Alice', serif;
   box-shadow: 0px 5px 20px rgba(5, 5, 5, 0.5);
-  position: relative; }
+  position: absolute;
+  width: 100%; }
   .nav .title {
     z-index: 4;
     font-size: 4rem; }
@@ -235,8 +253,7 @@ Grey dark 3: #999
       background-color: #46bcec; }
 
 .landing {
-  height: 100%;
-  width: 100%; }
+  flex: 1; }
   .landing .worldMap {
     width: 100%;
     height: 100%; }
@@ -247,6 +264,10 @@ Grey dark 3: #999
   height: 100vh;
   width: 100vw;
   background-color: rgba(240, 226, 201, 0.8); }
+
+#myArea {
+  margin-top: 10rem;
+  display: relative; }
 
 .add {
   flex: 1;
@@ -384,8 +405,10 @@ Grey dark 3: #999
       width: 100%;
       height: auto; }
     .eyeContainer .eye .infoBox {
+      flex: 1;
       padding: 0 2rem;
       background-color: #f0e2c9;
+      overflow-wrap: anywhere;
       display: flex;
       flex-direction: column; }
       .eyeContainer .eye .infoBox h2 {
@@ -429,7 +452,9 @@ Grey dark 3: #999
   flex: 1;
   background-color: #333;
   display: flex;
-  flex-wrap: wrap; }
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center; }
   .userEyes .card {
     border: 1px solid #a62f03;
     text-align: center;

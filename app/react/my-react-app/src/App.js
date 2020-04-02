@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
+
 // import logo from './logo.svg';
 import './App.css';
 
@@ -29,17 +30,20 @@ const App = () => {
     return (
         <Provider store={store}>
             <Router>
+                <ScreenBlock />
+                <Nav />
+                <Alert />
                 <div id='myArea'>
-                    <ScreenBlock />
-                    <Nav />
-                    <Alert />
                     <SuggestionBar />
                     <Switch>
                         <Route exact path='/' component={LandingPage} />
                         <Route exact path='/register' component={Register} />
                         <Route exact path='/login' component={Login} />
                         <PrivateRoute path='/upload' component={AddPage} />
-                        <Route path='/eyes/user/:user' component={UserEyes} />
+                        <PrivateRoute
+                            path='/eyes/user/:user'
+                            component={UserEyes}
+                        />
                         <Route path='/eyes/:id' component={EyePage} />
                     </Switch>
                 </div>

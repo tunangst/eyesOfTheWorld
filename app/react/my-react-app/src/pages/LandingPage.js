@@ -6,7 +6,7 @@ import MapComponent from '../extra/googleMaps/MapComponent';
 // import SuggestionBar from './SuggestionBar';
 import key from '../extra/hiddenFolder/hiddenFile';
 
-import { setThanks } from '../actions/statesAction';
+import { setThanks, setLocal } from '../actions/statesAction';
 import { getAllEyes } from '../actions/eyeAction';
 
 const LandingPage = props => {
@@ -14,6 +14,7 @@ const LandingPage = props => {
         eyes,
         getAllEyes,
         setThanks,
+        setLocal,
         states: { needThanks }
     } = props;
     const thankYouMessage =
@@ -21,6 +22,7 @@ const LandingPage = props => {
 
     useEffect(() => {
         console.log('running useEffect in landingpage');
+        setLocal(false);
         needThanks === true && setThanks(thankYouMessage, 'success');
         eyes.length < 1 && getAllEyes();
     }, [eyes.length, getAllEyes]);
@@ -45,4 +47,6 @@ const mapStateToProps = state => ({
     states: state.states
 });
 
-export default connect(mapStateToProps, { getAllEyes, setThanks })(LandingPage);
+export default connect(mapStateToProps, { getAllEyes, setThanks, setLocal })(
+    LandingPage
+);

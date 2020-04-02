@@ -6,16 +6,16 @@ import ImageSection from './ImageSection';
 import InfoSection from './InfoSection';
 
 import { submitEye } from '../../actions/eyeAction';
+import { setLoading } from '../../actions/statesAction';
 
 import {
-    handleFindInfo,
-    handleFileDrop,
-    handleFileChange
+    handleFindInfo
+    // handleFileDrop,
+    // handleFileChange
 } from '../../actions/infoAction';
-import {
-    handleImageReady,
-    handleSubmitReady
-} from '../../actions/statesAction';
+import // handleImageReady,
+// handleSubmitReady
+'../../actions/statesAction';
 
 const AddPage = props => {
     const {
@@ -26,6 +26,7 @@ const AddPage = props => {
         handleFileDrop,
         handleFileChange,
         handleImageReady,
+        setLoading,
         submitEye
     } = props;
 
@@ -43,16 +44,17 @@ const AddPage = props => {
             <MapSection eyesArr={inputArr} />
 
             <ImageSection
-                states={states}
-                info={info}
-                submitEye={submitEye}
-                user={user}
-                latitude={info.latitude}
-                longitude={info.longitude}
-                submitReady={states.submitReady}
-                handleFileChange={handleFileChange}
-                handleFileDrop={handleFileDrop}
-                handleImageReady={handleImageReady}
+            // states={states}
+            // info={info}
+            // submitEye={submitEye}
+            // user={user}
+            // latitude={info.latitude}
+            // longitude={info.longitude}
+            // submitReady={states.submitReady}
+            // setLoading={setLoading}
+            // handleFileChange={handleFileChange}
+            // handleFileDrop={handleFileDrop}
+            // handleImageReady={handleImageReady}
             />
             <InfoSection info={info.latitude === '' ? null : info} />
         </main>
@@ -69,9 +71,10 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps, {
     handleFindInfo,
-    handleFileDrop,
-    handleImageReady,
-    handleSubmitReady,
-    handleFileChange,
+    // handleFileDrop,
+    // handleImageReady,
+    // handleSubmitReady,
+    // handleFileChange,
+    setLoading,
     submitEye
 })(AddPage);

@@ -1,6 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-// import submitImage from '../../extra/apiCalls/submitImage';
+import { submitEye } from '../../actions/eyeAction';
+import { setLoading } from '../../actions/statesAction';
+
+import { handleFileDrop, handleFileChange } from '../../actions/infoAction';
+import { handleImageReady } from '../../actions/statesAction';
 
 const ImageSection = props => {
     const {
@@ -8,11 +13,12 @@ const ImageSection = props => {
         submitEye,
         handleFileChange,
         handleImageReady,
-        states: { imgSrc, imgId },
+        info,
+        states: { imgSrc, imgId, submitReady },
         user: { userObj },
-        submitReady,
-        latitude,
-        longitude
+        setLoading
+        // latitude,
+        // longitude
     } = props;
     // const userId = userObj._id;
 
@@ -51,6 +57,7 @@ const ImageSection = props => {
         />
     );
     if (submitReady) {
+        // setLoading(false);
         submitBtn = (
             <input
                 type='submit'
@@ -65,7 +72,7 @@ const ImageSection = props => {
             className='imageSection'
             onDragOver={handleFileDragOver}
             onDragLeave={handleFileDragLeave}
-            onChange={event => handleFileChange(event.target.files[0])}
+            onChange={event => handleFileChange(event.target.files[0], imgSrc)}
             onDrop={handleFileDrop}
         >
             <div className='inputContainer'>
@@ -75,7 +82,7 @@ const ImageSection = props => {
                     id='picForm'
                     name='picSubmit'
                     onSubmit={event =>
-                        submitEye(event, userObj, latitude, longitude)
+                        submitEye(event, userObj, info.latitude, info.longitude)
                     }
                     encType='multipart/form-data'
                 >
@@ -91,4 +98,49 @@ const ImageSection = props => {
     );
 };
 
-export default ImageSection;
+const mapStateToProps = state => ({
+    states: state.states,
+    info: state.info,
+    // eye: state.eye,
+    user: state.user
+});
+
+export default connect(mapStateToProps, {
+    // handleFindInfo,
+    handleFileDrop,
+    handleImageReady,
+    // handleSubmitReady,
+    handleFileChange,
+    setLoading,
+    submitEye
+})(ImageSection);
+
+// states={states}
+// info={info}
+// submitEye={submitEye}
+// user={user}
+// latitude={info.latitude}
+// longitude={info.longitude}
+// submitReady={states.submitReady}
+// setLoading={setLoading}
+// handleFileChange={handleFileChange}
+// handleFileDrop={handleFileDrop}
+// handleImageReady={handleImageReady}
+
+// const mapStateToProps = state => ({
+//     states: state.states,
+//     info: state.info,
+//     eye: state.eye,
+//     eyes: state.eyes,
+//     user: state.user
+// });
+
+// export default connect(mapStateToProps, {
+//     handleFindInfo,
+//     handleFileDrop,
+//     handleImageReady,
+//     handleSubmitReady,
+//     handleFileChange,
+//     setLoading,
+//     submitEye
+// })(AddPage);

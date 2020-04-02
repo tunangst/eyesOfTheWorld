@@ -26,7 +26,11 @@ import {
     SUBMIT_READY_NO
 } from '../actions/types';
 
-export const handleFileChange = targetFileLocation => async dispatch => {
+export const handleFileChange = (
+    targetFileLocation,
+    imgSrc
+) => async dispatch => {
+    console.log(targetFileLocation == imgSrc);
     dispatch({
         type: SUBMIT_READY_NO,
         payload: false
@@ -54,11 +58,20 @@ export const handleFileChange = targetFileLocation => async dispatch => {
             type: GET_IMG_SRC,
             payload: reader.result
         });
+        if (reader.result === imgSrc) {
+            dispatch({
+                type: SET_LOADING,
+                payload: false
+            });
+            dispatch(handleFindInfo());
+        }
+        console.log(reader.result === imgSrc);
     };
     reader.readAsDataURL(targetFileLocation);
 };
 
 export const handleFindInfo = props => async dispatch => {
+    console.log('handleFindInfo run');
     const imgId = store.getState().states.imgId;
     const failed = msg => dispatch => {
         dispatch(setAlert(msg, 'error'));
