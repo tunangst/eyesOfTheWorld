@@ -11,7 +11,8 @@
 
         & .picBox {
             & img {
-                box-shadow: 3px 3px 5px rgba(5, 5, 5, 0.5);
+                position: relative;
+                box-shadow: 5px 0 5px rgba(5, 5, 5, 0.25);
                 width: 100%;
                 height: auto;
             }
