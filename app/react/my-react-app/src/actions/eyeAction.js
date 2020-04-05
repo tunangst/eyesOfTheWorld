@@ -103,16 +103,17 @@ export const submitEye = (event, userObj, lat, lon) => async dispatch => {
         //|||||||||||||||||||||||||||| if already posted error will throw ||||||||
         const picForm = document.querySelector(`#picForm`);
         let imageBody = new FormData(picForm);
-        const bucketId = userObj.email;
-        imageBody.append('bucketName', bucketId);
+        const directoryName = userObj.email;
+        imageBody.append('directoryName', directoryName);
 
         //||||||||||||||||||||||||||| send image post ||||||||||||||||||
         const img = await axios.post(
-            `/api/image/${bucketId}`,
+            `/api/image/${directoryName}`,
             imageBody,
             config
         );
         const imgUrl = img.data.imageUrl;
+        console.log(imgUrl);
 
         let picCollection = [...imageBody];
         const file = picCollection[0][1];
@@ -162,19 +163,19 @@ export const removeEye = (id, url, userId) => async dispatch => {
             const eyeResponse = await axios.delete(`/api/eyes/${id}`);
             eyeResponse && dispatch(setAlert(eyeResponse.data.msg, 'success'));
 
-            const split = url.split('.com/');
-            const split2 = split[split.length - 1];
-            const keyName = split2.split('.jpg')[0];
+            const split = url.split('EyesOfTheWorld/')[1].split('/');
+            const email = split[0];
+            const public_id = split[1].split('.jpg')[0];
+
+            console.log(public_id);
+
             //find user
             const userData = await dispatch(getUser(userId));
             console.log(userData);
             console.log('^^^^^^^^^^^^^^^^userData^^^^^^^^^^^^^^');
 
-            // const bucketAndKey = `${userData.email}/${keyName}`;
-            // console.log(bucketAndKey);
-
             const imgResponse = await axios.delete(
-                `/api/image/${userData.email}/${keyName}`
+                `/api/image/${userData.email}/${public_id}`
             );
 
             imgResponse &&
@@ -185,9 +186,9 @@ export const removeEye = (id, url, userId) => async dispatch => {
             console.log(error.message);
             dispatch(setAlert(error.message, 'error'));
         }
-        dispatch({
-            type: SET_LOADING,
-            payload: false
-        });
     }
+    dispatch({
+        type: SET_LOADING,
+        payload: false
+    });
 };

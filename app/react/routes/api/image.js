@@ -1,63 +1,63 @@
+const cloudinary = require('cloudinary');
 const express = require('express');
 const router = express.Router();
 
-const aws = require('aws-sdk');
+// const aws = require('aws-sdk');
 const config = require('config');
-const secretKey = config.get('secretAccessKey');
-const accessKey = config.get('accessKeyId');
-const region = config.get('region');
-const bucket = config.get('AWSBucketName');
+const cloudinaryCloudName = config.get('cloudinaryCloudName');
+const cloudinaryKey = config.get('cloudinaryKey');
+const cloudinarySecret = config.get('cloudinarySecret');
+// const secretKey = config.get('secretAccessKey');
+// const accessKey = config.get('accessKeyId');
+// const region = config.get('region');
+// const bucket = config.get('AWSBucketName');
 
-aws.config.update({
-    secretAccessKey: secretKey,
-    accessKeyId: accessKey,
-    region: region
-});
-const s3 = new aws.S3();
+// aws.config.update({
+//     secretAccessKey: secretKey,
+//     accessKeyId: accessKey,
+//     region: region
+// });
+// const s3 = new aws.S3();
 
 const upload = require('../../config/multerImageUpload');
 const singleUpload = upload.single('insertedImg');
+cloudinary.config({
+    cloud_name: cloudinaryCloudName,
+    api_key: cloudinaryKey,
+    api_secret: cloudinarySecret
+});
 
-router.post('/:bucketId', async (request, response) => {
-    console.log('image post where singleUpload is called');
+//api/image/:directoryName
+router.post('/:directoryName', async (request, response) => {
     singleUpload(request, response, error => {
         error &&
             console.log(error.message) &&
             response.json({ msg: error.message });
-        return response.json({ imageUrl: request.file.location });
+        console.log(request.file);
+        console.log('image post where singleUpload is called');
+        console.log(request.file.secure_url);
+        return response.json({ imageUrl: request.file.secure_url });
     });
+    console.log('single Upload finished');
 });
 
-// api/image/:keyName
-router.delete('/:userEmail/:keyName', async (request, response) => {
+// https://res.cloudinary.com/truz/image/upload/v1586044401/EyesOfTheWorld/trunangst%40gmail.com/2020%7E04%7E04%7E%7E%7E%7EBarnacleese.jpg.jpg
+
+// api/image/:public_id
+router.delete('/:userEmail/:public_id', async (request, response) => {
     const userEmail = request.params.userEmail;
     console.log(userEmail);
-    const key = `${request.params.keyName}.jpg`;
+    const public_id = `EyesOfTheWorld/${userEmail}/${request.params.public_id}.jpg`;
+    console.log(public_id);
     console.log(`^^^^^^^^^^^^^^^^^^^delete params^^^^^^^^^^^^^^`);
 
     try {
-        const params = {
-            Bucket: bucket,
-            Delete: {
-                Objects: [{ Key: `${userEmail}/${key}` }]
-            }
-        };
-
-        s3.deleteObjects(params, function(err, data) {
-            if (err) {
-                // an error occurred
-                response.status(500).json({
-                    msg: 'Server Error, Eye failed to remove',
-                    type: 'error'
-                });
-            }
-            response
-                .status(200)
-                .json({ msg: 'Image removed ;^[', type: 'success' });
+        cloudinary.api.delete_resources(public_id, function(error, result) {
+            response.json({ msg: 'image Deleted :^{', type: 'success' });
         });
     } catch (error) {
         console.log(error.message);
-        response.status(500).send(error.message);
+        response.json({ msg: error.message, type: 'error' });
     }
 });
 

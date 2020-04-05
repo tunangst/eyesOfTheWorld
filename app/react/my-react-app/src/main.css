@@ -142,7 +142,7 @@ Grey dark 3: #999
       min-width: 8rem;
       border-radius: 8px;
       border: 4px outset #333;
-      box-shadow: 3px 3px 5px rgba(5, 5, 5, 0.25);
+      box-shadow: 3px 3px 5px #050505;
       overflow: hidden; }
       .suggestionOpen .suggestionContainer .suggestedEye img {
         color: #f0e2c9;
@@ -157,9 +157,11 @@ Grey dark 3: #999
   position: relative;
   top: 10rem;
   margin-top: -10rem;
+  pointer-events: none;
   display: flex; }
   .suggestionClosed .icon {
     cursor: pointer;
+    pointer-events: all;
     height: 2rem;
     width: 2rem;
     margin: 2rem;
@@ -400,7 +402,8 @@ Grey dark 3: #999
     width: 100%;
     background-color: #333; }
     .eyeContainer .eye .picBox img {
-      box-shadow: 3px 3px 5px rgba(5, 5, 5, 0.5);
+      position: relative;
+      box-shadow: 5px 0 5px rgba(5, 5, 5, 0.25);
       width: 100%;
       height: auto; }
     .eyeContainer .eye .infoBox {

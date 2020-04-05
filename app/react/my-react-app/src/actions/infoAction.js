@@ -30,7 +30,7 @@ export const handleFileChange = (
     targetFileLocation,
     imgSrc
 ) => async dispatch => {
-    console.log(targetFileLocation == imgSrc);
+    console.log(targetFileLocation === imgSrc);
     dispatch({
         type: SUBMIT_READY_NO,
         payload: false
@@ -70,24 +70,24 @@ export const handleFileChange = (
     reader.readAsDataURL(targetFileLocation);
 };
 
+const failed = msg => dispatch => {
+    dispatch(setAlert(msg, 'error'));
+    dispatch({
+        type: SET_LOADING,
+        payload: false
+    });
+    dispatch({
+        type: SUBMIT_READY_NO,
+        payload: false
+    });
+    dispatch({
+        type: IMAGE_READY_NO,
+        payload: false
+    });
+};
 export const handleFindInfo = props => async dispatch => {
     console.log('handleFindInfo run');
     const imgId = store.getState().states.imgId;
-    const failed = msg => dispatch => {
-        dispatch(setAlert(msg, 'error'));
-        dispatch({
-            type: SET_LOADING,
-            payload: false
-        });
-        dispatch({
-            type: SUBMIT_READY_NO,
-            payload: false
-        });
-        dispatch({
-            type: IMAGE_READY_NO,
-            payload: false
-        });
-    };
 
     dispatch({
         type: SET_LOADING,
@@ -201,9 +201,21 @@ export const handleFindInfo = props => async dispatch => {
 };
 
 export const handleFileDrop = event => async dispatch => {
-    const fileInput = document.querySelector('#insertedImg');
-    fileInput.files = event.dataTransfer.files;
     event.preventDefault();
-
-    dispatch(handleFileChange(fileInput.files[0]));
+    const fileInput = document.querySelector('#insertedImg');
+    const dT = event.dataTransfer.files[0];
+    const fI = fileInput.files[0];
+    if (
+        dT &&
+        fI &&
+        dT.name === fI.name &&
+        dT.lastModified === fI.lastModified &&
+        dT.size === fI.size &&
+        dT.type === fI.type
+    ) {
+        dispatch(setAlert('This is the same image, silly :^]', 'error'));
+    } else {
+        fileInput.files = event.dataTransfer.files;
+        dispatch(handleFileChange(fileInput.files[0]));
+    }
 };
