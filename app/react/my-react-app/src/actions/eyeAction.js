@@ -59,94 +59,98 @@ export const clearEye = () => async dispatch => {
 };
 
 export const submitEye = (event, userObj, lat, lon) => async dispatch => {
-    console.log('userId ', userObj._id);
-    console.log('userEmail ', userObj.email);
-    event.preventDefault();
-    dispatch({
-        type: SUBMIT_READY_NO,
-        payload: false
-    });
-    console.log(`--90--99-`);
-    // console.log(userEmail);
-    if (!userObj.email) {
-        dispatch(setAlert('Not logged in', 'error'));
-        return;
-    }
-    dispatch({
-        type: SET_LOADING,
-        payload: true
-    });
-
-    const config = {
-        headers: {
-            'Content-Type': 'multipart/form-data'
-        },
-        onUploadProgress: event => {
-            console.log(event.loaded, event.total);
+    if (
+        window.confirm(
+            'Your file name is the name of your Eye, be sure it describes it accurately'
+        )
+    ) {
+        console.log('userId ', userObj._id);
+        console.log('userEmail ', userObj.email);
+        event.preventDefault();
+        dispatch({
+            type: SUBMIT_READY_NO,
+            payload: false
+        });
+        if (!userObj.email) {
+            dispatch(setAlert('Not logged in', 'error'));
+            return;
         }
-    };
-    const findConfig = {
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    };
+        dispatch({
+            type: SET_LOADING,
+            payload: true
+        });
 
-    try {
-        const infoForm = document.querySelector(`#infoForm`);
-        let infoBody = new FormData(infoForm);
-
-        const findBody = JSON.stringify({ lat: lat, lon: lon });
-        console.log(findBody);
-
-        //|||||||||||||||||||||||||||| if already posted error will throw ||||||||
-        await axios.post('/api/eyes/upload/check', findBody, findConfig);
-        //|||||||||||||||||||||||||||| if already posted error will throw ||||||||
-        const picForm = document.querySelector(`#picForm`);
-        let imageBody = new FormData(picForm);
-        const directoryName = userObj.email;
-        imageBody.append('directoryName', directoryName);
-
-        //||||||||||||||||||||||||||| send image post ||||||||||||||||||
-        const img = await axios.post(
-            `/api/image/${directoryName}`,
-            imageBody,
-            config
-        );
-        const imgUrl = img.data.imageUrl;
-        console.log(imgUrl);
-
-        let picCollection = [...imageBody];
-        const file = picCollection[0][1];
-        const fileInfo = {
-            name: file.name,
-            size: file.size / (1024 * 1024),
-            type: file.type
+        const config = {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            },
+            onUploadProgress: event => {
+                console.log(event.loaded, event.total);
+            }
+        };
+        const findConfig = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
         };
 
-        infoBody.append('picName', fileInfo.name);
-        infoBody.append('picSize', fileInfo.size);
-        infoBody.append('picType', fileInfo.type);
-        infoBody.append('url', imgUrl);
-        infoBody.append('user', userObj._id);
-        //|||||||||||||||||||||||||||||||| send eye post ||||||||||||||||
-        const eye = await axios.post('/api/eyes/upload', infoBody, config);
+        try {
+            const infoForm = document.querySelector(`#infoForm`);
+            let infoBody = new FormData(infoForm);
 
-        console.log(eye.data);
-        // clear info
+            const findBody = JSON.stringify({ lat: lat, lon: lon });
+            console.log(findBody);
 
-        dispatch({
-            type: CLEAR_INFO
-        });
+            //|||||||||||||||||||||||||||| if already posted error will throw ||||||||
+            await axios.post('/api/eyes/upload/check', findBody, findConfig);
+            //|||||||||||||||||||||||||||| if already posted error will throw ||||||||
+            const picForm = document.querySelector(`#picForm`);
+            let imageBody = new FormData(picForm);
+            const directoryName = userObj.email;
+            imageBody.append('directoryName', directoryName);
 
-        //submit not ready
-        dispatch({
-            type: RESET_IMG
-        });
-        dispatch(setAlert('Thank you. Eye has been placed', 'success'));
-    } catch (error) {
-        console.log(error.response.data.msg);
-        error.response.data.msg &&
-            dispatch(setAlert(error.response.data.msg || 'Error', 'error'));
+            //||||||||||||||||||||||||||| send image post ||||||||||||||||||
+            const img = await axios.post(
+                `/api/image/${directoryName}`,
+                imageBody,
+                config
+            );
+            const imgUrl = img.data.imageUrl;
+            console.log(imgUrl);
+
+            let picCollection = [...imageBody];
+            const file = picCollection[0][1];
+            const fileInfo = {
+                name: file.name,
+                size: file.size / (1024 * 1024),
+                type: file.type
+            };
+
+            infoBody.append('picName', fileInfo.name);
+            infoBody.append('picSize', fileInfo.size);
+            infoBody.append('picType', fileInfo.type);
+            infoBody.append('url', imgUrl);
+            infoBody.append('user', userObj._id);
+            //|||||||||||||||||||||||||||||||| send eye post ||||||||||||||||
+            const eye = await axios.post('/api/eyes/upload', infoBody, config);
+
+            console.log(eye.data);
+            // clear info
+
+            dispatch({
+                type: CLEAR_INFO
+            });
+
+            //submit not ready
+            dispatch({
+                type: RESET_IMG
+            });
+            dispatch(setAlert('Thank you. Eye has been placed', 'success'));
+        } catch (error) {
+            console.log(error.response.data.msg);
+            error.response.data.msg &&
+                dispatch(setAlert(error.response.data.msg || 'Error', 'error'));
+        }
     }
     dispatch({
         type: SET_LOADING,
@@ -164,7 +168,7 @@ export const removeEye = (id, url, userId) => async dispatch => {
             eyeResponse && dispatch(setAlert(eyeResponse.data.msg, 'success'));
 
             const split = url.split('EyesOfTheWorld/')[1].split('/');
-            const email = split[0];
+            // const email = split[0];
             const public_id = split[1].split('.jpg')[0];
 
             console.log(public_id);
