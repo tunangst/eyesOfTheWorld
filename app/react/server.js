@@ -31,16 +31,16 @@ app.use('/api/eyes', eyeRoutes);
 app.use('/api/image', imageRoutes);
 
 //serve static assets in production
-// if (process.env.NODE_ENV === 'production') {
-//     // set static folder
-//     app.use(express.static('my-react-app/build'));
+if (process.env.NODE_ENV === 'production') {
+    // set static folder
+    app.use(express.static('my-react-app/build'));
 
-//     app.get('*', (req, res) => {
-//         res.sendFile(
-//             path.resolve(__dirname, 'my-react-app', 'build', 'index.html')
-//         );
-//     });
-// }
+    app.get('*', (req, res) => {
+        res.sendFile(
+            path.resolve(__dirname, 'my-react-app', 'build', 'index.html')
+        );
+    });
+}
 
 // listen for server
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
