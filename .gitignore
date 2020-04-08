@@ -26,5 +26,6 @@ v0/
 
 app/react/config/default.json
 config/default.json
+config/production.json
 app/react/uploads/
 uploads/
