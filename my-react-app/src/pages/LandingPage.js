@@ -9,7 +9,7 @@ import MapComponent from '../extra/googleMaps/MapComponent';
 import { setThanks, setLocal } from '../actions/statesAction';
 import { getAllEyes } from '../actions/eyeAction';
 
-const googleKey = key() || process.env.GoogleKey;
+const googleKey = process.env.GoogleKey;
 console.log(googleKey);
 const LandingPage = props => {
     const {

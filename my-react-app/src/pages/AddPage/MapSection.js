@@ -2,7 +2,7 @@ import React from 'react';
 
 import MapComponent from '../../extra/googleMaps/MapComponent';
 // import key from '../../extra/hiddenFolder/hiddenFile';
-const googleKey = key() || process.env.GoogleKey;
+const googleKey = process.env.GoogleKey;
 const mapSection = ({ eyesArr }) => {
     return (
         <section className='mapSection'>
