@@ -9,6 +9,7 @@
         "exif-js": "^2.3.0",
         "google-maps-react": "^2.0.2",
         "moment": "^2.24.0",
+        "node": "^13.12.0",
         "react": "^16.12.0",
         "react-dom": "^16.12.0",
         "react-fetch-progressbar": "^1.0.0",

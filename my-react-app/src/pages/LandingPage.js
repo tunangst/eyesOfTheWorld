@@ -9,6 +9,8 @@ import key from '../extra/hiddenFolder/hiddenFile';
 import { setThanks, setLocal } from '../actions/statesAction';
 import { getAllEyes } from '../actions/eyeAction';
 
+const googleKey = key() || process.env.GoogleKey;
+console.log(googleKey);
 const LandingPage = props => {
     const {
         eyes,
@@ -32,7 +34,7 @@ const LandingPage = props => {
             <div className='worldMap'>
                 <MapComponent
                     eyesArr={eyes || [{}]}
-                    googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${key()}`}
+                    googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${googleKey}`}
                     loadingElement={<div style={{ height: `100%` }} />}
                     containerElement={<div style={{ height: `100%` }} />}
                     mapElement={<div style={{ height: `100%` }} />}
