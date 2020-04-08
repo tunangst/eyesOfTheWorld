@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import MapComponent from '../extra/googleMaps/MapComponent';
 // import SuggestedEye from '../extra/utilityFunctions/SuggestedEye';
 // import SuggestionBar from './SuggestionBar';
-import key from '../extra/hiddenFolder/hiddenFile';
+// import key from '../extra/hiddenFolder/hiddenFile';
 
 import { setThanks, setLocal } from '../actions/statesAction';
 import { getAllEyes } from '../actions/eyeAction';
