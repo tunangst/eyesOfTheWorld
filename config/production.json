@@ -1,7 +1,0 @@
-{
-    "mongoURI": "mongodb+srv://TRU:raptor@cluster0-6bt7n.mongodb.net/World?retryWrites=true&w=majority",
-    "jwtSecret": "TRUSecretToken",
-    "cloudinaryCloudName": "truz",
-    "cloudinaryKey": "547146994491982",
-    "cloudinarySecret": "TPpWAc4C6qUddem325liGNT2Nfg"
-}
