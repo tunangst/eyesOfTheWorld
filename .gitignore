@@ -25,4 +25,6 @@ hiddenFolder/
 v0/
 
 app/react/config/default.json
+config/default.json
 app/react/uploads/
+uploads/
