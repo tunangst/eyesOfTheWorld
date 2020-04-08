@@ -1,9 +1,10 @@
 import React from 'react';
+import config from 'config';
 
 import MapComponent from '../../extra/googleMaps/MapComponent';
 // import key from '../../extra/hiddenFolder/hiddenFile';
 const mapSection = ({ eyesArr }) => {
-    const googleKey = process.env.googleKey;
+    const googleKey = config.get('googleKey');
     return (
         <section className='mapSection'>
             <MapComponent

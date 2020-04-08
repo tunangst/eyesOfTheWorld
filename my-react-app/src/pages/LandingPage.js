@@ -5,12 +5,13 @@ import MapComponent from '../extra/googleMaps/MapComponent';
 // import SuggestedEye from '../extra/utilityFunctions/SuggestedEye';
 // import SuggestionBar from './SuggestionBar';
 // import key from '../extra/hiddenFolder/hiddenFile';
+import config from 'config';
 
 import { setThanks, setLocal } from '../actions/statesAction';
 import { getAllEyes } from '../actions/eyeAction';
 
 const LandingPage = props => {
-    const googleKey = process.env.googleKey;
+    const googleKey = config.get('googleKey');
     console.log(process.env);
     console.log(googleKey);
     const {
