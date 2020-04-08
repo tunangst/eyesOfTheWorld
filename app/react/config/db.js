@@ -31,9 +31,9 @@ const connectDB = async () => {
     try {
         // let conn = mongoose.connection;
         // let conn = await mongoose.createConnection(dbURI, options);
-        await mongoose.connect(dbURI, options);
+        await mongoose.connect(process.env.mongoURI || dbURI, options);
         // await mongoose.createConnection(dbURIPic, options);
-
+        console.log(process.env.mongoURI, 'mongoURI');
         console.log('MongoDB connected');
     } catch (error) {
         console.log(error);

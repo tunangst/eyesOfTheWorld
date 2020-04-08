@@ -37,6 +37,7 @@
         grid-template-columns: repeat(10, 1fr);
 
         & .suggestedEye {
+            cursor: pointer;
             height: 8rem;
             min-width: 8rem;
             border-radius: 8px;

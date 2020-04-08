@@ -138,6 +138,7 @@ Grey dark 3: #999
     grid-gap: 1rem;
     grid-template-columns: repeat(10, 1fr); }
     .suggestionOpen .suggestionContainer .suggestedEye {
+      cursor: pointer;
       height: 8rem;
       min-width: 8rem;
       border-radius: 8px;

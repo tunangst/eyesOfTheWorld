@@ -9,7 +9,8 @@ module.exports = function(request, response, next) {
             .json({ msg: 'No token, authorization denied' });
     }
     try {
-        const secret = config.get('jwtSecret');
+        console.log(process.env.jwtSecret);
+        const secret = process.env.jwtSecret || config.get('jwtSecret');
         const decoded = jwt.verify(token, secret);
 
         request.user = decoded.user;

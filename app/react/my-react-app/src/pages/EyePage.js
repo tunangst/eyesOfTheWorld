@@ -58,6 +58,7 @@ const EyePage = props => {
             }
         });
     }
+    console.log(process.env);
 
     return (
         <section className='eyeContainer'>
