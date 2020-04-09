@@ -41,7 +41,7 @@ const AddPage = (props) => {
 
     return (
         <main className='add'>
-            <MapSection eyesArr={inputArr} getGoogle={getGoogle} />
+            <MapSection eyesArr={inputArr} />
 
             <ImageSection
             // states={states}

@@ -25,7 +25,7 @@ const cloudinarySecret = config.get('cloudinarySecret');
 cloudinary.config({
     cloud_name: process.env.cloudinaryCloudName || cloudinaryCloudName,
     api_key: process.env.cloudinaryKey || cloudinaryKey,
-    api_secret: process.env.cloudinarySecret || cloudinarySecret
+    api_secret: process.env.cloudinarySecret || cloudinarySecret,
 });
 
 console.log(process.env.cloudinaryCloudName, 'cloudname');
@@ -79,7 +79,7 @@ const multerCloudinaryStorage = cloudinaryStorage({
     cloudinary: cloudinary,
     // folder: 'EyesOfTheWorld',
     allowedFormats: ['jpg'],
-    folder: function(req, file, cb) {
+    folder: function (req, file, cb) {
         console.log('inside folder !!!!!!!!!!!!!!!!!!!!!!!!!!');
         const folderName =
             `EyesOfTheWorld/${req.params.directoryName}` ||
@@ -90,17 +90,14 @@ const multerCloudinaryStorage = cloudinaryStorage({
         console.log(`multer storage file`);
         cb(null, `EyesOfTheWorld/${req.params.directoryName}`);
     },
-    filename: function(req, file, cb) {
+    filename: function (req, file, cb) {
         cb(
             null,
-            new Date()
-                .toISOString()
-                .slice(0, 10)
-                .replace(/-/g, '~') +
+            new Date().toISOString().slice(0, 10).replace(/-/g, '~') +
                 '~~~~' +
                 file.originalname
         );
-    }
+    },
 });
 
 // const upload = multer({
@@ -114,8 +111,8 @@ const upload = multer({
     storage: multerCloudinaryStorage,
     fileFilter: fileFilter,
     limits: {
-        fileSize: 1024 * 1024 * 20 // 20MB
-    }
+        fileSize: 1024 * 1024 * 20, // 20MB
+    },
 });
 
 module.exports = upload;
