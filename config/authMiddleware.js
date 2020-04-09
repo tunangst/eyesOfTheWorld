@@ -1,7 +1,9 @@
 const jwt = require('jsonwebtoken');
 const config = require('config');
 let secret;
-if (process.env.NODE_ENV === 'production') secret = config.get('mongoURI');
+if (config.util.getEnv('NODE_ENV') === 'development') {
+    secret = config.get('mongoURI');
+}
 
 module.exports = function (request, response, next) {
     const token = request.header('x-auth-token');

@@ -9,7 +9,7 @@ let cloudinaryCloudName;
 let cloudinaryKey;
 let cloudinarySecret;
 
-if (process.env.NODE_ENV === 'production') {
+if (config.util.getEnv('NODE_ENV') === 'development') {
     cloudinaryCloudName = config.get('cloudinaryCloudName');
     cloudinaryKey = config.get('cloudinaryKey');
     cloudinarySecret = config.get('cloudinarySecret');
