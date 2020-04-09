@@ -11,6 +11,7 @@ import { getAllEyes } from '../actions/eyeAction';
 
 const LandingPage = (props) => {
     console.log(process.env);
+    console.log(process.env.REACT_APP_GOOGLE_KEY);
     const {
         eyes,
         getAllEyes,
@@ -21,15 +22,11 @@ const LandingPage = (props) => {
     const thankYouMessage =
         'Thank you author_id=216 @ flaticon.com for the icons useage  :^]';
 
-    let value = null;
     useEffect(() => {
         console.log('running useEffect in landingpage');
         setLocal(false);
         needThanks === true && setThanks(thankYouMessage, 'success');
         eyes.length < 1 && getAllEyes();
-        // getGoogle().then((link) => {
-        //     value = link;
-        // });
     }, [eyes.length, getAllEyes]);
 
     return (
