@@ -36,9 +36,6 @@ const connectDB = async () => {
     // console.log(dbURI);
     // console.log(process.env.NODE_ENV);
     // console.log(process.env);
-    if (process.env.NODE_ENV === 'development') {
-        dbURI = config.get('mongoURI');
-    }
     try {
         // let conn = mongoose.connection;
         // let conn = await mongoose.createConnection(dbURI, options);
