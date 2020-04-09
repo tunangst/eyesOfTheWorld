@@ -22,9 +22,9 @@ const cloudinarySecret = config.get('cloudinarySecret');
 const upload = require('../../config/multerImageUpload');
 const singleUpload = upload.single('insertedImg');
 cloudinary.config({
-    cloud_name: cloudinaryCloudName,
-    api_key: cloudinaryKey,
-    api_secret: cloudinarySecret
+    cloud_name: process.env.cloudinaryCloudName || cloudinaryCloudName,
+    api_key: process.env.cloudinaryKey || cloudinaryKey,
+    api_secret: process.env.cloudinarySecret || cloudinarySecret
 });
 
 //api/image/:directoryName

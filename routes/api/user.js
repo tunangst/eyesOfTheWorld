@@ -52,9 +52,10 @@ router.post('/', async (request, response) => {
                 id: user.id
             }
         };
+        console.log(process.env.jwtSecret, 'jwtSecret env');
         jwt.sign(
             payload,
-            config.get('jwtSecret'),
+            process.env.jwtSecret || config.get('jwtSecret'),
             { expiresIn: 360000 },
             (err, token) => {
                 console.log(token, 'token');

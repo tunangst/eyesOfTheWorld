@@ -20,6 +20,8 @@ const cloudinarySecret = config.get('cloudinarySecret');
 //     region: region
 // });
 // const s3 = new aws.S3();
+// console.log(process.env);
+// console.log('process.env');
 cloudinary.config({
     cloud_name: process.env.cloudinaryCloudName || cloudinaryCloudName,
     api_key: process.env.cloudinaryKey || cloudinaryKey,

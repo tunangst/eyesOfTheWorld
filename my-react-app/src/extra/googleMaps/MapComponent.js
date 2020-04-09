@@ -4,7 +4,7 @@ import {
     withScriptjs,
     withGoogleMap,
     GoogleMap,
-    Marker
+    Marker,
 } from 'react-google-maps';
 
 // import { MarkerWithLabel } from 'react-google-maps/lib/components/addons/MarkerWithLabel';
@@ -20,14 +20,14 @@ import mapStyle from './mapStyle';
 const MapComponent = withScriptjs(
     withGoogleMap(({ eyesArr }) => {
         const history = useHistory();
-        const handleRedirect = eyeId => {
+        const handleRedirect = (eyeId) => {
             history.push(`/eyes/${eyeId}`);
         };
-        const buildMarker = eyeDataObj => {
+        const buildMarker = (eyeDataObj) => {
             const key = eyeDataObj._id || 'init';
             const position = {
                 lat: Number(eyeDataObj.info.latitude),
-                lng: Number(eyeDataObj.info.longitude)
+                lng: Number(eyeDataObj.info.longitude),
             };
 
             return (
@@ -54,7 +54,7 @@ const MapComponent = withScriptjs(
                 markers.push(eyeMarker);
             } else {
                 zoom = 3;
-                eyesArr.forEach(eyeData => {
+                eyesArr.forEach((eyeData) => {
                     const eyeMarker = buildMarker(eyeData);
                     markers.push(eyeMarker);
                 });
@@ -63,13 +63,13 @@ const MapComponent = withScriptjs(
             zoom = 3;
             initCenter = {
                 latitude: 0,
-                longitude: 0
+                longitude: 0,
             };
         }
 
         let center = {
             lat: initCenter ? initCenter.latitude : eyesArr[0].info.latitude,
-            lng: initCenter ? initCenter.longitude : eyesArr[0].info.longitude
+            lng: initCenter ? initCenter.longitude : eyesArr[0].info.longitude,
         };
         return (
             <GoogleMap
@@ -83,7 +83,7 @@ const MapComponent = withScriptjs(
                     scaleControl: true, // allow scale control
                     scrollwheel: true, // allow scroll wheel
                     styles: mapStyle, // change default map styles
-                    streetViewControl: true
+                    streetViewControl: true,
                 }}
             >
                 <MarkerClusterer averageCenter>{markers}</MarkerClusterer>

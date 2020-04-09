@@ -9,7 +9,7 @@ import { submitEye } from '../../actions/eyeAction';
 import { setLoading } from '../../actions/statesAction';
 
 import {
-    handleFindInfo
+    handleFindInfo,
     // handleFileDrop,
     // handleFileChange
 } from '../../actions/infoAction';
@@ -17,7 +17,7 @@ import // handleImageReady,
 // handleSubmitReady
 '../../actions/statesAction';
 
-const AddPage = props => {
+const AddPage = (props) => {
     const {
         info,
         user,
@@ -27,7 +27,7 @@ const AddPage = props => {
         handleFileChange,
         handleImageReady,
         setLoading,
-        submitEye
+        submitEye,
     } = props;
 
     useEffect(() => {
@@ -41,7 +41,7 @@ const AddPage = props => {
 
     return (
         <main className='add'>
-            <MapSection eyesArr={inputArr} />
+            <MapSection eyesArr={inputArr} getGoogle={getGoogle} />
 
             <ImageSection
             // states={states}
@@ -61,12 +61,12 @@ const AddPage = props => {
     );
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     states: state.states,
     info: state.info,
     eye: state.eye,
     eyes: state.eyes,
-    user: state.user
+    user: state.user,
 });
 
 export default connect(mapStateToProps, {
@@ -76,5 +76,5 @@ export default connect(mapStateToProps, {
     // handleSubmitReady,
     // handleFileChange,
     setLoading,
-    submitEye
+    submitEye,
 })(AddPage);
