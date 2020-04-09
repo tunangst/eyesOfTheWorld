@@ -7,7 +7,7 @@ import {
     LOGIN_FAIL,
     LOGOUT,
     FIND_USER,
-    FIND_USER_EYES
+    FIND_USER_EYES,
 } from '../actions/types';
 
 const initialUser = {
@@ -16,7 +16,7 @@ const initialUser = {
     isAuthenticated: false,
     userObj: {},
     selectedUserEyes: [],
-    selectedUserObj: {}
+    selectedUserObj: {},
 };
 
 const user = (state = initialUser, action) => {
@@ -26,14 +26,14 @@ const user = (state = initialUser, action) => {
             return {
                 ...state,
                 isAuthenticated: true,
-                userObj: payload
+                userObj: payload,
             };
         case REGISTER_SUCCESS:
         case LOGIN_SUCCESS:
             localStorage.setItem('userToken', payload.token);
             return {
                 ...state,
-                isAuthenticated: true
+                isAuthenticated: true,
             };
         case REGISTER_FAIL:
         case LOGIN_FAIL:
@@ -42,19 +42,19 @@ const user = (state = initialUser, action) => {
             localStorage.removeItem('userToken');
             return {
                 ...state,
-                token: null,
+                userToken: null,
                 isAuthenticated: false,
-                userObj: initialUser.userObj
+                userObj: initialUser.userObj,
             };
         case FIND_USER:
             return {
                 ...state,
-                selectedUserObj: payload
+                selectedUserObj: payload,
             };
         case FIND_USER_EYES:
             return {
                 ...state,
-                selectedUserEyes: payload
+                selectedUserEyes: payload,
             };
         default:
             return state;

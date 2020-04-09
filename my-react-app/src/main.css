@@ -63,6 +63,7 @@ Grey dark 3: #999
   transition: all 5s ease-out; }
 
 .submitBtn {
+  cursor: pointer;
   height: 6rem;
   z-index: 2;
   margin: 1.5rem;

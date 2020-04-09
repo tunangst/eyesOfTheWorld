@@ -17,12 +17,10 @@ import { setAlert } from './statesAction';
 
 export const loadUser = () => async (dispatch) => {
     if (localStorage.userToken) {
-        // console.log('local storage token found, setting auth token');
         setAuthToken(localStorage.userToken);
     }
     try {
         const response = await axios.get('/api/auth');
-        // console.log(response);
         dispatch({
             type: USER_LOADED,
             payload: response.data,
@@ -31,6 +29,7 @@ export const loadUser = () => async (dispatch) => {
         dispatch({
             type: AUTH_ERROR,
         });
+        dispatch(setAlert('Authentication failed', 'error'));
     }
 };
 export const register = (userObj) => async (dispatch) => {
@@ -69,6 +68,7 @@ export const register = (userObj) => async (dispatch) => {
 };
 
 export const login = (email, password) => async (dispatch) => {
+    console.log('in login function');
     const config = {
         headers: {
             'Content-Type': 'application/json',

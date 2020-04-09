@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken');
 
 const User = require('../../models/User');
 
-let secret;
+let secret = process.env.JWTSECRET;
 if (config.util.getEnv('NODE_ENV') === 'development') {
     secret = config.get('jwtSecret');
 }
@@ -39,15 +39,10 @@ router.post('/', async (request, response) => {
             },
         };
         // console.log(process.env.JWTSECRET, 'jwtSecret env');
-        jwt.sign(
-            payload,
-            process.env.JWTSECRET || secret,
-            { expiresIn: 360000 },
-            (error, token) => {
-                if (error) throw error;
-                response.json({ token });
-            }
-        );
+        jwt.sign(payload, secret, { expiresIn: 360000 }, (error, token) => {
+            if (error) throw error;
+            response.json({ token });
+        });
     } catch (error) {
         console.error(error.message);
         response.status(500).send('Server error');

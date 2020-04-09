@@ -1,8 +1,9 @@
 const jwt = require('jsonwebtoken');
 const config = require('config');
-let secret;
+
+let secret = process.env.JWTSECRET;
 if (config.util.getEnv('NODE_ENV') === 'development') {
-    secret = config.get('mongoURI');
+    secret = config.get('jwtSecret');
 }
 
 module.exports = function (request, response, next) {
@@ -13,10 +14,7 @@ module.exports = function (request, response, next) {
             .json({ msg: 'No token, authorization denied' });
     }
     try {
-        // console.log(process.env.JWTSECRET);
-        const secret = process.env.JWTSECRET || secret;
         const decoded = jwt.verify(token, secret);
-
         request.user = decoded.user;
         next();
     } catch (error) {
