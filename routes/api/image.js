@@ -4,32 +4,28 @@ const router = express.Router();
 
 // const aws = require('aws-sdk');
 const config = require('config');
-const cloudinaryCloudName = config.get('cloudinaryCloudName');
-const cloudinaryKey = config.get('cloudinaryKey');
-const cloudinarySecret = config.get('cloudinarySecret');
-// const secretKey = config.get('secretAccessKey');
-// const accessKey = config.get('accessKeyId');
-// const region = config.get('region');
-// const bucket = config.get('AWSBucketName');
 
-// aws.config.update({
-//     secretAccessKey: secretKey,
-//     accessKeyId: accessKey,
-//     region: region
-// });
-// const s3 = new aws.S3();
+let cloudinaryCloudName;
+let cloudinaryKey;
+let cloudinarySecret;
+
+if (process.env.NODE_ENV === 'production') {
+    cloudinaryCloudName = config.get('cloudinaryCloudName');
+    cloudinaryKey = config.get('cloudinaryKey');
+    cloudinarySecret = config.get('cloudinarySecret');
+}
 
 const upload = require('../../config/multerImageUpload');
 const singleUpload = upload.single('insertedImg');
 cloudinary.config({
-    cloud_name: process.env.cloudinaryCloudName || cloudinaryCloudName,
-    api_key: process.env.cloudinaryKey || cloudinaryKey,
-    api_secret: process.env.cloudinarySecret || cloudinarySecret
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME || cloudinaryCloudName,
+    api_key: process.env.CLOUDINARY_KEY || cloudinaryKey,
+    api_secret: process.env.CLOUDINARY_SECRET || cloudinarySecret,
 });
 
 //api/image/:directoryName
 router.post('/:directoryName', async (request, response) => {
-    singleUpload(request, response, error => {
+    singleUpload(request, response, (error) => {
         error &&
             console.log(error.message) &&
             response.json({ msg: error.message });
@@ -52,7 +48,7 @@ router.delete('/:userEmail/:public_id', async (request, response) => {
     console.log(`^^^^^^^^^^^^^^^^^^^delete params^^^^^^^^^^^^^^`);
 
     try {
-        cloudinary.api.delete_resources(public_id, function(error, result) {
+        cloudinary.api.delete_resources(public_id, function (error, result) {
             response.json({ msg: 'image Deleted :^{', type: 'success' });
         });
     } catch (error) {

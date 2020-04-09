@@ -7,6 +7,11 @@ const jwt = require('jsonwebtoken');
 
 const User = require('../../models/User');
 
+let secret;
+if (process.env.NODE_ENV === 'production') {
+    secret = config.get('jwtSecret');
+}
+
 // api/auth
 router.get('/', authMiddleware, async (request, response) => {
     try {
@@ -30,13 +35,13 @@ router.post('/', async (request, response) => {
         }
         const payload = {
             user: {
-                id: user.id
-            }
+                id: user.id,
+            },
         };
-        console.log(process.env.jwtSecret, 'jwtSecret env');
+        console.log(process.env.JWTSECRET, 'jwtSecret env');
         jwt.sign(
             payload,
-            process.env.jwtSecret || config.get('jwtSecret'),
+            process.env.JWTSECRET || secret,
             { expiresIn: 360000 },
             (error, token) => {
                 if (error) throw error;

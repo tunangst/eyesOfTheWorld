@@ -8,7 +8,11 @@ const config = require('config');
 
 const User = require('../../models/User');
 
-// const Eye = require('../../models/Eye');
+let secret;
+
+if (process.env.NODE_ENV === 'production') {
+    secret = config.get('jwtSecret');
+}
 
 // /api/user
 router.get('/', async (request, response) => {
@@ -41,7 +45,7 @@ router.post('/', async (request, response) => {
             username,
             email,
             password,
-            avatar
+            avatar,
         });
         const salt = await bcrypt.genSalt(10);
         user.password = await bcrypt.hash(password, salt);
@@ -49,13 +53,13 @@ router.post('/', async (request, response) => {
         await user.save();
         const payload = {
             user: {
-                id: user.id
-            }
+                id: user.id,
+            },
         };
         console.log(process.env.jwtSecret, 'jwtSecret env');
         jwt.sign(
             payload,
-            process.env.jwtSecret || config.get('jwtSecret'),
+            process.env.JWTSECRET || secret,
             { expiresIn: 360000 },
             (err, token) => {
                 console.log(token, 'token');

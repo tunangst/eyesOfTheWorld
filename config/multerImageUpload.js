@@ -5,9 +5,15 @@ const multer = require('multer');
 // const multerS3 = require('multer-s3');
 const config = require('config');
 
-const cloudinaryCloudName = config.get('cloudinaryCloudName');
-const cloudinaryKey = config.get('cloudinaryKey');
-const cloudinarySecret = config.get('cloudinarySecret');
+let cloudinaryCloudName;
+let cloudinaryKey;
+let cloudinarySecret;
+
+if (process.env.NODE_ENV === 'production') {
+    cloudinaryCloudName = config.get('cloudinaryCloudName');
+    cloudinaryKey = config.get('cloudinaryKey');
+    cloudinarySecret = config.get('cloudinarySecret');
+}
 
 // const secretKey = config.get('secretAccessKey');
 // const accessKey = config.get('accessKeyId');
@@ -23,14 +29,14 @@ const cloudinarySecret = config.get('cloudinarySecret');
 // console.log(process.env);
 // console.log('process.env');
 cloudinary.config({
-    cloud_name: process.env.cloudinaryCloudName || cloudinaryCloudName,
-    api_key: process.env.cloudinaryKey || cloudinaryKey,
-    api_secret: process.env.cloudinarySecret || cloudinarySecret,
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME || cloudinaryCloudName,
+    api_key: process.env.CLOUDINARY_KEY || cloudinaryKey,
+    api_secret: process.env.CLOUDINARY_SECRET || cloudinarySecret,
 });
 
-console.log(process.env.cloudinaryCloudName, 'cloudname');
-console.log(process.env.cloudinaryKey, 'key');
-console.log(process.env.cloudinarySecret, 'secret');
+console.log(process.env.CLOUDINARY_CLOUD_NAME, 'cloudname');
+console.log(process.env.CLOUDINARY_KEY, 'key');
+console.log(process.env.CLOUDINARY_SECRET, 'secret');
 
 const fileFilter = (req, file, cb) => {
     console.log(file, 'fileFilter');

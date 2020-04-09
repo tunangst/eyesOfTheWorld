@@ -5,7 +5,7 @@ const moment = require('moment');
 const Eye = require('../../models/Eye');
 
 const upload = require('../../config/multerImageUpload');
-const awsDelete = require('../../config/awsDelete');
+// const awsDelete = require('../../config/awsDelete');
 
 router.get('/user/:userId', async (request, response) => {
     console.log(`get /api/eyes/user/:user targeted and running`);
@@ -85,7 +85,7 @@ router.post('/upload', upload.none(), async (request, response) => {
             picSize,
             picType,
             url,
-            user
+            user,
         } = request.body;
 
         const buildInfo = {};
@@ -122,12 +122,12 @@ router.post('/upload', upload.none(), async (request, response) => {
             url: url,
             uploadDate: moment().format('LLLL'),
             pic: buildPic,
-            info: buildInfo
+            info: buildInfo,
         };
 
         const newEye = new Eye(buildEye);
 
-        await newEye.save(err => {
+        await newEye.save((err) => {
             err && console.log(err.message);
         });
         response.send(true);
@@ -143,14 +143,14 @@ router.post('/upload/check', async (request, response) => {
         console.log(lat, lon, 'lat, lon');
         const alreadyPosted = await Eye.find({
             'info.latitude': lat,
-            'info.longitude': lon
+            'info.longitude': lon,
         });
 
         if (alreadyPosted.length > 0) {
             console.log('found post');
             response.status(500).send({
                 answer: true,
-                msg: 'Server Error: Eye already exists'
+                msg: 'Server Error: Eye already exists',
             });
         } else {
             response.status(200).send({ answer: false });

@@ -10,6 +10,7 @@ import { setThanks, setLocal } from '../actions/statesAction';
 import { getAllEyes } from '../actions/eyeAction';
 
 const LandingPage = (props) => {
+    console.log(process.env);
     const {
         eyes,
         getAllEyes,
