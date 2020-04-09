@@ -30,4 +30,6 @@ config/production.json
 app/react/uploads/
 uploads/
 .env
+.env.production
 my-react-app/src/.env
+my-react-app/src/.env.production
