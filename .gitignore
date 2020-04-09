@@ -31,5 +31,7 @@ app/react/uploads/
 uploads/
 .env
 .env.production
+.env.development
 my-react-app/src/.env
 my-react-app/src/.env.production
+my-react-app/src/.env.development
