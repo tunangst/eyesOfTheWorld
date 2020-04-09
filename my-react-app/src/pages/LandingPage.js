@@ -10,10 +10,6 @@ import { setThanks, setLocal } from '../actions/statesAction';
 import { getAllEyes } from '../actions/eyeAction';
 
 const LandingPage = (props) => {
-    console.log(`~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`);
-    console.log(process.env);
-    console.log(process.env.REACT_APP_GOOGLE_KEY);
-    console.log(`~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`);
     const {
         eyes,
         getAllEyes,

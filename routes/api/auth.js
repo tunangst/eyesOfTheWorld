@@ -38,7 +38,7 @@ router.post('/', async (request, response) => {
                 id: user.id,
             },
         };
-        console.log(process.env.JWTSECRET, 'jwtSecret env');
+        // console.log(process.env.JWTSECRET, 'jwtSecret env');
         jwt.sign(
             payload,
             process.env.JWTSECRET || secret,

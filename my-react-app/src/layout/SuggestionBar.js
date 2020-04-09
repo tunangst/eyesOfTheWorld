@@ -3,22 +3,22 @@ import { connect } from 'react-redux';
 import SuggestedEye from '../extra/utilityFunctions/SuggestedEye';
 import {
     mergeSort,
-    findAndAddDistance
+    findAndAddDistance,
 } from '../extra/utilityFunctions/utilities';
 import { toggleSuggestion } from '../actions/tabsAction';
 // import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 
 import icons from '../extra/images/icons.svg';
 
-const SuggestionBar = props => {
+const SuggestionBar = (props) => {
     const {
         eyes,
         eye,
         tabs: { suggestions },
         states: { suggestLocal },
-        toggleSuggestion
+        toggleSuggestion,
     } = props;
-    console.log(suggestions);
+    // console.log(suggestions);
 
     let suggestedEyes = [];
     // sort eye list into array
@@ -27,11 +27,11 @@ const SuggestionBar = props => {
         let eyesArray;
         if (!suggestLocal) {
             eyesArray = mergeSort('dsc', eyes);
-            console.log(eyesArray);
-            console.log('eyesArray sorted');
+            // console.log(eyesArray);
+            // console.log('eyesArray sorted');
         } else {
             const addDistance = findAndAddDistance(eye, eyes);
-            console.log(addDistance);
+            // console.log(addDistance);
             eyesArray = mergeSort('asc', addDistance);
             eyesArray = eyesArray.slice(1);
         }
@@ -97,10 +97,10 @@ const SuggestionBar = props => {
     return suggestionComponent;
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     eyes: state.eyes,
     eye: state.eye,
     tabs: state.tabs,
-    states: state.states
+    states: state.states,
 });
 export default connect(mapStateToProps, { toggleSuggestion })(SuggestionBar);

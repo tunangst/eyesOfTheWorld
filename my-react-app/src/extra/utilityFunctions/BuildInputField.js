@@ -66,7 +66,7 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
             );
             break;
         case 'date':
-            console.log(value);
+            // console.log(value);
             const timeStamp = moment(value, 'YYYY:MM:DD HH:mm:ss');
             const valueDate = timeStamp.toDate();
             let formattedDate = moment(valueDate).format('LLLL');

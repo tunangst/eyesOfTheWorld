@@ -7,11 +7,11 @@ import BuildInputField from '../extra/utilityFunctions/BuildInputField';
 // import SuggestionBar from '../layout/SuggestionBar';
 import { setName } from '../extra/utilityFunctions/utilities';
 
-const EyePage = props => {
+const EyePage = (props) => {
     const { eye, eyes, findEye, setLocal } = props;
 
     const id = props.match.params.id;
-    console.log(id);
+    // console.log(id);
 
     let slicedEyes = null;
     if (eyes.length > 0) {
@@ -58,7 +58,6 @@ const EyePage = props => {
             }
         });
     }
-    console.log(process.env);
 
     return (
         <section className='eyeContainer'>
@@ -75,9 +74,9 @@ const EyePage = props => {
     );
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     eye: state.eye,
-    eyes: state.eyes
+    eyes: state.eyes,
 });
 
 export default connect(mapStateToProps, { findEye, setLocal })(EyePage);

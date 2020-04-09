@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const config = require('config');
-console.log('NODE_ENV: ' + config.util.getEnv('NODE_ENV'));
+// console.log('NODE_ENV: ' + config.util.getEnv('NODE_ENV'));
 
 let dbURI = process.env.MONGO_URI;
 if (config.util.getEnv('NODE_ENV') === 'development') {
@@ -41,8 +41,8 @@ const connectDB = async () => {
         // let conn = await mongoose.createConnection(dbURI, options);
         await mongoose.connect(dbURI, options);
         // await mongoose.createConnection(dbURIPic, options);
-        console.log(process.env.MONGO_URI, 'mongoURI');
-        console.log('MongoDB connected');
+        // console.log(process.env.MONGO_URI, 'mongoURI');
+        // console.log('MongoDB connected');
     } catch (error) {
         console.log(error);
     }

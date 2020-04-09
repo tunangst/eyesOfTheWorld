@@ -11,82 +11,84 @@ import {
     REMOVE_ALERT,
     CLOSE_THANKS,
     SUGGEST_LOCAL_TRUE,
-    SUGGEST_LOCAL_FALSE
+    SUGGEST_LOCAL_FALSE,
 } from './types';
 
-export const setLoading = toggle => async dispatch => {
+export const setLoading = (toggle) => async (dispatch) => {
     dispatch({
         type: SET_LOADING,
-        payload: toggle
+        payload: toggle,
     });
 };
 
-export const handleSubmitReady = toggle => async dispatch => {
-    console.log(`calling handleSubmitReady`);
+export const handleSubmitReady = (toggle) => async (dispatch) => {
+    // console.log(`calling handleSubmitReady`);
     if (toggle) {
         dispatch(setLoading(false));
         dispatch({
             type: SUBMIT_READY_YES,
-            payload: true
+            payload: true,
         });
     } else {
         dispatch({
             type: SUBMIT_READY_NO,
-            payload: false
+            payload: false,
         });
     }
 };
 
-export const handleImageReady = toggle => async dispatch => {
+export const handleImageReady = (toggle) => async (dispatch) => {
     toggle
         ? dispatch({
               type: IMAGE_READY_YES,
-              payload: true
+              payload: true,
           })
         : dispatch({
               type: IMAGE_READY_NO,
-              payload: false
+              payload: false,
           });
 };
 
-export const setAlert = (msg, alertType, timeout = 5000) => async dispatch => {
+export const setAlert = (msg, alertType, timeout = 5000) => async (
+    dispatch
+) => {
     const id = getId();
-    console.log('msg', msg);
-    console.log('alertType', alertType);
+    // console.log('msg', msg);
+    // console.log('alertType', alertType);
     dispatch({
         type: SET_ALERT,
-        payload: { msg: msg, alertType: alertType, id: id }
+        payload: { msg: msg, alertType: alertType, id: id },
     });
     setTimeout(
         () =>
             dispatch({
                 type: REMOVE_ALERT,
-                payload: id
+                payload: id,
             }),
         timeout
     );
 };
 
-export const removeAlert = id => async dispatch => {
+export const removeAlert = (id) => async (dispatch) => {
     dispatch({
         type: REMOVE_ALERT,
-        payload: id
+        payload: id,
     });
 };
 
-export const setThanks = (msg, alertType) => async dispatch => {
+export const setThanks = (msg, alertType) => async (dispatch) => {
     dispatch(setAlert(msg, alertType));
     dispatch({
-        type: CLOSE_THANKS
+        type: CLOSE_THANKS,
     });
 };
 
-export const setLocal = trueOrFalse => async dispatch => {
+export const setLocal = (trueOrFalse) => async (dispatch) => {
     trueOrFalse
         ? dispatch({
-              type: SUGGEST_LOCAL_TRUE
+              type: SUGGEST_LOCAL_TRUE,
           })
         : dispatch({
-              type: SUGGEST_LOCAL_FALSE
+              type: SUGGEST_LOCAL_FALSE,
           });
 };

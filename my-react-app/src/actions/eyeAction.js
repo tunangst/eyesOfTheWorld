@@ -8,13 +8,13 @@ import {
     CLEAR_EYE,
     CLEAR_INFO,
     RESET_IMG,
-    SUBMIT_READY_NO
+    SUBMIT_READY_NO,
 } from '../actions/types';
 
 import { setAlert } from './statesAction';
 import { getUserAndEyes, getUser } from './userAction';
 
-export const getAllEyes = () => async dispatch => {
+export const getAllEyes = () => async (dispatch) => {
     try {
         const eyes = await axios.get('/api/eyes');
         //maybe put a sort method by uploadDate
@@ -22,7 +22,7 @@ export const getAllEyes = () => async dispatch => {
 
         dispatch({
             type: GET_ALL_EYES,
-            payload: eyesData
+            payload: eyesData,
         });
         // return eyeData;
     } catch (error) {
@@ -30,8 +30,8 @@ export const getAllEyes = () => async dispatch => {
     }
 };
 
-export const findEye = eyeId => async dispatch => {
-    console.log(`******** findEye function ***********`);
+export const findEye = (eyeId) => async (dispatch) => {
+    // console.log(`******** findEye function ***********`);
     try {
         const eye = await axios.get(`/api/eyes/${eyeId}`);
         // const image = await axios.get(`/api/images/${eyeId}`);
@@ -39,7 +39,7 @@ export const findEye = eyeId => async dispatch => {
 
         dispatch({
             type: GET_EYE,
-            payload: eyeData
+            payload: eyeData,
         });
         // return eyeData;
     } catch (error) {
@@ -47,29 +47,29 @@ export const findEye = eyeId => async dispatch => {
     }
 };
 
-export const buildEye = eye => async dispatch => {
+export const buildEye = (eye) => async (dispatch) => {
     dispatch({
-        type: BUILD_EYE
+        type: BUILD_EYE,
     });
 };
-export const clearEye = () => async dispatch => {
+export const clearEye = () => async (dispatch) => {
     dispatch({
-        type: CLEAR_EYE
+        type: CLEAR_EYE,
     });
 };
 
-export const submitEye = (event, userObj, lat, lon) => async dispatch => {
+export const submitEye = (event, userObj, lat, lon) => async (dispatch) => {
     if (
         window.confirm(
             'Your file name is the name of your Eye, be sure it describes it accurately'
         )
     ) {
-        console.log('userId ', userObj._id);
-        console.log('userEmail ', userObj.email);
+        // console.log('userId ', userObj._id);
+        // console.log('userEmail ', userObj.email);
         event.preventDefault();
         dispatch({
             type: SUBMIT_READY_NO,
-            payload: false
+            payload: false,
         });
         if (!userObj.email) {
             dispatch(setAlert('Not logged in', 'error'));
@@ -77,21 +77,18 @@ export const submitEye = (event, userObj, lat, lon) => async dispatch => {
         }
         dispatch({
             type: SET_LOADING,
-            payload: true
+            payload: true,
         });
 
         const config = {
             headers: {
-                'Content-Type': 'multipart/form-data'
+                'Content-Type': 'multipart/form-data',
             },
-            onUploadProgress: event => {
-                console.log(event.loaded, event.total);
-            }
         };
         const findConfig = {
             headers: {
-                'Content-Type': 'application/json'
-            }
+                'Content-Type': 'application/json',
+            },
         };
 
         try {
@@ -99,7 +96,7 @@ export const submitEye = (event, userObj, lat, lon) => async dispatch => {
             let infoBody = new FormData(infoForm);
 
             const findBody = JSON.stringify({ lat: lat, lon: lon });
-            console.log(findBody);
+            // console.log(findBody);
 
             //|||||||||||||||||||||||||||| if already posted error will throw ||||||||
             await axios.post('/api/eyes/upload/check', findBody, findConfig);
@@ -116,14 +113,14 @@ export const submitEye = (event, userObj, lat, lon) => async dispatch => {
                 config
             );
             const imgUrl = img.data.imageUrl;
-            console.log(imgUrl);
+            // console.log(imgUrl);
 
             let picCollection = [...imageBody];
             const file = picCollection[0][1];
             const fileInfo = {
                 name: file.name,
                 size: file.size / (1024 * 1024),
-                type: file.type
+                type: file.type,
             };
 
             infoBody.append('picName', fileInfo.name);
@@ -134,16 +131,16 @@ export const submitEye = (event, userObj, lat, lon) => async dispatch => {
             //|||||||||||||||||||||||||||||||| send eye post ||||||||||||||||
             const eye = await axios.post('/api/eyes/upload', infoBody, config);
 
-            console.log(eye.data);
+            // console.log(eye.data);
             // clear info
 
             dispatch({
-                type: CLEAR_INFO
+                type: CLEAR_INFO,
             });
 
             //submit not ready
             dispatch({
-                type: RESET_IMG
+                type: RESET_IMG,
             });
             dispatch(setAlert('Thank you. Eye has been placed', 'success'));
         } catch (error) {
@@ -154,13 +151,13 @@ export const submitEye = (event, userObj, lat, lon) => async dispatch => {
     }
     dispatch({
         type: SET_LOADING,
-        payload: false
+        payload: false,
     });
 };
-export const removeEye = (id, url, userId) => async dispatch => {
+export const removeEye = (id, url, userId) => async (dispatch) => {
     dispatch({
         type: SET_LOADING,
-        payload: true
+        payload: true,
     });
     if (window.confirm('Are you sure? This removal can NOT be undone!')) {
         try {
@@ -171,12 +168,12 @@ export const removeEye = (id, url, userId) => async dispatch => {
             // const email = split[0];
             const public_id = split[1].split('.jpg')[0];
 
-            console.log(public_id);
+            // console.log(public_id);
 
             //find user
             const userData = await dispatch(getUser(userId));
-            console.log(userData);
-            console.log('^^^^^^^^^^^^^^^^userData^^^^^^^^^^^^^^');
+            // console.log(userData);
+            // console.log('^^^^^^^^^^^^^^^^userData^^^^^^^^^^^^^^');
 
             const imgResponse = await axios.delete(
                 `/api/image/${userData.email}/${public_id}`
@@ -193,6 +190,6 @@ export const removeEye = (id, url, userId) => async dispatch => {
     }
     dispatch({
         type: SET_LOADING,
-        payload: false
+        payload: false,
     });
 };

@@ -8,7 +8,7 @@ import { setAlert } from './statesAction';
 import {
     calculateLatLong,
     getId,
-    clearImgExifdataTag
+    clearImgExifdataTag,
 } from '../extra/utilityFunctions/utilities';
 
 import {
@@ -23,75 +23,74 @@ import {
     GET_IMG_SRC,
     GET_IMG_ID,
     SUBMIT_READY_YES,
-    SUBMIT_READY_NO
+    SUBMIT_READY_NO,
 } from '../actions/types';
 
-export const handleFileChange = (
-    targetFileLocation,
-    imgSrc
-) => async dispatch => {
-    console.log(targetFileLocation === imgSrc);
+export const handleFileChange = (targetFileLocation, imgSrc) => async (
+    dispatch
+) => {
+    // console.log(targetFileLocation === imgSrc);
     dispatch({
         type: SUBMIT_READY_NO,
-        payload: false
+        payload: false,
     });
     dispatch({
         type: IMAGE_READY_NO,
-        payload: false
+        payload: false,
     });
     dispatch({
         type: SET_LOADING,
-        payload: true
+        payload: true,
     });
     dispatch({
-        type: CLEAR_INFO
+        type: CLEAR_INFO,
     });
 
     const newId = getId();
     const reader = new FileReader();
-    reader.onload = function() {
+    reader.onload = function () {
         dispatch({
             type: GET_IMG_ID,
-            payload: newId
+            payload: newId,
         });
         dispatch({
             type: GET_IMG_SRC,
-            payload: reader.result
+            payload: reader.result,
         });
         if (reader.result === imgSrc) {
             dispatch({
                 type: SET_LOADING,
-                payload: false
+                payload: false,
             });
             dispatch(handleFindInfo());
         }
-        console.log(reader.result === imgSrc);
+        // console.log(reader.result === imgSrc);
     };
     reader.readAsDataURL(targetFileLocation);
 };
 
-const failed = msg => dispatch => {
+const failed = (msg) => (dispatch) => {
     dispatch(setAlert(msg, 'error'));
     dispatch({
         type: SET_LOADING,
-        payload: false
+        payload: false,
     });
     dispatch({
         type: SUBMIT_READY_NO,
-        payload: false
+        payload: false,
     });
     dispatch({
         type: IMAGE_READY_NO,
-        payload: false
+        payload: false,
     });
 };
-export const handleFindInfo = props => async dispatch => {
-    console.log('handleFindInfo run');
+export const handleFindInfo = (props) => async (dispatch) => {
+    // console.log('handleFindInfo run');
     const imgId = store.getState().states.imgId;
 
     dispatch({
         type: SET_LOADING,
-        payload: true
+        payload: true,
     });
     const img1 = document.getElementById(imgId);
     let enterInfo;
@@ -99,7 +98,7 @@ export const handleFindInfo = props => async dispatch => {
         let latitude;
         let longitude;
         const tags = EXIF.getAllTags(img1);
-        console.log(tags);
+        // console.log(tags);
         if (tags.PixelXDimension < 200 || tags.PixelYDimension < 200) {
             dispatch(
                 failed('Eye X or Y dimensions are too small, minimum of 200px')
@@ -178,29 +177,29 @@ export const handleFindInfo = props => async dispatch => {
             zoom: zoomCalc && zoomCalc,
             artist: tags.Artist && tags.Artist,
             software: tags.Software && tags.Software,
-            copyright: tags.Copyright && tags.Copyright
+            copyright: tags.Copyright && tags.Copyright,
         };
         // console.log(zoom, 'zoom');
         // console.log(zoomCalc, 'zoomCalc');
-        console.log(enterInfo);
+        // console.log(enterInfo);
         dispatch({
             type: SET_INFO,
-            payload: enterInfo
+            payload: enterInfo,
         });
         dispatch({
             type: SUBMIT_READY_YES,
-            payload: true
+            payload: true,
         });
     });
     dispatch({
         type: SET_LOADING,
-        payload: false
+        payload: false,
     });
     //clear exifdata obj attacked to img so new image data can be updated
     clearImgExifdataTag(img1);
 };
 
-export const handleFileDrop = event => async dispatch => {
+export const handleFileDrop = (event) => async (dispatch) => {
     event.preventDefault();
     const fileInput = document.querySelector('#insertedImg');
     const dT = event.dataTransfer.files[0];

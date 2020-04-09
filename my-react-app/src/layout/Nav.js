@@ -8,13 +8,13 @@ import { logout } from '../actions/userAction';
 
 // import GoogleLogin from 'react-google-login';
 
-const Nav = props => {
+const Nav = (props) => {
     const {
         states: { loading },
         isAuthenticated,
         userId,
         setLoading,
-        logout
+        logout,
         // user: { isAuthenticated, user }
     } = props;
     const history = useHistory();
@@ -27,14 +27,13 @@ const Nav = props => {
         setLoading(false);
         history.push('/upload');
     };
-    const handleRedirectUserEyes = userId => {
+    const handleRedirectUserEyes = (userId) => {
         setLoading(false);
-        console.log();
         history.push(`/eyes/user/${userId}`);
     };
 
     const handleLogout = () => {
-        console.log('handleLogout');
+        // console.log('handleLogout');
         logout();
         return <Redirect to='/' />;
     };
@@ -99,10 +98,10 @@ const Nav = props => {
     );
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     states: state.states,
     isAuthenticated: state.user.isAuthenticated,
-    userId: state.user.userObj._id
+    userId: state.user.userObj._id,
 });
 
 export default connect(mapStateToProps, { setLoading, logout })(Nav);

@@ -1,14 +1,14 @@
 export const calculateLatLong = (degrees, minutes, seconds, direction) => {
     if (Number.isNaN(degrees)) {
-        console.log('isNaN');
+        // console.log('isNaN');
         degrees = 0;
     }
     if (Number.isNaN(minutes)) {
-        console.log('isNaN');
+        // console.log('isNaN');
         minutes = 0;
     }
     if (Number.isNaN(seconds)) {
-        console.log('isNaN');
+        // console.log('isNaN');
         seconds = 0;
     }
     let conversion = degrees + minutes / 60 + seconds / 3600;
@@ -18,14 +18,14 @@ export const calculateLatLong = (degrees, minutes, seconds, direction) => {
     return conversion;
 };
 
-export const calculateLength = size => {
+export const calculateLength = (size) => {
     let result;
     if (size === 0) {
         result = 7.5;
     } else {
         result = size * 7.5;
     }
-    console.log({ width: `${result}px` });
+    // console.log({ width: `${result}px` });
     return { width: `${result}px` };
 };
 
@@ -34,9 +34,9 @@ export const getId = () => {
     return id;
 };
 
-export const clearImgExifdataTag = file => {
+export const clearImgExifdataTag = (file) => {
     file.exifdata = null;
-    console.log(`clearing file field `);
+    // console.log(`clearing file field `);
     // file.value = '';
     return;
 };
@@ -46,7 +46,7 @@ export const removeImg = () => {
     img.parentNode.removeChild(img);
 };
 
-export const setName = filename => {
+export const setName = (filename) => {
     const capName = filename.toUpperCase();
     const name = capName.substr(0, capName.lastIndexOf('.')) || capName;
     return name;
@@ -123,11 +123,11 @@ const findPointDistance = (originEye, targetEye) => {
 // Math.sqrt(9); // 3
 export const findAndAddDistance = (origin, arrOfUnsortedObjs) => {
     //     let distanced = [];
-    console.log(arrOfUnsortedObjs);
-    const distanced = arrOfUnsortedObjs.map(obj => {
+    // console.log(arrOfUnsortedObjs);
+    const distanced = arrOfUnsortedObjs.map((obj) => {
         obj.distanceToTarget = findPointDistance(origin, obj);
         return obj;
     });
-    console.log(distanced);
+    // console.log(distanced);
     return distanced;
 };

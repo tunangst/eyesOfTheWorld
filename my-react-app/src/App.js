@@ -24,7 +24,6 @@ import ScreenBlock from './layout/ScreenBlock';
 import store from './store';
 
 const App = () => {
-    console.log(process.env.REACT_APP_GOOGLE_KEY);
     useEffect(() => {
         store.dispatch(loadUser());
     }, []);

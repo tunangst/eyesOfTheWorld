@@ -22,7 +22,7 @@ const initialInfo = {
     zoom: '',
     artist: '',
     software: '',
-    copyright: ''
+    copyright: '',
 };
 const initialEye = {
     url: '',
@@ -31,14 +31,13 @@ const initialEye = {
     pic: {
         name: '',
         size: '',
-        type: ''
+        type: '',
     },
-    info: initialInfo
+    info: initialInfo,
 };
 
 const eye = (state = initialEye, action) => {
     const { type, payload } = action;
-    // console.log(payload);
     switch (type) {
         case GET_EYE:
             return {
@@ -47,7 +46,7 @@ const eye = (state = initialEye, action) => {
                 user: payload.user,
                 uploadDate: payload.uploadDate,
                 pic: payload.pic,
-                info: payload.info
+                info: payload.info,
             };
         case CLEAR_EYE:
             return initialEye;
@@ -58,7 +57,7 @@ const eye = (state = initialEye, action) => {
                 pic: {
                     name: payload.pic.name,
                     size: payload.pic.size,
-                    type: payload.pic.type
+                    type: payload.pic.type,
                 },
                 info: {
                     latitude: payload.info.latitude,
@@ -82,8 +81,8 @@ const eye = (state = initialEye, action) => {
                     zoom: payload.info.zoom,
                     artist: payload.info.artist,
                     software: payload.info.software,
-                    copyright: payload.info.copyright
-                }
+                    copyright: payload.info.copyright,
+                },
             };
         default:
             return state;

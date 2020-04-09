@@ -12,24 +12,24 @@ const initialState = {
     email: '',
     password: '',
     password2: '',
-    avatar: ''
+    avatar: '',
 };
-const Register = props => {
+const Register = (props) => {
     const { register, setAlert, isAuthenticated } = props;
     const [formData, setFormData] = useState(initialState);
     const { username, avatar, email, password, password2 } = formData;
 
-    const onChange = element =>
+    const onChange = (element) =>
         setFormData({
             ...formData,
-            [element.target.name]: element.target.value
+            [element.target.name]: element.target.value,
         });
 
-    const onSubmit = async element => {
+    const onSubmit = async (element) => {
         element.preventDefault();
         if (password !== password2) {
             setAlert('Passwords do not match', 'error');
-            console.log('Passwords do not match');
+            // console.log('Passwords do not match');
         } else {
             console.log('register success');
             register({ username, email, password, avatar });
@@ -45,14 +45,14 @@ const Register = props => {
                 <form
                     action=''
                     className='form'
-                    onSubmit={element => onSubmit(element)}
+                    onSubmit={(element) => onSubmit(element)}
                 >
                     <input
                         type='text'
                         placeholder='Name'
                         name='username'
                         value={username}
-                        onChange={element => onChange(element)}
+                        onChange={(element) => onChange(element)}
                         required
                     />
                     <input
@@ -60,14 +60,14 @@ const Register = props => {
                         name='avatar'
                         placeholder='Avatar (URL)'
                         value={avatar}
-                        onChange={element => onChange(element)}
+                        onChange={(element) => onChange(element)}
                     />
                     <input
                         type='email'
                         placeholder='Email Address'
                         name='email'
                         value={email}
-                        onChange={element => onChange(element)}
+                        onChange={(element) => onChange(element)}
                         required
                     />
                     <input
@@ -75,7 +75,7 @@ const Register = props => {
                         placeholder='Password'
                         name='password'
                         value={password}
-                        onChange={element => onChange(element)}
+                        onChange={(element) => onChange(element)}
                         minLength='6'
                     />
                     <input
@@ -83,7 +83,7 @@ const Register = props => {
                         placeholder='Confirm Password'
                         name='password2'
                         value={password2}
-                        onChange={element => onChange(element)}
+                        onChange={(element) => onChange(element)}
                         minLength='6'
                     />
                     <input
@@ -100,7 +100,7 @@ const Register = props => {
     );
 };
 
-const mapStateToProps = state => ({
-    isAuthenticated: state.user.isAuthenticated
+const mapStateToProps = (state) => ({
+    isAuthenticated: state.user.isAuthenticated,
 });
 export default connect(mapStateToProps, { register, setAlert })(Register);

@@ -34,12 +34,12 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_SECRET || cloudinarySecret,
 });
 
-console.log(process.env.CLOUDINARY_CLOUD_NAME, 'cloudname');
-console.log(process.env.CLOUDINARY_KEY, 'key');
-console.log(process.env.CLOUDINARY_SECRET, 'secret');
+// console.log(process.env.CLOUDINARY_CLOUD_NAME, 'cloudname');
+// console.log(process.env.CLOUDINARY_KEY, 'key');
+// console.log(process.env.CLOUDINARY_SECRET, 'secret');
 
 const fileFilter = (req, file, cb) => {
-    console.log(file, 'fileFilter');
+    // console.log(file, 'fileFilter');
     if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
         cb(null, true);
     } else {
@@ -86,14 +86,14 @@ const multerCloudinaryStorage = cloudinaryStorage({
     // folder: 'EyesOfTheWorld',
     allowedFormats: ['jpg'],
     folder: function (req, file, cb) {
-        console.log('inside folder !!!!!!!!!!!!!!!!!!!!!!!!!!');
+        // console.log('inside folder !!!!!!!!!!!!!!!!!!!!!!!!!!');
         const folderName =
             `EyesOfTheWorld/${req.params.directoryName}` ||
             'EyesOfTheWorld/defaulted';
-        console.log(folderName);
-        console.log(file);
+        // console.log(folderName);
+        // console.log(file);
 
-        console.log(`multer storage file`);
+        // console.log(`multer storage file`);
         cb(null, `EyesOfTheWorld/${req.params.directoryName}`);
     },
     filename: function (req, file, cb) {
