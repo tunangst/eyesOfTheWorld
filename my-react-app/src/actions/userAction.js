@@ -29,7 +29,6 @@ export const loadUser = () => async (dispatch) => {
         dispatch({
             type: AUTH_ERROR,
         });
-        dispatch(setAlert('Authentication failed', 'error'));
     }
 };
 export const register = (userObj) => async (dispatch) => {

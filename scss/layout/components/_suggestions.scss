@@ -9,12 +9,6 @@
     align-items: center;
     justify-content: flex-start;
     position: relative;
-    // top: 10rem;
-
-    // transform: translate3d(0, 0, 0)
-
-    // animation: suggestionEnter 2s ease-out;
-    // animation: suggestionBarClose 2s ease-out;
 
     & .icon {
         align-self: flex-start;
@@ -58,13 +52,16 @@
 
 .suggestionClosed {
     z-index: 3;
+    // z-index: 2000;
     min-height: 10rem;
     // width: 10rem;
     background-color: transparent;
-    position: relative;
-    top: 10rem;
-    margin-top: -10rem;
+    position: absolute;
+    // top: 10rem;
+    // margin-top: -10rem;
+
     pointer-events: none;
+    // transform: translate3d(0, 0, 0);
 
     display: flex;
     // justify-content: center;
@@ -81,4 +78,24 @@
         stroke-linecap: round;
         stroke: $color-white;
     }
+}
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~animation group
+.suggestionAnimation-enter {
+    position: absolute;
+    transform: translate3d(0, -100%, 0);
+}
+.suggestionAnimation-enter.suggestionAnimation-enter-active {
+    position: absolute;
+    transform: translate3d(0, 0, 0);
+    transition: 0.5s ease-out 0.5s;
+}
+.suggestionAnimation-leave {
+    position: absolute;
+    transform: translate3d(0, 0, 0);
+}
+.suggestionAnimation-leave.suggestionAnimation-leave-active {
+    position: absolute;
+    transform: translate3d(0, -100%, 0);
+    transition: 0.5s ease-out;
 }

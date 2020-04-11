@@ -19,9 +19,7 @@ body,
   font-family: 'Raleway', sans-serif;
   overflow-x: hidden; }
 
-#myArea {
-  height: 100%;
-  width: 100%;
+#root {
   display: flex;
   flex-direction: column; }
 
@@ -156,9 +154,7 @@ Grey dark 3: #999
   z-index: 3;
   min-height: 10rem;
   background-color: transparent;
-  position: relative;
-  top: 10rem;
-  margin-top: -10rem;
+  position: absolute;
   pointer-events: none;
   display: flex; }
   .suggestionClosed .icon {
@@ -171,6 +167,24 @@ Grey dark 3: #999
     stroke-width: 4rem;
     stroke-linecap: round;
     stroke: #f0e2c9; }
+
+.suggestionAnimation-enter {
+  position: absolute;
+  transform: translate3d(0, -100%, 0); }
+
+.suggestionAnimation-enter.suggestionAnimation-enter-active {
+  position: absolute;
+  transform: translate3d(0, 0, 0);
+  transition: 0.5s ease-out 0.5s; }
+
+.suggestionAnimation-leave {
+  position: absolute;
+  transform: translate3d(0, 0, 0); }
+
+.suggestionAnimation-leave.suggestionAnimation-leave-active {
+  position: absolute;
+  transform: translate3d(0, -100%, 0);
+  transition: 0.5s ease-out; }
 
 .login-register {
   height: 100%;
@@ -269,8 +283,10 @@ Grey dark 3: #999
   background-color: rgba(240, 226, 201, 0.8); }
 
 #myArea {
+  flex: 1;
   margin-top: 10rem;
-  display: relative; }
+  display: flex;
+  flex-direction: column; }
 
 .add {
   flex: 1;

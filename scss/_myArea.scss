@@ -1,4 +1,8 @@
 #myArea {
+    flex: 1;
+
     margin-top: 10rem;
-    display: relative;
+
+    display: flex;
+    flex-direction: column;
 }

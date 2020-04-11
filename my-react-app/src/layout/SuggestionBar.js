@@ -6,9 +6,13 @@ import {
     findAndAddDistance,
 } from '../extra/utilityFunctions/utilities';
 import { toggleSuggestion } from '../actions/tabsAction';
-// import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
+import ReactCSSTransitionGroup from 'react-transition-group';
 
 import icons from '../extra/images/icons.svg';
+
+const CSSTransitionGroup = ReactCSSTransitionGroup.CSSTransitionGroup;
+console.log(ReactCSSTransitionGroup);
+console.log(CSSTransitionGroup);
 
 const SuggestionBar = (props) => {
     const {
@@ -58,14 +62,7 @@ const SuggestionBar = (props) => {
     }, []);
 
     let suggestionComponent = (
-        // <CSSTransitionGroup
-        //     transitionName='CSSTransitionSuggestions'
-        //     transitionAppear={true}
-        //     transitionAppearTimeout={5000}
-        //     transitionEnter={false}
-        //     transitionLeave={false}
-        // >
-        <aside className='suggestionClosed'>
+        <aside className='suggestionClosed' key='closed'>
             <svg
                 className='icon'
                 onClick={eyes.length > 0 ? () => toggleSuggestion() : null}
@@ -73,28 +70,27 @@ const SuggestionBar = (props) => {
                 <use href={`${icons}#down`}></use>
             </svg>
         </aside>
-        // </CSSTransitionGroup>
     );
     if (suggestions) {
         suggestionComponent = (
-            // <CSSTransitionGroup
-            // transitionName='CSSTransitionSuggestions'
-            // transitionAppear={false}
-            // transitionAppearTimeout={5000}
-            // transitionEnter={true}
-            // transitionLeave={true}
-            // >
-            <aside className='suggestionOpen'>
+            <aside className='suggestionOpen' key='open'>
                 <svg className='icon' onClick={() => toggleSuggestion()}>
                     <use href={`${icons}#up`}></use>
                 </svg>
                 <div className='suggestionContainer'>{suggestedEyes}</div>
             </aside>
-            // </CSSTransitionGroup>
         );
     }
 
-    return suggestionComponent;
+    return (
+        <CSSTransitionGroup
+            transitionName='suggestionAnimation'
+            transitionEnterTimeout={1000}
+            transitionLeaveTimeout={1000}
+        >
+            {suggestionComponent}
+        </CSSTransitionGroup>
+    );
 };
 
 const mapStateToProps = (state) => ({
