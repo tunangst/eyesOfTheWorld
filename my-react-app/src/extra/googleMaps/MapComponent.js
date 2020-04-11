@@ -5,11 +5,13 @@ import {
     withGoogleMap,
     GoogleMap,
     Marker,
+    InfoWindow,
 } from 'react-google-maps';
 
 // import { MarkerWithLabel } from 'react-google-maps/lib/components/addons/MarkerWithLabel';
 import MarkerClusterer from 'react-google-maps/lib/components/addons/MarkerClusterer';
 import mapStyle from './mapStyle';
+import BuildMarkerInfo from '../utilityFunctions/BuildMarkerInfo';
 
 //eyeDataArr = [{},{},{}]
 //eyeDataArr[0]= {
@@ -22,6 +24,9 @@ const MapComponent = withScriptjs(
         const history = useHistory();
         const handleRedirect = (eyeId) => {
             history.push(`/eyes/${eyeId}`);
+        };
+        const toggleInfoWindow = () => {
+            console.log('toggling');
         };
         const buildMarker = (eyeDataObj) => {
             const key = eyeDataObj._id || 'init';
@@ -38,8 +43,15 @@ const MapComponent = withScriptjs(
                     clickable={true}
                     // labelAnchor={new google.maps.Point(0, 0)}
                     // labelStyle={{backgroundColor: "yellow", fontSize: "32px", padding: "16px"}}
-                    onClick={() => handleRedirect(eyeDataObj._id)}
-                />
+                    onClick={() => toggleInfoWindow()}
+                >
+                    <InfoWindow>
+                        <BuildMarkerInfo
+                            eye={eyeDataObj}
+                            redirect={handleRedirect}
+                        />
+                    </InfoWindow>
+                </Marker>
             );
         };
 

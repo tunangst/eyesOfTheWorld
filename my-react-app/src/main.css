@@ -239,6 +239,61 @@ Grey dark 3: #999
         color: #a62f03;
         font-weight: 600; }
 
+.gm-style-iw,
+.gm-style-iw-c,
+.gm-style-iw-d {
+  padding: 0 !important;
+  width: auto;
+  height: auto;
+  box-shadow: none;
+  overflow: hidden !important; }
+  .gm-style-iw div,
+  .gm-style-iw-c div,
+  .gm-style-iw-d div {
+    font-weight: none; }
+  .gm-style-iw button,
+  .gm-style-iw-c button,
+  .gm-style-iw-d button {
+    display: none !important; }
+
+.markerInfo {
+  border: 1px solid #a62f03;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  background-color: #f0e2c9;
+  border-radius: 6px;
+  padding: 5px;
+  max-width: 12rem;
+  overflow: none; }
+  .markerInfo h2 {
+    font-size: 1.4rem;
+    margin: 5px 0;
+    color: #a62f03;
+    font-family: 'Alice', serif;
+    font-weight: 800; }
+  .markerInfo .window {
+    position: relative;
+    border-radius: 6px;
+    width: 100%;
+    height: 10rem;
+    overflow: hidden; }
+    .markerInfo .window img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center; }
+  .markerInfo .goto {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    color: #fff;
+    background-color: #46bcec;
+    border-radius: 4px;
+    padding: 3px 0; }
+
 .nav {
   height: 10rem;
   z-index: 10;
