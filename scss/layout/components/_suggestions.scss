@@ -88,7 +88,7 @@
 .suggestionAnimation-enter.suggestionAnimation-enter-active {
     position: absolute;
     transform: translate3d(0, 0, 0);
-    transition: 0.5s ease-out 0.5s;
+    transition: 0.2s ease-out 0.2s;
 }
 .suggestionAnimation-leave {
     position: absolute;
@@ -97,5 +97,5 @@
 .suggestionAnimation-leave.suggestionAnimation-leave-active {
     position: absolute;
     transform: translate3d(0, -100%, 0);
-    transition: 0.5s ease-out;
+    transition: 0.2s ease-out;
 }

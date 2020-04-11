@@ -85,8 +85,8 @@ const SuggestionBar = (props) => {
     return (
         <CSSTransitionGroup
             transitionName='suggestionAnimation'
-            transitionEnterTimeout={1000}
-            transitionLeaveTimeout={1000}
+            transitionEnterTimeout={400}
+            transitionLeaveTimeout={200}
         >
             {suggestionComponent}
         </CSSTransitionGroup>
