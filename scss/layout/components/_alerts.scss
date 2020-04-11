@@ -1,7 +1,8 @@
 .alerts {
     width: 100%;
     position: fixed;
-    z-index: 3;
+    z-index: 3000;
+    // z-index: 3;
     bottom: 0;
     left: 0;
 
@@ -9,6 +10,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    & span {
+        width: 100%;
+    }
 
     & .alert {
         font-size: $small-font-size;
@@ -47,4 +52,28 @@
         color: $white;
         font-weight: 300;
     }
+}
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~animation group
+.alertAnimation-enter {
+    // opacity: 0.01;
+    // position: absolute;
+    margin-bottom: -5rem;
+    // transform: translate3d(0, 100%, 0);
+}
+.alertAnimation-enter.alertAnimation-enter-active {
+    // opacity: 1;
+    margin-bottom: 0;
+    // position: absolute;
+    // transform: translate3d(0, 0, 0);
+    transition: 0.5s ease-out;
+}
+.alertAnimation-leave {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+}
+.alertAnimation-leave.alertAnimation-leave-active {
+    opacity: 0.01;
+    transform: translate3d(0, -100%, 0);
+    transition: 0.5s ease-out;
 }

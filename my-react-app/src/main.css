@@ -75,13 +75,15 @@ Grey dark 3: #999
 .alerts {
   width: 100%;
   position: fixed;
-  z-index: 3;
+  z-index: 3000;
   bottom: 0;
   left: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center; }
+  .alerts span {
+    width: 100%; }
   .alerts .alert {
     font-size: 1.4rem;
     height: 5rem;
@@ -109,6 +111,22 @@ Grey dark 3: #999
     background-color: rgba(70, 188, 236, 0.8);
     color: #fff;
     font-weight: 300; }
+
+.alertAnimation-enter {
+  margin-bottom: -5rem; }
+
+.alertAnimation-enter.alertAnimation-enter-active {
+  margin-bottom: 0;
+  transition: 0.5s ease-out; }
+
+.alertAnimation-leave {
+  opacity: 1;
+  transform: translate3d(0, 0, 0); }
+
+.alertAnimation-leave.alertAnimation-leave-active {
+  opacity: 0.01;
+  transform: translate3d(0, -100%, 0);
+  transition: 0.5s ease-out; }
 
 .suggestionOpen {
   z-index: 4;

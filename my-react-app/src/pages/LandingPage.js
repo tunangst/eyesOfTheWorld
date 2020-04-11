@@ -1,9 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-// import useAsyncEffect from 'use-async-effect';
-// import SuggestedEye from '../extra/utilityFunctions/SuggestedEye';
-// import SuggestionBar from './SuggestionBar';
-// import key from '../extra/hiddenFolder/hiddenFile';
+
 import MapComponent from '../extra/googleMaps/MapComponent';
 
 import { setThanks, setLocal } from '../actions/statesAction';
