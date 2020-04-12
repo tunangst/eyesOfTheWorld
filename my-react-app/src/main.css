@@ -246,7 +246,8 @@ Grey dark 3: #999
   width: auto;
   height: auto;
   box-shadow: none;
-  overflow: hidden !important; }
+  overflow: hidden !important;
+  border-radius: 5px !important; }
   .gm-style-iw div,
   .gm-style-iw-c div,
   .gm-style-iw-d div {
@@ -262,7 +263,7 @@ Grey dark 3: #999
   display: flex;
   flex-direction: column;
   background-color: #f0e2c9;
-  border-radius: 6px;
+  border-radius: 5px;
   padding: 5px;
   max-width: 12rem;
   overflow: none; }
@@ -275,9 +276,18 @@ Grey dark 3: #999
   .markerInfo .window {
     position: relative;
     border-radius: 6px;
-    width: 100%;
-    height: 10rem;
-    overflow: hidden; }
+    height: 10rem; }
+    .markerInfo .window .xBlock {
+      padding: 0 0 2px 5px;
+      border-radius: 0 0 0 5px;
+      background-color: #f0e2c9;
+      font-size: 1.4rem;
+      font-weight: 900;
+      position: absolute;
+      right: 0;
+      top: -5px;
+      color: #a62f03;
+      cursor: pointer; }
     .markerInfo .window img {
       width: 100%;
       height: 100%;

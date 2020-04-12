@@ -1,5 +1,6 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ eyes
 export const GET_ALL_EYES = 'GET_ALL_EYES';
+export const FILTER_EYES = 'FILTER_EYES';
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ eyes
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ eye
 export const GET_EYE = 'GET_EYE';

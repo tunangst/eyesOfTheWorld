@@ -1,18 +1,11 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import {
-    withScriptjs,
-    withGoogleMap,
-    GoogleMap,
-    Marker,
-    InfoWindow,
-} from 'react-google-maps';
+import { withScriptjs, withGoogleMap, GoogleMap } from 'react-google-maps';
 
 // import { MarkerWithLabel } from 'react-google-maps/lib/components/addons/MarkerWithLabel';
 import MarkerClusterer from 'react-google-maps/lib/components/addons/MarkerClusterer';
 import mapStyle from './mapStyle';
-import BuildMarkerInfo from '../utilityFunctions/BuildMarkerInfo';
-
+import MarkerWithInfoWindowComponent from './MarkerWithInfoWindowComponent';
 //eyeDataArr = [{},{},{}]
 //eyeDataArr[0]= {
 // info: {},
@@ -22,36 +15,28 @@ import BuildMarkerInfo from '../utilityFunctions/BuildMarkerInfo';
 const MapComponent = withScriptjs(
     withGoogleMap(({ eyesArr }) => {
         const history = useHistory();
+
         const handleRedirect = (eyeId) => {
             history.push(`/eyes/${eyeId}`);
         };
-        const toggleInfoWindow = () => {
-            console.log('toggling');
-        };
+
         const buildMarker = (eyeDataObj) => {
-            const key = eyeDataObj._id || 'init';
             const position = {
                 lat: Number(eyeDataObj.info.latitude),
                 lng: Number(eyeDataObj.info.longitude),
             };
 
+            let notPostingEye = true;
+            if (eyesArr.length <= 1) notPostingEye = false;
+
             return (
-                <Marker
-                    key={key}
-                    defaultOpacity={0.75}
+                <MarkerWithInfoWindowComponent
+                    key={eyeDataObj._id || 'init'}
+                    enableInfoWindow={notPostingEye}
                     position={position}
-                    clickable={true}
-                    // labelAnchor={new google.maps.Point(0, 0)}
-                    // labelStyle={{backgroundColor: "yellow", fontSize: "32px", padding: "16px"}}
-                    onClick={() => toggleInfoWindow()}
-                >
-                    <InfoWindow>
-                        <BuildMarkerInfo
-                            eye={eyeDataObj}
-                            redirect={handleRedirect}
-                        />
-                    </InfoWindow>
-                </Marker>
+                    redirect={handleRedirect}
+                    eye={eyeDataObj}
+                />
             );
         };
 
@@ -104,4 +89,7 @@ const MapComponent = withScriptjs(
     })
 );
 
+// const mapStateToProps = (state) => ({
+//     eyesArr: state.eyes,
+// });
 export default MapComponent;
