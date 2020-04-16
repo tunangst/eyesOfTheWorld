@@ -4,16 +4,15 @@
 
 @import 'ui/buttons';
 
+@import 'layout/nav';
 @import 'layout/components/alerts';
+@import 'myArea';
+
+@import 'layout/screenBlock';
 @import 'layout/components/suggestions';
 @import 'layout/components/register-login';
 @import 'layout/components/mapMarkerInfo';
-
-@import 'layout/nav';
 @import 'layout/landing';
-@import 'layout/screenBlock';
-
-@import 'myArea';
 
 @import 'layout/addPage/addPage';
 @import 'layout/addPage/sections/mapSection';

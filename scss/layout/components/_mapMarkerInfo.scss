@@ -1,26 +1,26 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~default box styling
-.gm-style-iw,
-.gm-style-iw-c,
-.gm-style-iw-d {
-    padding: 0 !important;
-    width: auto;
-    height: auto;
-    box-shadow: none;
-    overflow: hidden !important;
-    border-radius: 5px !important;
 
-    & div {
-        font-weight: none;
-    }
+// .gm-style-iw,
+// .gm-style-iw-c,
+// .gm-style-iw-d {
+//     padding: 0 !important;
+//     width: auto;
+//     height: auto;
+//     box-shadow: none;
+//     overflow: hidden !important;
+//     border-radius: 5px !important;
 
-    & button {
-        display: none !important;
-    }
-}
-// .gm-style-iw {
-//     border-radius: 4px !important;
+//     & div {
+//         font-weight: none;
+//     }
+
+//     & button {
+//         display: none !important;
+//     }
 // }
-
+// .worldMap .gm-style-cc {
+//     display: none;
+// }
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~Marker Info styling
 // .markerInfo {
 //     flex: 1;
@@ -57,6 +57,7 @@
         // padding-bottom: 1.5rem;
         border-radius: 6px;
         height: 10rem;
+        min-width: 10rem;
         // overflow: hidden;
 
         & .xBlock {

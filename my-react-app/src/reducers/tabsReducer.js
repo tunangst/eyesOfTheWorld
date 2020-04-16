@@ -1,7 +1,7 @@
 import { TOGGLE_SUGGESTION } from '../actions/types';
 
 const initialTab = {
-    suggestions: false
+    suggestions: false,
 };
 
 const tabs = (state = initialTab, action) => {
@@ -10,7 +10,7 @@ const tabs = (state = initialTab, action) => {
         case TOGGLE_SUGGESTION:
             return {
                 ...state,
-                suggestions: !state.suggestions
+                suggestions: !state.suggestions,
             };
         default:
             return state;

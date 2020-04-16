@@ -1,6 +1,6 @@
 import { TOGGLE_SUGGESTION } from './types';
-export const toggleSuggestion = () => async dispatch => {
+export const toggleSuggestion = (suggest) => async (dispatch) => {
     dispatch({
-        type: TOGGLE_SUGGESTION
+        type: TOGGLE_SUGGESTION,
     });
 };

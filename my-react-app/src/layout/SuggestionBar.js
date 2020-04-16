@@ -7,12 +7,11 @@ import {
 } from '../extra/utilityFunctions/utilities';
 import { toggleSuggestion } from '../actions/tabsAction';
 import ReactCSSTransitionGroup from 'react-transition-group';
+// import TimeoutTransitionGroup from 'timeout-transition-group';
 
 import icons from '../extra/images/icons.svg';
 
 const CSSTransitionGroup = ReactCSSTransitionGroup.CSSTransitionGroup;
-console.log(ReactCSSTransitionGroup);
-console.log(CSSTransitionGroup);
 
 const SuggestionBar = (props) => {
     const {
@@ -61,16 +60,7 @@ const SuggestionBar = (props) => {
         //find close eyes
     }, []);
 
-    let suggestionComponent = (
-        <aside className='suggestionClosed' key='closed'>
-            <svg
-                className='icon'
-                onClick={eyes.length > 0 ? () => toggleSuggestion() : null}
-            >
-                <use href={`${icons}#down`}></use>
-            </svg>
-        </aside>
-    );
+    let suggestionComponent;
     if (suggestions) {
         suggestionComponent = (
             <aside className='suggestionOpen' key='open'>
@@ -80,8 +70,25 @@ const SuggestionBar = (props) => {
                 <div className='suggestionContainer'>{suggestedEyes}</div>
             </aside>
         );
+    } else {
+        suggestionComponent = (
+            <aside className='suggestionClosed' key='closed'>
+                <svg
+                    className='icon'
+                    onClick={eyes.length > 0 ? () => toggleSuggestion() : null}
+                >
+                    <use href={`${icons}#down`}></use>
+                </svg>
+            </aside>
+        );
     }
 
+    // <TimeoutTransitionGroup
+    //     transitionName={'suggestionAnimation'}
+    //     enterTimeout={400}
+    //     leaveTimeout={200}
+    // >
+    // </TimeoutTransitionGroup>
     return (
         <CSSTransitionGroup
             transitionName='suggestionAnimation'

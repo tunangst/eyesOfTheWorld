@@ -2,14 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 
-import { setName } from './utilities';
+import { setName } from '../utilityFunctions/utilities';
 import { removeEye } from '../../actions/eyeAction';
 
 const BuildMarkerInfo = ({ eye, redirect, toggleInfoWindow }) => {
     const filename = eye.pic.name;
     const name = setName(filename);
 
-    console.log('parentx7');
+    // console.log('parentx7');
     const builtEye = (
         <div className={`markerInfo marker~${eye.pic.name}`}>
             <div className='window'>
