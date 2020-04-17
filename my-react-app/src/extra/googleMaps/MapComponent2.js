@@ -9,7 +9,18 @@ import BuildMarker from './BuildMarker';
 import BuildCluster from './BuildCluster';
 
 const mapOptions = {
-    styles: mapStyle,
+    styles: mapStyle, // change default map styles
+    disableDefaultUI: true, // disable default map UI
+    draggable: true, // make map draggable
+    keyboardShortcuts: false, // disable keyboard shortcuts
+    scaleControl: false, // allow scale control
+    scrollwheel: true, // allow scroll wheel
+    styles: mapStyle, // change default map styles
+    streetViewControl: true,
+    zoomControl: false,
+    fullscreenControl: false,
+    mapTypeControl: false,
+    scaleControl: false,
 };
 const initialCenter = { lat: 0, lng: 0 };
 const MapComponent = ({ uploadEye, eyes }) => {
