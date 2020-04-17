@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import MapComponent from '../extra/googleMaps/MapComponent';
+// import MapComponent from '../extra/googleMaps/MapComponent';
+import MapComponent2 from '../extra/googleMaps/MapComponent2';
 
 import { setThanks, setLocal } from '../actions/statesAction';
 import { getAllEyes } from '../actions/eyeAction';
@@ -26,13 +27,16 @@ const LandingPage = (props) => {
 
     return (
         <section className='landing'>
-            <MapComponent
-                eyesArr={eyes || [{}]}
-                googleMapURL={`https://maps.googleapis.com/maps/api/js?key=AI${process.env.REACT_APP_GOOGLE_KEY}`}
-                loadingElement={<div style={{ height: `100%` }} />}
-                containerElement={<div style={{ height: `100%` }} />}
-                mapElement={<div style={{ height: `100%` }} />}
-            />
+            <MapComponent2 />
+            {
+                // <MapComponent
+                //     eyesArr={eyes || [{}]}
+                //     googleMapURL={`https://maps.googleapis.com/maps/api/js?key=AI${process.env.REACT_APP_GOOGLE_KEY}`}
+                //     loadingElement={<div style={{ height: `100%` }} />}
+                //     containerElement={<div style={{ height: `100%` }} />}
+                //     mapElement={<div style={{ height: `100%` }} />}
+                // />
+            }
         </section>
     );
 };

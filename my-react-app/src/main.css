@@ -290,17 +290,54 @@ Grey dark 3: #999
         color: #a62f03;
         font-weight: 600; }
 
-.markerInfo {
-  border: 1px solid #a62f03;
-  text-align: center;
+.cluster {
+  border-radius: 1rem;
+  background-color: #333333;
+  box-shadow: 1px 1px 5px #46bcec;
+  color: #46bcec;
+  font-size: 1.6rem;
+  font-weight: 500;
+  padding: 1rem;
+  position: absolute;
+  left: -50%;
+  top: -50%;
+  transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
+  align-items: center; }
+  .cluster svg {
+    width: 3rem;
+    height: 3rem;
+    fill: #46bcec; }
+
+.marker {
+  width: 3rem;
+  height: 3rem;
+  cursor: pointer;
+  position: absolute;
+  top: -100%;
+  left: -50%;
+  transform: translate3d(-50%, -100%, 0) rotate3d(0, 0, 1, 90deg); }
+  .marker svg {
+    fill: #a62f03;
+    filter: drop-shadow(0px 0px 5px #fff) drop-shadow(0px 0px 10px #fff); }
+
+.markerInfo {
+  z-index: 1;
+  text-align: center;
   background-color: #f0e2c9;
   border-radius: 5px;
   padding: 5px;
   max-width: 12rem;
-  overflow: none; }
+  overflow: visible;
+  position: absolute;
+  transform: translate3d(-50%, -120%, 0);
+  box-shadow: 1px 1px 10px #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
   .markerInfo h2 {
+    flex: 1;
     font-size: 1.4rem;
     margin: 5px 0;
     color: #a62f03;
@@ -325,9 +362,11 @@ Grey dark 3: #999
     .markerInfo .window img {
       width: 100%;
       height: 100%;
+      border-radius: 5px;
       object-fit: cover;
       object-position: center; }
   .markerInfo .goto {
+    width: 100%;
     font-family: 'Raleway', sans-serif;
     font-weight: 500;
     font-size: 1rem;
@@ -337,6 +376,14 @@ Grey dark 3: #999
     background-color: #46bcec;
     border-radius: 4px;
     padding: 3px 0; }
+  .markerInfo .svgDownBox {
+    width: 2rem;
+    height: 2rem;
+    position: absolute;
+    top: 100%;
+    fill: #f0e2c9;
+    stroke: #a62f03;
+    stroke-width: 5%; }
 
 .landing {
   flex: 1; }

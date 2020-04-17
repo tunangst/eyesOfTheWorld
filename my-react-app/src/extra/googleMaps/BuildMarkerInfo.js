@@ -13,9 +13,11 @@ const BuildMarkerInfo = ({ eye, redirect, toggleInfoWindow }) => {
     const builtEye = (
         <div className={`markerInfo marker~${eye.pic.name}`}>
             <div className='window'>
-                <div className='xBlock' onClick={() => toggleInfoWindow(false)}>
-                    x
-                </div>
+                {
+                    // <div className='xBlock' onClick={() => toggleInfoWindow(false)}>
+                    // x
+                    // </div>
+                }
 
                 <img src={eye.url} alt={`thumbnail of ${eye.pic.name}`} />
             </div>

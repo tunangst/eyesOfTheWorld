@@ -1,0 +1,122 @@
+.cluster {
+    // width: 6rem;
+    // height: 6rem;
+    border-radius: 1rem;
+    background-color: rgba($color-black, 1);
+    box-shadow: 1px 1px 5px $color-blue;
+    color: $color-blue;
+    font-size: $base-font-size;
+    font-weight: 500;
+    padding: 1rem;
+    position: absolute;
+    left: -50%;
+    top: -50%;
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & svg {
+        width: 3rem;
+        height: 3rem;
+        fill: $color-blue;
+    }
+}
+
+.marker {
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer;
+
+    position: absolute;
+    top: -100%;
+    left: -50%;
+    transform: translate3d(-50%, -100%, 0) rotate3d(0, 0, 1, 90deg);
+
+    & svg {
+        fill: $color-red;
+        filter: drop-shadow(0px 0px 5px $white) drop-shadow(0px 0px 10px $white);
+    }
+}
+
+.markerInfo {
+    // border: 1px solid $color-red;
+
+    z-index: 1;
+    text-align: center;
+    background-color: $color-white;
+    border-radius: 5px;
+    padding: 5px;
+    max-width: 12rem;
+    overflow: visible;
+    position: absolute;
+    transform: translate3d(-50%, -120%, 0);
+    box-shadow: 1px 1px 10px $color-black;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    & h2 {
+        flex: 1;
+        font-size: $small-font-size;
+        margin: 5px 0;
+        color: $color-red;
+        font-family: 'Alice', serif;
+        font-weight: 800;
+    }
+
+    & .window {
+        position: relative;
+        // padding-bottom: 1.5rem;
+        border-radius: 6px;
+        height: 10rem;
+        min-width: 10rem;
+
+        & .xBlock {
+            padding: 0 0 2px 5px;
+            border-radius: 0 0 0 5px;
+            background-color: $color-white;
+            font-size: $small-font-size;
+            font-weight: 900;
+            position: absolute;
+            right: 0;
+            top: -5px;
+            color: $color-red;
+            cursor: pointer;
+        }
+
+        & img {
+            width: 100%;
+            height: 100%;
+            border-radius: 5px;
+
+            object-fit: cover;
+            object-position: center;
+        }
+    }
+
+    & .goto {
+        width: 100%;
+        font-family: 'Raleway', sans-serif;
+        font-weight: 500;
+        font-size: $super-small-font-size;
+        letter-spacing: 1px;
+        cursor: pointer;
+        color: $white;
+        background-color: $color-blue;
+        border-radius: 4px;
+        padding: 3px 0;
+    }
+    & .svgDownBox {
+        width: 2rem;
+        height: 2rem;
+        position: absolute;
+        top: 100%;
+
+        fill: $color-white;
+        stroke: $color-red;
+        stroke-width: 5%;
+        // stroke: 1px solid $color-red;
+    }
+}
