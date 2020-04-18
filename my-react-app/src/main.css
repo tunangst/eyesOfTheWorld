@@ -291,6 +291,7 @@ Grey dark 3: #999
         font-weight: 600; }
 
 .cluster {
+  cursor: pointer;
   border-radius: 1rem;
   background-color: #333333;
   box-shadow: 1px 1px 5px #46bcec;

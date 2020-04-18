@@ -12,7 +12,7 @@ const initialInfoWindowState = true;
 
 const BuildMarker = ({ eyeCluster }) => {
     const [infoWindow, setInfoWindow] = useState(initialInfoWindowState);
-
+    console.log(eyeCluster, ' eyeCluster');
     const toggleInfoWindow = (value) => {
         console.log('toggling info window');
         console.log(infoWindow);
@@ -26,44 +26,76 @@ const BuildMarker = ({ eyeCluster }) => {
     const handleRedirect = (eyeId) => {
         history.push(`/eyes/${eyeId}`);
     };
-
-    const { eye } = eyeCluster.properties.eye;
     const history = useHistory();
 
-    const filename = eye.pic.name;
-    const name = setName(filename);
-    // // let notPostingEye = true;
-    // // if (eyesArr.length <= 1) notPostingEye = false;
+    let filename;
+    let name;
+    let eye;
+    let markerInfo;
+    let marker;
+    if (eyeCluster.properties.upload === false) {
+        eye = eyeCluster.properties.eye;
 
-    let markerInfo = (
-        <div className={`markerInfo marker~${eye.pic.name}`}>
-            <div className='window'>
-                <div className='xBlock' onClick={() => toggleInfoWindow(false)}>
-                    x
+        filename = eye.pic.name;
+        name = setName(filename);
+        // // let notPostingEye = true;
+        // // if (eyesArr.length <= 1) notPostingEye = false;
+        if (infoWindow) {
+            markerInfo = (
+                <div className={`markerInfo marker~${name}`}>
+                    <div className='window'>
+                        <div
+                            className='xBlock'
+                            onClick={() => toggleInfoWindow(false)}
+                        >
+                            x
+                        </div>
+
+                        <img
+                            src={eye.url}
+                            alt={`thumbnail of ${eye.pic.name}`}
+                        />
+                    </div>
+                    <h2 className='title'>{name}</h2>
+                    <a className='goto' onClick={() => handleRedirect(eye._id)}>
+                        go to Eye
+                    </a>
                 </div>
-
-                <img src={eye.url} alt={`thumbnail of ${eye.pic.name}`} />
-            </div>
-            <h2 className='title'>{name}</h2>
-            <a className='goto' onClick={() => handleRedirect(eye._id)}>
-                go to Eye
-            </a>
-        </div>
-    );
-    if (!infoWindow) {
-        markerInfo = null;
+            );
+        } else {
+            markerInfo = null;
+        }
+        marker = (
+            <Marker>
+                {infoWindow && markerInfo}
+                <div
+                    className='marker'
+                    onClick={() => toggleInfoWindow('toggle')}
+                >
+                    <svg viewBox='0 0 100 100'>
+                        <use xlinkHref={view}></use>
+                    </svg>
+                </div>
+            </Marker>
+        );
+    } else if (
+        eyeCluster.geometry.coordinates[0] !== 0 &&
+        eyeCluster.geometry.coordinates[1] !== 0
+    ) {
+        marker = (
+            <Marker>
+                <div className='marker'>
+                    <svg viewBox='0 0 100 100'>
+                        <use xlinkHref={view}></use>
+                    </svg>
+                </div>
+            </Marker>
+        );
+    } else {
+        marker = null;
     }
 
-    return (
-        <Marker key={eye._id || `Marker#${Math.random()}`}>
-            {infoWindow && markerInfo}
-            <div className='marker' onClick={() => toggleInfoWindow('toggle')}>
-                <svg viewBox='0 0 100 100'>
-                    <use xlinkHref={view}></use>
-                </svg>
-            </div>
-        </Marker>
-    );
+    return marker;
 };
 
 export default BuildMarker;

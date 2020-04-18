@@ -36,12 +36,16 @@ const AddPage = (props) => {
         states.imageReady && handleFindInfo();
     }, [states.imageReady, handleFindInfo]);
 
-    let inputArr = [];
-    states.submitReady && inputArr.push({ info: info });
+    let inputObj = { lat: 0, lng: 0 };
+    if (states.submitReady) {
+        inputObj.lat = info.latitude;
+        inputObj.lng = info.longitude;
+        // inputArr.push({ lat: info.latitude, lng: info.longitude });
+    }
 
     return (
         <main className='add'>
-            <MapSection uploadEye={inputArr} />
+            <MapSection uploadEye={inputObj} />
             {
                 // <MapSection eyesArr={inputArr} />
             }

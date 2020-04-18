@@ -8,40 +8,37 @@ import mapStyle from './mapStyle';
 import BuildMarker from './BuildMarker';
 import BuildCluster from './BuildCluster';
 
-const mapOptions = {
-    styles: mapStyle, // change default map styles
-    disableDefaultUI: true, // disable default map UI
-    draggable: true, // make map draggable
-    keyboardShortcuts: false, // disable keyboard shortcuts
-    scaleControl: false, // allow scale control
-    scrollwheel: true, // allow scroll wheel
-    styles: mapStyle, // change default map styles
-    streetViewControl: true,
-    zoomControl: false,
-    fullscreenControl: false,
-    mapTypeControl: false,
-    scaleControl: false,
-};
 const initialCenter = { lat: 0, lng: 0 };
 const MapComponent = ({ uploadEye, eyes }) => {
+    console.log(`~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`);
+    console.log(uploadEye);
+    console.log(uploadEye);
+    console.log(`~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`);
     const mapRef = useRef();
     const [zoom, setZoom] = useState(3);
     const [bounds, setBounds] = useState(null);
     const [center, setCenter] = useState(initialCenter);
 
-    let initialized = false;
-    let markers = [];
-    let clusterArr = [];
-    let points;
-    // check for inserted point from upload or eyesArr.length === 1
+    const handleClusterClick = (id, pan) => {
+        const expansionZoom = Math.min(
+            supercluster.getClusterExpansionZoom(id),
+            20
+        );
+        mapRef.current.setZoom(expansionZoom);
+        mapRef.current.panTo(pan);
+    };
+    const handlePan = (pan) => {
+        mapRef.current.panTo(pan);
+    };
     const init = () => {
-        initialized = true;
-        console.log(eyes);
+        console.log('inside init');
+        // initialized = true;
+        console.log(eyes, 'eyes');
         if (uploadEye) {
             setZoom(12);
             setCenter({
-                lat: uploadEye.info.latitude,
-                lng: uploadEye.info.longitude,
+                lat: uploadEye.lat,
+                lng: uploadEye.lng,
             });
         } else if (eyes.length > 0) {
             // debugger;
@@ -53,43 +50,85 @@ const MapComponent = ({ uploadEye, eyes }) => {
             });
         }
     };
-    points = eyes.map((eye) => ({
-        type: 'Feature',
-        properties: {
-            cluster: false,
-            clusterId: `cluster#${eye._id}`,
-            eye: { eye },
+    const mapOptions = {
+        styles: mapStyle, // change default map styles
+        disableDefaultUI: true, // disable default map UI
+        draggable: true, // make map draggable
+        keyboardShortcuts: false, // disable keyboard shortcuts
+        scaleControl: false, // allow scale control
+        scrollwheel: true, // allow scroll wheel
+        styles: mapStyle, // change default map styles
+        streetViewControl: true,
+        zoomControl: false,
+        fullscreenControl: false,
+        mapTypeControl: false,
+        scaleControl: false,
+    };
+
+    // let initialized = false;
+
+    let points;
+    // check for inserted point from upload or eyesArr.length === 1
+    if (uploadEye) {
+        console.log(uploadEye, 'uploadEye');
+        points = [
+            {
+                properties: {
+                    upload: true,
+                    eye: uploadEye,
+                },
+                geometry: {
+                    type: 'Point',
+                    coordinates: [uploadEye.lng, uploadEye.lat],
+                },
+            },
+        ];
+        console.log(points, ' points');
+    } else {
+        points = eyes.map((eye) => ({
+            type: 'Feature',
+            properties: {
+                cluster: false,
+                clusterId: `cluster#${eye._id}`,
+                upload: false,
+                eye: eye,
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [eye.info.longitude, eye.info.latitude],
+            },
+        }));
+    }
+    const { clusters, supercluster } = useSupercluster(
+        {
+            points,
+            bounds,
+            zoom,
+            options: { radius: 80 },
         },
-        geometry: {
-            type: 'Point',
-            coordinates: [eye.info.longitude, eye.info.latitude],
-        },
-    }));
-    const { clusters } = useSupercluster({
-        points,
-        bounds,
-        zoom,
-        options: { radius: 80, maxZoom: 40 },
-    });
+        [points]
+    );
     useEffect(() => {
         console.log('running useEffect in mapcomponent2');
-        !initialized && init();
-        initialized = true;
-    }, []);
-    console.log(center);
+        init();
+    }, [eyes, uploadEye]);
+    // console.log(clusters, '  clusters');
+    // console.log(clusters[0]);
     return (
         <GoogleMapReact
             bootstrapURLKeys={{ key: `AI${process.env.REACT_APP_GOOGLE_KEY}` }}
             defaultCenter={center}
-            defaultZoom={3}
+            defaultZoom={zoom}
             options={mapOptions}
+            center={center}
             yesIWantToUseGoogleMapApiInternals
             onGoogleApiLoaded={({ map }) => {
                 mapRef.current = map;
+                mapRef.current.panTo(center);
             }}
             onChange={({ zoom, bounds }) => {
-                console.log(zoom);
-                console.log(bounds);
+                // console.log(zoom);
+                // console.log(bounds);
                 setZoom(zoom);
                 setBounds([
                     bounds.nw.lng,
@@ -100,48 +139,71 @@ const MapComponent = ({ uploadEye, eyes }) => {
             }}
         >
             {
-                clusters.length > 0 &&
-                    clusters.map((cluster) => {
-                        console.log(cluster);
-                        const [
-                            longitude,
-                            latitude,
-                        ] = cluster.geometry.coordinates;
-                        const {
-                            cluster: isCluster,
-                            point_count: pointCount,
-                        } = cluster.properties;
+                clusters.length > 1
+                    ? clusters.map((cluster) => {
+                          const [
+                              longitude,
+                              latitude,
+                          ] = cluster.geometry.coordinates;
+                          const {
+                              cluster: isCluster,
+                              point_count: pointCount,
+                          } = cluster.properties;
 
-                        if (isCluster) {
-                            const size = {
-                                width: `${pointCount / 10 + 2}rem`,
-                                height: `${pointCount / 10 + 2}rem`,
-                            };
-                            return (
-                                <BuildCluster
-                                    key={
-                                        cluster.id || `Cluster#${Math.random()}`
-                                    }
-                                    lat={latitude}
-                                    lng={longitude}
-                                    size={size}
-                                    pointCount={pointCount}
-                                    eyeCluster={cluster}
-                                />
-                            );
-                        } else {
-                            console.log(cluster);
-                            console.log('cluster');
-                            return (
-                                <BuildMarker
-                                    lat={latitude}
-                                    lng={longitude}
-                                    // marker={Marker}
-                                    eyeCluster={cluster}
-                                />
-                            );
-                        }
-                    })
+                          if (isCluster) {
+                              const size = {
+                                  width: `${pointCount / 10 + 2}rem`,
+                                  height: `${pointCount / 10 + 2}rem`,
+                              };
+                              return (
+                                  <BuildCluster
+                                      key={
+                                          cluster.id ||
+                                          `Cluster#${Math.random()}`
+                                      }
+                                      handleClusterClick={handleClusterClick}
+                                      lat={latitude}
+                                      lng={longitude}
+                                      size={size}
+                                      pointCount={pointCount}
+                                      eyeCluster={cluster}
+                                  />
+                              );
+                          } else {
+                              //   console.log(clusters);
+                              //   console.log('cluster');
+                              return (
+                                  <BuildMarker
+                                      key={
+                                          clusters.id ||
+                                          `Marker#${Math.random()}`
+                                      }
+                                      lat={latitude}
+                                      lng={longitude}
+                                      // marker={Marker}
+                                      eyeCluster={cluster}
+                                  />
+                              );
+                          }
+                      })
+                    : clusters.length === 1
+                    ? clusters.map((cluster) => {
+                          const [
+                              longitude,
+                              latitude,
+                          ] = cluster.geometry.coordinates;
+
+                          return (
+                              <BuildMarker
+                                  key={`Marker#${Math.random()}`}
+                                  lat={latitude}
+                                  lng={longitude}
+                                  // marker={Marker}
+                                  eyeCluster={cluster}
+                              />
+                          );
+                      })
+                    : null
                 // markers
                 // eyes.map((eye) => markers.push(<BuildMarker eye={eye} />))
             }
