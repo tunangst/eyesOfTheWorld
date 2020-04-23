@@ -14,6 +14,7 @@ import {
 } from './types';
 import setAuthToken from '../extra/utilityFunctions/setAuthToken';
 import { setAlert } from './statesAction';
+import { set } from 'mongoose';
 
 export const loadUser = () => async (dispatch) => {
     if (localStorage.userToken) {
@@ -84,6 +85,34 @@ export const login = (email, password) => async (dispatch) => {
     } catch (error) {
         console.log(error.response.data.msg);
         dispatch(setAlert(error.response.data.msg, 'error'));
+        dispatch({
+            type: LOGIN_FAIL,
+        });
+    }
+};
+export const editProfile = (updatedUser, id) => async (dispatch) => {
+    console.log('in editProfile function');
+    // console.log(updatedUser);
+    // const userId = updatedUser.id;
+    // console.log(userId);
+    console.log(updatedUser, 'updated user');
+    const config = {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    };
+    try {
+        const body = JSON.stringify(updatedUser);
+        const response = await axios.put(`/api/user/${id}`, body, config);
+        console.log('in userAction');
+        console.log(response);
+        console.log('in userAction');
+
+        dispatch(setAlert(response.data.msg, 'success'));
+    } catch (error) {
+        console.log(error.message);
+        // console.log(error.response.data.msg);
+        dispatch(setAlert('error', 'error'));
         dispatch({
             type: LOGIN_FAIL,
         });

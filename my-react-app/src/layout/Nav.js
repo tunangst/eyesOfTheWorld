@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useHistory, Link, Redirect } from 'react-router-dom';
 import logo from '../extra/images/planet-earth.svg';
@@ -12,12 +12,15 @@ const Nav = (props) => {
     const {
         states: { loading },
         isAuthenticated,
-        userId,
+        user: { userObj },
         setLoading,
         logout,
         // user: { isAuthenticated, user }
     } = props;
     const history = useHistory();
+    useEffect(() => {
+        console.log('useEffect in nav');
+    }, []);
 
     const handleRedirectHome = () => {
         setLoading(false);
@@ -68,12 +71,16 @@ const Nav = (props) => {
                 </button>
             </li>
             <li className='navBtns'>
-                <button onClick={() => handleRedirectUserEyes(userId)}>
+                <button onClick={() => handleRedirectUserEyes(userObj._id)}>
                     My Eyes
                 </button>
             </li>
             <li className='navBtns'>
                 <button onClick={() => handleLogout()}>logout</button>
+            </li>
+            <li className='avatar'>
+                <img src={userObj.avatar} alt='avatar' />
+                <p>{userObj.username}</p>
             </li>
         </ul>
     );
@@ -101,7 +108,7 @@ const Nav = (props) => {
 const mapStateToProps = (state) => ({
     states: state.states,
     isAuthenticated: state.user.isAuthenticated,
-    userId: state.user.userObj._id,
+    user: state.user,
 });
 
 export default connect(mapStateToProps, { setLoading, logout })(Nav);

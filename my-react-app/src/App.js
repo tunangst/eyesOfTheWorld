@@ -17,6 +17,7 @@ import Register from './layout/RegisterModal';
 import Login from './layout/LoginModal';
 import SuggestionBar from './layout/SuggestionBar';
 import Alert from './layout/Alert';
+import Profile from './pages/Profile';
 
 import PrivateRoute from './extra/utilityFunctions/PrivateRoute';
 import ScreenBlock from './layout/ScreenBlock';
@@ -44,6 +45,7 @@ const App = () => {
                             path='/eyes/user/:user'
                             component={UserEyes}
                         />
+                        <Route path='/user/:userid' component={Profile} />
                         <Route path='/eyes/:id' component={EyePage} />
                     </Switch>
                 </div>

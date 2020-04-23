@@ -106,6 +106,30 @@ Grey dark 3: #999
       font-size: 1.5rem;
       cursor: pointer;
       background-color: #46bcec; }
+    .nav .navLinks .avatar {
+      height: 9rem;
+      width: 9rem;
+      margin-left: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center; }
+      .nav .navLinks .avatar img {
+        height: 100%;
+        width: 100%;
+        border-radius: 50%;
+        object-fit: cover; }
+      .nav .navLinks .avatar p {
+        font-family: 'Raleway', sans-serif;
+        color: #333;
+        text-shadow: 1px 1px 5px #fff;
+        position: absolute;
+        text-align: center;
+        font-size: 1.4rem;
+        font-weight: 800;
+        top: 75%;
+        width: 9rem;
+        padding: 3px;
+        background-color: rgba(240, 226, 201, 0.8); }
 
 .alerts {
   width: 100%;
@@ -255,38 +279,46 @@ Grey dark 3: #999
   transform: translate3d(0, -100%, 0);
   transition: 0.2s ease-out; }
 
-.login-register {
+.login-register,
+.profile-form {
   height: 100%;
   width: 100%;
   background-color: #46bcec;
   display: flex;
   justify-content: center;
   align-items: center; }
-  .login-register .form-container {
+  .login-register .form-container,
+  .profile-form .form-container {
     padding: 5rem;
     border-radius: 1rem;
     background-color: #f0e2c9;
     box-shadow: 3px 5px 1rem rgba(5, 5, 5, 0.5); }
-    .login-register .form-container h2 {
+    .login-register .form-container h2,
+    .profile-form .form-container h2 {
       margin-top: 0;
       margin-bottom: 2rem;
       font-family: 'Alice', Serif;
       color: #a62f03;
       font-size: 3rem;
       text-align: center; }
-    .login-register .form-container form {
+    .login-register .form-container form,
+    .profile-form .form-container form {
       display: flex;
       flex-direction: column; }
-      .login-register .form-container form input {
+      .login-register .form-container form input,
+      .profile-form .form-container form input {
         font-family: 'Raleway', sans-serif;
         font-size: 1.6rem;
         padding: 5px;
         margin-bottom: 5px; }
-      .login-register .form-container form input[type='submit'] {
+      .login-register .form-container form input[type='submit'],
+      .profile-form .form-container form input[type='submit'] {
         margin: 2rem 0; }
-    .login-register .form-container p {
+    .login-register .form-container p,
+    .profile-form .form-container p {
       font-size: 1.6rem; }
-      .login-register .form-container p a {
+      .login-register .form-container p a,
+      .profile-form .form-container p a {
         color: #a62f03;
         font-weight: 600; }
 
@@ -533,6 +565,7 @@ Grey dark 3: #999
       padding: 0 2rem;
       background-color: #f0e2c9;
       overflow-wrap: anywhere;
+      margin-top: 15rem;
       display: flex;
       flex-direction: column; }
       .eyeContainer .eye .infoBox h2 {
