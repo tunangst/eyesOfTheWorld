@@ -1,7 +1,8 @@
-import { TOGGLE_SUGGESTION } from '../actions/types';
+import { TOGGLE_SUGGESTION, TOGGLE_AVATAR_MENU } from '../actions/types';
 
 const initialTab = {
     suggestions: false,
+    avatarMenu: false,
 };
 
 const tabs = (state = initialTab, action) => {
@@ -12,6 +13,16 @@ const tabs = (state = initialTab, action) => {
                 ...state,
                 suggestions: !state.suggestions,
             };
+        case TOGGLE_AVATAR_MENU:
+            let onOff = payload;
+            if (payload === 'toggle') {
+                onOff = !state.avatarMenu;
+            }
+            return {
+                ...state,
+                avatarMenu: onOff,
+            };
+
         default:
             return state;
     }

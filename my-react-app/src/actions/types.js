@@ -45,4 +45,5 @@ export const AUTH_ERROR = 'AUTH_ERROR';
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ auth
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ tabs
 export const TOGGLE_SUGGESTION = 'TOGGLE_SUGGESTION';
+export const TOGGLE_AVATAR_MENU = 'TOGGLE_AVATAR_MENU';
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ tabs

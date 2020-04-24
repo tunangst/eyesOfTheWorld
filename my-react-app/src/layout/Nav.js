@@ -4,6 +4,7 @@ import { useHistory, Link, Redirect } from 'react-router-dom';
 import logo from '../extra/images/planet-earth.svg';
 import { setLoading } from '../actions/statesAction';
 import { logout } from '../actions/userAction';
+import { toggleAvatarMenu } from '../actions/tabsAction';
 // import client_id from '../extra/hiddenFolder/client_id';
 
 // import GoogleLogin from 'react-google-login';
@@ -14,6 +15,8 @@ const Nav = (props) => {
         isAuthenticated,
         user: { userObj },
         setLoading,
+        tabs: { avatarMenu },
+        toggleAvatarMenu,
         logout,
         // user: { isAuthenticated, user }
     } = props;
@@ -33,6 +36,10 @@ const Nav = (props) => {
     const handleRedirectUserEyes = (userId) => {
         setLoading(false);
         history.push(`/eyes/user/${userId}`);
+    };
+    const handleProfile = (userId) => {
+        setLoading(false);
+        history.push(`/user/${userId}`);
     };
 
     const handleLogout = () => {
@@ -78,9 +85,19 @@ const Nav = (props) => {
             <li className='navBtns'>
                 <button onClick={() => handleLogout()}>logout</button>
             </li>
-            <li className='avatar'>
+            <li className='avatar' onClick={() => toggleAvatarMenu('toggle')}>
                 <img src={userObj.avatar} alt='avatar' />
-                <p>{userObj.username}</p>
+                <p className='name'>{userObj.username}</p>
+                {avatarMenu && (
+                    <ul className='dropMenu'>
+                        <li onClick={() => handleProfile(userObj._id)}>
+                            <p className='dropText'>Edit Profile</p>
+                        </li>
+                        <li onClick={() => handleLogout()}>
+                            <p className='dropText'>Logout</p>
+                        </li>
+                    </ul>
+                )}
             </li>
         </ul>
     );
@@ -109,6 +126,11 @@ const mapStateToProps = (state) => ({
     states: state.states,
     isAuthenticated: state.user.isAuthenticated,
     user: state.user,
+    tabs: state.tabs,
 });
 
-export default connect(mapStateToProps, { setLoading, logout })(Nav);
+export default connect(mapStateToProps, {
+    setLoading,
+    logout,
+    toggleAvatarMenu,
+})(Nav);

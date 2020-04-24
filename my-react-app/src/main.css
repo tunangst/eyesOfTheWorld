@@ -109,27 +109,48 @@ Grey dark 3: #999
     .nav .navLinks .avatar {
       height: 9rem;
       width: 9rem;
-      margin-left: 1rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center; }
+      cursor: pointer;
+      margin-left: 1rem; }
       .nav .navLinks .avatar img {
         height: 100%;
         width: 100%;
         border-radius: 50%;
         object-fit: cover; }
-      .nav .navLinks .avatar p {
+      .nav .navLinks .avatar .name {
+        position: absolute;
+        top: 75%;
         font-family: 'Raleway', sans-serif;
         color: #333;
         text-shadow: 1px 1px 5px #fff;
-        position: absolute;
         text-align: center;
         font-size: 1.4rem;
         font-weight: 800;
-        top: 75%;
         width: 9rem;
         padding: 3px;
         background-color: rgba(240, 226, 201, 0.8); }
+      .nav .navLinks .avatar .dropMenu {
+        position: absolute;
+        right: 1rem;
+        top: 100%;
+        z-index: 3;
+        min-width: 15rem;
+        height: 20rem;
+        display: flex;
+        flex-direction: column; }
+        .nav .navLinks .avatar .dropMenu li {
+          position: relative;
+          list-style: none;
+          text-align: right; }
+          .nav .navLinks .avatar .dropMenu li .dropText {
+            font-family: 'Raleway', sans-serif;
+            text-align: right;
+            color: #333;
+            text-shadow: 1px 1px 5px #fff;
+            font-size: 1.4rem;
+            font-weight: 800;
+            padding: 5px 1rem 5px 5px;
+            border: 1px solid #f0e2c9;
+            background-color: rgba(240, 226, 201, 0.8); }
 
 .alerts {
   width: 100%;

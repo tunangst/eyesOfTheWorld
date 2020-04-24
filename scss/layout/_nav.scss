@@ -62,13 +62,15 @@
         & .avatar {
             height: 9rem;
             width: 9rem;
+            cursor: pointer;
             // background-color: lightseagreen;
             margin-left: 1rem;
 
-            display: flex;
-            flex-direction: column;
+            // display: flex;
+            // flex-direction: column;
             // justify-content: space-around;
-            align-items: center;
+            // align-items: center;
+            // filter: drop-shadow(4px 4px 4px $color-black);
 
             & img {
                 // z-index: 20;
@@ -78,19 +80,53 @@
 
                 object-fit: cover;
             }
-            & p {
+            & .name {
+                position: absolute;
+                top: 75%;
                 font-family: 'Raleway', sans-serif;
                 color: $color-black;
                 text-shadow: 1px 1px 5px $white;
-                position: absolute;
                 text-align: center;
                 font-size: $small-font-size;
                 font-weight: 800;
-                top: 75%;
                 width: 9rem;
                 padding: 3px;
                 background-color: rgba($color-white, 0.8);
                 // color: $color-red;
+            }
+
+            .dropMenu {
+                // background-color: sienna;
+                position: absolute;
+                right: 1rem;
+                top: 100%;
+                z-index: 3;
+                min-width: 15rem;
+                height: 20rem;
+
+                display: flex;
+                flex-direction: column;
+
+                & li {
+                    position: relative;
+
+                    list-style: none;
+                    text-align: right;
+
+                    & .dropText {
+                        font-family: 'Raleway', sans-serif;
+                        text-align: right;
+
+                        color: $color-black;
+                        text-shadow: 1px 1px 5px $white;
+                        font-size: $small-font-size;
+                        font-weight: 800;
+                        // width: 9rem;
+                        padding: 5px 1rem 5px 5px;
+                        border: 1px solid $color-white;
+                        background-color: rgba($color-white, 0.8);
+                    }
+                }
             }
         }
     }
