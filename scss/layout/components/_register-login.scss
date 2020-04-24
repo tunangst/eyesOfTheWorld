@@ -9,6 +9,8 @@
     align-items: center;
 
     & .form-container {
+        position: relative;
+
         padding: 5rem;
         border-radius: 1rem;
         background-color: $color-white;
@@ -44,6 +46,30 @@
             & a {
                 color: $color-red;
                 font-weight: 600;
+            }
+        }
+
+        & .editAvatar {
+            position: absolute;
+            height: 15rem;
+            width: 15rem;
+            margin-left: 5rem;
+            top: 7.5rem;
+            left: 100%;
+
+            & img {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: $color-white;
+                font-weight: 500;
+                height: 100%;
+                width: 100%;
+                border-radius: 50%;
+                text-align: center;
+                font-size: $base-font-size;
+
+                object-fit: cover;
             }
         }
     }

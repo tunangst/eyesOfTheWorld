@@ -33,7 +33,7 @@ import { editProfile } from '../actions/userAction';
 //             register({ username, email, password, avatar });
 //         }
 //     };
-const initialState = {
+const initialFormState = {
     username: '',
     avatar: '',
     oldPassword: '',
@@ -41,8 +41,9 @@ const initialState = {
     newPassword2: '',
 };
 
-const Profile = ({ user: { userObj }, editProfile }) => {
-    const [formData, setFormData] = useState(initialState);
+const Profile = ({ user: { userObj }, editProfile, setAlert }) => {
+    const [formData, setFormData] = useState(initialFormState);
+    const [imgState, setImgState] = useState(false);
     const history = useHistory();
 
     const {
@@ -91,6 +92,11 @@ const Profile = ({ user: { userObj }, editProfile }) => {
         });
     }, [userObj]);
 
+    if (imgState && avatar) console.log('image is true!!!!');
+    if (!imgState && avatar) {
+        console.log('image is false!!!!');
+        setAlert('If image link is broken, avatar will be defaulted', 'error');
+    }
     return (
         <section className='profile-form'>
             <div className='form-container'>
@@ -151,11 +157,14 @@ const Profile = ({ user: { userObj }, editProfile }) => {
                         value='Submit Change'
                     />
                 </form>
-                {
-                    // <p>
-                    // Already have an account? <Link to='/login'>Sign In</Link>
-                    // </p>
-                }
+                <div className='editAvatar'>
+                    <img
+                        src={avatar}
+                        alt='avatar preview'
+                        onLoad={() => setImgState(true)}
+                        onError={() => setImgState(false)}
+                    />
+                </div>
             </div>
         </section>
     );

@@ -88,7 +88,11 @@ const Nav = (props) => {
                 // </li>
             }
             <li className='avatar' onClick={() => toggleAvatarMenu('toggle')}>
-                <img src={userObj.avatar} alt='avatar' />
+                <img
+                    src={userObj.avatar}
+                    alt='avatar'
+                    onError={console.log('img error')}
+                />
                 <p className='name'>{userObj.username}</p>
                 {avatarMenu && (
                     <ul className='dropMenu'>
