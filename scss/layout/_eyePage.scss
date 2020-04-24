@@ -5,11 +5,41 @@
     & .eye {
         flex: 1;
 
-        display: flex;
-        width: 100%;
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-template-rows: 15rem 1fr;
+        grid-template-areas: 'user user' 'pic info';
+        // width: 100%;
         background-color: $color-black;
 
+        & .userBox {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            grid-area: user;
+            z-index: 2;
+            box-shadow: 5px 0 1rem rgba(5, 5, 5, 0.9);
+
+            & .avatar {
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+                object-position: center;
+            }
+
+            & .username {
+                position: absolute;
+                background-color: rgba($color-white, 0.5);
+                padding: 1rem 3rem;
+                text-shadow: 0 0 5px $color-white;
+                font-size: 20px;
+                color: $color-black;
+            }
+        }
+
         & .picBox {
+            grid-area: pic;
             & img {
                 position: relative;
                 box-shadow: 5px 0 5px rgba(5, 5, 5, 0.25);
@@ -19,12 +49,11 @@
         }
 
         & .infoBox {
+            grid-area: info;
             flex: 1;
             padding: 0 2rem;
             background-color: $color-white;
             overflow-wrap: anywhere;
-
-            margin-top: 15rem;
 
             display: flex;
             flex-direction: column;

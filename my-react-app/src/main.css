@@ -599,20 +599,44 @@ Grey dark 3: #999
   background-color: #f0e2c9; }
   .eyeContainer .eye {
     flex: 1;
-    display: flex;
-    width: 100%;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: 15rem 1fr;
+    grid-template-areas: 'user user' 'pic info';
     background-color: #333; }
-    .eyeContainer .eye .picBox img {
+    .eyeContainer .eye .userBox {
       position: relative;
-      box-shadow: 5px 0 5px rgba(5, 5, 5, 0.25);
-      width: 100%;
-      height: auto; }
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      grid-area: user;
+      z-index: 2;
+      box-shadow: 5px 0 1rem rgba(5, 5, 5, 0.9); }
+      .eyeContainer .eye .userBox .avatar {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        object-position: center; }
+      .eyeContainer .eye .userBox .username {
+        position: absolute;
+        background-color: rgba(240, 226, 201, 0.5);
+        padding: 1rem 3rem;
+        text-shadow: 0 0 5px #f0e2c9;
+        font-size: 20px;
+        color: #333; }
+    .eyeContainer .eye .picBox {
+      grid-area: pic; }
+      .eyeContainer .eye .picBox img {
+        position: relative;
+        box-shadow: 5px 0 5px rgba(5, 5, 5, 0.25);
+        width: 100%;
+        height: auto; }
     .eyeContainer .eye .infoBox {
+      grid-area: info;
       flex: 1;
       padding: 0 2rem;
       background-color: #f0e2c9;
       overflow-wrap: anywhere;
-      margin-top: 15rem;
       display: flex;
       flex-direction: column; }
       .eyeContainer .eye .infoBox h2 {

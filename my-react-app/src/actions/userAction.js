@@ -143,6 +143,10 @@ export const getUserAndEyes = (userId) => async (dispatch) => {
     });
 };
 export const getUser = (userId) => async (dispatch) => {
+    if (!userId) {
+        dispatch(setAlert('no userId submitted', 'error'));
+        return false;
+    }
     const foundUser = await axios.get(`/api/user/${userId}`);
     dispatch({
         type: FIND_USER,

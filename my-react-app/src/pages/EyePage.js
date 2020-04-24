@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+// import { useAsyncEffect } from 'use-async-effect';
 import { connect } from 'react-redux';
 
 import { setLocal } from '../actions/statesAction';
@@ -6,12 +7,11 @@ import { findEye } from '../actions/eyeAction';
 import BuildInputField from '../extra/utilityFunctions/BuildInputField';
 // import SuggestionBar from '../layout/SuggestionBar';
 import { setName } from '../extra/utilityFunctions/utilities';
+import { getUser } from '../actions/userAction';
 
 const EyePage = (props) => {
-    const { eye, eyes, findEye, setLocal } = props;
-
+    const { eye, eyes, user, findEye, setLocal, getUser } = props;
     const id = props.match.params.id;
-    // console.log(id);
 
     let slicedEyes = null;
     if (eyes.length > 0) {
@@ -22,8 +22,14 @@ const EyePage = (props) => {
     useEffect(() => {
         console.log('running useEffect in eyepage');
         setLocal(true);
-        findEye(id);
-    }, [findEye, id]);
+        if (!eye.url) {
+            console.log('no eye.url');
+            findEye(id);
+        }
+        if (eye.url) {
+            getUser(eye.user);
+        }
+    }, [eye]);
 
     const filename = eye.pic.name;
     const name = setName(filename);
@@ -62,6 +68,16 @@ const EyePage = (props) => {
     return (
         <section className='eyeContainer'>
             <main className='eye'>
+                <div className='userBox'>
+                    <img
+                        className='avatar'
+                        src={user.selectedUserObj.avatar}
+                        alt='User Avatar'
+                    />
+                    <h2 className='username'>
+                        {user.selectedUserObj.username}
+                    </h2>
+                </div>
                 <div className='picBox'>
                     <img src={eye.url} alt={eye.pic.name}></img>
                 </div>
@@ -77,6 +93,11 @@ const EyePage = (props) => {
 const mapStateToProps = (state) => ({
     eye: state.eye,
     eyes: state.eyes,
+    user: state.user,
 });
 
-export default connect(mapStateToProps, { findEye, setLocal })(EyePage);
+export default connect(mapStateToProps, {
+    findEye,
+    setLocal,
+    getUser,
+})(EyePage);
