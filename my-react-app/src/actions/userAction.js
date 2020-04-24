@@ -32,7 +32,12 @@ export const loadUser = () => async (dispatch) => {
         });
     }
 };
-export const register = (userObj) => async (dispatch) => {
+export const register = (userObj, imgState) => async (dispatch) => {
+    //
+    //
+    // if !imgState ? get default picture link and implrement it
+    //
+    //
     const { username, email, password } = userObj;
     const config = {
         headers: {

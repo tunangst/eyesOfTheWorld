@@ -7,7 +7,7 @@ import { setAlert } from '../actions/statesAction';
 
 // import { userPostFetch } from '../actions/';
 
-const initialState = {
+const initialFormState = {
     username: '',
     email: '',
     password: '',
@@ -16,7 +16,8 @@ const initialState = {
 };
 const Register = (props) => {
     const { register, setAlert, isAuthenticated } = props;
-    const [formData, setFormData] = useState(initialState);
+    const [formData, setFormData] = useState(initialFormState);
+    const [imgState, setImgState] = useState(false);
     const { username, avatar, email, password, password2 } = formData;
 
     const onChange = (element) =>
@@ -32,11 +33,17 @@ const Register = (props) => {
             // console.log('Passwords do not match');
         } else {
             console.log('register success');
-            register({ username, email, password, avatar });
+            register({ username, email, password, avatar }, imgState);
         }
     };
     if (isAuthenticated) {
         return <Redirect to='/' />;
+    }
+
+    if (imgState && avatar) console.log('image is true!!!!');
+    if (!imgState && avatar) {
+        console.log('image is false!!!!');
+        // setAlert('If image link is broken, avatar will be defaulted', 'error');
     }
     return (
         <section className='login-register'>
@@ -95,6 +102,14 @@ const Register = (props) => {
                 <p>
                     Already have an account? <Link to='/login'>Sign In</Link>
                 </p>
+                <div className='editAvatar'>
+                    <img
+                        src={avatar}
+                        alt='avatar preview broken'
+                        onLoad={() => setImgState(true)}
+                        onError={() => setImgState(false)}
+                    />
+                </div>
             </div>
         </section>
     );

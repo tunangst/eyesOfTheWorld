@@ -343,27 +343,27 @@ Grey dark 3: #999
       .profile-form .form-container p a {
         color: #a62f03;
         font-weight: 600; }
-    .login-register .form-container .editAvatar,
-    .profile-form .form-container .editAvatar {
-      position: absolute;
-      height: 15rem;
-      width: 15rem;
-      margin-left: 5rem;
-      top: 7.5rem;
-      left: 100%; }
-      .login-register .form-container .editAvatar img,
-      .profile-form .form-container .editAvatar img {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: #f0e2c9;
-        font-weight: 500;
-        height: 100%;
-        width: 100%;
-        border-radius: 50%;
-        text-align: center;
-        font-size: 1.6rem;
-        object-fit: cover; }
+  .login-register .editAvatar,
+  .profile-form .editAvatar {
+    position: absolute;
+    height: 15rem;
+    width: 15rem;
+    margin-left: 5rem;
+    top: 7.5rem;
+    left: 100%; }
+    .login-register .editAvatar img,
+    .profile-form .editAvatar img {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #f0e2c9;
+      font-weight: 500;
+      height: 100%;
+      width: 100%;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 1.6rem;
+      object-fit: cover; }
 
 .cluster {
   cursor: pointer;

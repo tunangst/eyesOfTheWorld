@@ -160,7 +160,7 @@ const Profile = ({ user: { userObj }, editProfile, setAlert }) => {
                 <div className='editAvatar'>
                     <img
                         src={avatar}
-                        alt='avatar preview'
+                        alt='avatar preview broken'
                         onLoad={() => setImgState(true)}
                         onError={() => setImgState(false)}
                     />
