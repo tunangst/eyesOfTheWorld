@@ -36,6 +36,22 @@ router.post('/:directoryName', async (request, response) => {
     });
     // console.log('single Upload finished');
 });
+router.get('/avatar', async (request, response) => {
+    try {
+        const pics = await cloudinary.v2.api.resources({
+            type: 'upload',
+            prefix: 'DefaultAvatarPool/',
+            max_results: 22,
+        });
+        const resources = pics.resources;
+        const urls = resources.map((pic) => {
+            return pic.secure_url;
+        });
+        response.json(urls);
+    } catch (error) {
+        console.log(error.message);
+    }
+});
 
 // https://res.cloudinary.com/truz/image/upload/v1586044401/EyesOfTheWorld/trunangst%40gmail.com/2020%7E04%7E04%7E%7E%7E%7EBarnacleese.jpg.jpg
 

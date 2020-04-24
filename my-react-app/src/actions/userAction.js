@@ -33,20 +33,26 @@ export const loadUser = () => async (dispatch) => {
     }
 };
 export const register = (userObj, imgState) => async (dispatch) => {
-    //
-    //
-    // if !imgState ? get default picture link and implrement it
-    //
-    //
     const { username, email, password } = userObj;
+    let { avatar } = userObj;
     const config = {
         headers: {
             'Content-Type': 'application/json',
         },
     };
+
+    // if !imgState ? get default picture link and implrement it
+
+    if (!imgState) {
+        const avatarResponse = await axios.get('/api/image/avatar');
+        const avatarPool = avatarResponse.data;
+        const randomIndex = Math.floor(Math.random() * avatarPool.length);
+        avatar = avatarPool[randomIndex];
+    }
+
     try {
-        const body = JSON.stringify({ username, email, password });
-        // console.log(body);
+        const body = JSON.stringify({ username, email, password, avatar });
+        console.log(body);
         const response = await axios.post('/api/user', body, config);
         // {
         //     user: {
