@@ -16,7 +16,7 @@ const LandingPage = (props) => {
         states: { needThanks },
     } = props;
     const thankYouMessage =
-        'Thank you author_id=216 @ flaticon.com for the icons useage  :^]';
+        'Thank you author_id=216 @flaticon.com and https://www.pexels.com/collections/eyesoftheworld-p4f1cws/ :^]';
 
     useEffect(() => {
         console.log('running useEffect in landingpage');

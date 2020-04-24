@@ -17,7 +17,7 @@ import Register from './layout/RegisterModal';
 import Login from './layout/LoginModal';
 import SuggestionBar from './layout/SuggestionBar';
 import Alert from './layout/Alert';
-import Profile from './pages/Profile';
+import Profile from './layout/Profile';
 
 import PrivateRoute from './extra/utilityFunctions/PrivateRoute';
 import ScreenBlock from './layout/ScreenBlock';

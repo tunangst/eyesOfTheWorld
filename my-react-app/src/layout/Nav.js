@@ -82,9 +82,11 @@ const Nav = (props) => {
                     My Eyes
                 </button>
             </li>
-            <li className='navBtns'>
-                <button onClick={() => handleLogout()}>logout</button>
-            </li>
+            {
+                // <li className='navBtns'>
+                //     <button onClick={() => handleLogout()}>logout</button>
+                // </li>
+            }
             <li className='avatar' onClick={() => toggleAvatarMenu('toggle')}>
                 <img src={userObj.avatar} alt='avatar' />
                 <p className='name'>{userObj.username}</p>

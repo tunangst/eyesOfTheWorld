@@ -36,7 +36,6 @@ import { editProfile } from '../actions/userAction';
 const initialState = {
     username: '',
     avatar: '',
-    // email: '',
     oldPassword: '',
     newPassword: '',
     newPassword2: '',
@@ -46,11 +45,9 @@ const Profile = ({ user: { userObj }, editProfile }) => {
     const [formData, setFormData] = useState(initialState);
     const history = useHistory();
 
-    console.log(formData);
     const {
         username,
         avatar,
-        // email,
         oldPassword,
         newPassword,
         newPassword2,
@@ -67,7 +64,6 @@ const Profile = ({ user: { userObj }, editProfile }) => {
         // also check if old password is equal to entered old password
         if (newPassword !== newPassword2) {
             setAlert('Passwords do not match', 'error');
-            // console.log('Passwords do not match');
         } else {
             console.log('edit success');
             let updatedUser = {};
@@ -84,7 +80,16 @@ const Profile = ({ user: { userObj }, editProfile }) => {
 
     useEffect(() => {
         console.log('running useEffect in profile page');
-    }, []);
+        console.log(userObj.username);
+        console.log(userObj.avatar);
+        setFormData({
+            username: userObj.username || '',
+            avatar: userObj.avatar || '',
+            oldPassword: '',
+            newPassword: '',
+            newPassword2: '',
+        });
+    }, [userObj]);
 
     return (
         <section className='profile-form'>
