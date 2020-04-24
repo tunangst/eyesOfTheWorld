@@ -29,9 +29,7 @@ router.post('/:directoryName', async (request, response) => {
         error &&
             console.log(error.message) &&
             response.json({ msg: error.message });
-        // console.log(request.file);
-        // console.log('image post where singleUpload is called');
-        // console.log(request.file.secure_url);
+
         return response.json({ imageUrl: request.file.secure_url });
     });
     // console.log('single Upload finished');
@@ -52,8 +50,6 @@ router.get('/avatar', async (request, response) => {
         console.log(error.message);
     }
 });
-
-// https://res.cloudinary.com/truz/image/upload/v1586044401/EyesOfTheWorld/trunangst%40gmail.com/2020%7E04%7E04%7E%7E%7E%7EBarnacleese.jpg.jpg
 
 // api/image/:public_id
 router.delete('/:userEmail/:public_id', async (request, response) => {
