@@ -10,10 +10,6 @@ import BuildCluster from './BuildCluster';
 
 const initialCenter = { lat: 0, lng: 0 };
 const MapComponent = ({ uploadEye, eyes }) => {
-    console.log(`~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`);
-    console.log(uploadEye);
-    console.log(uploadEye);
-    console.log(`~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`);
     const mapRef = useRef();
     const [zoom, setZoom] = useState(3);
     const [bounds, setBounds] = useState(null);
@@ -31,9 +27,6 @@ const MapComponent = ({ uploadEye, eyes }) => {
         mapRef.current.panTo(pan);
     };
     const init = () => {
-        console.log('inside init');
-        // initialized = true;
-        console.log(eyes, 'eyes');
         if (uploadEye) {
             setZoom(12);
             setCenter({
@@ -41,8 +34,6 @@ const MapComponent = ({ uploadEye, eyes }) => {
                 lng: uploadEye.lng,
             });
         } else if (eyes.length > 0) {
-            // debugger;
-            console.log('not uploadEye running');
             setZoom(3);
             setCenter({
                 lat: eyes[0].info.latitude,

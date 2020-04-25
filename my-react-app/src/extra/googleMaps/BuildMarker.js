@@ -12,16 +12,13 @@ const initialInfoWindowState = true;
 
 const BuildMarker = ({ eyeCluster }) => {
     const [infoWindow, setInfoWindow] = useState(initialInfoWindowState);
-    console.log(eyeCluster, ' eyeCluster');
     const toggleInfoWindow = (value) => {
         console.log('toggling info window');
-        console.log(infoWindow);
         if (value === 'toggle') {
             setInfoWindow(!infoWindow);
         } else {
             setInfoWindow(value);
         }
-        console.log(infoWindow);
     };
     const handleRedirect = (eyeId) => {
         history.push(`/eyes/${eyeId}`);
