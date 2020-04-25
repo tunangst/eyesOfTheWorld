@@ -1,12 +1,17 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import { getUserAndEyes } from '../actions/userAction';
-import BuildMyEyeCards from '../extra/utilityFunctions/BuildEyeCards';
+import BuildEyeCards from '../extra/utilityFunctions/BuildEyeCards';
 
 const UserEyes = (props) => {
-    const { getUserAndEyes, selectedUserEyes, selectedUserObj } = props;
+    const { getUserAndEyes, user } = props;
     const userId = props.match.params.user;
+    const history = useHistory();
+    if (user.isAuthenticated && user.userObj._id === user.selectedUserObj._id) {
+        history.push(`/eyes/myUser/${user.userObj._id}`);
+    }
     // console.log(selectedUserObj);
     useEffect(() => {
         console.log('running useEffect in usereyespage');
@@ -14,15 +19,16 @@ const UserEyes = (props) => {
     }, [getUserAndEyes, userId]);
 
     let cardList = [];
-    if (selectedUserEyes.length > 0) {
-        selectedUserEyes.forEach((eye) =>
-            cardList.push(<BuildMyEyeCards key={eye._id} eye={eye} />)
+    if (user.selectedUserEyes.length > 0) {
+        user.selectedUserEyes.forEach((eye) =>
+            cardList.push(<BuildEyeCards key={eye._id} eye={eye} />)
         );
     }
     return <section className='userEyes'>{cardList}</section>;
 };
 
 const mapStateToProps = (state) => ({
+    user: state.user,
     selectedUserEyes: state.user.selectedUserEyes,
     selectedUserObj: state.user.selectedUserObj,
 });
