@@ -19,17 +19,27 @@ const EyePage = (props) => {
         slicedEyes = eyes.slice(0, sliceSize);
     }
 
+    const init = async () => {
+        await findEye(id);
+        await getUser(eye.user);
+    };
+
     useEffect(() => {
         console.log('running useEffect in eyepage');
+        init();
+        console.log(id);
         setLocal(true);
-        if (!eye.url) {
-            console.log('no eye.url');
-            findEye(id);
-        }
-        if (eye.url) {
+        findEye(id);
+        console.log(eye.user, 'eye.user');
+        console.log(user.selectedUserObj._id, 'user.selectedUserObj._id');
+        if (
+            (eye && user && eye.user !== user.selectedUserObj._id) ||
+            (eye && !user)
+        ) {
+            console.log(`@@@@@ nope @@@@@`);
             getUser(eye.user);
         }
-    }, [eye]);
+    }, [id, eye.user]);
 
     const filename = eye.pic.name;
     const name = setName(filename);
