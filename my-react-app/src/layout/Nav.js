@@ -77,21 +77,20 @@ const Nav = (props) => {
 
     const authLinks = (
         <ul className='navLinks'>
-            <li className='navBtns'>
-                <button onClick={() => handleRedirectUpload()}>
+            <li>
+                <button className='btns' onClick={() => handleRedirectUpload()}>
                     Set your Eye
                 </button>
             </li>
-            <li className='navBtns'>
-                <button onClick={() => handleRedirectUserEyes(userObj._id)}>
+            <li>
+                <button
+                    className='btns'
+                    onClick={() => handleRedirectUserEyes(userObj._id)}
+                >
                     My Eyes
                 </button>
             </li>
-            {
-                // <li className='navBtns'>
-                //     <button onClick={() => handleLogout()}>logout</button>
-                // </li>
-            }
+
             <li className='avatar' onClick={() => toggleAvatarMenu('toggle')}>
                 <img src={userObj.avatar} alt='avatar' />
                 <p className='name'>{userObj.username}</p>
@@ -111,10 +110,14 @@ const Nav = (props) => {
     const guestLinks = (
         <ul className='navLinks'>
             <li className='navBtns'>
-                <Link to='/register'>Register</Link>
+                <Link to='/register' className='btns'>
+                    Register
+                </Link>
             </li>
             <li className='navBtns'>
-                <Link to='/login'>Login</Link>
+                <Link to='/login' className='btns'>
+                    Login
+                </Link>
             </li>
         </ul>
     );

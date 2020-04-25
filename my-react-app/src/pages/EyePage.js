@@ -87,6 +87,7 @@ const EyePage = (props) => {
                     <h2 className='username'>
                         {user.selectedUserObj.username}
                     </h2>
+                    <p className='eyeBtn navbtns'>see other eyes</p>
                 </div>
                 <div className='picBox'>
                     <img src={eye.url} alt={eye.pic.name}></img>

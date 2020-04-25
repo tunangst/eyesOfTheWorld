@@ -83,12 +83,6 @@ const SuggestionBar = (props) => {
         );
     }
 
-    // <TimeoutTransitionGroup
-    //     transitionName={'suggestionAnimation'}
-    //     enterTimeout={400}
-    //     leaveTimeout={200}
-    // >
-    // </TimeoutTransitionGroup>
     return (
         <CSSTransitionGroup
             transitionName='suggestionAnimation'
