@@ -13,6 +13,7 @@ import LandingPage from './pages/LandingPage';
 import AddPage from './pages/AddPage/AddPage';
 import EyePage from './pages/EyePage';
 import UserEyes from './pages/UserEyes';
+import myUserEyes from './pages/myUserEyes';
 import Register from './layout/RegisterModal';
 import Login from './layout/LoginModal';
 import SuggestionBar from './layout/SuggestionBar';
@@ -41,10 +42,13 @@ const App = () => {
                         <Route exact path='/register' component={Register} />
                         <Route exact path='/login' component={Login} />
                         <PrivateRoute path='/upload' component={AddPage} />
+                        <Route path='/eyes/user/:user' component={UserEyes} />
+
                         <PrivateRoute
-                            path='/eyes/user/:user'
-                            component={UserEyes}
+                            path='/eyes/myUser/:user'
+                            component={myUserEyes}
                         />
+
                         <Route path='/user/:userid' component={Profile} />
                         <Route path='/eyes/:id' component={EyePage} />
                     </Switch>

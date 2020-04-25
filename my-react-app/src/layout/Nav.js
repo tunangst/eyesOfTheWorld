@@ -38,9 +38,9 @@ const Nav = (props) => {
         setLoading(false);
         history.push('/upload');
     };
-    const handleRedirectUserEyes = (userId) => {
+    const handleRedirectMyUserEyes = (userId) => {
         setLoading(false);
-        history.push(`/eyes/user/${userId}`);
+        history.push(`/eyes/myUser/${userId}`);
     };
     const handleProfile = (userId) => {
         setLoading(false);
@@ -85,7 +85,7 @@ const Nav = (props) => {
             <li>
                 <button
                     className='btns'
-                    onClick={() => handleRedirectUserEyes(userObj._id)}
+                    onClick={() => handleRedirectMyUserEyes(userObj._id)}
                 >
                     My Eyes
                 </button>

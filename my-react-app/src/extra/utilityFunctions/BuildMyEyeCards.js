@@ -1,9 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import moment from 'moment';
 
 import { setName } from './utilities';
+import { removeEye } from '../../actions/eyeAction';
 
-const BuildEyeCards = ({ eye }) => {
+const BuildEyeCards = ({ eye, removeEye }) => {
     const filename = eye.pic.name;
     const name = setName(filename);
 
@@ -13,6 +15,12 @@ const BuildEyeCards = ({ eye }) => {
     const builtEye = (
         <div className='card'>
             <div className='window'>
+                <p
+                    className='remove'
+                    onClick={() => removeEye(eye._id, eye.url, eye.user)}
+                >
+                    x
+                </p>
                 <img src={eye.url} alt={`thumbnail of ${eye.pic.name}`} />
             </div>
             <div className='info'>
@@ -28,4 +36,4 @@ const BuildEyeCards = ({ eye }) => {
     return builtEye;
 };
 
-export default BuildEyeCards;
+export default connect(null, { removeEye })(BuildEyeCards);

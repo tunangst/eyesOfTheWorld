@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 // import { useAsyncEffect } from 'use-async-effect';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import { setLocal } from '../actions/statesAction';
 import { findEye } from '../actions/eyeAction';
@@ -12,13 +13,17 @@ import { getUser } from '../actions/userAction';
 const EyePage = (props) => {
     const { eye, eyes, user, findEye, setLocal, getUser } = props;
     const id = props.match.params.id;
+    const history = useHistory();
 
     let slicedEyes = null;
     if (eyes.length > 0) {
         const sliceSize = 3;
         slicedEyes = eyes.slice(0, sliceSize);
     }
-
+    const handleGoToEyes = (userId) => {
+        console.log(userId);
+        history.push(`/eyes/user/${userId}`);
+    };
     const init = async () => {
         await findEye(id);
         await getUser(eye.user);
@@ -26,17 +31,12 @@ const EyePage = (props) => {
 
     useEffect(() => {
         console.log('running useEffect in eyepage');
-        init();
-        console.log(id);
         setLocal(true);
         findEye(id);
-        console.log(eye.user, 'eye.user');
-        console.log(user.selectedUserObj._id, 'user.selectedUserObj._id');
         if (
             (eye && user && eye.user !== user.selectedUserObj._id) ||
             (eye && !user)
         ) {
-            console.log(`@@@@@ nope @@@@@`);
             getUser(eye.user);
         }
     }, [id, eye.user]);
@@ -88,7 +88,14 @@ const EyePage = (props) => {
                         <h2 className='username'>
                             {user.selectedUserObj.username}
                         </h2>
-                        <p className='eyeBtn btns'>see other eyes</p>
+                        <p
+                            className='eyeBtn btns'
+                            onClick={() =>
+                                handleGoToEyes(user.selectedUserObj._id)
+                            }
+                        >
+                            see other eyes
+                        </p>
                     </div>
                 </div>
                 <div className='picBox'>

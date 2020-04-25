@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import { getUserAndEyes } from '../actions/userAction';
-import BuildMyEyeCards from '../extra/utilityFunctions/BuildEyeCards';
+import BuildMyEyeCards from '../extra/utilityFunctions/BuildMyEyeCards';
 
 const UserEyes = (props) => {
     const { getUserAndEyes, selectedUserEyes, selectedUserObj } = props;
