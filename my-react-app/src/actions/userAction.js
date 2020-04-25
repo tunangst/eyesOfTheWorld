@@ -115,11 +115,9 @@ export const editProfile = (updatedUser, id) => async (dispatch) => {
     try {
         const body = JSON.stringify(updatedUser);
         const response = await axios.put(`/api/user/${id}`, body, config);
-        console.log('in userAction');
-        console.log(response);
-        console.log('in userAction');
 
         dispatch(setAlert(response.data.msg, 'success'));
+        dispatch(loadUser());
     } catch (error) {
         console.log(error.message);
         // console.log(error.response.data.msg);
@@ -144,7 +142,7 @@ export const getUserAndEyes = (userId) => async (dispatch) => {
 };
 export const getUser = (userId) => async (dispatch) => {
     if (!userId) {
-        dispatch(setAlert('no userId submitted', 'error'));
+        // dispatch(setAlert('no userId submitted', 'error'));
         return false;
     }
     const foundUser = await axios.get(`/api/user/${userId}`);

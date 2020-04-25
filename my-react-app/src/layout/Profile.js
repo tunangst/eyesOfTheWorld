@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 
 import { setAlert } from '../actions/statesAction';
 import { editProfile } from '../actions/userAction';
@@ -75,6 +75,7 @@ const Profile = ({ user: { userObj }, editProfile, setAlert }) => {
             }
             if (avatar) updatedUser.avatar = avatar;
             editProfile(updatedUser, userObj._id);
+            // return <Redirect to='/' />;
             history.push('/');
         }
     };

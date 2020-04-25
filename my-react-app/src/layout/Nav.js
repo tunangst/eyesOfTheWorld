@@ -1,12 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { useHistory, Link, Redirect } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import logo from '../extra/images/planet-earth.svg';
 import { setLoading } from '../actions/statesAction';
 import { logout } from '../actions/userAction';
 import { toggleAvatarMenu } from '../actions/tabsAction';
 // import client_id from '../extra/hiddenFolder/client_id';
-
 // import GoogleLogin from 'react-google-login';
 
 const Nav = (props) => {
@@ -20,10 +19,16 @@ const Nav = (props) => {
         logout,
         // user: { isAuthenticated, user }
     } = props;
+
     const history = useHistory();
-    useEffect(() => {
-        console.log('useEffect in nav');
-    }, []);
+
+    // useEffect(() => {
+    //     console.log('useEffect in nav');
+    //     if (nameState !== userObj.username) {
+    //         getUser(userObj._id);
+    //         setNameState(userObj._id);
+    //     }
+    // }, [nameState]);
 
     const handleRedirectHome = () => {
         setLoading(false);
@@ -45,7 +50,7 @@ const Nav = (props) => {
     const handleLogout = () => {
         // console.log('handleLogout');
         logout();
-        return <Redirect to='/' />;
+        history.push('/');
     };
     // let progressBar;
     // loading
