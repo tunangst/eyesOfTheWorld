@@ -14,14 +14,11 @@ const SuggestedEye = ({ eye }) => {
     return (
         <div
             className='suggestedEye'
+            onClick={() => handleRedirect(eye._id)}
             onMouseEnter={() => setShowName(true)}
             onMouseLeave={() => setShowName(false)}
         >
-            <img
-                src={eye.url}
-                alt='suggested Eye'
-                onClick={() => handleRedirect(eye._id)}
-            />
+            <img src={eye.url} alt='suggested Eye' />
             {showName && <p className='eyeName'>{name}</p>}
         </div>
     );

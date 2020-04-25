@@ -38,8 +38,8 @@
             height: 8rem;
             min-width: 8rem;
             border-radius: 8px;
-            border: 4px outset $color-black;
-            box-shadow: 3px 3px 5px rgb(5, 5, 5);
+            // border: 4px outset $color-black;
+            box-shadow: 3px 3px 5px rgba(5, 5, 5, 0.5);
 
             overflow: hidden;
             display: flex;

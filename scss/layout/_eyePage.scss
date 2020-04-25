@@ -14,12 +14,13 @@
 
         & .userBox {
             position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             grid-area: user;
             z-index: 2;
             box-shadow: 5px 0 1rem rgba(5, 5, 5, 0.9);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
             & .avatar {
                 height: 100%;
@@ -28,30 +29,33 @@
                 object-position: center;
             }
 
-            & .username {
+            & .textContainer {
                 position: absolute;
-                background-color: rgba($color-white, 0.5);
-                padding: 1rem 3rem;
-                text-shadow: 0 0 5px $color-white;
-                font-size: 20px;
-                color: $color-black;
-            }
+                height: 100%;
 
-            & .eyeBtn {
-                position: absolute;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+                align-items: center;
 
-                // padding: 1.5rem;
-                // margin: 5px;
+                & .username {
+                    // position: relative;
+                    background-color: rgba($color-white, 0.7);
+                    border-radius: 6px;
+                    padding: 1rem 3rem;
+                    text-shadow: 0 0 5px $color-white;
+                    font-size: 20px;
+                    color: $color-black;
+                }
 
-                // text-decoration: none;
-                // color: #fff;
-                // font-family: 'Raleway', sans-serif;
-                // font-weight: 500;
-                // border: none;
-                // border-radius: 6px;
-                // background-color: transparent;
-                // cursor: pointer;
-                // background-color: #46bcec;
+                & .eyeBtn {
+                    background-color: rgba($color-blue, 0.7);
+                    transition: 0.5s ease-out;
+
+                    &:hover {
+                        background-color: rgba($color-blue, 1);
+                    }
+                }
             }
         }
 

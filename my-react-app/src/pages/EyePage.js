@@ -84,10 +84,12 @@ const EyePage = (props) => {
                         src={user.selectedUserObj.avatar}
                         alt='User Avatar'
                     />
-                    <h2 className='username'>
-                        {user.selectedUserObj.username}
-                    </h2>
-                    <p className='eyeBtn navbtns'>see other eyes</p>
+                    <div className='textContainer'>
+                        <h2 className='username'>
+                            {user.selectedUserObj.username}
+                        </h2>
+                        <p className='eyeBtn btns'>see other eyes</p>
+                    </div>
                 </div>
                 <div className='picBox'>
                     <img src={eye.url} alt={eye.pic.name}></img>
