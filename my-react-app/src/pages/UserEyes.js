@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 
 import { getUserAndEyes } from '../actions/userAction';
 import BuildEyeCards from '../extra/utilityFunctions/BuildEyeCards';
+import UserBox from '../extra/utilityFunctions/UserBox';
 
 const UserEyes = (props) => {
     const { getUserAndEyes, user } = props;
@@ -24,7 +25,17 @@ const UserEyes = (props) => {
             cardList.push(<BuildEyeCards key={eye._id} eye={eye} />)
         );
     }
-    return <section className='userEyes'>{cardList}</section>;
+    return (
+        <section className='userEyes'>
+            <div className='userBox'>
+                <UserBox
+                    selectedUserObj={user.selectedUserObj}
+                    enableBtn={false}
+                />
+            </div>
+            <div className='cardBox'>{cardList}</div>
+        </section>
+    );
 };
 
 const mapStateToProps = (state) => ({

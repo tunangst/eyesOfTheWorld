@@ -2,75 +2,81 @@
     flex: 1;
     background-color: $color-black;
 
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    justify-content: center;
+    & .userBox {
+    }
+    & .cardBox {
+        width: 100%;
 
-    & .card {
-        // width: 30rem;
-        border: 1px solid $color-red;
-        text-align: center;
         display: flex;
-        flex-direction: column;
-        margin: 1rem;
-        background-color: $color-white;
-        border-radius: 6px;
-        padding: 1rem;
-        width: 29rem;
-        overflow-wrap: anywhere;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: center;
 
-        & .window {
-            position: relative;
-            // padding-bottom: 1.5rem;
-            & .remove {
-                padding: 0 0 5px 7px;
-                border-radius: 0 0 0 5px;
-                background-color: $color-white;
-                font-size: $small-font-size;
-                font-weight: 900;
-                position: absolute;
-                right: -5px;
-                top: -8px;
-                color: $color-red;
-                cursor: pointer;
-            }
-            & img {
-                border-radius: 6px;
-                width: 27rem;
-                height: 21rem;
-                object-fit: cover;
-                object-position: center;
-            }
-        }
+        & .card {
+            // width: 30rem;
+            border: 1px solid $color-red;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            margin: 1rem;
+            background-color: $color-white;
+            border-radius: 6px;
+            padding: 1rem;
+            width: 29rem;
+            overflow-wrap: anywhere;
 
-        & .info {
-            // height: 100%;
-            // width: 100%;
-            font-family: 'Raleway', sans-serif;
-            font-weight: 500;
-
-            & h2:nth-child(1) {
-                margin: 2rem 5px;
-                letter-spacing: 1px;
-                font-weight: 900;
+            & .window {
+                position: relative;
+                // padding-bottom: 1.5rem;
+                & .remove {
+                    padding: 0 0 5px 7px;
+                    border-radius: 0 0 0 5px;
+                    background-color: $color-white;
+                    font-size: $small-font-size;
+                    font-weight: 900;
+                    position: absolute;
+                    right: -5px;
+                    top: -8px;
+                    color: $color-red;
+                    cursor: pointer;
+                }
+                & img {
+                    border-radius: 6px;
+                    width: 27rem;
+                    height: 21rem;
+                    object-fit: cover;
+                    object-position: center;
+                }
             }
 
-            & h2 {
-                font-size: $large-font-size;
-                margin-bottom: 0;
-                color: $color-red;
-                font-family: 'Alice', serif;
-                font-weight: 800;
-            }
+            & .info {
+                // height: 100%;
+                // width: 100%;
+                font-family: 'Raleway', sans-serif;
+                font-weight: 500;
 
-            & p {
-                font-size: $small-font-size;
-                margin: 5px 0;
-            }
+                & h2:nth-child(1) {
+                    margin: 2rem 5px;
+                    letter-spacing: 1px;
+                    font-weight: 900;
+                }
 
-            & p:last-child {
-                margin-bottom: 1.5rem;
+                & h2 {
+                    font-size: $large-font-size;
+                    margin-bottom: 0;
+                    color: $color-red;
+                    font-family: 'Alice', serif;
+                    font-weight: 800;
+                }
+
+                & p {
+                    font-size: $small-font-size;
+                    margin: 5px 0;
+                }
+
+                & p:last-child {
+                    margin-bottom: 1.5rem;
+                }
             }
         }
     }

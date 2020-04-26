@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 import { setLocal } from '../actions/statesAction';
 import { findEye } from '../actions/eyeAction';
 import BuildInputField from '../extra/utilityFunctions/BuildInputField';
-// import SuggestionBar from '../layout/SuggestionBar';
+import UserBox from '../extra/utilityFunctions/UserBox';
 import { setName } from '../extra/utilityFunctions/utilities';
 import { getUser } from '../actions/userAction';
 
@@ -79,25 +79,33 @@ const EyePage = (props) => {
         <section className='eyeContainer'>
             <main className='eye'>
                 <div className='userBox'>
-                    <img
-                        className='avatar'
-                        src={user.selectedUserObj.avatar}
-                        alt='User Avatar'
+                    <UserBox
+                        selectedUserObj={user.selectedUserObj}
+                        enableBtn={true}
                     />
-                    <div className='textContainer'>
-                        <h2 className='username'>
-                            {user.selectedUserObj.username}
-                        </h2>
-                        <p
-                            className='eyeBtn btns'
-                            onClick={() =>
-                                handleGoToEyes(user.selectedUserObj._id)
-                            }
-                        >
-                            see other eyes
-                        </p>
-                    </div>
                 </div>
+                {
+                    //     <div className='userBox'>
+                    //     <img
+                    //         className='avatar'
+                    //         src={user.selectedUserObj.avatar}
+                    //         alt='User Avatar'
+                    //     />
+                    //     <div className='textContainer'>
+                    //         <h2 className='username'>
+                    //             {user.selectedUserObj.username}
+                    //         </h2>
+                    //         <p
+                    //             className='eyeBtn btns'
+                    //             onClick={() =>
+                    //                 handleGoToEyes(user.selectedUserObj._id)
+                    //             }
+                    //         >
+                    //             see other eyes
+                    //         </p>
+                    //     </div>
+                    // </div>
+                }
                 <div className='picBox'>
                     <img src={eye.url} alt={eye.pic.name}></img>
                 </div>

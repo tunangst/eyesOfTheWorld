@@ -484,6 +484,41 @@ Grey dark 3: #999
     stroke: #a62f03;
     stroke-width: 5%; }
 
+.userBox {
+  height: 15rem;
+  width: 100%;
+  position: relative;
+  grid-area: user;
+  z-index: 2;
+  box-shadow: 5px 0 1rem rgba(5, 5, 5, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .userBox .avatar {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center; }
+  .userBox .textContainer {
+    position: absolute;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center; }
+    .userBox .textContainer .username {
+      background-color: rgba(240, 226, 201, 0.7);
+      border-radius: 6px;
+      padding: 1rem 3rem;
+      text-shadow: 0 0 5px #f0e2c9;
+      font-size: 20px;
+      color: #333; }
+    .userBox .textContainer .eyeBtn {
+      background-color: rgba(70, 188, 236, 0.7);
+      transition: 0.5s ease-out; }
+      .userBox .textContainer .eyeBtn:hover {
+        background-color: #46bcec; }
+
 .landing {
   flex: 1; }
   .landing #worldMap {
@@ -623,38 +658,6 @@ Grey dark 3: #999
     grid-template-rows: 15rem 1fr;
     grid-template-areas: 'user user' 'pic info';
     background-color: #333; }
-    .eyeContainer .eye .userBox {
-      position: relative;
-      grid-area: user;
-      z-index: 2;
-      box-shadow: 5px 0 1rem rgba(5, 5, 5, 0.9);
-      display: flex;
-      justify-content: center;
-      align-items: center; }
-      .eyeContainer .eye .userBox .avatar {
-        height: 100%;
-        width: 100%;
-        object-fit: cover;
-        object-position: center; }
-      .eyeContainer .eye .userBox .textContainer {
-        position: absolute;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-        align-items: center; }
-        .eyeContainer .eye .userBox .textContainer .username {
-          background-color: rgba(240, 226, 201, 0.7);
-          border-radius: 6px;
-          padding: 1rem 3rem;
-          text-shadow: 0 0 5px #f0e2c9;
-          font-size: 20px;
-          color: #333; }
-        .eyeContainer .eye .userBox .textContainer .eyeBtn {
-          background-color: rgba(70, 188, 236, 0.7);
-          transition: 0.5s ease-out; }
-          .eyeContainer .eye .userBox .textContainer .eyeBtn:hover {
-            background-color: #46bcec; }
     .eyeContainer .eye .picBox {
       grid-area: pic; }
       .eyeContainer .eye .picBox img {
@@ -709,56 +712,58 @@ Grey dark 3: #999
 
 .userEyes {
   flex: 1;
-  background-color: #333;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: center; }
-  .userEyes .card {
-    border: 1px solid #a62f03;
-    text-align: center;
+  background-color: #333; }
+  .userEyes .cardBox {
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    margin: 1rem;
-    background-color: #f0e2c9;
-    border-radius: 6px;
-    padding: 1rem;
-    width: 29rem;
-    overflow-wrap: anywhere; }
-    .userEyes .card .window {
-      position: relative; }
-      .userEyes .card .window .remove {
-        padding: 0 0 5px 7px;
-        border-radius: 0 0 0 5px;
-        background-color: #f0e2c9;
-        font-size: 1.4rem;
-        font-weight: 900;
-        position: absolute;
-        right: -5px;
-        top: -8px;
-        color: #a62f03;
-        cursor: pointer; }
-      .userEyes .card .window img {
-        border-radius: 6px;
-        width: 27rem;
-        height: 21rem;
-        object-fit: cover;
-        object-position: center; }
-    .userEyes .card .info {
-      font-family: 'Raleway', sans-serif;
-      font-weight: 500; }
-      .userEyes .card .info h2:nth-child(1) {
-        margin: 2rem 5px;
-        letter-spacing: 1px;
-        font-weight: 900; }
-      .userEyes .card .info h2 {
-        font-size: 2rem;
-        margin-bottom: 0;
-        color: #a62f03;
-        font-family: 'Alice', serif;
-        font-weight: 800; }
-      .userEyes .card .info p {
-        font-size: 1.4rem;
-        margin: 5px 0; }
-      .userEyes .card .info p:last-child {
-        margin-bottom: 1.5rem; }
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center; }
+    .userEyes .cardBox .card {
+      border: 1px solid #a62f03;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      margin: 1rem;
+      background-color: #f0e2c9;
+      border-radius: 6px;
+      padding: 1rem;
+      width: 29rem;
+      overflow-wrap: anywhere; }
+      .userEyes .cardBox .card .window {
+        position: relative; }
+        .userEyes .cardBox .card .window .remove {
+          padding: 0 0 5px 7px;
+          border-radius: 0 0 0 5px;
+          background-color: #f0e2c9;
+          font-size: 1.4rem;
+          font-weight: 900;
+          position: absolute;
+          right: -5px;
+          top: -8px;
+          color: #a62f03;
+          cursor: pointer; }
+        .userEyes .cardBox .card .window img {
+          border-radius: 6px;
+          width: 27rem;
+          height: 21rem;
+          object-fit: cover;
+          object-position: center; }
+      .userEyes .cardBox .card .info {
+        font-family: 'Raleway', sans-serif;
+        font-weight: 500; }
+        .userEyes .cardBox .card .info h2:nth-child(1) {
+          margin: 2rem 5px;
+          letter-spacing: 1px;
+          font-weight: 900; }
+        .userEyes .cardBox .card .info h2 {
+          font-size: 2rem;
+          margin-bottom: 0;
+          color: #a62f03;
+          font-family: 'Alice', serif;
+          font-weight: 800; }
+        .userEyes .cardBox .card .info p {
+          font-size: 1.4rem;
+          margin: 5px 0; }
+        .userEyes .cardBox .card .info p:last-child {
+          margin-bottom: 1.5rem; }
