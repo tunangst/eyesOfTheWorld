@@ -5,10 +5,10 @@ import { useHistory } from 'react-router-dom';
 
 import { setLocal } from '../actions/statesAction';
 import { findEye } from '../actions/eyeAction';
+import { getUser } from '../actions/userAction';
 import BuildInputField from '../extra/utilityFunctions/BuildInputField';
 import UserBox from '../extra/utilityFunctions/UserBox';
 import { setName } from '../extra/utilityFunctions/utilities';
-import { getUser } from '../actions/userAction';
 
 const EyePage = (props) => {
     const { eye, eyes, user, findEye, setLocal, getUser } = props;
@@ -74,46 +74,66 @@ const EyePage = (props) => {
             }
         });
     }
-
+    console.log(user.userObj._id);
+    console.log(user.selectedUserObj._id);
     return (
         <section className='eyeContainer'>
-            <main className='eye'>
-                <div className='userBox'>
-                    <UserBox
-                        selectedUserObj={user.selectedUserObj}
-                        enableBtn={true}
-                    />
-                </div>
-                {
-                    //     <div className='userBox'>
-                    //     <img
-                    //         className='avatar'
-                    //         src={user.selectedUserObj.avatar}
-                    //         alt='User Avatar'
-                    //     />
-                    //     <div className='textContainer'>
-                    //         <h2 className='username'>
-                    //             {user.selectedUserObj.username}
-                    //         </h2>
-                    //         <p
-                    //             className='eyeBtn btns'
-                    //             onClick={() =>
-                    //                 handleGoToEyes(user.selectedUserObj._id)
-                    //             }
-                    //         >
-                    //             see other eyes
-                    //         </p>
-                    //     </div>
-                    // </div>
-                }
-                <div className='picBox'>
-                    <img src={eye.url} alt={eye.pic.name}></img>
-                </div>
-                <div className='infoBox'>
-                    <h2 className='title'>{name}</h2>
-                    {inputs}
-                </div>
-            </main>
+            {user.userObj._id === user.selectedUserObj._id ? (
+                <main className='eye' style={{ display: 'flex' }}>
+                    <div className='picBox'>
+                        <img src={eye.url} alt={eye.pic.name}></img>
+                    </div>
+                    <div className='infoBox'>
+                        <h2 className='title'>{name}</h2>
+                        {inputs}
+                    </div>
+                </main>
+            ) : (
+                <main className='eye' style={{ display: 'grid' }}>
+                    <div className='userBox'>
+                        <UserBox
+                            selectedUserObj={user.selectedUserObj}
+                            enableBtn={true}
+                        />
+                    </div>
+                    <div className='picBox'>
+                        <img src={eye.url} alt={eye.pic.name}></img>
+                    </div>
+                    <div className='infoBox'>
+                        <h2 className='title'>{name}</h2>
+                        {inputs}
+                    </div>
+                </main>
+            )}
+            {
+                //     <div className='userBox'>
+                //     <img
+                //         className='avatar'
+                //         src={user.selectedUserObj.avatar}
+                //         alt='User Avatar'
+                //     />
+                //     <div className='textContainer'>
+                //         <h2 className='username'>
+                //             {user.selectedUserObj.username}
+                //         </h2>
+                //         <p
+                //             className='eyeBtn btns'
+                //             onClick={() =>
+                //                 handleGoToEyes(user.selectedUserObj._id)
+                //             }
+                //         >
+                //             see other eyes
+                //         </p>
+                //     </div>
+                // </div>
+                // <div className='picBox'>
+                //     <img src={eye.url} alt={eye.pic.name}></img>
+                // </div>
+                // <div className='infoBox'>
+                //     <h2 className='title'>{name}</h2>
+                //     {inputs}
+                // </div>
+            }
         </section>
     );
 };
