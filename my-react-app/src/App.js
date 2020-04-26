@@ -13,7 +13,7 @@ import LandingPage from './pages/LandingPage';
 import AddPage from './pages/AddPage/AddPage';
 import EyePage from './pages/EyePage';
 import UserEyes from './pages/UserEyes';
-import myUserEyes from './pages/myUserEyes';
+import MyUserEyes from './pages/MyUserEyes';
 import Register from './layout/RegisterModal';
 import Login from './layout/LoginModal';
 import SuggestionBar from './layout/SuggestionBar';
@@ -46,7 +46,7 @@ const App = () => {
 
                         <PrivateRoute
                             path='/eyes/myUser/:user'
-                            component={myUserEyes}
+                            component={MyUserEyes}
                         />
 
                         <Route path='/user/:userid' component={Profile} />
