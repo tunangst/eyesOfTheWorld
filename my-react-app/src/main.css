@@ -292,6 +292,7 @@ Grey dark 3: #999
   min-height: 10rem;
   background-color: transparent;
   position: absolute;
+  display: initial;
   pointer-events: none;
   transform: translate3d(0, 0, 0);
   will-change: transform;
@@ -434,7 +435,8 @@ Grey dark 3: #999
   flex-direction: column;
   align-items: center; }
   .marker .markerInfo {
-    z-index: 1;
+    position: relative;
+    z-index: 2;
     text-align: center;
     background-color: #f0e2c9;
     border-radius: 5px;
@@ -494,6 +496,7 @@ Grey dark 3: #999
       stroke: #a62f03;
       stroke-width: 5%; }
   .marker .markerImg {
+    z-index: 1;
     width: 3rem;
     height: 3rem;
     cursor: pointer;

@@ -8,10 +8,21 @@ import mapStyle from './mapStyle';
 import BuildMarker from './BuildMarker';
 import BuildCluster from './BuildCluster';
 
+const rotateWorld = (oldPointCenterObj) => {
+    let { lat, lng } = oldPointCenterObj;
+    console.log(lng);
+    lng = Math.ceil(lng + 1);
+    console.log(lng);
+    if (lng > 180) lng -= 180;
+    console.log(lng);
+    return { lat: lat, lng: lng };
+};
+
 const initialCenter = { lat: 0, lng: 0 };
 const MapComponent = ({ uploadEye, eyes }) => {
     const mapRef = useRef();
     const [zoom, setZoom] = useState(3);
+    // const [rotate, setRotate] = useState(false);
     const [bounds, setBounds] = useState(null);
     const [center, setCenter] = useState(initialCenter);
 
@@ -23,9 +34,9 @@ const MapComponent = ({ uploadEye, eyes }) => {
         mapRef.current.setZoom(expansionZoom);
         mapRef.current.panTo(pan);
     };
-    const handlePan = (pan) => {
-        mapRef.current.panTo(pan);
-    };
+    // const handlePan = (pan) => {
+    //     mapRef.current.panTo(pan);
+    // };
     const init = () => {
         if (uploadEye) {
             setZoom(12);
@@ -105,12 +116,27 @@ const MapComponent = ({ uploadEye, eyes }) => {
         console.log('running useEffect in mapcomponent2');
         init();
     }, [eyes, uploadEye]);
-    // console.log(clusters, '  clusters');
-    // console.log(clusters[0]);
+
+    // rotate &&
+    //     setTimeout(() => {
+    //         console.log('rotating');
+    //         const rotateLocation = rotateWorld(center);
+    //         console.log(rotateLocation);
+    //         setCenter({
+    //             ...center,
+    //             lat: rotateLocation.lat,
+    //             lng: rotateLocation.lng,
+    //         });
+    //         // ...center
+    //         // lat: rotateLocation.lat,
+    //         // (lng = rotateLocation.lng)
+    //     }, 50);
+
     return (
         <GoogleMapReact
             bootstrapURLKeys={{ key: `AI${process.env.REACT_APP_GOOGLE_KEY}` }}
-            defaultCenter={center}
+            defaultCenter={{ lat: 0, lng: 0 }}
+            // defaultCenter={center}
             defaultZoom={zoom}
             options={mapOptions}
             center={center}
@@ -118,6 +144,7 @@ const MapComponent = ({ uploadEye, eyes }) => {
             onGoogleApiLoaded={({ map }) => {
                 mapRef.current = map;
                 mapRef.current.panTo(center);
+                // setRotate(true);
             }}
             onChange={({ zoom, bounds }) => {
                 // console.log(zoom);

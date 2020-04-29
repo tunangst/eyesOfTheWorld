@@ -60,27 +60,33 @@ const SuggestionBar = (props) => {
         //find close eyes
     }, []);
 
-    let suggestionComponent;
-    if (suggestions) {
-        suggestionComponent = (
-            <aside className='suggestionOpen' key='open'>
-                <svg className='icon' onClick={() => toggleSuggestion()}>
-                    <use href={`${icons}#up`}></use>
-                </svg>
-                <div className='suggestionContainer'>{suggestedEyes}</div>
-            </aside>
-        );
+    let suggestionComponent = null;
+    if (eyes.length < 1) {
+        suggestionComponent = null;
     } else {
-        suggestionComponent = (
-            <aside className='suggestionClosed' key='closed'>
-                <svg
-                    className='icon'
-                    onClick={eyes.length > 0 ? () => toggleSuggestion() : null}
-                >
-                    <use href={`${icons}#down`}></use>
-                </svg>
-            </aside>
-        );
+        if (suggestions) {
+            suggestionComponent = (
+                <aside className='suggestionOpen' key='open'>
+                    <svg className='icon' onClick={() => toggleSuggestion()}>
+                        <use href={`${icons}#up`}></use>
+                    </svg>
+                    <div className='suggestionContainer'>{suggestedEyes}</div>
+                </aside>
+            );
+        } else {
+            suggestionComponent = (
+                <aside className='suggestionClosed' key='closed'>
+                    <svg
+                        className='icon'
+                        onClick={
+                            eyes.length > 0 ? () => toggleSuggestion() : null
+                        }
+                    >
+                        <use href={`${icons}#down`}></use>
+                    </svg>
+                </aside>
+            );
+        }
     }
 
     return (
