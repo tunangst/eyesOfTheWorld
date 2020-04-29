@@ -13,7 +13,7 @@ const rotateWorld = (oldPointCenterObj) => {
     console.log(lng);
     lng = Math.ceil(lng + 1);
     console.log(lng);
-    if (lng > 180) lng -= 180;
+    if (lng > 180) lng -= 360;
     console.log(lng);
     return { lat: lat, lng: lng };
 };
@@ -22,7 +22,8 @@ const initialCenter = { lat: 0, lng: 0 };
 const MapComponent = ({ uploadEye, eyes }) => {
     const mapRef = useRef();
     const [zoom, setZoom] = useState(3);
-    // const [rotate, setRotate] = useState(false);
+    const [rotate, setRotate] = useState(false);
+    const [rotateNum, setRotateNum] = useState({ lat: 50, lng: 0 });
     const [bounds, setBounds] = useState(null);
     const [center, setCenter] = useState(initialCenter);
 
@@ -34,9 +35,9 @@ const MapComponent = ({ uploadEye, eyes }) => {
         mapRef.current.setZoom(expansionZoom);
         mapRef.current.panTo(pan);
     };
-    // const handlePan = (pan) => {
-    //     mapRef.current.panTo(pan);
-    // };
+    const handlePan = (pan) => {
+        mapRef.current.panTo(pan);
+    };
     const init = () => {
         if (uploadEye) {
             setZoom(12);
@@ -59,12 +60,10 @@ const MapComponent = ({ uploadEye, eyes }) => {
         keyboardShortcuts: false, // disable keyboard shortcuts
         scaleControl: false, // allow scale control
         scrollwheel: true, // allow scroll wheel
-        styles: mapStyle, // change default map styles
         streetViewControl: true,
         zoomControl: false,
         fullscreenControl: false,
         mapTypeControl: false,
-        scaleControl: false,
         minZoom: 3,
         maxZoom: 20,
     };
@@ -117,20 +116,26 @@ const MapComponent = ({ uploadEye, eyes }) => {
         init();
     }, [eyes, uploadEye]);
 
-    // rotate &&
-    //     setTimeout(() => {
-    //         console.log('rotating');
-    //         const rotateLocation = rotateWorld(center);
-    //         console.log(rotateLocation);
-    //         setCenter({
-    //             ...center,
-    //             lat: rotateLocation.lat,
-    //             lng: rotateLocation.lng,
-    //         });
-    //         // ...center
-    //         // lat: rotateLocation.lat,
-    //         // (lng = rotateLocation.lng)
-    //     }, 50);
+    rotate &&
+        setTimeout(() => {
+            console.log('rotating');
+            const rotateLocation = rotateWorld(rotateNum);
+            console.log(rotateLocation);
+            setRotateNum({
+                ...rotateNum,
+                lat: rotateLocation.lat,
+                lng: rotateLocation.lng,
+            });
+            handlePan(rotateNum);
+
+            //     ...center,
+            //     lat: rotateLocation.lat,
+            //     lng: rotateLocation.lng,
+            // });
+            // ...center
+            // lat: rotateLocation.lat,
+            // (lng = rotateLocation.lng)
+        }, 50);
 
     return (
         <GoogleMapReact
@@ -144,7 +149,7 @@ const MapComponent = ({ uploadEye, eyes }) => {
             onGoogleApiLoaded={({ map }) => {
                 mapRef.current = map;
                 mapRef.current.panTo(center);
-                // setRotate(true);
+                setRotate(false);
             }}
             onChange={({ zoom, bounds }) => {
                 // console.log(zoom);

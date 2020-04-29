@@ -18,12 +18,12 @@ const LandingPage = (props) => {
     const thankYouMessage =
         'Thank you author_id=216 @flaticon.com and https://www.pexels.com/collections/eyesoftheworld-p4f1cws/ :^]';
 
+    needThanks === true && setThanks(thankYouMessage, 'success');
     useEffect(() => {
         console.log('running useEffect in landingpage');
         setLocal(false);
-        needThanks === true && setThanks(thankYouMessage, 'success');
         eyes.length < 1 && getAllEyes();
-    }, [eyes.length, getAllEyes]);
+    }, [eyes.length, getAllEyes, setLocal]);
 
     return (
         <section className='landing'>

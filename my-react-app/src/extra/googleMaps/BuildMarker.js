@@ -1,11 +1,12 @@
-import React, { useState, useRef } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+// import { Link } from 'react-router';
 import { setName } from '../utilityFunctions/utilities';
 import ReactCSSTransitionGroup from 'react-transition-group';
 
 import sprites from '../images/icons.svg';
 const view = `${sprites}#view`;
-const down = `${sprites}#down`;
+// const down = `${sprites}#down`;
 const CSSTransitionGroup = ReactCSSTransitionGroup.CSSTransitionGroup;
 
 const Marker = ({ children }) => children;
@@ -22,16 +23,16 @@ const BuildMarker = ({ eyeCluster }) => {
             setInfoWindow(value);
         }
     };
-    const handleRedirect = (eyeId) => {
-        history.push(`/eyes/${eyeId}`);
-    };
-    const history = useHistory();
+    // const handleRedirect = (eyeId) => {
+    //     history.push(`/eyes/${eyeId}`);
+    // };
+    // const history = useHistory();
 
     let filename;
     let name;
     let eye;
-    let markerInfo;
-    let marker;
+    // let markerInfo;
+    // let marker;
     if (eyeCluster.properties.upload === false) {
         eye = eyeCluster.properties.eye;
 
@@ -79,12 +80,21 @@ const BuildMarker = ({ eyeCluster }) => {
                                     />
                                 </div>
                                 <h2 className='title'>{name}</h2>
-                                <a
+                                <Link
+                                    to={`/eyes/${eye._id}`}
                                     className='goto'
-                                    onClick={() => handleRedirect(eye._id)}
+                                    // onClick={() => handleRedirect(eye._id)}
                                 >
                                     go to Eye
-                                </a>
+                                </Link>
+                                {
+                                    // <a
+                                    //     className='goto'
+                                    //     onClick={() => handleRedirect(eye._id)}
+                                    // >
+                                    //     go to Eye
+                                    // </a>
+                                }
                             </div>
                         )}
                     </CSSTransitionGroup>

@@ -1,38 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { useHistory, Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import { setAlert } from '../actions/statesAction';
 import { editProfile } from '../actions/userAction';
 
-// const initialState = {
-//     username: '',
-//     email: '',
-//     password: '',
-//     password2: '',
-//     avatar: '',
-// };
-// const Register = (props) => {
-//     const { register, setAlert, isAuthenticated } = props;
-//     const [formData, setFormData] = useState(initialState);
-//     const { username, avatar, email, password, password2 } = formData;
-
-//     const onChange = (element) =>
-//         setFormData({
-//             ...formData,
-//             [element.target.name]: element.target.value,
-//         });
-
-//     const onSubmit = async (element) => {
-//         element.preventDefault();
-//         if (password !== password2) {
-//             setAlert('Passwords do not match', 'error');
-//             // console.log('Passwords do not match');
-//         } else {
-//             console.log('register success');
-//             register({ username, email, password, avatar });
-//         }
-//     };
 const initialFormState = {
     username: '',
     avatar: '',

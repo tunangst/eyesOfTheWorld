@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 // import { useAsyncEffect } from 'use-async-effect';
 import { connect } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 
 import { setLocal } from '../actions/statesAction';
 import { findEye } from '../actions/eyeAction';
@@ -11,35 +11,35 @@ import UserBox from '../extra/utilityFunctions/UserBox';
 import { setName } from '../extra/utilityFunctions/utilities';
 
 const EyePage = (props) => {
-    const { eye, eyes, user, findEye, setLocal, getUser } = props;
+    const { eye, user, findEye, setLocal, getUser } = props;
     const id = props.match.params.id;
-    const history = useHistory();
+    // const history = useHistory();
 
-    let slicedEyes = null;
-    if (eyes.length > 0) {
-        const sliceSize = 3;
-        slicedEyes = eyes.slice(0, sliceSize);
-    }
-    const handleGoToEyes = (userId) => {
-        console.log(userId);
-        history.push(`/eyes/user/${userId}`);
-    };
-    const init = async () => {
-        await findEye(id);
-        await getUser(eye.user);
-    };
+    // let slicedEyes = null;
+    // if (eyes.length > 0) {
+    //     const sliceSize = 3;
+    //     slicedEyes = eyes.slice(0, sliceSize);
+    // }
+    // const handleGoToEyes = (userId) => {
+    //     console.log(userId);
+    //     history.push(`/eyes/user/${userId}`);
+    // };
+    // const init = async () => {
+    //     await findEye(id);
+    //     await getUser(eye.user);
+    // };
 
     useEffect(() => {
         console.log('running useEffect in eyepage');
         setLocal(true);
         findEye(id);
-        if (
-            (eye && user && eye.user !== user.selectedUserObj._id) ||
-            (eye && !user)
-        ) {
-            getUser(eye.user);
-        }
-    }, [id, eye.user]);
+    }, [id, findEye, setLocal]);
+    if (
+        (eye && user && eye.user !== user.selectedUserObj._id) ||
+        (eye && !user)
+    ) {
+        getUser(eye.user);
+    }
 
     const filename = eye.pic.name;
     const name = setName(filename);
@@ -140,7 +140,6 @@ const EyePage = (props) => {
 
 const mapStateToProps = (state) => ({
     eye: state.eye,
-    eyes: state.eyes,
     user: state.user,
 });
 

@@ -14,7 +14,7 @@ import {
 } from './types';
 import setAuthToken from '../extra/utilityFunctions/setAuthToken';
 import { setAlert } from './statesAction';
-import { set } from 'mongoose';
+// import { set } from 'mongoose';
 
 export const loadUser = () => async (dispatch) => {
     if (localStorage.userToken) {

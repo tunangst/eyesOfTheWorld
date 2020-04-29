@@ -483,6 +483,7 @@ Grey dark 3: #999
       font-size: 1rem;
       letter-spacing: 1px;
       cursor: pointer;
+      text-decoration: none;
       color: #fff;
       background-color: #46bcec;
       border-radius: 4px;

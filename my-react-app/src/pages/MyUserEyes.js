@@ -5,9 +5,8 @@ import { getUserAndEyes } from '../actions/userAction';
 import BuildMyEyeCards from '../extra/utilityFunctions/BuildMyEyeCards';
 
 const UserEyes = (props) => {
-    const { getUserAndEyes, selectedUserEyes, selectedUserObj } = props;
+    const { getUserAndEyes, selectedUserEyes } = props;
     const userId = props.match.params.user;
-    // console.log(selectedUserObj);
     useEffect(() => {
         console.log('running useEffect in usereyespage');
         getUserAndEyes(userId);

@@ -8,7 +8,7 @@ import {
     LOGOUT,
     FIND_USER,
     FIND_USER_EYES,
-    FIND_SELECTED_USER,
+    // FIND_SELECTED_USER,
 } from '../actions/types';
 
 const initialUser = {

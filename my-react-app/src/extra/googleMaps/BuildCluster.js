@@ -1,5 +1,5 @@
-import React, { useState, useRef } from 'react';
-import { useHistory } from 'react-router-dom';
+import React from 'react';
+// import { useHistory } from 'react-router-dom';
 
 import sprites from '../images/icons.svg';
 const incognito = `${sprites}#incognito`;

@@ -18,17 +18,7 @@ import // handleImageReady,
 '../../actions/statesAction';
 
 const AddPage = (props) => {
-    const {
-        info,
-        user,
-        states,
-        handleFindInfo,
-        handleFileDrop,
-        handleFileChange,
-        handleImageReady,
-        setLoading,
-        submitEye,
-    } = props;
+    const { info, states, handleFindInfo } = props;
 
     useEffect(() => {
         console.log('running useEffect in AddPage');
