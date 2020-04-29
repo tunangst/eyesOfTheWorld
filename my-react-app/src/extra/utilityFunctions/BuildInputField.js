@@ -5,19 +5,19 @@ import moment from 'moment';
 
 const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
     let inputField;
-    let size;
+    // let size;
 
     if (!value) return null;
 
-    if (value && value !== '' && value !== undefined && value !== null) {
-        if (typeof value === 'number') {
-            size = value.toString().length;
-        } else {
-            size = value.length;
-        }
-    } else {
-        size = null;
-    }
+    // if (value && value !== '' && value !== undefined && value !== null) {
+    //     if (typeof value === 'number') {
+    //         size = value.toString().length;
+    //     } else {
+    //         size = value.length;
+    //     }
+    // } else {
+    //     size = null;
+    // }
 
     switch (field) {
         case 'latitude':

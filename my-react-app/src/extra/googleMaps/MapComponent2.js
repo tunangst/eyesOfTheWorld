@@ -87,7 +87,7 @@ const MapComponent = ({ uploadEye, eyes }) => {
                 },
             },
         ];
-        console.log(points, ' points');
+        // console.log(points, ' points');
     } else {
         points = eyes.map((eye) => ({
             type: 'Feature',
@@ -212,7 +212,8 @@ const MapComponent = ({ uploadEye, eyes }) => {
                               longitude,
                               latitude,
                           ] = cluster.geometry.coordinates;
-
+                          console.log(cluster);
+                          if (latitude === 0 && longitude === 0) return null;
                           return (
                               <BuildMarker
                                   key={`Marker#${Math.random()}`}

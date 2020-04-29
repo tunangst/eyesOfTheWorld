@@ -37,50 +37,68 @@ const BuildMarker = ({ eyeCluster }) => {
 
         filename = eye.pic.name;
         name = setName(filename);
+    } else if (eyeCluster.properties.upload === true) {
+        eye = eyeCluster.properties.eye;
+        return (
+            <Marker>
+                <div className='marker'>
+                    <div
+                        className='markerImg'
+                        onClick={() => toggleInfoWindow('toggle')}
+                    >
+                        <svg viewBox='0 0 100 100'>
+                            <use xlinkHref={view}></use>
+                        </svg>
+                    </div>
+                </div>
+            </Marker>
+        );
     }
     return (
         <Marker>
-            <div className='marker'>
-                <CSSTransitionGroup
-                    transitionName='markerAnimation'
-                    transitionEnterTimeout={200}
-                    transitionLeaveTimeout={200}
-                >
-                    {infoWindow && (
-                        <div className={`markerInfo marker~${name}`}>
-                            <div className='window'>
-                                <div
-                                    className='xBlock'
-                                    onClick={() => toggleInfoWindow(false)}
-                                >
-                                    x
+            {eye ? (
+                <div className='marker'>
+                    <CSSTransitionGroup
+                        transitionName='markerAnimation'
+                        transitionEnterTimeout={200}
+                        transitionLeaveTimeout={200}
+                    >
+                        {infoWindow && (
+                            <div className={`markerInfo marker~${name}`}>
+                                <div className='window'>
+                                    <div
+                                        className='xBlock'
+                                        onClick={() => toggleInfoWindow(false)}
+                                    >
+                                        x
+                                    </div>
+
+                                    <img
+                                        src={eye.url}
+                                        alt={`thumbnail of ${eye.pic.name}`}
+                                    />
                                 </div>
-
-                                <img
-                                    src={eye.url}
-                                    alt={`thumbnail of ${eye.pic.name}`}
-                                />
+                                <h2 className='title'>{name}</h2>
+                                <a
+                                    className='goto'
+                                    onClick={() => handleRedirect(eye._id)}
+                                >
+                                    go to Eye
+                                </a>
                             </div>
-                            <h2 className='title'>{name}</h2>
-                            <a
-                                className='goto'
-                                onClick={() => handleRedirect(eye._id)}
-                            >
-                                go to Eye
-                            </a>
-                        </div>
-                    )}
-                </CSSTransitionGroup>
+                        )}
+                    </CSSTransitionGroup>
 
-                <div
-                    className='markerImg'
-                    onClick={() => toggleInfoWindow('toggle')}
-                >
-                    <svg viewBox='0 0 100 100'>
-                        <use xlinkHref={view}></use>
-                    </svg>
+                    <div
+                        className='markerImg'
+                        onClick={() => toggleInfoWindow('toggle')}
+                    >
+                        <svg viewBox='0 0 100 100'>
+                            <use xlinkHref={view}></use>
+                        </svg>
+                    </div>
                 </div>
-            </div>
+            ) : null}
         </Marker>
     );
     // if (eyeCluster.properties.upload === false) {
