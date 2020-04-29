@@ -74,8 +74,8 @@ const EyePage = (props) => {
             }
         });
     }
-    console.log(user.userObj._id);
-    console.log(user.selectedUserObj._id);
+    // console.log(user.userObj._id);
+    // console.log(user.selectedUserObj._id);
     return (
         <section className='eyeContainer'>
             {user.userObj._id === user.selectedUserObj._id ? (

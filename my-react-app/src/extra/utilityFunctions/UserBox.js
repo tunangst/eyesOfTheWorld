@@ -5,7 +5,7 @@ const UserBox = ({ selectedUserObj, enableBtn }) => {
     const history = useHistory();
 
     const handleGoToEyes = (userId) => {
-        console.log(userId);
+        // console.log(userId);
         history.push(`/eyes/user/${userId}`);
     };
     let title = selectedUserObj.username;
