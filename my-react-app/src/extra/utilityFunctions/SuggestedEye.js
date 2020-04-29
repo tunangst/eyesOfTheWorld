@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { setName } from '../utilityFunctions/utilities';
+import ReactCSSTransitionGroup from 'react-transition-group';
+const CSSTransitionGroup = ReactCSSTransitionGroup.CSSTransitionGroup;
 
 const SuggestedEye = ({ eye }) => {
     const [showName, setShowName] = useState(false);
@@ -19,7 +21,13 @@ const SuggestedEye = ({ eye }) => {
             onMouseLeave={() => setShowName(false)}
         >
             <img src={eye.url} alt='suggested Eye' />
-            {showName && <p className='eyeName'>{name}</p>}
+            <CSSTransitionGroup
+                transitionName='suggestionNameAnimation'
+                transitionEnterTimeout={200}
+                transitionLeaveTimeout={200}
+            >
+                {showName && <p className='eyeName'>{name}</p>}
+            </CSSTransitionGroup>
         </div>
     );
 };

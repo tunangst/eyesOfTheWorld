@@ -272,6 +272,8 @@ Grey dark 3: #999
         overflow: hidden; }
       .suggestionOpen .suggestionContainer .suggestedEye .eyeName {
         position: absolute;
+        bottom: 0;
+        left: 0;
         font-family: 'Raleway', sans-serif;
         font-size: 1rem;
         font-weight: 800;
@@ -321,6 +323,22 @@ Grey dark 3: #999
 .suggestionAnimation-leave.suggestionAnimation-leave-active {
   position: absolute;
   transform: translate3d(0, -100%, 0);
+  transition: 0.2s ease-out; }
+
+.suggestionNameAnimation-enter {
+  width: 100%;
+  transform: translate3d(-100%, 0, 0); }
+
+.suggestionNameAnimation-enter.suggestionNameAnimation-enter-active {
+  transform: translate3d(0, 0, 0);
+  transition: 0.2s ease-out; }
+
+.suggestionNameAnimation-leave {
+  width: 100%;
+  transform: translate3d(0, 0, 0); }
+
+.suggestionNameAnimation-leave.suggestionNameAnimation-leave-active {
+  transform: translate3d(100%, 0, 0);
   transition: 0.2s ease-out; }
 
 .login-register,
@@ -410,79 +428,93 @@ Grey dark 3: #999
     fill: #46bcec; }
 
 .marker {
-  width: 3rem;
-  height: 3rem;
-  cursor: pointer;
   position: absolute;
-  top: -100%;
-  left: -50%;
-  transform: translate3d(-50%, -100%, 0) rotate3d(0, 0, 1, 90deg); }
-  .marker svg {
-    fill: #a62f03;
-    filter: drop-shadow(0px 0px 5px #fff) drop-shadow(0px 0px 10px #fff); }
-
-.markerInfo {
-  z-index: 1;
-  text-align: center;
-  background-color: #f0e2c9;
-  border-radius: 5px;
-  padding: 5px;
-  max-width: 12rem;
-  overflow: visible;
-  position: absolute;
-  transform: translate3d(-50%, -120%, 0);
-  box-shadow: 1px 1px 10px #333;
+  transform: translate3d(-50%, -100%, 0);
   display: flex;
   flex-direction: column;
   align-items: center; }
-  .markerInfo h2 {
-    flex: 1;
-    font-size: 1.4rem;
-    margin: 5px 0;
-    color: #a62f03;
-    font-family: 'Alice', serif;
-    font-weight: 800; }
-  .markerInfo .window {
-    position: relative;
-    border-radius: 6px;
-    height: 10rem;
-    min-width: 10rem; }
-    .markerInfo .window .xBlock {
-      padding: 0 0 2px 5px;
-      border-radius: 0 0 0 5px;
-      background-color: #f0e2c9;
+  .marker .markerInfo {
+    z-index: 1;
+    text-align: center;
+    background-color: #f0e2c9;
+    border-radius: 5px;
+    padding: 5px;
+    max-width: 12rem;
+    overflow: visible;
+    box-shadow: 1px 1px 10px #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
+    .marker .markerInfo h2 {
+      flex: 1;
       font-size: 1.4rem;
-      font-weight: 900;
-      position: absolute;
-      right: 0;
-      top: -5px;
+      margin: 5px 0;
       color: #a62f03;
-      cursor: pointer; }
-    .markerInfo .window img {
+      font-family: 'Alice', serif;
+      font-weight: 800; }
+    .marker .markerInfo .window {
+      position: relative;
+      border-radius: 6px;
+      height: 10rem;
+      min-width: 10rem; }
+      .marker .markerInfo .window .xBlock {
+        padding: 0 0 2px 5px;
+        border-radius: 0 0 0 5px;
+        background-color: #f0e2c9;
+        font-size: 1.4rem;
+        font-weight: 900;
+        position: absolute;
+        right: 0;
+        top: -5px;
+        color: #a62f03;
+        cursor: pointer; }
+      .marker .markerInfo .window img {
+        width: 100%;
+        height: 100%;
+        border-radius: 5px;
+        object-fit: cover;
+        object-position: center; }
+    .marker .markerInfo .goto {
       width: 100%;
-      height: 100%;
-      border-radius: 5px;
-      object-fit: cover;
-      object-position: center; }
-  .markerInfo .goto {
-    width: 100%;
-    font-family: 'Raleway', sans-serif;
-    font-weight: 500;
-    font-size: 1rem;
-    letter-spacing: 1px;
+      font-family: 'Raleway', sans-serif;
+      font-weight: 500;
+      font-size: 1rem;
+      letter-spacing: 1px;
+      cursor: pointer;
+      color: #fff;
+      background-color: #46bcec;
+      border-radius: 4px;
+      padding: 3px 0; }
+    .marker .markerInfo .svgDownBox {
+      width: 2rem;
+      height: 2rem;
+      position: absolute;
+      top: 100%;
+      fill: #f0e2c9;
+      stroke: #a62f03;
+      stroke-width: 5%; }
+  .marker .markerImg {
+    width: 3rem;
+    height: 3rem;
     cursor: pointer;
-    color: #fff;
-    background-color: #46bcec;
-    border-radius: 4px;
-    padding: 3px 0; }
-  .markerInfo .svgDownBox {
-    width: 2rem;
-    height: 2rem;
-    position: absolute;
-    top: 100%;
-    fill: #f0e2c9;
-    stroke: #a62f03;
-    stroke-width: 5%; }
+    transform: rotate3d(0, 0, 1, 90deg); }
+    .marker .markerImg svg {
+      fill: #a62f03;
+      filter: drop-shadow(0px 0px 5px #fff) drop-shadow(0px 0px 10px #fff); }
+
+.markerAnimation-enter {
+  transform: scale3d(0, 1, 1); }
+
+.markerAnimation-enter.markerAnimation-enter-active {
+  transform: scale3d(1, 1, 1);
+  transition: 0.2s ease-out; }
+
+.markerAnimation-leave {
+  transform: scale3d(1, 1, 1); }
+
+.markerAnimation-leave.markerAnimation-leave-active {
+  transform: scale3d(0, 1, 1);
+  transition: 0.2s ease-out; }
 
 .userBox {
   height: 15rem;

@@ -54,6 +54,8 @@ const MapComponent = ({ uploadEye, eyes }) => {
         fullscreenControl: false,
         mapTypeControl: false,
         scaleControl: false,
+        minZoom: 3,
+        maxZoom: 20,
     };
 
     // let initialized = false;

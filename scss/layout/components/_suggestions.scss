@@ -57,6 +57,9 @@
 
             & .eyeName {
                 position: absolute;
+                bottom: 0;
+                left: 0;
+                // transform: translate(-50%, -50%);
                 font-family: 'Raleway', sans-serif;
                 font-size: $super-small-font-size;
                 font-weight: 800;
@@ -77,21 +80,15 @@
 
 .suggestionClosed {
     z-index: 3;
-    // z-index: 2000;
     min-height: 10rem;
-    // width: 10rem;
     background-color: transparent;
     position: absolute;
-    // top: 10rem;
-    // margin-top: -10rem;
 
     pointer-events: none;
     transform: translate3d(0, 0, 0);
     will-change: transform;
 
     display: flex;
-    // justify-content: center;
-    // align-items: center;
 
     & .icon {
         cursor: pointer;
@@ -146,5 +143,22 @@
 
     transform: translate3d(0, -100%, 0);
 
+    transition: 0.2s ease-out;
+}
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~name
+.suggestionNameAnimation-enter {
+    width: 100%;
+    transform: translate3d(-100%, 0, 0);
+}
+.suggestionNameAnimation-enter.suggestionNameAnimation-enter-active {
+    transform: translate3d(0, 0, 0);
+    transition: 0.2s ease-out;
+}
+.suggestionNameAnimation-leave {
+    width: 100%;
+    transform: translate3d(0, 0, 0);
+}
+.suggestionNameAnimation-leave.suggestionNameAnimation-leave-active {
+    transform: translate3d(100%, 0, 0);
     transition: 0.2s ease-out;
 }
