@@ -79,17 +79,17 @@ const EyePage = (props) => {
     return (
         <section className='eyeContainer'>
             {user.userObj._id === user.selectedUserObj._id ? (
-                <main className='eye' style={{ display: 'flex' }}>
+                <main className='eye'>
                     <div className='picBox'>
                         <img src={eye.url} alt={eye.pic.name}></img>
                     </div>
                     <div className='infoBox'>
                         <h2 className='title'>{name}</h2>
-                        {inputs}
+                        <div className='inputContainer'>{inputs}</div>
                     </div>
                 </main>
             ) : (
-                <main className='eye' style={{ display: 'grid' }}>
+                <main className='eye'>
                     <div className='userBox'>
                         <UserBox
                             selectedUserObj={user.selectedUserObj}
@@ -101,7 +101,7 @@ const EyePage = (props) => {
                     </div>
                     <div className='infoBox'>
                         <h2 className='title'>{name}</h2>
-                        {inputs}
+                        <div className='inputContainer'>{inputs}</div>
                     </div>
                 </main>
             )}

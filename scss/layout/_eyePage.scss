@@ -12,55 +12,9 @@
         // width: 100%;
         background-color: $color-black;
 
-        // & .userBox {
-        //     position: relative;
-        //     grid-area: user;
-        //     z-index: 2;
-        //     box-shadow: 5px 0 1rem rgba(5, 5, 5, 0.9);
-
-        //     display: flex;
-        //     justify-content: center;
-        //     align-items: center;
-
-        //     & .avatar {
-        //         height: 100%;
-        //         width: 100%;
-        //         object-fit: cover;
-        //         object-position: center;
-        //     }
-
-        //     & .textContainer {
-        //         position: absolute;
-        //         height: 100%;
-
-        //         display: flex;
-        //         flex-direction: column;
-        //         justify-content: space-evenly;
-        //         align-items: center;
-
-        //         & .username {
-        //             // position: relative;
-        //             background-color: rgba($color-white, 0.7);
-        //             border-radius: 6px;
-        //             padding: 1rem 3rem;
-        //             text-shadow: 0 0 5px $color-white;
-        //             font-size: 20px;
-        //             color: $color-black;
-        //         }
-
-        //         & .eyeBtn {
-        //             background-color: rgba($color-blue, 0.7);
-        //             transition: 0.5s ease-out;
-
-        //             &:hover {
-        //                 background-color: rgba($color-blue, 1);
-        //             }
-        //         }
-        //     }
-        // }
-
         & .picBox {
             grid-area: pic;
+            overflow: hidden;
             & img {
                 position: relative;
                 box-shadow: 5px 0 5px rgba(5, 5, 5, 0.25);
@@ -71,10 +25,9 @@
 
         & .infoBox {
             grid-area: info;
-            flex: 1;
             padding: 0 2rem;
             background-color: $color-white;
-            overflow-wrap: anywhere;
+            // overflow-wrap: anywhere;
 
             display: flex;
             flex-direction: column;
@@ -87,46 +40,52 @@
                 padding-top: 2rem;
                 padding-bottom: 1.5rem;
             }
-
-            & .infoFieldset {
+            & .inputContainer {
+                flex: 1;
                 display: flex;
                 flex-direction: column;
+                flex-wrap: wrap;
 
-                border-radius: 8px;
-                background-color: $color-white;
-                color: $color-red;
-                margin: 0;
-                padding: 1rem;
-                border: none;
+                & .infoFieldset {
+                    display: flex;
+                    flex-direction: column;
 
-                & label {
-                    font-size: $base-font-size;
-                    font-weight: 800;
-                    margin-right: 1rem;
-                }
-
-                & input {
-                    font-size: $small-font-size;
-                    border: none;
-                    background: transparent;
+                    border-radius: 8px;
+                    background-color: $color-white;
                     color: $color-red;
-                    font-weight: 500;
-
-                    flex: 1;
-                }
-
-                & div {
-                    flex: 1;
-                }
-
-                & input[type='number']::-webkit-inner-spin-button,
-                & input[type='number']::-webkit-outer-spin-button,
-                & input[type='float']::-webkit-inner-spin-button,
-                & input[type='float']::-webkit-outer-spin-button,
-                & input[type='number'],
-                &input[type='float'] {
-                    -webkit-appearance: textfield;
                     margin: 0;
+                    padding: 1rem;
+                    border: none;
+
+                    & label {
+                        font-size: $base-font-size;
+                        font-weight: 800;
+                        margin-right: 1rem;
+                    }
+
+                    & input {
+                        font-size: $small-font-size;
+                        border: none;
+                        background: transparent;
+                        color: $color-red;
+                        font-weight: 500;
+
+                        flex: 1;
+                    }
+
+                    & div {
+                        flex: 1;
+                    }
+
+                    & input[type='number']::-webkit-inner-spin-button,
+                    & input[type='number']::-webkit-outer-spin-button,
+                    & input[type='float']::-webkit-inner-spin-button,
+                    & input[type='float']::-webkit-outer-spin-button,
+                    & input[type='number'],
+                    &input[type='float'] {
+                        -webkit-appearance: textfield;
+                        margin: 0;
+                    }
                 }
             }
         }

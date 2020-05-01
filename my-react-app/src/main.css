@@ -573,11 +573,11 @@ Grey dark 3: #999
 
 .add {
   flex: 1;
-  display: grid;
-  grid: 1fr/ 1fr 1fr 1fr;
+  display: flex;
   background-color: #333; }
 
 .mapSection {
+  flex: 1;
   height: 100%; }
   .mapSection > div {
     width: 100%;
@@ -585,6 +585,7 @@ Grey dark 3: #999
     position: relative; }
 
 .imageSection {
+  flex: 1;
   border-left: 2px solid #f0e2c9;
   border-right: 2px solid #f0e2c9;
   display: flex;
@@ -660,9 +661,11 @@ Grey dark 3: #999
   background: rgba(70, 188, 236, 0.2); }
 
 .infoSection {
+  flex: 1;
   padding: 1rem; }
   .infoSection #infoForm {
-    display: grid; }
+    display: flex;
+    flex-direction: column; }
     .infoSection #infoForm .infoFieldset {
       display: flex;
       justify-content: flex-start;
@@ -676,14 +679,18 @@ Grey dark 3: #999
       .infoSection #infoForm .infoFieldset label {
         font-size: 1.6rem;
         font-weight: 800;
-        margin-right: 1rem; }
+        margin-right: 1rem;
+        overflow: hidden;
+        text-overflow: ellipsis; }
       .infoSection #infoForm .infoFieldset input {
+        flex: 1;
         font-size: 1.4rem;
         border: none;
         background: transparent;
         color: #a62f03;
         font-weight: 500;
-        flex: 1; }
+        overflow: hidden;
+        text-overflow: ellipsis; }
       .infoSection #infoForm .infoFieldset div {
         flex: 1; }
       .infoSection #infoForm .infoFieldset input[type='number']::-webkit-inner-spin-button,
@@ -705,7 +712,8 @@ Grey dark 3: #999
     grid-template-areas: 'user user' 'pic info';
     background-color: #333; }
     .eyeContainer .eye .picBox {
-      grid-area: pic; }
+      grid-area: pic;
+      overflow: hidden; }
       .eyeContainer .eye .picBox img {
         position: relative;
         box-shadow: 5px 0 5px rgba(5, 5, 5, 0.25);
@@ -713,10 +721,8 @@ Grey dark 3: #999
         height: auto; }
     .eyeContainer .eye .infoBox {
       grid-area: info;
-      flex: 1;
       padding: 0 2rem;
       background-color: #f0e2c9;
-      overflow-wrap: anywhere;
       display: flex;
       flex-direction: column; }
       .eyeContainer .eye .infoBox h2 {
@@ -726,35 +732,40 @@ Grey dark 3: #999
         color: #a62f03;
         padding-top: 2rem;
         padding-bottom: 1.5rem; }
-      .eyeContainer .eye .infoBox .infoFieldset {
+      .eyeContainer .eye .infoBox .inputContainer {
+        flex: 1;
         display: flex;
         flex-direction: column;
-        border-radius: 8px;
-        background-color: #f0e2c9;
-        color: #a62f03;
-        margin: 0;
-        padding: 1rem;
-        border: none; }
-        .eyeContainer .eye .infoBox .infoFieldset label {
-          font-size: 1.6rem;
-          font-weight: 800;
-          margin-right: 1rem; }
-        .eyeContainer .eye .infoBox .infoFieldset input {
-          font-size: 1.4rem;
-          border: none;
-          background: transparent;
+        flex-wrap: wrap; }
+        .eyeContainer .eye .infoBox .inputContainer .infoFieldset {
+          display: flex;
+          flex-direction: column;
+          border-radius: 8px;
+          background-color: #f0e2c9;
           color: #a62f03;
-          font-weight: 500;
-          flex: 1; }
-        .eyeContainer .eye .infoBox .infoFieldset div {
-          flex: 1; }
-        .eyeContainer .eye .infoBox .infoFieldset input[type='number']::-webkit-inner-spin-button,
-        .eyeContainer .eye .infoBox .infoFieldset input[type='number']::-webkit-outer-spin-button,
-        .eyeContainer .eye .infoBox .infoFieldset input[type='float']::-webkit-inner-spin-button,
-        .eyeContainer .eye .infoBox .infoFieldset input[type='float']::-webkit-outer-spin-button,
-        .eyeContainer .eye .infoBox .infoFieldset input[type='number'], .eyeContainer .eye .infoBox .infoFieldsetinput[type='float'] {
-          -webkit-appearance: textfield;
-          margin: 0; }
+          margin: 0;
+          padding: 1rem;
+          border: none; }
+          .eyeContainer .eye .infoBox .inputContainer .infoFieldset label {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-right: 1rem; }
+          .eyeContainer .eye .infoBox .inputContainer .infoFieldset input {
+            font-size: 1.4rem;
+            border: none;
+            background: transparent;
+            color: #a62f03;
+            font-weight: 500;
+            flex: 1; }
+          .eyeContainer .eye .infoBox .inputContainer .infoFieldset div {
+            flex: 1; }
+          .eyeContainer .eye .infoBox .inputContainer .infoFieldset input[type='number']::-webkit-inner-spin-button,
+          .eyeContainer .eye .infoBox .inputContainer .infoFieldset input[type='number']::-webkit-outer-spin-button,
+          .eyeContainer .eye .infoBox .inputContainer .infoFieldset input[type='float']::-webkit-inner-spin-button,
+          .eyeContainer .eye .infoBox .inputContainer .infoFieldset input[type='float']::-webkit-outer-spin-button,
+          .eyeContainer .eye .infoBox .inputContainer .infoFieldset input[type='number'], .eyeContainer .eye .infoBox .inputContainer .infoFieldsetinput[type='float'] {
+            -webkit-appearance: textfield;
+            margin: 0; }
 
 .userEyes {
   flex: 1;
@@ -813,3 +824,43 @@ Grey dark 3: #999
           margin: 5px 0; }
         .userEyes .cardBox .card .info p:last-child {
           margin-bottom: 1.5rem; }
+
+@media only screen and (max-width: 1070px) {
+  body #root #myArea .eyeContainer .eye {
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+    grid-template-areas: 'pic pic' 'info info'; }
+    body #root #myArea .eyeContainer .eye .userBox .textContainer {
+      background-color: white; }
+  body #root #myArea .eyeContainer .infoBox .inputContainer {
+    flex-direction: row;
+    justify-content: center; }
+    body #root #myArea .eyeContainer .infoBox .inputContainer .infoFieldset {
+      border: 0.5px solid #333;
+      margin: 3px; }
+  body #root #myArea .add {
+    flex-direction: column; }
+    body #root #myArea .add .imageSection {
+      flex: 0;
+      border: 0;
+      order: 1;
+      flex: revert; }
+      body #root #myArea .add .imageSection form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+        height: 100%;
+        width: 100%; }
+    body #root #myArea .add .mapSection {
+      order: 2;
+      flex: 1; }
+      body #root #myArea .add .mapSection > div {
+        height: 20rem !important; }
+    body #root #myArea .add .infoSection {
+      order: 3; }
+      body #root #myArea .add .infoSection #infoForm {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-evenly; }
+        body #root #myArea .add .infoSection #infoForm .infoFieldset {
+          flex: 1; } }

@@ -1,8 +1,10 @@
 .infoSection {
+    flex: 1;
     padding: 1rem;
 
     & #infoForm {
-        display: grid;
+        display: flex;
+        flex-direction: column;
 
         & .infoFieldset {
             display: flex;
@@ -19,16 +21,19 @@
                 font-size: $base-font-size;
                 font-weight: 800;
                 margin-right: 1rem;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
 
             & input {
+                flex: 1;
                 font-size: $small-font-size;
                 border: none;
                 background: transparent;
                 color: $color-red;
                 font-weight: 500;
-
-                flex: 1;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
 
             & div {
