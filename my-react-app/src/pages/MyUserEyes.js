@@ -18,7 +18,11 @@ const UserEyes = (props) => {
             cardList.push(<BuildMyEyeCards key={eye._id} eye={eye} />)
         );
     }
-    return <section className='userEyes'>{cardList}</section>;
+    return (
+        <section className='userEyes'>
+            <div className='cardBox'>{cardList}</div>
+        </section>
+    );
 };
 
 const mapStateToProps = (state) => ({
