@@ -12,10 +12,14 @@
     // transform: translate3d(0, 0, 0);
     will-change: transform, position;
 
+    // -webkit-overflow-scrolling: touch; /* Lets it scroll lazy */
+    //
+
     & .icon {
         align-self: flex-start;
         cursor: pointer;
         height: 2rem;
+        min-width: 2rem;
         width: 2rem;
         margin: 2rem;
         fill: $color-red;
@@ -25,6 +29,9 @@
     }
 
     & .suggestionContainer {
+        overflow-x: scroll;
+        touch-action: pan-x;
+        -webkit-overflow-scrolling: touch; /* Lets it scroll lazy */
         // background-color: green;
         margin: 1rem 2rem 1rem 0;
         flex: 1;
