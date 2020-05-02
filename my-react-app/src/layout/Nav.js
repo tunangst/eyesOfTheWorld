@@ -77,12 +77,12 @@ const Nav = (props) => {
 
     const authLinks = (
         <ul className='navLinks'>
-            <li>
+            <li className='setEyeBtn'>
                 <button className='btns' onClick={() => handleRedirectUpload()}>
                     Set your Eye
                 </button>
             </li>
-            <li>
+            <li className='myEyesBtn'>
                 <button
                     className='btns'
                     onClick={() => handleRedirectMyUserEyes(userObj._id)}
@@ -101,6 +101,20 @@ const Nav = (props) => {
                         </li>
                         <li onClick={() => handleLogout()}>
                             <p className='dropText'>Logout</p>
+                        </li>
+                        <li
+                            className='setEye'
+                            onClick={() => handleRedirectUpload()}
+                        >
+                            <p className='dropText'>Set your Eye</p>
+                        </li>
+                        <li
+                            className=' myEyes'
+                            onClick={() =>
+                                handleRedirectMyUserEyes(userObj._id)
+                            }
+                        >
+                            <p className='dropText'>My Eyes</p>
                         </li>
                     </ul>
                 )}

@@ -156,6 +156,9 @@ Grey dark 3: #999
             padding: 5px 1rem 5px 5px;
             border: 1px solid #f0e2c9;
             background-color: rgba(240, 226, 201, 0.8); }
+        .nav .navLinks .avatar .dropMenu .setEye,
+        .nav .navLinks .avatar .dropMenu .myEyes {
+          display: none; }
 
 .alerts {
   width: 100%;
@@ -359,6 +362,7 @@ Grey dark 3: #999
   .login-register .form-container,
   .profile-form .form-container {
     position: relative;
+    margin: 2rem;
     padding: 5rem;
     border-radius: 1rem;
     background-color: #f0e2c9;
@@ -635,6 +639,8 @@ Grey dark 3: #999
         border-radius: 1rem;
         color: #fff;
         cursor: pointer;
+        padding: 1rem;
+        text-align: center;
         transition: all 0.25s ease-in; }
       .imageSection .inputContainer form #insertedImg + .imageSection .inputContainer form #imgLabel {
         width: 100%;
@@ -851,6 +857,8 @@ Grey dark 3: #999
         grid-template-rows: 1fr;
         height: 100%;
         width: 100%; }
+        body #root #myArea .add .imageSection form #imgLabel {
+          font-size: 1.4rem; }
     body #root #myArea .add .mapSection {
       order: 2;
       flex: 1; }
@@ -864,3 +872,52 @@ Grey dark 3: #999
         justify-content: space-evenly; }
         body #root #myArea .add .infoSection #infoForm .infoFieldset {
           flex: 1; } }
+
+@media only screen and (max-width: 870px) {
+  body #root .nav .title {
+    z-index: 4;
+    font-size: 4rem; }
+  body #root .nav .navLinks {
+    z-index: 10;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    list-style: none;
+    padding-right: 1.5rem;
+    padding-left: 0; }
+    body #root .nav .navLinks .setEyeBtn,
+    body #root .nav .navLinks .myEyesBtn {
+      display: none; }
+    body #root .nav .navLinks .avatar .dropMenu {
+      position: absolute;
+      right: 1rem;
+      top: 100%;
+      z-index: 3;
+      min-width: 15rem;
+      box-shadow: 3px 3px 3px rgba(51, 51, 51, 0.3);
+      display: flex;
+      flex-direction: column; }
+      body #root .nav .navLinks .avatar .dropMenu li .dropText {
+        font-family: 'Raleway', sans-serif;
+        text-align: right;
+        color: #333;
+        text-shadow: 1px 1px 5px #fff;
+        font-size: 1.4rem;
+        font-weight: 800;
+        padding: 5px 1rem 5px 5px;
+        border: 1px solid #f0e2c9;
+        background-color: rgba(240, 226, 201, 0.8); }
+      body #root .nav .navLinks .avatar .dropMenu .setEye,
+      body #root .nav .navLinks .avatar .dropMenu .myEyes {
+        display: block; }
+  body #root #myArea .profile-form .form-container .editAvatar {
+    margin: auto;
+    position: initial; } }
+
+@media only screen and (max-width: 550px) {
+  body #root .nav .title {
+    font-size: 3rem; } }
+
+@media only screen and (max-width: 360px) {
+  body #root .nav .title {
+    font-size: 3rem; } }
