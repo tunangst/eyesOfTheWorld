@@ -168,6 +168,20 @@
                 & .title {
                     font-size: 3rem;
                 }
+                & .navLinks {
+                    padding: 0 1rem;
+                    flex-direction: column;
+                    justify-content: space-evenly;
+                    & .navBtns {
+                        width: 100%;
+                        text-align: center;
+                        & .btns {
+                            display: block;
+                            padding: 1rem;
+                            margin: 0;
+                        }
+                    }
+                }
             }
         }
     }

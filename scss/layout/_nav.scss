@@ -37,8 +37,8 @@
         justify-content: flex-end;
         align-items: center;
         list-style: none;
-        padding-right: 1.5rem;
-        padding-left: 0;
+        padding: 0 1.5rem;
+        height: 100%;
 
         & .avatar {
             height: 9rem;

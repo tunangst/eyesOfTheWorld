@@ -105,8 +105,8 @@ Grey dark 3: #999
     justify-content: flex-end;
     align-items: center;
     list-style: none;
-    padding-right: 1.5rem;
-    padding-left: 0; }
+    padding: 0 1.5rem;
+    height: 100%; }
     .nav .navLinks .avatar {
       height: 9rem;
       width: 9rem;
@@ -917,7 +917,18 @@ Grey dark 3: #999
 
 @media only screen and (max-width: 550px) {
   body #root .nav .title {
-    font-size: 3rem; } }
+    font-size: 3rem; }
+  body #root .nav .navLinks {
+    padding: 0 1rem;
+    flex-direction: column;
+    justify-content: space-evenly; }
+    body #root .nav .navLinks .navBtns {
+      width: 100%;
+      text-align: center; }
+      body #root .nav .navLinks .navBtns .btns {
+        display: block;
+        padding: 1rem;
+        margin: 0; } }
 
 @media only screen and (max-width: 360px) {
   body #root .nav .title {
