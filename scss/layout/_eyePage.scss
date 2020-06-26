@@ -6,8 +6,8 @@
         flex: 1;
 
         display: grid;
-        grid-template-columns: auto auto;
-        grid-template-rows: 15rem 1fr;
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto auto;
         grid-template-areas: 'user user' 'pic info';
         // width: 100%;
         background-color: $color-black;

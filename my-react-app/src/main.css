@@ -714,8 +714,8 @@ Grey dark 3: #999
   .eyeContainer .eye {
     flex: 1;
     display: grid;
-    grid-template-columns: auto auto;
-    grid-template-rows: 15rem 1fr;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
     grid-template-areas: 'user user' 'pic info';
     background-color: #333; }
     .eyeContainer .eye .picBox {
@@ -833,12 +833,6 @@ Grey dark 3: #999
           margin-bottom: 1.5rem; }
 
 @media only screen and (max-width: 1070px) {
-  body #root #myArea .eyeContainer .eye {
-    grid-template-columns: auto auto;
-    grid-template-rows: auto auto;
-    grid-template-areas: 'pic pic' 'info info'; }
-    body #root #myArea .eyeContainer .eye .userBox .textContainer {
-      background-color: white; }
   body #root #myArea .eyeContainer .infoBox .inputContainer {
     flex-direction: row;
     justify-content: center; }
@@ -852,14 +846,16 @@ Grey dark 3: #999
       border: 0;
       order: 1;
       flex: revert; }
-      body #root #myArea .add .imageSection form {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr;
-        height: 100%;
-        width: 100%; }
-        body #root #myArea .add .imageSection form #imgLabel {
-          font-size: 1.4rem; }
+      body #root #myArea .add .imageSection .inputContainer {
+        padding: 1rem; }
+        body #root #myArea .add .imageSection .inputContainer form {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: 1fr;
+          height: 100%;
+          width: 100%; }
+          body #root #myArea .add .imageSection .inputContainer form #imgLabel {
+            font-size: 1.4rem; }
     body #root #myArea .add .mapSection {
       order: 2;
       flex: 1; }
@@ -913,7 +909,9 @@ Grey dark 3: #999
         display: block; }
   body #root #myArea .profile-form .form-container .editAvatar {
     margin: auto;
-    position: initial; } }
+    position: initial; }
+  body #root #myArea .eyeContainer .eye {
+    grid-template-rows: auto 1fr; } }
 
 @media only screen and (max-width: 550px) {
   body #root .nav .title {
@@ -928,8 +926,21 @@ Grey dark 3: #999
       body #root .nav .navLinks .navBtns .btns {
         display: block;
         padding: 1rem;
-        margin: 0; } }
+        margin: 0; }
+  body #root #myArea .eyeContainer .eye {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: 'user' 'pic' 'info'; }
+    body #root #myArea .eyeContainer .eye .userBox .textContainer {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center; } }
 
 @media only screen and (max-width: 360px) {
   body #root .nav .title {
-    font-size: 2.5rem; } }
+    font-size: 2.5rem; }
+  body #root #myArea .eyeContainer .eye .infoBox .inputContainer .infoFieldset label {
+    font-size: 1.4rem; }
+  body #root #myArea .eyeContainer .eye .infoBox .inputContainer .infoFieldset input {
+    font-size: 1rem; } }
