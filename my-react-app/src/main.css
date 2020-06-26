@@ -943,4 +943,6 @@ Grey dark 3: #999
   body #root #myArea .eyeContainer .eye .infoBox .inputContainer .infoFieldset label {
     font-size: 1.4rem; }
   body #root #myArea .eyeContainer .eye .infoBox .inputContainer .infoFieldset input {
-    font-size: 1rem; } }
+    font-size: 1rem; }
+  body #root #myArea .add .infoSection #infoForm .infoFieldset {
+    padding: 5px; } }

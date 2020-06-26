@@ -250,6 +250,15 @@
                         }
                     }
                 }
+                & .add {
+                    & .infoSection {
+                        & #infoForm {
+                            & .infoFieldset {
+                                padding: 5px;
+                            }
+                        }
+                    }
+                }
             }
         }
     }
