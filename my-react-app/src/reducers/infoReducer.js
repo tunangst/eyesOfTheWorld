@@ -21,7 +21,7 @@ const initialInfo = {
     zoom: '',
     artist: '',
     software: '',
-    copyright: ''
+    copyright: '',
 };
 
 const info = (state = initialInfo, action) => {
@@ -51,7 +51,7 @@ const info = (state = initialInfo, action) => {
                 zoom: payload.zoom,
                 artist: payload.artist,
                 software: payload.software,
-                copyright: payload.copyright
+                copyright: payload.copyright,
             };
         case CLEAR_INFO:
             return initialInfo;

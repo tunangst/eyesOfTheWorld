@@ -53,11 +53,11 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
         case 'camera':
             inputField = (
                 <fieldset className='infoFieldset'>
-                    <label htmlFor='model'>Camera:</label>
+                    <label htmlFor='camera'>Camera:</label>
                     <input
                         readOnly
-                        id='model'
-                        name='model'
+                        id='camera'
+                        name='camera'
                         type='text'
                         value={value}
                         // style={calculateLength(size)}
@@ -116,6 +116,28 @@ const BuildInputField = ({ field, value, fieldHeight, valueHeight }) => {
                             //     )}
                             // />
                         }
+                    </div>
+                    <label htmlFor='width' id='width'></label>
+                    <div>
+                        <input
+                            readOnly
+                            id='width'
+                            name='width'
+                            type='string'
+                            value={value}
+                            style={{ display: 'none' }}
+                        />
+                    </div>
+                    <label htmlFor='height' id='height'></label>
+                    <div>
+                        <input
+                            readOnly
+                            id='height'
+                            name='height'
+                            type='string'
+                            value={valueHeight}
+                            style={{ display: 'none' }}
+                        />
                     </div>
                 </fieldset>
             );

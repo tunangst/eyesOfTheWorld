@@ -73,7 +73,7 @@ const MapComponent = ({ uploadEye, eyes }) => {
     let points;
     // check for inserted point from upload or eyesArr.length === 1
     if (uploadEye) {
-        console.log(uploadEye, 'uploadEye');
+        // console.log(uploadEye, 'uploadEye');
         points = [
             {
                 properties: {
@@ -217,7 +217,7 @@ const MapComponent = ({ uploadEye, eyes }) => {
                               longitude,
                               latitude,
                           ] = cluster.geometry.coordinates;
-                          console.log(cluster);
+                          //   console.log(cluster);
                           if (latitude === 0 && longitude === 0) return null;
                           return (
                               <BuildMarker

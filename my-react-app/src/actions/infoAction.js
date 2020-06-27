@@ -98,6 +98,7 @@ export const handleFindInfo = (props) => async (dispatch) => {
         let latitude;
         let longitude;
         const tags = EXIF.getAllTags(img1);
+
         // console.log(tags);
         if (tags.PixelXDimension < 200 || tags.PixelYDimension < 200) {
             dispatch(
@@ -179,9 +180,7 @@ export const handleFindInfo = (props) => async (dispatch) => {
             software: tags.Software && tags.Software,
             copyright: tags.Copyright && tags.Copyright,
         };
-        // console.log(zoom, 'zoom');
-        // console.log(zoomCalc, 'zoomCalc');
-        // console.log(enterInfo);
+
         dispatch({
             type: SET_INFO,
             payload: enterInfo,

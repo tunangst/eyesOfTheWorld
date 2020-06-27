@@ -9,6 +9,7 @@ const InfoSchema = new Schema({
     date: { type: Date },
     width: { type: Number },
     height: { type: Number },
+    dimension: { type: String },
     aperture: { type: String },
     shutter: { type: Number },
     iso: { type: Number },
@@ -24,7 +25,7 @@ const InfoSchema = new Schema({
     zoom: { type: Number },
     artist: { type: String },
     software: { type: String },
-    copyright: { type: String }
+    copyright: { type: String },
 });
 
 module.exports = Info = mongoose.model('info', InfoSchema);

@@ -6,6 +6,7 @@ import {
     SET_LOADING,
     BUILD_EYE,
     CLEAR_EYE,
+    CLEAR_EYES,
     CLEAR_INFO,
     RESET_IMG,
     SUBMIT_READY_NO,
@@ -103,6 +104,7 @@ export const submitEye = (event, userObj, lat, lon) => async (dispatch) => {
             //|||||||||||||||||||||||||||| if already posted error will throw ||||||||
             const picForm = document.querySelector(`#picForm`);
             let imageBody = new FormData(picForm);
+
             const directoryName = userObj.email;
             imageBody.append('directoryName', directoryName);
 
@@ -128,6 +130,10 @@ export const submitEye = (event, userObj, lat, lon) => async (dispatch) => {
             infoBody.append('picType', fileInfo.type);
             infoBody.append('url', imgUrl);
             infoBody.append('user', userObj._id);
+
+            let arr = [...infoBody];
+            console.log(arr);
+            debugger;
             //|||||||||||||||||||||||||||||||| send eye post ||||||||||||||||
             await axios.post('/api/eyes/upload', infoBody, config);
 
@@ -148,6 +154,10 @@ export const submitEye = (event, userObj, lat, lon) => async (dispatch) => {
             error.response.data.msg &&
                 dispatch(setAlert(error.response.data.msg || 'Error', 'error'));
         }
+        dispatch({
+            type: CLEAR_EYES,
+        });
+        dispatch(getAllEyes());
     }
     dispatch({
         type: SET_LOADING,
