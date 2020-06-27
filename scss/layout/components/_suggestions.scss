@@ -29,7 +29,7 @@
     }
 
     & .suggestionContainer {
-        overflow-x: scroll;
+        overflow-x: auto;
         touch-action: pan-x;
         -webkit-overflow-scrolling: touch; /* Lets it scroll lazy */
         // background-color: green;
