@@ -131,9 +131,6 @@ export const submitEye = (event, userObj, lat, lon) => async (dispatch) => {
             infoBody.append('url', imgUrl);
             infoBody.append('user', userObj._id);
 
-            let arr = [...infoBody];
-            console.log(arr);
-            debugger;
             //|||||||||||||||||||||||||||||||| send eye post ||||||||||||||||
             await axios.post('/api/eyes/upload', infoBody, config);
 
