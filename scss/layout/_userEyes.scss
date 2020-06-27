@@ -28,6 +28,7 @@
             & .window {
                 position: relative;
                 // padding-bottom: 1.5rem;
+
                 & .remove {
                     padding: 0 0 5px 7px;
                     border-radius: 0 0 0 5px;
@@ -40,6 +41,7 @@
                     color: $color-red;
                     cursor: pointer;
                 }
+
                 & img {
                     border-radius: 6px;
                     width: 27rem;
@@ -76,6 +78,34 @@
 
                 & p:last-child {
                     margin-bottom: 1.5rem;
+                }
+            }
+            & .toEye {
+                padding: 5px;
+                border-radius: 0 0 5px 5px;
+                font-size: $small-font-size;
+                // font-weight: 900;
+                // position: absolute;
+                left: -5px;
+                top: -8px;
+                color: $color-red;
+                cursor: pointer;
+
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                height: 4rem;
+                background-color: rgba($color-black, 0.5);
+                fill: $color-white;
+
+                & svg {
+                    height: 3rem;
+                    width: 3rem;
+                }
+                & .displayEyePage {
+                    margin: auto;
+                    color: $color-white;
+                    font-weight: 600;
                 }
             }
         }

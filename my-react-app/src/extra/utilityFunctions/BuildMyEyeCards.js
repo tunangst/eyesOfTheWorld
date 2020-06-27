@@ -1,11 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+
 import moment from 'moment';
+import icons from '../images/icons.svg';
 
 import { setName } from './utilities';
 import { removeEye } from '../../actions/eyeAction';
 
 const BuildEyeCards = ({ eye, removeEye }) => {
+    const history = useHistory();
+    const handleRedirect = (eyeId) => {
+        history.push(`/eyes/${eyeId}`);
+    };
     const filename = eye.pic.name;
     const name = setName(filename);
 
@@ -30,6 +37,12 @@ const BuildEyeCards = ({ eye, removeEye }) => {
                 <p className='card_latitude_number'>{eye.info.latitude}</p>
                 <h2>Longitude</h2>
                 <p>{eye.info.longitude}</p>
+            </div>
+            <div className='toEye' onClick={() => handleRedirect(eye._id)}>
+                <svg>
+                    <use href={`${icons}#view`}></use>
+                </svg>
+                <p className='displayEyePage'>display Eye page</p>
             </div>
         </div>
     );

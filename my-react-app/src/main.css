@@ -221,7 +221,8 @@ Grey dark 3: #999
   flex: 1;
   margin-top: 10rem;
   display: flex;
-  flex-direction: column; }
+  flex-direction: column;
+  background-color: #333; }
 
 .screenBlock {
   z-index: 9;
@@ -709,8 +710,7 @@ Grey dark 3: #999
         margin: 0; }
 
 .eyeContainer {
-  width: 100%;
-  background-color: #f0e2c9; }
+  width: 100%; }
   .eyeContainer .eye {
     flex: 1;
     display: grid;
@@ -731,7 +731,9 @@ Grey dark 3: #999
       padding: 0 2rem;
       background-color: #f0e2c9;
       display: flex;
-      flex-direction: column; }
+      flex-direction: column;
+      max-width: 35rem;
+      padding-bottom: 2rem; }
       .eyeContainer .eye .infoBox h2 {
         font-size: 3rem;
         text-align: center;
@@ -831,6 +833,27 @@ Grey dark 3: #999
           margin: 5px 0; }
         .userEyes .cardBox .card .info p:last-child {
           margin-bottom: 1.5rem; }
+      .userEyes .cardBox .card .toEye {
+        padding: 5px;
+        border-radius: 0 0 5px 5px;
+        font-size: 1.4rem;
+        left: -5px;
+        top: -8px;
+        color: #a62f03;
+        cursor: pointer;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        height: 4rem;
+        background-color: rgba(51, 51, 51, 0.5);
+        fill: #f0e2c9; }
+        .userEyes .cardBox .card .toEye svg {
+          height: 3rem;
+          width: 3rem; }
+        .userEyes .cardBox .card .toEye .displayEyePage {
+          margin: auto;
+          color: #f0e2c9;
+          font-weight: 600; }
 
 @media only screen and (max-width: 1070px) {
   body #root #myArea .eyeContainer .infoBox .inputContainer {
@@ -935,7 +958,9 @@ Grey dark 3: #999
     body #root #myArea .eyeContainer .eye .userBox .textContainer {
       flex-direction: column;
       align-items: center;
-      justify-content: center; } }
+      justify-content: center; }
+    body #root #myArea .eyeContainer .eye .infoBox {
+      max-width: none; } }
 
 @media only screen and (max-width: 360px) {
   body #root .nav .title {
