@@ -253,7 +253,7 @@ Grey dark 3: #999
     stroke-linecap: round;
     stroke: #f0e2c9; }
   .suggestionOpen .suggestionContainer {
-    overflow-x: scroll;
+    overflow-x: auto;
     touch-action: pan-x;
     -webkit-overflow-scrolling: touch;
     /* Lets it scroll lazy */
