@@ -786,6 +786,7 @@ Grey dark 3: #999
     align-items: flex-start;
     justify-content: center; }
     .userEyes .cardBox .card {
+      position: relative;
       border: 1px solid #a62f03;
       text-align: center;
       display: flex;
@@ -793,7 +794,7 @@ Grey dark 3: #999
       margin: 1rem;
       background-color: #f0e2c9;
       border-radius: 6px;
-      padding: 1rem;
+      padding: 1rem 1rem 4rem 1rem;
       width: 29rem;
       overflow-wrap: anywhere; }
       .userEyes .cardBox .card .window {
@@ -837,15 +838,18 @@ Grey dark 3: #999
         padding: 5px;
         border-radius: 0 0 5px 5px;
         font-size: 1.4rem;
-        left: -5px;
-        top: -8px;
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        left: 0;
         color: #a62f03;
         cursor: pointer;
+        overflow: hidden;
         display: flex;
         justify-content: flex-start;
         align-items: center;
         height: 4rem;
-        background-color: rgba(51, 51, 51, 0.5);
+        background-color: rgba(51, 51, 51, 0.6);
         fill: #f0e2c9; }
         .userEyes .cardBox .card .toEye svg {
           height: 3rem;
