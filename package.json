@@ -9,7 +9,7 @@
         "bcrypt": "^5.0.0",
         "bcryptjs": "^2.4.3",
         "cloudinary": "^1.21.0",
-        "config": "^3.2.5",
+        "config": "^3.3.8",
         "express": "^4.17.1",
         "gridfs-stream": "^1.1.1",
         "jsonwebtoken": "^8.5.1",
@@ -37,7 +37,7 @@
         "nodemon": "^2.0.2",
         "postcss": "^7.0.27",
         "postcss-cli": "^7.1.0",
-        "postcss-loader": "^3.0.0"
+        "postcss-loader": "^7.0.2"
     },
     "scripts": {
         "watch": "concurrently \"npm run watch-sass\" \"npm run autoprefixer\"",
